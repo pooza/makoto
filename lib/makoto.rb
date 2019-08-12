@@ -2,6 +2,8 @@ require 'active_support'
 require 'active_support/core_ext'
 require 'active_support/dependencies/autoload'
 require 'ginseng'
+require 'json'
+require 'yaml'
 
 module Makoto
   extend ActiveSupport::Autoload

@@ -1,4 +1,6 @@
 source 'https://rubygems.org'
 ruby '2.6.3'
+gem 'faye-websocket'
 gem 'ginseng-core', git: 'https://github.com/pooza/ginseng-core.git'
+gem 'ginseng-web', git: 'https://github.com/pooza/ginseng-web.git'
 gem 'rubocop'
