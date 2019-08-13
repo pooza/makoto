@@ -41,7 +41,7 @@ EM.run do
       payload = JSON.parse(data['payload'])
       if payload['type'] == 'mention'
         template = Makoto::Template.new('toot')
-        template[:account] = payload['account']['username']
+        template[:account] = payload['account']['acct']
         template[:message] = Sanitize.clean(payload['status']['content']).gsub(/@[[:word:]]+/, '')
         Makoto::Slack.broadcast({body: template.to_s, visibility: payload['status']['visibility']})
         mastodon.toot(status: template.to_s, visibility: payload['status']['visibility'])
