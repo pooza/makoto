@@ -11,6 +11,8 @@ module Makoto
   autoload :Config
   autoload :Environment
   autoload :Logger
+  autoload :Mastodon
   autoload :Package
   autoload :Slack
+  autoload :Template
 end
