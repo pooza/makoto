@@ -1,7 +1,5 @@
 module Makoto
   class Mastodon < Ginseng::Mastodon
-    attr_accessor :token
-
     def create_streaming_uri(stream = 'user')
       uri = self.uri.clone
       uri.scheme = 'wss'
