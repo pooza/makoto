@@ -19,6 +19,10 @@ module Makoto
   autoload :Slack
   autoload :Template
 
+  autoload_under 'daemon' do
+    autoload :ListenerDaemon
+  end
+
   autoload_under 'worker' do
     autoload :TootWorker
   end

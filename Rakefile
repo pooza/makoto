@@ -7,7 +7,7 @@ require 'makoto'
 
 [:start, :stop, :restart].each do |action|
   desc "#{action} all"
-  task action => ["makoto:listener:#{action}"]
+  task action => ["makoto:listener:#{action}", "makoto:listener:#{action}"]
 end
 
 Dir.glob(File.join(Makoto::Environment.dir, 'lib/task/*.rb')).each do |f|

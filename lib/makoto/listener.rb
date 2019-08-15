@@ -6,17 +6,13 @@ module Makoto
   class Listener
     attr_reader :client
 
-    def open(e)
+    def open
       @logger.info({class: self.class.to_s, uri: @uri.to_s, action: 'start'})
     end
 
-    def close(e)
-      @logger.info({class: self.class.to_s, action: 'close'})
-    end
-
-    def error(e)
-      Slack.broadcast(e)
-      @logger.error(e)
+    def error(error)
+      Slack.broadcast(error)
+      @logger.error(error)
     end
 
     def receive(message)
@@ -27,7 +23,6 @@ module Makoto
       template = Template.new('toot')
       template[:account] = payload['account']['acct']
       template[:message] = Sanitize.clean(payload['status']['content']).gsub(/@[[:word:]]+/, '')
-      Slack.broadcast({body: template.to_s, visibility: payload['status']['visibility']})
       @mastodon.toot(status: template.to_s, visibility: payload['status']['visibility'])
     rescue => e
       Slack.broadcast(e)
@@ -39,16 +34,11 @@ module Makoto
         listener = Listener.new
 
         listener.client.on :open do |e|
-          listener.open(e)
+          listener.open
         end
 
         listener.client.on :error do |e|
           listener.error(e)
-        end
-
-        listener.client.on :close do |e|
-          listener.close(e)
-          exit
         end
 
         listener.client.on :message do |message|
