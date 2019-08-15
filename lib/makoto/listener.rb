@@ -7,7 +7,7 @@ module Makoto
     attr_reader :client
 
     def open
-      @logger.info({class: self.class.to_s, uri: @uri.to_s, action: 'start'})
+      @logger.info(class: self.class.to_s, uri: @uri.to_s, action: 'start')
     end
 
     def error(error)
@@ -20,13 +20,22 @@ module Makoto
       return unless data['event'] == 'notification'
       return unless payload = JSON.parse(data['payload'])
       return unless payload['type'] == 'mention'
-      template = Template.new('toot')
-      template[:account] = payload['account']['acct']
-      template[:message] = Sanitize.clean(payload['status']['content']).gsub(/@[[:word:]]+/, '')
-      @mastodon.toot(status: template.to_s, visibility: payload['status']['visibility'])
+      @mastodon.toot(create_message(payload))
     rescue => e
       Slack.broadcast(e)
       @logger.error(e)
+    end
+
+    def create_message(payload)
+      template = Template.new('toot')
+      template[:account] = payload['account']['acct']
+      template[:message] = Sanitize.clean(payload['status']['content'])
+      template[:message].gsub!(/@[[:word:]]+/, '')
+      template[:message].strip!
+      return {
+        status: template.to_s,
+        visibility: payload['status']['visibility'],
+      }
     end
 
     def self.start
