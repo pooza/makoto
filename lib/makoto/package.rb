@@ -1,7 +1,7 @@
 module Makoto
   module Package
     def environment_class
-      return Environmeent
+      return Environment
     end
 
     def package_class

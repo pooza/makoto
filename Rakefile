@@ -5,6 +5,11 @@ ENV['BUNDLE_GEMFILE'] ||= File.join(dir, 'Gemfile')
 require 'bundler/setup'
 require 'makoto'
 
+[:start, :stop, :restart].each do |action|
+  desc "#{action} all"
+  task action => ["makoto:listener:#{action}", "makoto:listener:#{action}"]
+end
+
 Dir.glob(File.join(Makoto::Environment.dir, 'lib/task/*.rb')).each do |f|
   require f
 end
