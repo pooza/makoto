@@ -1,5 +1,5 @@
 namespace :makoto do
-  [:listener].each do |ns|
+  [:listener, :sidekiq, :thin].each do |ns|
     namespace ns do
       [:start, :stop].each do |action|
         desc "#{action} #{ns}"

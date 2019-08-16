@@ -5,3 +5,9 @@ package:
     - Tatsuya Koishi
   email:
     - tkoishi@b-shock.co.jp
+sidekiq:
+  redis:
+    dsn: redis://localhost:6379/3
+  auth:
+    user: admin
+    password: ''

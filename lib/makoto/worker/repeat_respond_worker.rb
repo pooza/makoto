@@ -1,5 +1,7 @@
+require 'sanitize'
+
 module Makoto
-  class TootWorker
+  class RepeatRespondWorker
     include Sidekiq::Worker
 
     def initialize
@@ -11,7 +13,7 @@ module Makoto
 
     def perform(params)
       template = Template.new('toot')
-      template[:account] = params['acct']
+      template[:account] = params['account']
       template[:message] = Sanitize.clean(params['content']).gsub(/@[[:word:]]+/, '')
       @mastodon.toot(status: template.to_s, visibility: params['visibility'])
     end
