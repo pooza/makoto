@@ -54,7 +54,9 @@ module Makoto
       @mastodon = Mastodon.new(@config['/mastodon/url'])
       @mastodon.token = @config['/mastodon/token']
       @uri = @mastodon.create_streaming_uri
-      @client = Faye::WebSocket::Client.new(@uri.to_s)
+      @client = Faye::WebSocket::Client.new(@uri.to_s, nil, {
+        ping: @config['/websocket/keepalive'],
+      })
       @logger = Logger.new
     end
   end

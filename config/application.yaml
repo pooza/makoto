@@ -5,6 +5,8 @@ package:
     - Tatsuya Koishi
   email:
     - tkoishi@b-shock.co.jp
+websocket:
+  keepalive: 15
 sidekiq:
   redis:
     dsn: redis://localhost:6379/3
