@@ -1,4 +1,3 @@
-require 'sanitize'
 require 'eventmachine'
 require 'faye/websocket'
 
@@ -20,22 +19,14 @@ module Makoto
       return unless data['event'] == 'notification'
       return unless payload = JSON.parse(data['payload'])
       return unless payload['type'] == 'mention'
-      @mastodon.toot(create_message(payload))
+      RepeatRespondWorker.perform_async(
+        account: payload['account']['acct'],
+        content: payload['status']['content'],
+        visibility: payload['status']['visibility'],
+      )
     rescue => e
       Slack.broadcast(e)
       @logger.error(e)
-    end
-
-    def create_message(payload)
-      template = Template.new('toot')
-      template[:account] = payload['account']['acct']
-      template[:message] = Sanitize.clean(payload['status']['content'])
-      template[:message].gsub!(/@[[:word:]]+/, '')
-      template[:message].strip!
-      return {
-        status: template.to_s,
-        visibility: payload['status']['visibility'],
-      }
     end
 
     def self.start
@@ -63,7 +54,9 @@ module Makoto
       @mastodon = Mastodon.new(@config['/mastodon/url'])
       @mastodon.token = @config['/mastodon/token']
       @uri = @mastodon.create_streaming_uri
-      @client = Faye::WebSocket::Client.new(@uri.to_s)
+      @client = Faye::WebSocket::Client.new(@uri.to_s, nil, {
+        ping: @config['/websocket/keepalive'],
+      })
       @logger = Logger.new
     end
   end

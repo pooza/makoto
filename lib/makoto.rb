@@ -21,9 +21,18 @@ module Makoto
 
   autoload_under 'daemon' do
     autoload :ListenerDaemon
+    autoload :SidekiqDaemon
+    autoload :ThinDaemon
   end
 
   autoload_under 'worker' do
-    autoload :TootWorker
+    autoload :RepeatRespondWorker
   end
+end
+
+Sidekiq.configure_client do |config|
+  config.redis = {url: Makoto::Config.instance['/sidekiq/redis/dsn']}
+end
+Sidekiq.configure_server do |config|
+  config.redis = {url: Makoto::Config.instance['/sidekiq/redis/dsn']}
 end
