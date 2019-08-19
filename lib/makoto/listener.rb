@@ -37,6 +37,10 @@ module Makoto
           listener.open
         end
 
+        listener.client.on :close do |e|
+          raise 'closed'
+        end
+
         listener.client.on :error do |e|
           listener.error(e)
         end
@@ -45,6 +49,9 @@ module Makoto
           listener.receive(message)
         end
       end
+    rescue => e
+      Slack.broadcast(e)
+      retry
     end
 
     private
