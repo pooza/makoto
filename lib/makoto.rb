@@ -14,6 +14,7 @@ module Makoto
   autoload :Environment
   autoload :Listener
   autoload :Logger
+  autoload :HTTP
   autoload :Mastodon
   autoload :Package
   autoload :Slack
@@ -27,6 +28,7 @@ module Makoto
 
   autoload_under 'worker' do
     autoload :RepeatRespondWorker
+    autoload :NowplayingMonologueWorker
   end
 end
 

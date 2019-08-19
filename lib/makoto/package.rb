@@ -16,6 +16,10 @@ module Makoto
       return Logger
     end
 
+    def http_class
+      return HTTP
+    end
+
     def self.name
       return 'makoto'
     end
