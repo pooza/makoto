@@ -4,6 +4,7 @@ require 'faye/websocket'
 module Makoto
   class Listener
     attr_reader :client
+    attr_reader :uri
 
     def open
       @logger.info(class: self.class.to_s, uri: @uri.to_s, action: 'start')
