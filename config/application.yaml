@@ -5,10 +5,16 @@ package:
     - Tatsuya Koishi
   email:
     - tkoishi@b-shock.co.jp
+mastodon:
+  hashtag:
+    pattern: (?:^|[^\/\)\w])#([[:word:]_]*[[:alpha:]_·][[:word:]_]*)
 websocket:
   keepalive: 15
 tracks:
   url: https://script.googleusercontent.com/macros/echo?user_content_key=c2G9Xl9AdQ2JBIpLsQE0maKklLz6HpCeWMnDYN-j6Yg4h0fMmyEHoMhCCwLECjo4ncEBWA30pJWfmnaaRkceGRPGeWxyVxKvm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnPfcgPuSEwVIstz69k4aEJy-zLquvbrjk5WKcOG8h23P2G-vwjYxzI3ittzJsDrzn5ivaE2TComE&lib=M_7lL-u8B4JN5vyOI_rMqwZgxZUs-0Zt8
+goo:
+  morph:
+    url: https://labs.goo.ne.jp/api/morph
 sidekiq:
   redis:
     dsn: redis://localhost:6379/3

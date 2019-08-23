@@ -20,7 +20,7 @@ module Makoto
       return unless data['event'] == 'notification'
       return unless payload = JSON.parse(data['payload'])
       return unless payload['type'] == 'mention'
-      RepeatRespondWorker.perform_async(
+      RespondWorker.perform_async(
         account: payload['account']['acct'],
         content: payload['status']['content'],
         visibility: payload['status']['visibility'],
