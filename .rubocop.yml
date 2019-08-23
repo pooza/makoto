@@ -127,3 +127,8 @@ Metrics/CyclomaticComplexity:
 
 Metrics/PerceivedComplexity:
   Max: 10
+
+Security/MarshalLoad:
+  Exclude:
+    - lib/makoto/quote_lib.rb
+
