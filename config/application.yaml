@@ -5,8 +5,27 @@ package:
     - Tatsuya Koishi
   email:
     - tkoishi@b-shock.co.jp
+mastodon:
+  hashtag:
+    pattern: (?:^|[^\/\)\w])#([[:word:]_]*[[:alpha:]_·][[:word:]_]*)
 websocket:
   keepalive: 15
+word:
+  ignore:
+    - stg_precure_fun
+    - precure_fun
+    - fun
+    - image
+    - video
+    - audio
+    - nowplaying
+tracks:
+  url: https://script.google.com/macros/s/AKfycbym_KI7OhjP545B_jdJM5JxkF6RNZhtPrzuHQRhLffCi-E0cvlK/exec
+quotes:
+  url: https://script.google.com/macros/s/AKfycbw1GgW7a_leXTlGa48Zeo3O7W3OF_wQreb8A2EKLWooXJqQClE/exec
+goo:
+  morph:
+    url: https://labs.goo.ne.jp/api/morph
 sidekiq:
   redis:
     dsn: redis://localhost:6379/3

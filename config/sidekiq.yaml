@@ -1,2 +1,9 @@
 :pidfile: tmp/pids/sidekiq.pid
 :concurrency: 5
+:schedule:
+  nowplaying:
+    every: '2h'
+    class: Makoto::NowplayingMonologueWorker
+  quote_dictionary:
+    every: '5m'
+    class: Makoto::QuoteLibWorker

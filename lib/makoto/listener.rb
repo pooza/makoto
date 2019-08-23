@@ -4,6 +4,7 @@ require 'faye/websocket'
 module Makoto
   class Listener
     attr_reader :client
+    attr_reader :uri
 
     def open
       @logger.info(class: self.class.to_s, uri: @uri.to_s, action: 'start')
@@ -19,8 +20,9 @@ module Makoto
       return unless data['event'] == 'notification'
       return unless payload = JSON.parse(data['payload'])
       return unless payload['type'] == 'mention'
-      RepeatRespondWorker.perform_async(
+      RespondWorker.perform_async(
         account: payload['account']['acct'],
+        toot_id: payload['status']['id'],
         content: payload['status']['content'],
         visibility: payload['status']['visibility'],
       )
@@ -37,6 +39,10 @@ module Makoto
           listener.open
         end
 
+        listener.client.on :close do |e|
+          raise 'closed'
+        end
+
         listener.client.on :error do |e|
           listener.error(e)
         end
@@ -45,6 +51,9 @@ module Makoto
           listener.receive(message)
         end
       end
+    rescue => e
+      Slack.broadcast(e)
+      retry
     end
 
     private

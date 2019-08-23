@@ -14,9 +14,12 @@ module Makoto
   autoload :Environment
   autoload :Listener
   autoload :Logger
+  autoload :HTTP
   autoload :Mastodon
   autoload :Package
+  autoload :QuoteLib
   autoload :Slack
+  autoload :TagContainer
   autoload :Template
 
   autoload_under 'daemon' do
@@ -26,7 +29,9 @@ module Makoto
   end
 
   autoload_under 'worker' do
-    autoload :RepeatRespondWorker
+    autoload :NowplayingMonologueWorker
+    autoload :QuoteLibWorker
+    autoload :RespondWorker
   end
 end
 
