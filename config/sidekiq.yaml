@@ -4,3 +4,6 @@
   nowplaying:
     every: '2h'
     class: Makoto::NowplayingMonologueWorker
+  quote_dictionary:
+    every: '5m'
+    class: Makoto::QuoteDictionaryWorker

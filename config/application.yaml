@@ -11,7 +11,9 @@ mastodon:
 websocket:
   keepalive: 15
 tracks:
-  url: https://script.googleusercontent.com/macros/echo?user_content_key=c2G9Xl9AdQ2JBIpLsQE0maKklLz6HpCeWMnDYN-j6Yg4h0fMmyEHoMhCCwLECjo4ncEBWA30pJWfmnaaRkceGRPGeWxyVxKvm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnPfcgPuSEwVIstz69k4aEJy-zLquvbrjk5WKcOG8h23P2G-vwjYxzI3ittzJsDrzn5ivaE2TComE&lib=M_7lL-u8B4JN5vyOI_rMqwZgxZUs-0Zt8
+  url: https://script.google.com/macros/s/AKfycbym_KI7OhjP545B_jdJM5JxkF6RNZhtPrzuHQRhLffCi-E0cvlK/exec
+quotes:
+  url: https://script.google.com/macros/s/AKfycbw1GgW7a_leXTlGa48Zeo3O7W3OF_wQreb8A2EKLWooXJqQClE/exec
 goo:
   morph:
     url: https://labs.goo.ne.jp/api/morph

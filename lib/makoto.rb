@@ -17,6 +17,7 @@ module Makoto
   autoload :HTTP
   autoload :Mastodon
   autoload :Package
+  autoload :QuoteDictionary
   autoload :Slack
   autoload :TagContainer
   autoload :Template
@@ -29,6 +30,7 @@ module Makoto
 
   autoload_under 'worker' do
     autoload :NowplayingMonologueWorker
+    autoload :QuoteDictionaryWorker
     autoload :RespondWorker
   end
 end
