@@ -22,6 +22,7 @@ module Makoto
       return unless payload['type'] == 'mention'
       RespondWorker.perform_async(
         account: payload['account']['acct'],
+        toot_id: payload['status']['id'],
         content: payload['status']['content'],
         visibility: payload['status']['visibility'],
       )
