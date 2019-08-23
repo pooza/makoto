@@ -6,4 +6,4 @@
     class: Makoto::NowplayingMonologueWorker
   quote_dictionary:
     every: '5m'
-    class: Makoto::QuoteDictionaryWorker
+    class: Makoto::QuoteLibWorker

@@ -1,5 +1,5 @@
 module Makoto
-  class QuoteDictionary < Array
+  class QuoteLib < Array
     def initialize
       super
       @logger = Logger.new
@@ -13,7 +13,7 @@ module Makoto
     end
 
     def path
-      return File.join(Environment.dir, 'tmp/cache/quote_dictionary')
+      return File.join(Environment.dir, 'tmp/cache/quote_lib')
     end
 
     def load
@@ -30,6 +30,10 @@ module Makoto
     end
 
     alias create refresh
+
+    def quotes
+      return map{|v| v['quote']}.uniq
+    end
 
     def delete
       File.unlink(path) if exist?

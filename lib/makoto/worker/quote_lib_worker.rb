@@ -1,5 +1,5 @@
 module Makoto
-  class QuoteDictionaryWorker
+  class QuoteLibWorker
     include Sidekiq::Worker
     sidekiq_options retry: false
 
@@ -8,7 +8,7 @@ module Makoto
     end
 
     def perform
-      QuoteDictionary.new.refresh
+      QuoteLib.new.refresh
     rescue => e
       @logger.error(e)
     end
