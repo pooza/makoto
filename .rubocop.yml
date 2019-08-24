@@ -131,4 +131,5 @@ Metrics/PerceivedComplexity:
 Security/MarshalLoad:
   Exclude:
     - lib/makoto/quote_lib.rb
+    - lib/makoto/track_lib.rb
 
