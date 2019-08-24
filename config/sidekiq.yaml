@@ -2,8 +2,11 @@
 :concurrency: 5
 :schedule:
   nowplaying:
-    every: '2h'
+    every: 2h
     class: Makoto::NowplayingMonologueWorker
-  quote_dictionary:
-    every: '5m'
+  quote_lib:
+    every: 5m
     class: Makoto::QuoteLibWorker
+  track_lib:
+    every: 5m
+    class: Makoto::TrackLibWorker
