@@ -21,6 +21,7 @@ module Makoto
   autoload :Slack
   autoload :TagContainer
   autoload :Template
+  autoload :TrackLib
 
   autoload_under 'daemon' do
     autoload :ListenerDaemon
@@ -32,6 +33,7 @@ module Makoto
     autoload :NowplayingMonologueWorker
     autoload :QuoteLibWorker
     autoload :RespondWorker
+    autoload :TrackLibWorker
   end
 end
 

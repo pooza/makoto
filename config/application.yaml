@@ -19,6 +19,17 @@ word:
     - video
     - audio
     - nowplaying
+nowplaying:
+  messages:
+    normal:
+      - では次の曲。
+      - 次の曲にいくわ。
+      - 次の曲をどうぞ。
+      - はい、では次。
+    self:
+      - 次はわたしの曲。聴いてくださいね。
+      - 次は剣崎真琴の曲です。聴いてください。
+      - では聴いてください。剣崎真琴の曲。
 tracks:
   url: https://script.google.com/macros/s/AKfycbym_KI7OhjP545B_jdJM5JxkF6RNZhtPrzuHQRhLffCi-E0cvlK/exec
 quotes:

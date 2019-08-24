@@ -9,21 +9,21 @@ module Makoto
       @mastodon = Mastodon.new(@config['/mastodon/url'])
       @mastodon.mulukhiya_enable = true
       @mastodon.token = @config['/mastodon/token']
-      @http = HTTP.new
+      @track_lib = TrackLib.new
     end
 
     def perform
-      @mastodon.toot("#nowplaying #{tracks.to_a.sample}")
-    end
-
-    def tracks
-      return enum_for(__method__) unless block_given?
-      @http.get(@config['/tracks/url']).parsed_response.map do |href|
-        yield Ginseng::URI.parse(href)
-      rescue => e
-        @logger.error(e)
-        next
+      @template = Template.new('nowplaying')
+      track = @track_lib.sample
+      if track['makoto'].present?
+        @template[:greeting] = @config['/nowplaying/messages/self'].sample
+      else
+        @template[:greeting] = @config['/nowplaying/messages/normal'].sample
       end
+      @template[:url] = track['url']
+      @mastodon.toot(@template.to_s)
+    rescue => e
+      @logger.error(e)
     end
   end
 end
