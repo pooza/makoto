@@ -30,6 +30,7 @@ module Makoto
   end
 
   autoload_under 'worker' do
+    autoload :FollowWorker
     autoload :NowplayingMonologueWorker
     autoload :QuoteLibWorker
     autoload :RespondWorker
