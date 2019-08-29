@@ -19,16 +19,27 @@ module Makoto
       data = JSON.parse(message.data)
       return unless data['event'] == 'notification'
       return unless payload = JSON.parse(data['payload'])
-      return unless payload['type'] == 'mention'
+      send("handle_#{payload['type']}".to_sym, payload)
+    rescue NoMethodError => e
+      @logger.error(e)
+    rescue => e
+      Slack.broadcast(e)
+      @logger.error(e)
+    end
+
+    def handle_mention(payload)
       RespondWorker.perform_async(
         account: payload['account']['acct'],
         toot_id: payload['status']['id'],
         content: payload['status']['content'],
         visibility: payload['status']['visibility'],
       )
-    rescue => e
-      Slack.broadcast(e)
-      @logger.error(e)
+    end
+
+    def handle_follow(payload)
+      FollowWorker.perform_async(
+        account_id: payload['account']['id'],
+      )
     end
 
     def self.start

@@ -25,15 +25,16 @@ module Makoto
     end
 
     def create_body(params)
+      text = Unicode.nfkc(params['content'])
+      QuoteLib.ng_words.each do |word|
+        return @quote_lib.quotes(emotion: :bad).sample if text.include?(word)
+      end
       words = fetch_words(params)
-      return quotes.sample unless words.present?
+      return @quote_lib.quotes.sample unless words.present?
       return words.to_json
-    rescue
-      return quotes.sample
-    end
-
-    def quotes
-      return @quote_lib.quotes
+    rescue => e
+      @logger.error(e)
+      return @quote_lib.quotes.sample
     end
 
     def fetch_words(params)

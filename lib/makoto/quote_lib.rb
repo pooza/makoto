@@ -31,8 +31,10 @@ module Makoto
 
     alias create refresh
 
-    def quotes
-      return map{|v| v['quote']}.uniq
+    def quotes(params = {})
+      quotes = clone
+      quotes = quotes.keep_if{|v| v['emotion'] == 'bad'} if params[:emotion] == :bad
+      return quotes.map{|v| v['quote']}.uniq
     end
 
     def delete
@@ -41,6 +43,10 @@ module Makoto
 
     def fetch
       return @http.get(@config['/quotes/url']).parsed_response
+    end
+
+    def self.ng_words
+      return Config.instance['/word/ng']
     end
   end
 end
