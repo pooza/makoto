@@ -4,6 +4,9 @@
   nowplaying:
     every: 3h
     class: Makoto::NowplayingMonologueWorker
+  good_morning:
+    cron: '0 0 7 * * *'
+    class: Makoto::GoodMorningMonologueWorker
   quote_lib:
     every: 5m
     class: Makoto::QuoteLibWorker

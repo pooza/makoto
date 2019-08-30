@@ -31,6 +31,7 @@ module Makoto
 
   autoload_under 'worker' do
     autoload :FollowWorker
+    autoload :GoodMorningMonologueWorker
     autoload :NowplayingMonologueWorker
     autoload :QuoteLibWorker
     autoload :RespondWorker

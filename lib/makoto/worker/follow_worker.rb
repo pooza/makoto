@@ -3,10 +3,8 @@ module Makoto
     include Sidekiq::Worker
 
     def initialize
-      @logger = Logger.new
       @config = Config.instance
-      @mastodon = Mastodon.new(@config['/mastodon/url'])
-      @mastodon.token = @config['/mastodon/token']
+      @mastodon = Mastodon.new(@config['/mastodon/url'], @config['/mastodon/token'])
     end
 
     def perform(params)
