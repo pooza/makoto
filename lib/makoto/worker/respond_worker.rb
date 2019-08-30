@@ -29,9 +29,14 @@ module Makoto
       QuoteLib.ng_words.each do |word|
         return @quote_lib.quotes(emotion: :bad).sample if text.include?(word)
       end
-      words = fetch_words(params)
-      return @quote_lib.quotes.sample unless words.present?
-      return words.to_json
+      words = fetch_words(params).shuffle
+      templates = @config['/reply/templates'].shuffle
+      body = []
+      [rand(@config['/reply/paragraphs/max']), words.count, templates.count].min.times do
+        body.push(templates.pop % [words.pop])
+      end
+      return @quote_lib.quotes.sample unless body.present?
+      return body.join
     rescue => e
       @logger.error(e)
       return @quote_lib.quotes.sample
@@ -56,6 +61,7 @@ module Makoto
       r = HTTP.new.post(@config['/goo/morph/url'], {body: body.to_json}).parsed_response
       r['word_list'].each do |clause|
         clause.each do |word|
+          next if word.first.length < @config['/word/length/min']
           next unless word[1] == '名詞'
           words.push(word.first)
         end
