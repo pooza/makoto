@@ -13,55 +13,9 @@ websocket:
 word:
   length:
     min: 2
-  ignore:
-    - stg_precure_fun
-    - precure_fun
-    - fun
-    - image
-    - video
-    - audio
-    - nowplaying
-    - SEX
-    - セックス
-    - 膣
-    - メシウマ
-    - 情弱
-    - 糖質
-    - 課金
-    - ガイジ
-    - ナマポ
-    - ツイッター
-    - Twitter
-    - Facebook
-    - オワコン
-  ng: []
 reply:
   paragraphs:
     max: 5
-  templates:
-    - '%sは好きよ。'
-    - '%sに興味があるわ。'
-    - 'あなたは、%sについてどう思っているの？'
-    - 'え、%sって？'
-    - 'ところで、どうして%sなの？'
-    - 'あなた、%sが好きね。'
-    - 'いつも%sのことを考えているわ。'
-    - '%sって、とっても素敵なものなのね。'
-    - '悪いのはわたし。もっと%sのことを勉強してから行くべきだった。'
-    - 'わたしの%sを待ってくれている人の為だもの。'
-    - 'あたしはただ、%sを野放しにしたくなかっただけよ。'
-    - 'え？%sだったの？これ。'
-nowplaying:
-  messages:
-    normal:
-      - 次の曲です。どうぞ。
-      - 次の曲をどうぞ！
-      - はい、では次の曲を。どうぞ。
-      - では次の曲を聴いてください。どうぞ。
-    self:
-      - 次はわたしの曲。聴いてくださいね。どうぞ。
-      - 次は剣崎真琴の曲です。どうぞ。
-      - では聴いてください。剣崎真琴の曲です。どうぞ。
 tracks:
   url: https://script.google.com/macros/s/AKfycbym_KI7OhjP545B_jdJM5JxkF6RNZhtPrzuHQRhLffCi-E0cvlK/exec
 quotes:

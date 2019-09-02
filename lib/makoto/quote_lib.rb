@@ -33,6 +33,7 @@ module Makoto
 
     def quotes(params = {})
       params[:priority] ||= @config['/quotes/priority/min']
+      params[:form] ||= ['剣崎真琴']
       quotes = clone
       if params[:emotion] == :bad
         quotes = quotes.keep_if{|v| v['emotion'] == 'bad'}
@@ -41,6 +42,7 @@ module Makoto
       end
       quotes = quotes.keep_if{|v| params[:priority] <= v['priority']}
       quotes = quotes.delete_if{|v| params[:exclude].present?}
+      quotes = quotes.keep_if{|v| params[:form].include?(v['form'])}
       return quotes.map{|v| v['quote']}.uniq
     end
 

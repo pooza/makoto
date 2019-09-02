@@ -16,7 +16,7 @@ module Makoto
     def perform(params)
       template = Template.new('toot')
       template[:account] = params['account']
-      template[:message] = create_body(params)
+      template[:message] = create_message(params)
       @mastodon.toot(
         status: template.to_s,
         visibility: params['visibility'],
@@ -24,22 +24,28 @@ module Makoto
       )
     end
 
-    def create_body(params)
+    def create_message(params)
       text = Unicode.nfkc(params['content'])
-      QuoteLib.ng_words.each do |word|
-        return @quote_lib.quotes(emotion: :bad).sample if text.include?(word)
-      end
+      return @quote_lib.quotes(emotion: :bad).sample if ng?(text)
       words = fetch_words(params).shuffle
       templates = @config['/reply/templates'].shuffle
       body = []
       [rand(@config['/reply/paragraphs/max']), words.count, templates.count].min.times do
         body.push(templates.pop % [words.pop])
+        break if body.last.match(/[！？!?]$/)
       end
       return @quote_lib.quotes.sample unless body.present?
       return body.join
     rescue => e
       @logger.error(e)
       return @quote_lib.quotes.sample
+    end
+
+    def ng?(text)
+      QuoteLib.ng_words.each do |word|
+        return true if text.include?(word)
+      end
+      return false
     end
 
     def fetch_words(params)
