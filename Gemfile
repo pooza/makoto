@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.6.3'
+ruby '2.6.4'
 gem 'eventmachine'
 gem 'faye-websocket'
 gem 'ginseng-core', git: 'https://github.com/pooza/ginseng-core.git'
