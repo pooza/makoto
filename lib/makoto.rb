@@ -4,7 +4,6 @@ require 'active_support/dependencies/autoload'
 require 'ginseng'
 require 'sidekiq'
 require 'sidekiq-scheduler'
-require 'json'
 require 'yaml'
 
 module Makoto
