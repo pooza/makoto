@@ -1,5 +1,7 @@
 module Makoto
   class Mastodon < Ginseng::Mastodon
+    include Package
+
     def follow(id, params = {})
       headers = params[:headers] || {}
       headers['Authorization'] ||= "Bearer #{@token}"

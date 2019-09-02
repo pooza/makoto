@@ -1,9 +1,11 @@
-:pidfile: tmp/pids/sidekiq.pid
-:concurrency: 5
-:schedule:
+concurrency: 5
+schedule:
   nowplaying:
-    every: 2h
+    every: 3h
     class: Makoto::NowplayingMonologueWorker
+  good_morning:
+    cron: '0 0 7 * * *'
+    class: Makoto::GoodMorningMonologueWorker
   quote_lib:
     every: 5m
     class: Makoto::QuoteLibWorker

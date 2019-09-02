@@ -11,30 +11,17 @@ mastodon:
 websocket:
   keepalive: 15
 word:
-  ignore:
-    - stg_precure_fun
-    - precure_fun
-    - fun
-    - image
-    - video
-    - audio
-    - nowplaying
-  ng: []
-nowplaying:
-  messages:
-    normal:
-      - 次の曲です。
-      - 次の曲をどうぞ。
-      - はい、では次の曲を。
-      - では次の曲を聴いてください。
-    self:
-      - 次はわたしの曲。聴いてくださいね。
-      - 次は剣崎真琴の曲です。どうぞ。
-      - では聴いてください。剣崎真琴の曲です。
+  length:
+    min: 2
+reply:
+  paragraphs:
+    max: 5
 tracks:
   url: https://script.google.com/macros/s/AKfycbym_KI7OhjP545B_jdJM5JxkF6RNZhtPrzuHQRhLffCi-E0cvlK/exec
 quotes:
   url: https://script.google.com/macros/s/AKfycbw1GgW7a_leXTlGa48Zeo3O7W3OF_wQreb8A2EKLWooXJqQClE/exec
+  priority:
+    min: 2
 goo:
   morph:
     url: https://labs.goo.ne.jp/api/morph

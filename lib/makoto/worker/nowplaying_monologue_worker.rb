@@ -4,11 +4,9 @@ module Makoto
     sidekiq_options retry: false
 
     def initialize
-      @logger = Logger.new
       @config = Config.instance
-      @mastodon = Mastodon.new(@config['/mastodon/url'])
+      @mastodon = Mastodon.new(@config['/mastodon/url'], @config['/mastodon/token'])
       @mastodon.mulukhiya_enable = true
-      @mastodon.token = @config['/mastodon/token']
       @track_lib = TrackLib.new
     end
 
@@ -22,8 +20,6 @@ module Makoto
       end
       @template[:url] = track['url']
       @mastodon.toot(@template.to_s)
-    rescue => e
-      @logger.error(e)
     end
   end
 end
