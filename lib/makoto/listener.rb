@@ -23,8 +23,10 @@ module Makoto
     rescue NoMethodError => e
       @logger.error(e)
     rescue => e
-      Slack.broadcast(e)
-      @logger.error(e)
+      message = Ginseng::Error.create(e).to_h
+      message.merge!(payload: payload) if payload
+      Slack.broadcast(message)
+      @logger.error(message)
     end
 
     def handle_mention(payload)
@@ -71,8 +73,7 @@ module Makoto
 
     def initialize
       @config = Config.instance
-      @mastodon = Mastodon.new(@config['/mastodon/url'])
-      @mastodon.token = @config['/mastodon/token']
+      @mastodon = Mastodon.new(@config['/mastodon/url'], @config['/mastodon/token'])
       @uri = @mastodon.create_streaming_uri
       @client = Faye::WebSocket::Client.new(@uri.to_s, nil, {
         ping: @config['/websocket/keepalive'],

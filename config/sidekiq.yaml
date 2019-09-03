@@ -1,11 +1,14 @@
 concurrency: 5
 schedule:
-  nowplaying:
-    every: 3h
-    class: Makoto::NowplayingMonologueWorker
   good_morning:
     cron: '0 0 7 * * *'
     class: Makoto::GoodMorningMonologueWorker
+  nowplaying:
+    every: 3h
+    class: Makoto::NowplayingMonologueWorker
+  good_quote:
+    every: 1h
+    class: Makoto::GoodQuoteMonologueWorker
   quote_lib:
     every: 5m
     class: Makoto::QuoteLibWorker

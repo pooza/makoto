@@ -4,7 +4,6 @@ require 'active_support/dependencies/autoload'
 require 'ginseng'
 require 'sidekiq'
 require 'sidekiq-scheduler'
-require 'json'
 require 'yaml'
 
 module Makoto
@@ -32,6 +31,7 @@ module Makoto
   autoload_under 'worker' do
     autoload :FollowWorker
     autoload :GoodMorningMonologueWorker
+    autoload :GoodQuoteMonologueWorker
     autoload :NowplayingMonologueWorker
     autoload :QuoteLibWorker
     autoload :RespondWorker

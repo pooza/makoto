@@ -50,7 +50,7 @@ module Makoto
 
     def self.scan(body)
       pattern = Regexp.new(Config.instance['/mastodon/hashtag/pattern'], Regexp::IGNORECASE)
-      return Unicode.nfkc(body).scan(pattern).map(&:first)
+      return body.scan(pattern).map(&:first)
     end
 
     def self.tweak(body)
