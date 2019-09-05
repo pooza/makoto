@@ -26,7 +26,7 @@ module Makoto
     def create_message(params)
       params['content'] = Sanitize.clean(params['content'])
       params['content'] = Unicode.nfkc(params['content'])
-      return @quote_lib.quotes(emotion: :bad).sample if ng?(text)
+      return @quote_lib.quotes(emotion: :bad).sample if ng?(params)
       words = create_word_list(params)
       templates = create_template_list
       body = []
@@ -41,16 +41,18 @@ module Makoto
       return @quote_lib.quotes.sample
     end
 
-    def ng?(text)
+    def ng?(params)
       QuoteLib.ng_words.each do |word|
-        return true if text.include?(word)
+        return true if params['content'].include?(word)
       end
       return false
     end
 
     def create_word_list(params)
       words = TagContainer.scan(params['content'])
-      words.concat(analyze(text)) unless words.present?
+      words -= @config['/tag/ignore']
+      words.concat(analyze(params['content'])) unless words.present?
+      words -= @config['/tag/ignore']
       words -= @config['/word/ignore']
       return words.uniq.shuffle
     rescue => e
