@@ -1,5 +1,7 @@
 require 'eventmachine'
 require 'faye/websocket'
+require 'sanitize'
+require 'unicode'
 
 module Makoto
   class Listener
@@ -17,9 +19,12 @@ module Makoto
 
     def receive(message)
       data = JSON.parse(message.data)
-      return unless data['event'] == 'notification'
-      return unless payload = JSON.parse(data['payload'])
-      send("handle_#{payload['type']}".to_sym, payload)
+      payload = JSON.parse(data['payload'])
+      if data['event'] == 'notification'
+        send("handle_#{payload['type']}_notification".to_sym, payload)
+      else
+        send("handle_#{data['event']}".to_sym, payload)
+      end
     rescue NoMethodError => e
       @logger.error(e)
     rescue => e
@@ -29,19 +34,50 @@ module Makoto
       @logger.error(message)
     end
 
-    def handle_mention(payload)
+    def handle_mention_notification(payload)
       RespondWorker.perform_async(
         account: payload['account']['acct'],
         toot_id: payload['status']['id'],
-        content: payload['status']['content'],
+        content: create_content(payload['status']),
         visibility: payload['status']['visibility'],
       )
     end
 
-    def handle_follow(payload)
+    def handle_follow_notification(payload)
       FollowWorker.perform_async(
         account_id: payload['account']['id'],
       )
+    end
+
+    def handle_update(payload)
+      return unless respondable?(payload)
+      RespondWorker.perform_async(
+        account: payload['account']['acct'],
+        toot_id: payload['id'],
+        content: create_content(payload),
+        visibility: payload['visibility'],
+      )
+    end
+
+    def handle_delete(payload); end
+
+    def create_content(status)
+      tags = []
+      content = Unicode.nfkc(Sanitize.clean(status['content']))
+      @config['/reply/topics'].each do |topic|
+        tags.push(Mastodon.create_tag(topic)) if content.include?(topic)
+      end
+      return "#{content} #{tags.join(' ')}"
+    end
+
+    def respondable?(payload)
+      return false if @config['/reply/ignore_accounts'].include?(payload['account']['acct'])
+      content = Unicode.nfkc(Sanitize.clean(payload['content']))
+      return false if content.match(Regexp.new("@#{@config['/reply/me']}(\\s|$)"))
+      @config['/reply/topics'].each do |topic|
+        return true if content.include?(topic)
+      end
+      return false
     end
 
     def self.start

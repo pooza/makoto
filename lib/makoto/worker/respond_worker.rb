@@ -1,6 +1,3 @@
-require 'sanitize'
-require 'unicode'
-
 module Makoto
   class RespondWorker
     include Sidekiq::Worker
@@ -24,8 +21,6 @@ module Makoto
     end
 
     def create_message(params)
-      params['content'] = Sanitize.clean(params['content'])
-      params['content'] = Unicode.nfkc(params['content'])
       return @quote_lib.quotes(emotion: :bad).sample if ng?(params)
       words = create_word_list(params)
       templates = create_template_list
