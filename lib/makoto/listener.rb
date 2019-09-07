@@ -17,10 +17,11 @@ module Makoto
 
     def receive(message)
       data = JSON.parse(message.data)
+      payload = JSON.parse(data['payload'])
       if data['event'] == 'notification'
-        send("handle_#{payload['type']}_notification".to_sym, JSON.parse(data['payload']))
+        send("handle_#{payload['type']}_notification".to_sym, payload)
       else
-        send("handle_#{data['event']}".to_sym, JSON.parse(data['payload']))
+        send("handle_#{data['event']}".to_sym, payload)
       end
     rescue NoMethodError => e
       @logger.error(e)

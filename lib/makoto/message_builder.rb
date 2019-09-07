@@ -15,18 +15,18 @@ module Makoto
 
     def self.create_content(status)
       tags = []
-      content = MessageBuilder.sanitize(status['content'])
-      MessageBuilder.topics.each do |topic|
+      content = sanitize(status['content'])
+      topics.each do |topic|
         tags.push(Mastodon.create_tag(topic)) if content.include?(topic)
       end
       return "#{content} #{tags.join(' ')}"
     end
 
     def self.respondable?(payload)
-      return false if MessageBuilder.ignore_accounts.include?(payload['account']['acct'])
-      content = MessageBuilder.sanitize(payload['content'])
-      return false if content.match(Regexp.new("@#{MessageBuilder.bot_account}(\\s|$)"))
-      MessageBuilder.topics.each do |topic|
+      return false if ignore_accounts.include?(payload['account']['acct'])
+      content = sanitize(payload['content'])
+      return false if content.match(Regexp.new("@#{bot_account}(\\s|$)"))
+      topics.each do |topic|
         return true if content.include?(topic)
       end
       return false
