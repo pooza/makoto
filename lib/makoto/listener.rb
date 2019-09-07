@@ -17,9 +17,12 @@ module Makoto
 
     def receive(message)
       data = JSON.parse(message.data)
-      return unless data['event'] == 'notification'
-      return unless payload = JSON.parse(data['payload'])
-      send("handle_#{payload['type']}".to_sym, payload)
+      payload = JSON.parse(data['payload'])
+      if data['event'] == 'notification'
+        send("handle_#{payload['type']}_notification".to_sym, payload)
+      else
+        send("handle_#{data['event']}".to_sym, payload)
+      end
     rescue NoMethodError => e
       @logger.error(e)
     rescue => e
@@ -29,20 +32,32 @@ module Makoto
       @logger.error(message)
     end
 
-    def handle_mention(payload)
+    def handle_mention_notification(payload)
       RespondWorker.perform_async(
         account: payload['account']['acct'],
         toot_id: payload['status']['id'],
-        content: payload['status']['content'],
+        content: MessageBuilder.create_content(payload['status']),
         visibility: payload['status']['visibility'],
       )
     end
 
-    def handle_follow(payload)
+    def handle_follow_notification(payload)
       FollowWorker.perform_async(
         account_id: payload['account']['id'],
       )
     end
+
+    def handle_update(payload)
+      return unless MessageBuilder.respondable?(payload)
+      RespondWorker.perform_async(
+        account: payload['account']['acct'],
+        toot_id: payload['id'],
+        content: MessageBuilder.create_content(payload),
+        visibility: payload['visibility'],
+      )
+    end
+
+    def handle_delete(payload); end
 
     def self.start
       EM.run do

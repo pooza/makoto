@@ -15,6 +15,7 @@ module Makoto
   autoload :Logger
   autoload :HTTP
   autoload :Mastodon
+  autoload :MessageBuilder
   autoload :Package
   autoload :QuoteLib
   autoload :Slack
