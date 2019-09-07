@@ -55,9 +55,5 @@ module Makoto
     def fetch
       return @http.get(@config['/quotes/url']).parsed_response
     end
-
-    def self.ng_words
-      return Config.instance['/word/ng']
-    end
   end
 end
