@@ -5,6 +5,7 @@ module Makoto
 
     def initialize
       @config = Config.instance
+      @logger = Logger.new
       @mastodon = Mastodon.new(@config['/mastodon/url'], @config['/mastodon/token'])
     end
 
@@ -13,9 +14,13 @@ module Makoto
       followee_ids = @mastodon.followees.parsed_response.map{|v| v['id']}
       follower_ids.each do |id|
         @mastodon.follow(id) unless followee_ids.include?(id)
+      rescue => e
+        @logger.error(Ginseng::Error.create(e).to_h.merge(follow: id))
       end
       followee_ids.each do |id|
         @mastodon.unfollow(id) unless follower_ids.include?(id)
+      rescue => e
+        @logger.error(Ginseng::Error.create(e).to_h.merge(unfollow: id))
       end
     end
   end
