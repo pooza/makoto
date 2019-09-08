@@ -15,3 +15,6 @@ schedule:
   track_lib:
     every: 5m
     class: Makoto::TrackLibWorker
+  follow_maintenance:
+    every: 5m
+    class: Makoto::FollowMaintenanceWorker
