@@ -8,6 +8,8 @@ package:
 mastodon:
   hashtag:
     pattern: (?:^|[^\/\)\w])#([[:word:]_]*[[:alpha:]_·][[:word:]_]*)
+  account:
+    limit: 500
 websocket:
   keepalive: 15
 word:
