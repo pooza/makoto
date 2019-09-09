@@ -22,6 +22,7 @@ module Makoto
   autoload :TagContainer
   autoload :Template
   autoload :TrackLib
+  autoload :Worker
 
   autoload_under 'daemon' do
     autoload :ListenerDaemon

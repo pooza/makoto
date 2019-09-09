@@ -1,12 +1,9 @@
 module Makoto
-  class NowplayingMonologueWorker
-    include Sidekiq::Worker
+  class NowplayingMonologueWorker < Worker
     sidekiq_options retry: false
 
     def initialize
-      @config = Config.instance
-      @mastodon = Mastodon.new(@config['/mastodon/url'], @config['/mastodon/token'])
-      @mastodon.mulukhiya_enable = true
+      super
       @track_lib = TrackLib.new
     end
 
@@ -19,7 +16,7 @@ module Makoto
         @template[:greeting] = @config['/nowplaying/messages/normal'].sample
       end
       @template[:url] = track['url']
-      @mastodon.toot(@template.to_s)
+      mastodon.toot(@template.to_s)
     end
   end
 end
