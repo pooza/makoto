@@ -36,7 +36,7 @@ module Makoto
       RespondWorker.perform_async(
         account: payload['account']['acct'],
         toot_id: payload['status']['id'],
-        content: MessageBuilder.create_content(payload['status']),
+        content: payload['status']['content'],
         visibility: payload['status']['visibility'],
       )
     end
@@ -52,7 +52,7 @@ module Makoto
       RespondWorker.perform_async(
         account: payload['account']['acct'],
         toot_id: payload['id'],
-        content: MessageBuilder.create_content(payload),
+        content: payload['content'],
         visibility: payload['visibility'],
       )
     end

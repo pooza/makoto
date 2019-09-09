@@ -4,17 +4,18 @@ require 'unicode'
 module Makoto
   class MessageBuilder
     def initialize(params)
-      @params = params
-      @logger = Logger.new
       @config = Config.instance
+      @params = params
+      @params['content'] = MessageBuilder.sanitize(@params['content'])
+      @logger = Logger.new
       @quote_lib = QuoteLib.new
       @paragraphs = []
     end
 
     def build
       return @quote_lib.quotes(emotion: :bad).sample if ng?
-      words = create_word_list
-      templates = create_template_list
+      words = MessageBuilder.analyze(@params['content']).shuffle
+      templates = @config['/reply/templates'].shuffle
       [rand(1..@config['/reply/paragraphs/max']), words.count, templates.count].min.times do
         @paragraphs.push(templates.pop % [words.pop])
         break if last?
@@ -37,30 +38,25 @@ module Makoto
       return false
     end
 
-    def create_word_list
-      words = TagContainer.scan(@params['content'])
-      words -= @config['/tag/ignore']
-      words.concat(analyze) unless words.present?
-      words -= @config['/tag/ignore']
-      words -= @config['/word/ignore']
-      return words.uniq.shuffle
-    rescue => e
-      @logger.error(e)
-      return []
+    def self.analyze(message)
+      config = Config.instance
+      words = topics.clone.keep_if{|v| message.include?(v)}
+      words.concat(TagContainer.scan(message))
+      words -= config['/tag/ignore']
+      words.concat(morph(message)) unless words.present?
+      words -= config['/word/ignore']
+      return words.uniq
     end
 
-    def create_template_list
-      return @config['/reply/templates'].shuffle
-    end
-
-    def analyze
-      body = {app_id: @config['/goo/app_id'], sentence: @params['content']}
+    def self.morph(message)
+      config = Config.instance
       words = []
-      r = HTTP.new.post(@config['/goo/morph/url'], {body: body.to_json}).parsed_response
+      body = {app_id: config['/goo/app_id'], sentence: message}
+      r = HTTP.new.post(config['/goo/morph/url'], {body: body.to_json}).parsed_response
       r['word_list'].each do |clause|
         clause.each do |word|
-          next if word.first.length < @config['/word/length/min']
           next unless word[1] == '名詞'
+          next if word.first.length < config['/word/length/min']
           words.push(word.first)
         end
       end
@@ -71,15 +67,6 @@ module Makoto
       message = Sanitize.clean(message)
       message = Unicode.nfkc(message)
       return message
-    end
-
-    def self.create_content(status)
-      tags = []
-      content = sanitize(status['content'])
-      topics.each do |topic|
-        tags.push(Mastodon.create_tag(topic)) if content.include?(topic)
-      end
-      return "#{content} #{tags.join(' ')}"
     end
 
     def self.respondable?(payload)
