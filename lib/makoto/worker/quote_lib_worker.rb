@@ -1,6 +1,5 @@
 module Makoto
-  class QuoteLibWorker
-    include Sidekiq::Worker
+  class QuoteLibWorker < Worker
     sidekiq_options retry: false
 
     def perform

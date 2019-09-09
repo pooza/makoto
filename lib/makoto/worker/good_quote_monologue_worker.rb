@@ -1,12 +1,9 @@
 module Makoto
-  class GoodQuoteMonologueWorker
-    include Sidekiq::Worker
+  class GoodQuoteMonologueWorker < Worker
     sidekiq_options retry: 3
 
     def initialize
-      @config = Config.instance
-      @mastodon = Mastodon.new(@config['/mastodon/url'], @config['/mastodon/token'])
-      @mastodon.mulukhiya_enable = true
+      super
       @quote_lib = QuoteLib.new
     end
 
@@ -20,7 +17,7 @@ module Makoto
       template[:quote] = quote['quote']
       template[:series] = quote['series']
       template[:episode] = quote['episode']
-      @mastodon.toot(template.to_s)
+      mastodon.toot(template.to_s)
     end
   end
 end
