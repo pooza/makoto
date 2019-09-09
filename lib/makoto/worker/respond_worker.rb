@@ -1,7 +1,7 @@
 module Makoto
   class RespondWorker < Worker
     def perform(params)
-      template = Template.new('toot')
+      template = Template.new('respond')
       template[:account] = params['account']
       template[:message] = MessageBuilder.new(params).build
       mastodon.toot(
