@@ -1,7 +1,8 @@
 module Makoto
   class GreetingResponder < Responder
     def executable?
-      return @params['content'].match(/おはよう|こんにち[はわ]|こんばん[はわ]/)
+      @matches = @params['content'].match(/おはよう|こんにち[はわ]|こんばん[はわ]/)
+      return @matches.present?
     end
 
     def exec
