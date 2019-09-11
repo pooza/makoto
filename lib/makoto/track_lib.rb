@@ -40,7 +40,7 @@ module Makoto
     end
 
     def fetch
-      return @http.get(@config['/tracks/url']).parsed_response
+      return @http.get(@config['/track/url']).parsed_response
     end
   end
 end

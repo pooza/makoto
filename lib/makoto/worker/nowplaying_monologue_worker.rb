@@ -1,6 +1,6 @@
 module Makoto
   class NowplayingMonologueWorker < Worker
-    sidekiq_options retry: false
+    sidekiq_options retry: 3
 
     def initialize
       super

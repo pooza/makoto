@@ -15,9 +15,9 @@ module Makoto
   autoload :Logger
   autoload :HTTP
   autoload :Mastodon
-  autoload :MessageBuilder
   autoload :Package
   autoload :QuoteLib
+  autoload :Responder
   autoload :Slack
   autoload :TagContainer
   autoload :Template
@@ -28,6 +28,17 @@ module Makoto
     autoload :ListenerDaemon
     autoload :SidekiqDaemon
     autoload :ThinDaemon
+  end
+
+  autoload_under 'responder' do
+    autoload :BadMoodResponder
+    autoload :CureSwordResponder
+    autoload :DentalResponder
+    autoload :FixedResponder
+    autoload :GreetingResponder
+    autoload :KeywordResponder
+    autoload :PrincessResponder
+    autoload :SongResponder
   end
 
   autoload_under 'worker' do

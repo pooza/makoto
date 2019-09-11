@@ -15,12 +15,20 @@ websocket:
 word:
   length:
     min: 2
-reply:
-  paragraphs:
+respond:
+  paragraph:
     max: 4
-tracks:
+  classes:
+    - bad_mood
+    - greeting
+    - song
+    - princess
+    - dental
+    - keyword
+    - fixed
+track:
   url: https://script.google.com/macros/s/AKfycbym_KI7OhjP545B_jdJM5JxkF6RNZhtPrzuHQRhLffCi-E0cvlK/exec
-quotes:
+quote:
   url: https://script.google.com/macros/s/AKfycbw1GgW7a_leXTlGa48Zeo3O7W3OF_wQreb8A2EKLWooXJqQClE/exec
   priority:
     min: 2

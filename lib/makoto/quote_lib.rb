@@ -32,7 +32,7 @@ module Makoto
     alias create refresh
 
     def quotes(params = {})
-      params[:priority] ||= @config['/quotes/priority/min']
+      params[:priority] ||= @config['/quote/priority/min']
       params[:form] ||= ['剣崎真琴']
       params[:detail] ||= false
       quotes = clone
@@ -53,7 +53,7 @@ module Makoto
     end
 
     def fetch
-      return @http.get(@config['/quotes/url']).parsed_response
+      return @http.get(@config['/quote/url']).parsed_response
     end
   end
 end
