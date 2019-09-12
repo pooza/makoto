@@ -26,6 +26,19 @@ respond:
     - dental
     - keyword
     - fixed
+  greeting:
+    - pattern: 'おはよう(ございます)?([。!]|\s|$)'
+      response:
+        body: おはよう
+      hours: [4, 5, 6, 7, 8, 9, 10]
+    - pattern: 'こんにち[はわ]([。!]|\s|$)'
+      response:
+        body: こんにちは
+      hours: [11, 12, 13, 14, 15, 16, 17, 18]
+    - pattern: 'こんばん[はわ]([。!]|\s|$)'
+      response:
+        body: こんばんは
+      hours: [0, 1, 2, 3, 19, 20, 21, 22, 23]
 track:
   url: https://script.google.com/macros/s/AKfycbym_KI7OhjP545B_jdJM5JxkF6RNZhtPrzuHQRhLffCi-E0cvlK/exec
 quote:
