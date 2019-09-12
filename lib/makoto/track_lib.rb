@@ -1,3 +1,5 @@
+require 'unicode'
+
 module Makoto
   class TrackLib < Array
     def initialize
@@ -31,8 +33,26 @@ module Makoto
 
     alias create refresh
 
-    def tracks
-      return map{|v| v['url']}.uniq
+    def tracks(params = {})
+      tracks = []
+      pattern = create_pattern(params[:title])
+      each do |v|
+        next if params[:makoto] && !v['makoto'].present?
+        next if params[:title] && !v['title'].match(pattern)
+        tracks.push(v)
+      end
+      return tracks
+    end
+
+    def create_pattern(word)
+      pattern = Unicode.nfkc(word).gsub(/[^[:alnum:]]/, '.? ?')
+      [
+        'あぁ', 'いぃ', 'うぅ', 'えぇ', 'おぉ', 'やゃ', 'ゆゅ', 'よょ',
+        'アァ', 'イィ', 'ウゥ', 'エェ', 'オォ', 'ヤャ', 'ユュ', 'ヨョ'
+      ].each do |v|
+        pattern.gsub!(Regexp.new("[#{v}]"), "[#{v}]")
+      end
+      return Regexp.new(pattern)
     end
 
     def delete

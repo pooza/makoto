@@ -8,7 +8,7 @@ module Makoto
     end
 
     def exec
-      return quotes(emotion: :bad).sample
+      return quotes(emotion: :bad).sample + '🤨'
     end
   end
 end
