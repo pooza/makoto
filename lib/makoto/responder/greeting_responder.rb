@@ -1,12 +1,22 @@
 module Makoto
   class GreetingResponder < Responder
     def executable?
-      @matches = @params['content'].match(/おはよう|こんにち[はわ]|こんばん[はわ]/)
-      return @matches.present?
+      @config['/respond/greeting'].each do |v|
+        next unless @params['content'].match(Regexp.new(v['pattern']))
+        @matches = Config.flatten('', v)
+        return true
+      end
+      return false
     end
 
     def exec
-      return @matches[0]
+      message = [@matches['/response/body']]
+      if @matches['/hours'].include?(Time.now.hour)
+        message.push(['！', '。'].sample)
+      else
+        message.push(['？？', 'って…。😅', '？😅'].sample)
+      end
+      return message.join
     end
   end
 end
