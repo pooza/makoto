@@ -8,7 +8,7 @@ module Makoto
     end
 
     def exec
-      tracks = TrackLib.new.tracks(title: @title)
+      tracks = @track_lib.tracks(title: @title)
       return @config['/respond/song/response/error'].sample % [@title] unless tracks.present?
       @template = Template.new('nowplaying')
       @template[:greeting] = @config['/respond/song/response/normal'].sample

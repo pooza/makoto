@@ -34,7 +34,10 @@ module Makoto
 
     def handle_mention_notification(payload)
       RespondWorker.perform_async(
-        account: payload['account']['acct'],
+        account: {
+          acct: payload['account']['acct'],
+          display_name: payload['account']['display_name'],
+        },
         toot_id: payload['status']['id'],
         content: payload['status']['content'],
         visibility: payload['status']['visibility'],
@@ -50,7 +53,10 @@ module Makoto
     def handle_update(payload)
       return unless Responder.respondable?(payload)
       RespondWorker.perform_async(
-        account: payload['account']['acct'],
+        account: {
+          acct: payload['account']['acct'],
+          display_name: payload['account']['display_name'],
+        },
         toot_id: payload['id'],
         content: payload['content'],
         visibility: payload['visibility'],

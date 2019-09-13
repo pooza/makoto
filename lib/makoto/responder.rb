@@ -9,6 +9,7 @@ module Makoto
       @config = Config.instance
       @logger = Logger.new
       @quote_lib = QuoteLib.new
+      @track_lib = TrackLib.new
       @params = {}
     end
 
