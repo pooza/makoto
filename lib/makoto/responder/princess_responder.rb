@@ -5,7 +5,7 @@ module Makoto
     end
 
     def exec
-      return '王女様！'
+      return quotes(form: ['剣崎真琴', 'キュアソード'], keyword: '王女様').sample
     end
   end
 end

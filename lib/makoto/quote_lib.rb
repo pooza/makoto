@@ -44,6 +44,7 @@ module Makoto
       quotes = quotes.keep_if{|v| params[:priority] <= v['priority']}
       quotes = quotes.delete_if{|v| params[:exclude].present?}
       quotes = quotes.keep_if{|v| params[:form].include?(v['form'])}
+      quotes = quotes.keep_if{|v| v['quote'].include?(params[:keyword])} if params[:keyword]
       return quotes if params[:detail]
       return quotes.map{|v| v['quote']}.uniq
     end
