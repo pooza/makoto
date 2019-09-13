@@ -8,8 +8,8 @@ module Makoto
     def initialize
       @config = Config.instance
       @logger = Logger.new
-      @quote_lib = QuoteLib.new
-      @track_lib = TrackLib.new
+      @quotes = QuoteLib.new
+      @tracks = TrackLib.new
       @params = {}
     end
 
@@ -27,7 +27,7 @@ module Makoto
     end
 
     def quotes(params = {})
-      return @quote_lib.quotes(params)
+      return @quotes.quotes(params)
     end
 
     def self.all

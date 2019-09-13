@@ -4,12 +4,12 @@ module Makoto
 
     def initialize
       super
-      @track_lib = TrackLib.new
+      @tracks = TrackLib.new
     end
 
     def perform
       template = Template.new('nowplaying')
-      track = @track_lib.sample
+      track = @tracks.sample
       template[:greeting] = @config['/nowplaying/messages/normal'].sample
       template[:greeting] = @config['/nowplaying/messages/self'].sample if track['makoto'].present?
       template[:url] = track['url']
