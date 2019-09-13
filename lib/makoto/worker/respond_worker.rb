@@ -1,8 +1,10 @@
 module Makoto
   class RespondWorker < Worker
+    sidekiq_options retry: 3
+
     def perform(params)
       template = Template.new('respond')
-      template[:account] = params['account']
+      template[:account] = params['account']['acct']
       template[:message] = create_message(params)
       mastodon.toot(
         status: template.to_s,

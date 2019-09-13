@@ -12,6 +12,7 @@ module Makoto
     def exec
       message = [@matches['/response/body']]
       if @matches['/hours'].include?(Time.now.hour)
+        message.unshift("#{@params['account']['display_name'].sub(/:$/, ': ')}さん、")
         message.push(['！', '。'].sample)
       else
         message.push(['？？', 'って…。😅', '？😅'].sample)

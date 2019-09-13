@@ -4,11 +4,11 @@ module Makoto
 
     def initialize
       super
-      @quote_lib = QuoteLib.new
+      @quotes = QuoteLib.new
     end
 
     def perform
-      quote = @quote_lib.quotes(
+      quote = @quotes.quotes(
         detail: true,
         priority: 4,
         form: ['剣崎真琴', 'キュアソード'],

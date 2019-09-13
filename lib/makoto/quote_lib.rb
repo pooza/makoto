@@ -34,18 +34,19 @@ module Makoto
     def quotes(params = {})
       params[:priority] ||= @config['/quote/priority/min']
       params[:form] ||= ['剣崎真琴']
-      params[:detail] ||= false
-      quotes = clone
-      if params[:emotion] == :bad
-        quotes = quotes.keep_if{|v| v['emotion'] == 'bad'}
-      else
-        quotes = quotes.delete_if{|v| v['emotion'] == 'bad'}
-      end
-      quotes = quotes.keep_if{|v| params[:priority] <= v['priority']}
-      quotes = quotes.delete_if{|v| params[:exclude].present?}
-      quotes = quotes.keep_if{|v| params[:form].include?(v['form'])}
-      return quotes if params[:detail]
+      quotes = clone.keep_if{|v| keep?(v, params)}
+      return quotes if params[:detail].present?
       return quotes.map{|v| v['quote']}.uniq
+    end
+
+    def keep?(entry, params = {})
+      return false if entry['exclude'].present?
+      return false if (params[:emotion] == :bad) && (entry['emotion'] != 'bad')
+      return false if params[:emotion].nil? && (entry['emotion'] == 'bad')
+      return false if entry['priority'] < params[:priority]
+      return false unless params[:form].include?(entry['form'])
+      return false if params[:keyword] && !entry['quote'].include?(params[:keyword])
+      return true
     end
 
     def delete

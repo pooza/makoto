@@ -34,14 +34,16 @@ module Makoto
     alias create refresh
 
     def tracks(params = {})
-      tracks = []
+      tracks = clone.keep_if{|v| keep?(v, params)}
+      return tracks if params[:detail].present?
+      return tracks.map{|v| v['url']}.uniq
+    end
+
+    def keep?(entry, params = {})
       pattern = create_pattern(params[:title])
-      each do |v|
-        next if params[:makoto] && !v['makoto'].present?
-        next if params[:title] && !v['title'].match(pattern)
-        tracks.push(v)
-      end
-      return tracks
+      return false if entry['makoto'].present? && params[:makoto]
+      return false if !entry['title'].match(pattern) && params[:title]
+      return true
     end
 
     def create_pattern(word)
