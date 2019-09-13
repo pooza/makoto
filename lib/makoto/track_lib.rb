@@ -41,7 +41,8 @@ module Makoto
         next if params[:title] && !v['title'].match(pattern)
         tracks.push(v)
       end
-      return tracks
+      return tracks if params[:detail]
+      return tracks.map{|v| v['url']}.uniq
     end
 
     def create_pattern(word)
