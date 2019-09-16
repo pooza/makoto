@@ -20,6 +20,14 @@ word:
     - 真琴
     - まこぴー
     - キュアソード
+  ignore:
+    - stg_precure_fun
+    - precure_fun
+    - fun
+    - image
+    - video
+    - audio
+    - nowplaying
 respond:
   paragraph:
     max: 5
@@ -31,6 +39,8 @@ respond:
     - dental
     - keyword
     - fixed
+  templates:
+    - '%sは好きよ。'
   greeting:
     - pattern: 'おはよう(ございます)?([。!]|\s|$)'
       response:
