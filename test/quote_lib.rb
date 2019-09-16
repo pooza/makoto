@@ -15,7 +15,6 @@ module Makoto
     end
 
     def test_quotes
-      return if Environment.ci?
       assert(@lib.quotes.is_a?(Array))
       @lib.quotes(detail: true)[0..10].each do |quote|
         assert(quote['series'].is_a?(String))
