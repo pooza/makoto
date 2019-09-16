@@ -11,23 +11,27 @@ module Makoto
 
   autoload :Config
   autoload :Environment
+  autoload :Lib
   autoload :Listener
   autoload :Logger
   autoload :HTTP
   autoload :Mastodon
   autoload :Package
-  autoload :QuoteLib
   autoload :Responder
   autoload :Slack
   autoload :TagContainer
   autoload :Template
-  autoload :TrackLib
   autoload :Worker
 
   autoload_under 'daemon' do
     autoload :ListenerDaemon
     autoload :SidekiqDaemon
     autoload :ThinDaemon
+  end
+
+  autoload_under 'lib' do
+    autoload :QuoteLib
+    autoload :TrackLib
   end
 
   autoload_under 'responder' do
