@@ -1,8 +1,6 @@
 module Makoto
   class BadMoodResponderTest < Test::Unit::TestCase
     def setup
-      quotes = QuoteLib.new
-      quotes.refresh unless quotes.exist?
       @responder = BadMoodResponder.new
     end
 

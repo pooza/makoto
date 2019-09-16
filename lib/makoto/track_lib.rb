@@ -7,7 +7,7 @@ module Makoto
       @logger = Logger.new
       @config = Config.instance
       @http = HTTP.new
-      load
+      refresh unless exist?
     end
 
     def exist?
