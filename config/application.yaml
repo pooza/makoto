@@ -15,9 +15,22 @@ websocket:
 word:
   length:
     min: 2
+  topics:
+    - MAKOTO
+    - 真琴
+    - まこぴー
+    - キュアソード
+  ignore:
+    - stg_precure_fun
+    - precure_fun
+    - fun
+    - image
+    - video
+    - audio
+    - nowplaying
 respond:
   paragraph:
-    max: 4
+    max: 5
   classes:
     - bad_mood
     - greeting
@@ -26,6 +39,8 @@ respond:
     - dental
     - keyword
     - fixed
+  templates:
+    - '%sは好きよ。'
   greeting:
     - pattern: 'おはよう(ございます)?([。!]|\s|$)'
       response:
@@ -66,6 +81,9 @@ respond:
     words:
       - 王女様
       - 王女さま
+  bad_mood:
+    words:
+      - ちんこ
 track:
   url: https://script.google.com/macros/s/AKfycbym_KI7OhjP545B_jdJM5JxkF6RNZhtPrzuHQRhLffCi-E0cvlK/exec
 quote:

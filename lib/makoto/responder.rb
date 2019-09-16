@@ -13,13 +13,20 @@ module Makoto
       @params = {}
     end
 
+    def underscore_name
+      return self.class.to_s.split('::').last.sub(/Responder$/, '').underscore
+    end
+
     def params=(params)
       @params = params
       @params['content'] = Responder.sanitize(@params['content'])
     end
 
     def executable?
-      raise Ginseng::ImplementError, "'#{__method__}' not implemented"
+      @config["/respond/#{underscore_name}/words"].each do |word|
+        return true if @params['content'].include?(word)
+      end
+      return false
     end
 
     def exec
@@ -40,6 +47,7 @@ module Makoto
     def self.sanitize(message)
       message = Sanitize.clean(message)
       message = Unicode.nfkc(message)
+      message.strip!
       return message
     end
 
