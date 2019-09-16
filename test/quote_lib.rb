@@ -3,15 +3,14 @@ module Makoto
     def setup
       @config = Config.instance
       @lib = QuoteLib.new
+      @lib.refresh
     end
 
     def test_exist?
-      return if Environment.ci?
       assert(@lib.exist?)
     end
 
     def test_path
-      return if Environment.ci?
       assert(@lib.path.present?)
     end
 
