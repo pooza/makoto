@@ -17,7 +17,7 @@ word:
     min: 2
 respond:
   paragraph:
-    max: 4
+    max: 5
   classes:
     - bad_mood
     - greeting

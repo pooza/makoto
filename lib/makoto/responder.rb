@@ -40,6 +40,7 @@ module Makoto
     def self.sanitize(message)
       message = Sanitize.clean(message)
       message = Unicode.nfkc(message)
+      message.strip!
       return message
     end
 

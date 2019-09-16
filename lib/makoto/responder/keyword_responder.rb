@@ -8,7 +8,7 @@ module Makoto
     def executable?
       words = analyze(@params['content']).shuffle
       templates = @config['/respond/templates'].shuffle
-      [rand(1..@config['/respond/paragraph/max']), words.count, templates.count].min.times do
+      [rand(2..@config['/respond/paragraph/max']), words.count, templates.count].min.times do
         @paragraphs.push(templates.pop % [words.pop])
         break if @paragraphs.last.match(/[！？!?]$/)
       end
