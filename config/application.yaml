@@ -15,6 +15,11 @@ websocket:
 word:
   length:
     min: 2
+  topics:
+    - MAKOTO
+    - 真琴
+    - まこぴー
+    - キュアソード
 respond:
   paragraph:
     max: 5
@@ -66,6 +71,9 @@ respond:
     words:
       - 王女様
       - 王女さま
+  bad_mood:
+    words:
+      - ちんこ
 track:
   url: https://script.google.com/macros/s/AKfycbym_KI7OhjP545B_jdJM5JxkF6RNZhtPrzuHQRhLffCi-E0cvlK/exec
 quote:
