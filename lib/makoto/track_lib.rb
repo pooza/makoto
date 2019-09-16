@@ -8,6 +8,7 @@ module Makoto
       @config = Config.instance
       @http = HTTP.new
       refresh unless exist?
+      load
     end
 
     def exist?
