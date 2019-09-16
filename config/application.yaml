@@ -52,6 +52,20 @@ respond:
       error:
         - 「%s」はわたしの曲じゃないわ。😉
         - 「%s」…？🙂
+  dental:
+    words:
+      - 歯医者
+      - 虫歯
+      - 歯みがき
+      - 歯磨き
+      - 抜歯
+      - 歯槽膿漏
+      - 知覚過敏
+      - 歯周病
+  princess:
+    words:
+      - 王女様
+      - 王女さま
 track:
   url: https://script.google.com/macros/s/AKfycbym_KI7OhjP545B_jdJM5JxkF6RNZhtPrzuHQRhLffCi-E0cvlK/exec
 quote:

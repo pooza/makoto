@@ -40,8 +40,9 @@ module Makoto
     end
 
     def keep?(entry, params = {})
+      params[:title] ||= ''
       pattern = create_pattern(params[:title])
-      return false if entry['makoto'].present? && params[:makoto]
+      return false if !entry['makoto'].present? && params[:makoto]
       return false if !entry['title'].match(pattern) && params[:title]
       return true
     end

@@ -1,7 +1,10 @@
 module Makoto
   class PrincessResponder < Responder
     def executable?
-      return @params['content'].match(/王女(様|さま)/)
+      @config['/respond/princess/words'].each do |word|
+        return true if @params['content'].include?(word)
+      end
+      return false
     end
 
     def exec
