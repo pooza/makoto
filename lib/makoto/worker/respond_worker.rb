@@ -16,7 +16,9 @@ module Makoto
     def create_message(params)
       Responder.all do |responder|
         responder.params = params
-        return responder.exec if responder.executable?
+        next unless responder.executable?
+        @logger.info(responder: responder.class.to_s)
+        return responder.exec
       end
       raise 'All responders are not executable!'
     rescue => e
