@@ -43,5 +43,18 @@ module Makoto
     def fetch
       return @http.get(@config["/#{underscore_name}/url"]).parsed_response
     end
+
+    private
+
+    def create_pattern(word)
+      pattern = Unicode.nfkc(word.to_s).gsub(/[^[:alnum:]]/, '.? ?')
+      [
+        'あぁ', 'いぃ', 'うぅ', 'えぇ', 'おぉ', 'やゃ', 'ゆゅ', 'よょ',
+        'アァ', 'イィ', 'ウゥ', 'エェ', 'オォ', 'ヤャ', 'ユュ', 'ヨョ'
+      ].each do |v|
+        pattern.gsub!(Regexp.new("[#{v}]"), "[#{v}]")
+      end
+      return Regexp.new(pattern)
+    end
   end
 end
