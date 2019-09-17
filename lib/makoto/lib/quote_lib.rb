@@ -15,8 +15,9 @@ module Makoto
       return false if params[:emotion].nil? && (entry['emotion'] == 'bad')
       return false if entry['priority'] < params[:priority]
       return false unless params[:form].include?(entry['form'])
-      return true if entry['quote'].include?(params[:keyword])
-      return true if entry['remark'].include?(params[:keyword])
+      pattern = create_pattern(params[:keyword])
+      return true if entry['quote'].match(pattern)
+      return true if entry['remark'].match(pattern)
       return false
     end
   end
