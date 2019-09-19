@@ -1,3 +1,5 @@
+require 'unicode'
+
 module Makoto
   class Lib < Array
     def initialize
@@ -43,8 +45,6 @@ module Makoto
     def fetch
       return @http.get(@config["/#{underscore_name}/url"]).parsed_response
     end
-
-    private
 
     def create_pattern(word)
       pattern = Unicode.nfkc(word.to_s).gsub(/[^[:alnum:]]/, '.? ?')

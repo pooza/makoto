@@ -1,5 +1,3 @@
-require 'unicode'
-
 module Makoto
   class TrackLib < Lib
     def tracks(params = {})
