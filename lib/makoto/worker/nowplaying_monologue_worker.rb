@@ -2,11 +2,6 @@ module Makoto
   class NowplayingMonologueWorker < Worker
     sidekiq_options retry: 3
 
-    def initialize
-      super
-      @tracks = TrackLib.new
-    end
-
     def perform
       template = Template.new('nowplaying')
       track = @tracks.sample

@@ -2,11 +2,6 @@ module Makoto
   class GoodQuoteMonologueWorker < Worker
     sidekiq_options retry: 3
 
-    def initialize
-      super
-      @quotes = QuoteLib.new
-    end
-
     def perform
       quote = @quotes.quotes(
         detail: true,
