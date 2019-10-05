@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
-ruby '2.6.4'
+ruby '2.6.5'
+gem 'bootsnap'
 gem 'eventmachine'
 gem 'faye-websocket'
 gem 'ginseng-core', git: 'https://github.com/pooza/ginseng-core.git'
