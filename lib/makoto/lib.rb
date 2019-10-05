@@ -18,7 +18,7 @@ module Makoto
 
     def corrupted?
       return !Marshal.load(File.read(path)).is_a?(Array)
-    rescue TypeError => e
+    rescue TypeError, Errno::ENOENT => e
       @logger.error(lib: self.class.to_s, path: path, message: e.message)
       return true
     end
