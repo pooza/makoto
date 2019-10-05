@@ -4,10 +4,10 @@ schedule:
     cron: '0 0 7 * * *'
     class: Makoto::GoodMorningMonologueWorker
   nowplaying:
-    every: 4h
+    cron: '0 0 9,21 * * *'
     class: Makoto::NowplayingMonologueWorker
   good_quote:
-    every: 2h
+    cron: '0 0 11,23 * * *'
     class: Makoto::GoodQuoteMonologueWorker
   quote_lib:
     every: 5m
