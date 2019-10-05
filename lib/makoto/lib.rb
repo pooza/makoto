@@ -8,11 +8,19 @@ module Makoto
       @config = Config.instance
       @http = HTTP.new
       refresh unless exist?
+      refresh if corrupted?
       load
     end
 
     def exist?
       return File.exist?(path)
+    end
+
+    def corrupted?
+      return !Marshal.load(File.read(path)).is_a?(Array)
+    rescue TypeError => e
+      @logger.error(lib: self.class.to_s, path: path, message: e.message)
+      return true
     end
 
     def underscore_name
@@ -31,6 +39,7 @@ module Makoto
 
     def refresh
       File.write(path, Marshal.dump(fetch))
+      @logger.info(lib: self.class.to_s, path: path, message: 'refreshed')
       load
     rescue => e
       @logger.error(e)
