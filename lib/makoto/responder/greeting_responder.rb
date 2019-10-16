@@ -4,6 +4,7 @@ module Makoto
       @config['/respond/greeting'].each do |v|
         next unless @params['content'].match(Regexp.new(v['pattern']))
         @matches = Config.flatten('', v)
+        @matches['/hours'] ||= (0..23).to_a
         return true
       end
       return false
