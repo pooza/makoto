@@ -7,7 +7,7 @@ module Makoto
         detail: true,
         priority: 4,
         form: ['剣崎真琴', 'キュアソード'],
-      ).sample
+      ).sample(random: create_random)
       template = Template.new('good_quote')
       template[:quote] = quote['quote']
       template[:series] = quote['series']

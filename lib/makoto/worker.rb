@@ -20,5 +20,9 @@ module Makoto
     def perform
       raise Ginseng::ImplementError, "'#{__method__}' not implemented"
     end
+
+    def create_random
+      return Random.new(Time.now.to_i)
+    end
   end
 end
