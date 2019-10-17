@@ -4,7 +4,7 @@ module Makoto
 
     def perform
       template = Template.new('good_morning')
-      template[:greeting] = @config['/morning/greetings'].sample
+      template[:greeting] = @config['/morning/greetings'].sample(random: create_random)
       mastodon.toot(template.to_s)
     end
   end
