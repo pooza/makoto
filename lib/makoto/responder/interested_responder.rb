@@ -13,7 +13,9 @@ module Makoto
     end
 
     def exec
-      return quotes(form: ['剣崎真琴', 'キュアソード'], keyword: @keyword).sample
+      quote = quotes(form: ['剣崎真琴', 'キュアソード'], keyword: @keyword).sample
+      raise 'empty' unless quote
+      return quote
     end
   end
 end
