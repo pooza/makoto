@@ -1,10 +1,14 @@
 module Makoto
-  class DentalResponderTest < Test::Unit::TestCase
+  class InterestedResponderTest < Test::Unit::TestCase
     def setup
-      @responder = DentalResponder.new
+      @responder = InterestedResponder.new
     end
 
     def test_exec
+      @responder.params = {'content' => '王女様！'}
+      assert(@responder.executable?)
+      assert(@responder.exec.present?)
+
       @responder.params = {'content' => 'ばっちしバシシ'}
       assert_false(@responder.executable?)
 

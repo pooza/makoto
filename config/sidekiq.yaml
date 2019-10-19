@@ -7,7 +7,7 @@ schedule:
     cron: '0 0 9,21 * * *'
     class: Makoto::NowplayingMonologueWorker
   good_quote:
-    cron: '0 0 11,23 * * *'
+    cron: '0 0 5,11,17,23 * * *'
     class: Makoto::GoodQuoteMonologueWorker
   quote_lib:
     every: 5m
