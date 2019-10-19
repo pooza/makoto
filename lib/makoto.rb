@@ -47,11 +47,10 @@ module Makoto
   autoload_under 'responder' do
     autoload :BadMoodResponder
     autoload :CureSwordResponder
-    autoload :DentalResponder
     autoload :FixedResponder
     autoload :GreetingResponder
+    autoload :InterestedResponder
     autoload :KeywordResponder
-    autoload :PrincessResponder
     autoload :SongResponder
   end
 

@@ -35,8 +35,7 @@ respond:
     - bad_mood
     - greeting
     - song
-    - princess
-    - dental
+    - interested
     - keyword
     - fixed
   templates:
@@ -60,6 +59,43 @@ respond:
     - pattern: 'ただいま([、。!]|\s|$)'
       response:
         body: おかえりなさい
+  interested:
+    - quote: 王女
+    - words:
+        - 歯医者
+        - 虫歯
+        - 歯みがき
+        - 歯磨き
+        - 抜歯
+        - 歯槽膿漏
+        - 知覚過敏
+        - 歯周病
+      quote: 歯
+    - quote: キュアハート
+    - quote: キュアダイヤモンド
+    - quote: キュアロゼッタ
+    - quote: キュアエース
+    - quote: レジーナ
+    - quote: シャルル
+    - quote: ラケル
+    - quote: ランス
+    - quote: ダビィ
+    - quote: マナ
+    - quote: 六花
+    - quote: ありす
+    - quote: 亜久里
+    - quote: ジコチュー
+    - quote: ジャネジー
+    - quote: プシュケー
+    - quote: 魔法の鏡
+    - quote: ロイヤルクリスタル
+    - quote: ラブリーフォースアロー
+    - quote: ラビーズ
+    - quote: コミューン
+    - quote: ロイヤルホワイト
+    - quote: マジカルラプリーパッド
+    - quote: エターナルゴールデンクラウン
+    - quote: ミラクルドラゴングレイブ
   song:
     pattern: '([[:alnum:]]+|「(.*?)」)を(歌|うた)って([。!]|\s|$)'
     response:
@@ -73,21 +109,6 @@ respond:
       error:
         - 「%s」はわたしの曲じゃないわ。😉
         - 「%s」…？🙂
-  dental:
-    words:
-      - 歯医者
-      - 虫歯
-      - 歯みがき
-      - 歯磨き
-      - 抜歯
-      - 歯槽膿漏
-      - 知覚過敏
-      - 歯周病
-  princess:
-    words:
-      - 王女様
-      - 王女さま
-      - アン王女
   bad_mood:
     words:
       - ちんこ
