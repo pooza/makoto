@@ -1,5 +1,5 @@
 package:
-  version: 1.0.4
+  version: 1.0.5
   url: https://github.com/pooza/makoto
   authors:
     - Tatsuya Koishi
@@ -93,7 +93,7 @@ respond:
     - quote: ラビーズ
     - quote: コミューン
     - quote: ロイヤルホワイト
-    - quote: マジカルラプリーパッド
+    - quote: マジカルラブリーパッド
     - quote: エターナルゴールデンクラウン
     - quote: ミラクルドラゴングレイブ
   song:

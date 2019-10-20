@@ -50,6 +50,8 @@ module Makoto
       )
     end
 
+    def handle_reblog_notification(payload); end
+
     def handle_update(payload)
       return unless Responder.respondable?(payload)
       RespondWorker.perform_async(
