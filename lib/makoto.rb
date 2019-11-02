@@ -29,7 +29,6 @@ module Makoto
   autoload :Package
   autoload :Responder
   autoload :Slack
-  autoload :TagContainer
   autoload :Template
   autoload :Worker
 
