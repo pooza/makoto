@@ -54,6 +54,7 @@ module Makoto
   end
 
   autoload_under 'worker' do
+    autoload :BirthdayMonologueWorker
     autoload :FollowWorker
     autoload :FollowMaintenanceWorker
     autoload :GoodMorningMonologueWorker
