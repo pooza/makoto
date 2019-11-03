@@ -9,6 +9,9 @@ schedule:
   good_quote:
     cron: '0 0 5,11,17,23 * * *'
     class: Makoto::GoodQuoteMonologueWorker
+  birthday:
+    cron: '0 10,40 * 4 11 *'
+    class: Makoto::BirthdayMonologueWorker
   quote_lib:
     every: 5m
     class: Makoto::QuoteLibWorker

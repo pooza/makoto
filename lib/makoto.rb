@@ -29,7 +29,6 @@ module Makoto
   autoload :Package
   autoload :Responder
   autoload :Slack
-  autoload :TagContainer
   autoload :Template
   autoload :Worker
 
@@ -55,6 +54,7 @@ module Makoto
   end
 
   autoload_under 'worker' do
+    autoload :BirthdayMonologueWorker
     autoload :FollowWorker
     autoload :FollowMaintenanceWorker
     autoload :GoodMorningMonologueWorker

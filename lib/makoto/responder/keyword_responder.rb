@@ -21,7 +21,7 @@ module Makoto
 
     def analyze(message)
       words = @config['/word/topics'].clone.keep_if{|v| message.include?(v)}
-      words.concat(TagContainer.scan(message))
+      words.concat(Ginseng::TagContainer.scan(message))
       words -= @config['/word/ignore']
       words.concat(morph(message)) unless words.present?
       words -= @config['/word/ignore']
