@@ -1,5 +1,5 @@
 package:
-  version: 1.0.5
+  version: 1.0.6
   url: https://github.com/pooza/makoto
   authors:
     - Tatsuya Koishi
@@ -112,6 +112,11 @@ respond:
   bad_mood:
     words:
       - ちんこ
+birthday:
+  greeting:
+    - ノンストップで歌い続けます！
+    - まだまだ歌い続けるわ！
+    - 持ち歌を歌いつくすつもりで歌うわ！
 track:
   url: https://script.google.com/macros/s/AKfycbym_KI7OhjP545B_jdJM5JxkF6RNZhtPrzuHQRhLffCi-E0cvlK/exec
 quote:
