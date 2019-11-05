@@ -15,6 +15,7 @@ module Makoto
 
     def keep?(entry, params = {})
       return false if entry['exclude'].present?
+      return false if params[:respond] && entry['exclude_respond'].present?
       return false if (params[:emotion] == :bad) && (entry['emotion'] != 'bad')
       return false if params[:emotion].nil? && (entry['emotion'] == 'bad')
       return false if entry['priority'] < params[:priority]
