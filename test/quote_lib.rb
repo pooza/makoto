@@ -14,6 +14,11 @@ module Makoto
       assert(@lib.path.present?)
     end
 
+    def test_pickup
+      assert(@lib.pickup.is_a?(String))
+      assert(@lib.pickup(detail: true).is_a?(Hash))
+    end
+
     def test_quotes
       assert(@lib.quotes.is_a?(Array))
       @lib.quotes(detail: true)[0..10].each do |quote|
