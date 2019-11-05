@@ -33,10 +33,6 @@ module Makoto
       raise Ginseng::ImplementError, "'#{__method__}' not implemented"
     end
 
-    def quotes(params = {})
-      return @quotes.quotes(params)
-    end
-
     def self.all
       return enum_for(__method__) unless block_given?
       Config.instance['/respond/classes'].each do |v|

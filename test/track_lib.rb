@@ -14,6 +14,11 @@ module Makoto
       assert(@lib.path.present?)
     end
 
+    def test_pickup
+      assert(@lib.pickup.is_a?(String))
+      assert(@lib.pickup(detail: true).is_a?(Hash))
+    end
+
     def test_tracks
       assert(@lib.tracks.is_a?(Array))
       @lib.tracks(detail: true)[0..10].each do |track|
