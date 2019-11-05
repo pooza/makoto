@@ -1,5 +1,9 @@
 module Makoto
   class TrackLib < Lib
+    def pickup(params = {})
+      return tracks(params).sample(random: Random.new(Time.now.to_i))
+    end
+
     def tracks(params = {})
       tracks = clone.keep_if{|v| keep?(v, params)}
       return tracks if params[:detail].present?
