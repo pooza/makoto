@@ -1,5 +1,9 @@
 module Makoto
   class QuoteLib < Lib
+    def pickup(params = {})
+      return quotes(params).sample(random: Random.new(Time.now.to_i))
+    end
+
     def quotes(params = {})
       params[:priority] ||= @config['/quote/priority/min']
       params[:form] ||= ['剣崎真琴']
