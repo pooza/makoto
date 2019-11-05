@@ -1,7 +1,7 @@
 module Makoto
   class BadMoodResponder < Responder
     def exec
-      return quotes(emotion: :bad).sample + '🤨'
+      return @quotes.pickup(emotion: :bad) + '🤨'
     end
   end
 end

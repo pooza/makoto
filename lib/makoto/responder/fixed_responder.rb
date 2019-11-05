@@ -5,7 +5,7 @@ module Makoto
     end
 
     def exec
-      return quotes.sample
+      return @quotes.pickup
     end
   end
 end
