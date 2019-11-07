@@ -1,5 +1,5 @@
 package:
-  version: 1.0.8
+  version: 1.1.0
   url: https://github.com/pooza/makoto
   authors:
     - Tatsuya Koishi
@@ -13,8 +13,6 @@ mastodon:
 websocket:
   keepalive: 15
 word:
-  length:
-    min: 2
   topics:
     - MAKOTO
     - 真琴
@@ -59,6 +57,9 @@ respond:
     - pattern: 'ただいま([、。!]|\s|$)'
       response:
         body: おかえりなさい
+    - pattern: 'おめでとう([、。!]|\s|$)'
+      response:
+        body: ありがとう
   interested:
     - quote: 王女
     - words:
@@ -123,9 +124,16 @@ quote:
   url: https://script.google.com/macros/s/AKfycbw1GgW7a_leXTlGa48Zeo3O7W3OF_wQreb8A2EKLWooXJqQClE/exec
   priority:
     min: 2
+  all_forms:
+    - 剣崎真琴
+    - キュアソード
+  default_forms:
+    - 剣崎真琴
 goo:
   morph:
     url: https://labs.goo.ne.jp/api/morph
+  keyword:
+    url: https://labs.goo.ne.jp/api/keyword
 sidekiq:
   redis:
     dsn: redis://localhost:6379/3

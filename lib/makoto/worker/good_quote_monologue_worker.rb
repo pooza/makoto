@@ -3,7 +3,7 @@ module Makoto
     sidekiq_options retry: 3
 
     def perform
-      quote = @quotes.pickup(detail: true, priority: 4, form: ['剣崎真琴', 'キュアソード'])
+      quote = @quotes.pickup(detail: true, priority: 4, form: @config['/quote/all_forms'])
       template = Template.new('good_quote')
       template[:quote] = quote['quote']
       template[:series] = quote['series']

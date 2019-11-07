@@ -1,7 +1,7 @@
 module Makoto
   class TrackLib < Lib
     def pickup(params = {})
-      return tracks(params).sample(random: Random.new(Time.now.to_i))
+      return tracks(params).sample(random: Random.create)
     end
 
     def tracks(params = {})

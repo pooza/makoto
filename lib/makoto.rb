@@ -27,6 +27,7 @@ module Makoto
   autoload :HTTP
   autoload :Mastodon
   autoload :Package
+  autoload :Random
   autoload :Responder
   autoload :Slack
   autoload :Template
