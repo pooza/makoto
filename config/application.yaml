@@ -126,6 +126,11 @@ quote:
   url: https://script.google.com/macros/s/AKfycbw1GgW7a_leXTlGa48Zeo3O7W3OF_wQreb8A2EKLWooXJqQClE/exec
   priority:
     min: 2
+  all_forms:
+    - 剣崎真琴
+    - キュアソード
+  default_forms:
+    - 剣崎真琴
 goo:
   morph:
     url: https://labs.goo.ne.jp/api/morph

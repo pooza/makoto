@@ -13,7 +13,7 @@ module Makoto
     end
 
     def exec
-      quote = @quotes.pickup(form: ['剣崎真琴', 'キュアソード'], keyword: @keyword)
+      quote = @quotes.pickup(form: @config['/quote/all_forms'], keyword: @keyword)
       raise 'empty' unless quote
       return quote
     end

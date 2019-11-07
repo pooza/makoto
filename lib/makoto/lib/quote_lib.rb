@@ -6,7 +6,7 @@ module Makoto
 
     def quotes(params = {})
       params[:priority] ||= @config['/quote/priority/min']
-      params[:form] ||= ['剣崎真琴']
+      params[:form] ||= @config['/quote/default_forms']
       params[:keyword] ||= ''
       quotes = clone.keep_if{|v| keep?(v, params)}
       return quotes if params[:detail].present?
