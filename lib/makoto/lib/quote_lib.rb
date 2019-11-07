@@ -1,7 +1,7 @@
 module Makoto
   class QuoteLib < Lib
     def pickup(params = {})
-      return quotes(params).sample(random: Random.new(Time.now.to_i))
+      return quotes(params).sample(random: Random.create)
     end
 
     def quotes(params = {})
