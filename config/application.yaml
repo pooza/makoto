@@ -13,8 +13,6 @@ mastodon:
 websocket:
   keepalive: 15
 word:
-  length:
-    min: 2
   topics:
     - MAKOTO
     - 真琴
@@ -134,6 +132,8 @@ quote:
 goo:
   morph:
     url: https://labs.goo.ne.jp/api/morph
+  keyword:
+    url: https://labs.goo.ne.jp/api/keyword
 sidekiq:
   redis:
     dsn: redis://localhost:6379/3
