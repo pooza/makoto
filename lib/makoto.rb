@@ -44,6 +44,14 @@ module Makoto
     autoload :TrackLib
   end
 
+  autoload_under 'model' do
+    autoload :Account
+    autoload :Form
+    autoload :Track
+    autoload :Quote
+    autoload :Series
+  end
+
   autoload_under 'responder' do
     autoload :BadMoodResponder
     autoload :CureSwordResponder
