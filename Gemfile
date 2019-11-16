@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 ruby '2.6.5'
 gem 'bootsnap'
+gem 'data_mapper'
+gem 'dm-postgres-adapter'
 gem 'eventmachine'
 gem 'faye-websocket'
 gem 'ginseng-core', git: 'https://github.com/pooza/ginseng-core.git'
