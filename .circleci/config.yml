@@ -10,6 +10,9 @@ jobs:
           name: install bundler
           command: gem install bundler
       - run:
+          name: install libpq-dev
+          command: sudo apt-get install libpq-dev
+      - run:
           name: install dependencies
           command: bundle install
       - run:
