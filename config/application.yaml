@@ -134,6 +134,8 @@ goo:
     url: https://labs.goo.ne.jp/api/morph
   keyword:
     url: https://labs.goo.ne.jp/api/keyword
+postgres:
+  dsn: postgres://postgres@localhost:5432/makoto
 sidekiq:
   redis:
     dsn: redis://localhost:6379/3

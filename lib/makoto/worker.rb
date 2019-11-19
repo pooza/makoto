@@ -5,8 +5,8 @@ module Makoto
     def initialize
       @config = Config.instance
       @logger = Logger.new
-      @quotes = QuoteLib.new
-      @tracks = TrackLib.new
+      @quotes = Quote.new
+      @tracks = Track.new
     end
 
     def mastodon

@@ -1,9 +1,9 @@
 module Makoto
-  class QuoteLibWorker < Worker
+  class QuoteRefreshWorker < Worker
     sidekiq_options retry: false
 
     def perform
-      QuoteLib.new.refresh
+      Quote.refresh
     end
   end
 end

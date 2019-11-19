@@ -1,7 +1,7 @@
 module Makoto
-  class QuoteLibWorkerTest < Test::Unit::TestCase
+  class QuoteRefreshWorkerTest < Test::Unit::TestCase
     def setup
-      @worker = QuoteLibWorker.new
+      @worker = QuoteRefreshWorker.new
     end
 
     def test_perform

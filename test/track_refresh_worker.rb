@@ -1,7 +1,7 @@
 module Makoto
-  class TrackLibWorkerTest < Test::Unit::TestCase
+  class TrackRefreshWorkerTest < Test::Unit::TestCase
     def setup
-      @worker = TrackLibWorker.new
+      @worker = TrackRefreshWorker.new
     end
 
     def test_perform

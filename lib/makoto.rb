@@ -11,37 +11,40 @@ Bootsnap.setup(
 require 'active_support'
 require 'active_support/core_ext'
 require 'active_support/dependencies/autoload'
-require 'ginseng'
 require 'sidekiq'
 require 'sidekiq-scheduler'
 require 'yaml'
+require 'ginseng'
+require 'ginseng/postgres'
 
 module Makoto
   extend ActiveSupport::Autoload
 
   autoload :Config
   autoload :Environment
-  autoload :Lib
   autoload :Listener
   autoload :Logger
   autoload :HTTP
   autoload :Mastodon
   autoload :Package
+  autoload :Postgres
   autoload :Random
   autoload :Responder
   autoload :Slack
   autoload :Template
   autoload :Worker
 
+  # models
+  autoload :Account, 'makoto/model/account'
+  autoload :Form, 'makoto/model/form'
+  autoload :Quote, 'makoto/model/quote'
+  autoload :Series, 'makoto/model/series'
+  autoload :Track, 'makoto/model/track'
+
   autoload_under 'daemon' do
     autoload :ListenerDaemon
     autoload :SidekiqDaemon
     autoload :ThinDaemon
-  end
-
-  autoload_under 'lib' do
-    autoload :QuoteLib
-    autoload :TrackLib
   end
 
   autoload_under 'responder' do
@@ -61,9 +64,8 @@ module Makoto
     autoload :GoodMorningMonologueWorker
     autoload :GoodQuoteMonologueWorker
     autoload :NowplayingMonologueWorker
-    autoload :QuoteLibWorker
     autoload :RespondWorker
-    autoload :TrackLibWorker
+    autoload :TrackRefreshWorker
   end
 end
 
@@ -73,3 +75,5 @@ end
 Sidekiq.configure_server do |config|
   config.redis = {url: Makoto::Config.instance['/sidekiq/redis/dsn']}
 end
+
+Makoto::Postgres.connect

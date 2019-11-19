@@ -18,6 +18,14 @@ GIT
       yajl-ruby
 
 GIT
+  remote: https://github.com/pooza/ginseng-postgres.git
+  revision: 471a5e578844ce23c0893a5aa4f42024fca65cee
+  specs:
+    ginseng-postgres (1.2.0)
+      pg
+      sequel
+
+GIT
   remote: https://github.com/pooza/ginseng-web.git
   revision: c51c66e908e61262e48414dae8f980427e46472b
   specs:
@@ -84,6 +92,7 @@ GEM
     parallel (1.19.0)
     parser (2.6.5.0)
       ast (~> 2.4.0)
+    pg (1.1.4)
     power_assert (1.1.5)
     public_suffix (4.0.1)
     raabro (1.1.6)
@@ -168,10 +177,10 @@ DEPENDENCIES
   eventmachine
   faye-websocket
   ginseng-core!
+  ginseng-postgres!
   ginseng-web!
   rubocop
   sanitize
-  sequel
   sidekiq
   sidekiq-scheduler
 

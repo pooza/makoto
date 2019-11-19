@@ -72,14 +72,14 @@ ALTER SEQUENCE public.form_id_seq OWNED BY public.form.id;
 
 CREATE TABLE public.quote (
     id integer NOT NULL,
-    serias_id smallint NOT NULL,
+    series_id smallint NOT NULL,
     form_id smallint NOT NULL,
     episode smallint,
     emotion character varying(16),
     exclude boolean DEFAULT false NOT NULL,
     exclude_respond boolean DEFAULT false NOT NULL,
     priority smallint DEFAULT '3'::smallint NOT NULL,
-    quote text NOT NULL,
+    body text NOT NULL,
     remark text
 );
 
@@ -287,7 +287,7 @@ ALTER TABLE ONLY public.quote
 --
 
 ALTER TABLE ONLY public.quote
-    ADD CONSTRAINT quote_serias_id_fkey FOREIGN KEY (serias_id) REFERENCES public.series(id) ON DELETE CASCADE;
+    ADD CONSTRAINT quote_serias_id_fkey FOREIGN KEY (series_id) REFERENCES public.series(id) ON DELETE CASCADE;
 
 
 --

@@ -1,8 +1,8 @@
 module Makoto
-  class QuoteLibTest < Test::Unit::TestCase
+  class QuoteTest < Test::Unit::TestCase
     def setup
       @config = Config.instance
-      @lib = QuoteLib.new
+      @lib = Quote.new
       @lib.refresh
     end
 

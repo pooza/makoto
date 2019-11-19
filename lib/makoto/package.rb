@@ -16,6 +16,10 @@ module Makoto
       return Logger
     end
 
+    def database_class
+      return Postgres
+    end
+
     def http_class
       return HTTP
     end

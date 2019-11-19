@@ -14,10 +14,10 @@ schedule:
     class: Makoto::BirthdayMonologueWorker
   quote_lib:
     every: 5m
-    class: Makoto::QuoteLibWorker
+    class: Makoto::QuoteRefreshWorker
   track_lib:
     every: 5m
-    class: Makoto::TrackLibWorker
+    class: Makoto::TrackRefreshWorker
   follow_maintenance:
     every: 5m
     class: Makoto::FollowMaintenanceWorker

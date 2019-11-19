@@ -1,9 +1,9 @@
 module Makoto
-  class TrackLibWorker < Worker
+  class TrackRefreshWorker < Worker
     sidekiq_options retry: false
 
     def perform
-      TrackLib.new.refresh
+      Track.refresh
     end
   end
 end
