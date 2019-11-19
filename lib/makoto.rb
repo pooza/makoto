@@ -17,18 +17,25 @@ require 'yaml'
 require 'ginseng'
 require 'ginseng/postgres'
 
-module Makoto; end
+module Makoto
+  def self.configure_autoload
+    loader = Zeitwerk::Loader.new
+    loader.inflector.inflect(
+      'http' => 'HTTP',
+    )
+    loader.push_dir(File.expand_path('..', __FILE__))
+    loader.setup
+  end
 
-loader = Zeitwerk::Loader.new
-loader.inflector.inflect(
-  'http' => 'HTTP',
-)
-loader.push_dir(File.expand_path('..', __FILE__))
-loader.setup
+  def self.configure_sidekiq
+    Sidekiq.configure_client do |config|
+      config.redis = {url: Config.instance['/sidekiq/redis/dsn']}
+    end
+    Sidekiq.configure_server do |config|
+      config.redis = {url: Config.instance['/sidekiq/redis/dsn']}
+    end
+  end
+end
 
-Sidekiq.configure_client do |config|
-  config.redis = {url: Makoto::Config.instance['/sidekiq/redis/dsn']}
-end
-Sidekiq.configure_server do |config|
-  config.redis = {url: Makoto::Config.instance['/sidekiq/redis/dsn']}
-end
+Makoto.configure_autoload
+Makoto.configure_sidekiq
