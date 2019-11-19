@@ -7,7 +7,7 @@ module Makoto
     def test_exec
       @responder.params = {'content' => '王女様！'}
       assert(@responder.executable?)
-      assert(@responder.exec.present?)
+      assert(@responder.exec.present?) unless Environment.ci?
 
       @responder.params = {'content' => 'ばっちしバシシ'}
       assert_false(@responder.executable?)
