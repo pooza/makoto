@@ -66,6 +66,7 @@ module Makoto
     autoload :NowplayingMonologueWorker
     autoload :RespondWorker
     autoload :TrackRefreshWorker
+    autoload :QuoteRefreshWorker
   end
 end
 

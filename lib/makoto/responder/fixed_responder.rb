@@ -5,7 +5,7 @@ module Makoto
     end
 
     def exec
-      return @quotes.pickup(respond: true)
+      return Quote.pickup(respond: true).body
     end
   end
 end

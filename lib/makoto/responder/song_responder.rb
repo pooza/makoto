@@ -8,12 +8,12 @@ module Makoto
     end
 
     def exec
-      tracks = @tracks.filter(title: @title)
+      tracks = Track.dataset.where(Sequel.like(:title, "%#{@title}%"))
       return @config['/respond/song/response/error'].sample % [@title] unless tracks.present?
       @template = Template.new('nowplaying')
       @template[:greeting] = @config['/respond/song/response/normal'].sample
       track = tracks.first
-      unless track['makoto'].present?
+      unless track[:makoto].present?
         @template[:greeting] += @config['/respond/song/response/other_singer'].sample
       end
       @template[:url] = track['url']

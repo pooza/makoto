@@ -13,9 +13,9 @@ module Makoto
     end
 
     def exec
-      quote = @quotes.pickup(form: @config['/quote/all_forms'], keyword: @keyword)
+      quote = Quote.pickup(form: @config['/quote/all_forms'], keyword: @keyword)
       raise 'empty' unless quote
-      return quote
+      return quote.body
     end
   end
 end

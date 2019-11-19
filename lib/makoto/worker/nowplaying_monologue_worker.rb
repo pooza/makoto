@@ -4,13 +4,13 @@ module Makoto
 
     def perform
       template = Template.new('nowplaying')
-      track = @tracks.pickup(detail: true)
-      if track['makoto'].present?
+      track = Track.pickup
+      if track.makoto
         template[:greeting] = @config['/nowplaying/messages/self'].sample
       else
         template[:greeting] = @config['/nowplaying/messages/normal'].sample
       end
-      template[:url] = track['url']
+      template[:url] = track.url
       mastodon.toot(template.to_s)
     end
   end
