@@ -76,5 +76,3 @@ end
 Sidekiq.configure_server do |config|
   config.redis = {url: Makoto::Config.instance['/sidekiq/redis/dsn']}
 end
-
-Makoto::Postgres.connect
