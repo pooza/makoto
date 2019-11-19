@@ -13,9 +13,7 @@ require 'active_support/core_ext'
 require 'zeitwerk'
 require 'sidekiq'
 require 'sidekiq-scheduler'
-require 'yaml'
 require 'ginseng'
-require 'ginseng/postgres'
 
 module Makoto
   def self.configure_autoload
