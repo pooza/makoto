@@ -10,65 +10,21 @@ Bootsnap.setup(
 
 require 'active_support'
 require 'active_support/core_ext'
-require 'active_support/dependencies/autoload'
+require 'zeitwerk'
 require 'sidekiq'
 require 'sidekiq-scheduler'
 require 'yaml'
 require 'ginseng'
 require 'ginseng/postgres'
 
-module Makoto
-  extend ActiveSupport::Autoload
+module Makoto; end
 
-  autoload :Config
-  autoload :Environment
-  autoload :Listener
-  autoload :Logger
-  autoload :HTTP
-  autoload :Mastodon
-  autoload :Package
-  autoload :Postgres
-  autoload :Random
-  autoload :Responder
-  autoload :Slack
-  autoload :Template
-  autoload :Worker
-
-  # models
-  autoload :Account, 'makoto/model/account'
-  autoload :Form, 'makoto/model/form'
-  autoload :Quote, 'makoto/model/quote'
-  autoload :Series, 'makoto/model/series'
-  autoload :Track, 'makoto/model/track'
-
-  autoload_under 'daemon' do
-    autoload :ListenerDaemon
-    autoload :SidekiqDaemon
-    autoload :ThinDaemon
-  end
-
-  autoload_under 'responder' do
-    autoload :BadMoodResponder
-    autoload :CureSwordResponder
-    autoload :FixedResponder
-    autoload :GreetingResponder
-    autoload :InterestedResponder
-    autoload :KeywordResponder
-    autoload :SongResponder
-  end
-
-  autoload_under 'worker' do
-    autoload :BirthdayMonologueWorker
-    autoload :FollowWorker
-    autoload :FollowMaintenanceWorker
-    autoload :GoodMorningMonologueWorker
-    autoload :GoodQuoteMonologueWorker
-    autoload :NowplayingMonologueWorker
-    autoload :RespondWorker
-    autoload :TrackRefreshWorker
-    autoload :QuoteRefreshWorker
-  end
-end
+loader = Zeitwerk::Loader.new
+loader.inflector.inflect(
+  'http' => 'HTTP',
+)
+loader.push_dir(File.expand_path('..', __FILE__))
+loader.setup
 
 Sidekiq.configure_client do |config|
   config.redis = {url: Makoto::Config.instance['/sidekiq/redis/dsn']}
