@@ -21,7 +21,7 @@ module Makoto
     loader.inflector.inflect(
       'http' => 'HTTP',
     )
-    loader.push_dir(File.expand_path('..', __FILE__))
+    loader.push_dir(File.expand_path(__dir__))
     loader.setup
   end
 
