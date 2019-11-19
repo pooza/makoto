@@ -16,7 +16,7 @@ require 'sidekiq-scheduler'
 require 'ginseng'
 
 module Makoto
-  def self.configure_autoload
+  def self.autoload
     loader = Zeitwerk::Loader.new
     loader.inflector.inflect(
       'http' => 'HTTP',
@@ -25,7 +25,7 @@ module Makoto
     loader.setup
   end
 
-  def self.configure_sidekiq
+  def self.sidekiq
     Sidekiq.configure_client do |config|
       config.redis = {url: Config.instance['/sidekiq/redis/dsn']}
     end
@@ -35,5 +35,5 @@ module Makoto
   end
 end
 
-Makoto.configure_autoload
-Makoto.configure_sidekiq
+Makoto.autoload
+Makoto.sidekiq
