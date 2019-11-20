@@ -12,7 +12,7 @@ module Makoto
       return @config['/respond/song/response/error'].sample % [@title] unless track
       @template = Template.new('nowplaying')
       @template[:greeting] = @config['/respond/song/response/normal'].sample
-      unless track.makoto
+      unless track.makoto?
         @template[:greeting] += @config['/respond/song/response/other_singer'].sample
       end
       @template[:url] = track.url

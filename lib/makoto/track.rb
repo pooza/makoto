@@ -2,6 +2,8 @@ require 'unicode'
 
 module Makoto
   class Track < Sequel::Model(:track)
+    alias makoto? makoto
+
     def self.pickup(params = {})
       tracks = Track.dataset
       tracks = tracks.where(makoto: true) if params[:makoto]

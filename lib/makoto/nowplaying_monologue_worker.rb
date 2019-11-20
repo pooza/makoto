@@ -5,7 +5,7 @@ module Makoto
     def perform
       template = Template.new('nowplaying')
       track = Track.pickup
-      if track.makoto
+      if track.makoto?
         template[:greeting] = @config['/nowplaying/messages/self'].sample
       else
         template[:greeting] = @config['/nowplaying/messages/normal'].sample
