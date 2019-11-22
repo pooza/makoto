@@ -4,7 +4,8 @@ module Makoto
 
     def perform(params)
       template = Template.new('respond')
-      template[:account] = params['account']['acct']
+      account = Account.get(params['account']['acct'])
+      template[:account] = account.acct
       template[:message] = create_message(params)
       mastodon.toot(
         status: template.to_s,

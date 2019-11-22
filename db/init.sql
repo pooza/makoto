@@ -25,12 +25,35 @@ SET default_with_oids = false;
 --
 
 CREATE TABLE public.account (
+    id integer NOT NULL,
     acct character varying(64) NOT NULL,
     favorability integer DEFAULT 0 NOT NULL
 );
 
 
 ALTER TABLE public.account OWNER TO postgres;
+
+--
+-- Name: account_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.account_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.account_id_seq OWNER TO postgres;
+
+--
+-- Name: account_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.account_id_seq OWNED BY public.account.id;
+
 
 --
 -- Name: form; Type: TABLE; Schema: public; Owner: postgres
@@ -179,6 +202,13 @@ ALTER SEQUENCE public.track_id_seq OWNED BY public.track.id;
 
 
 --
+-- Name: account id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.account ALTER COLUMN id SET DEFAULT nextval('public.account_id_seq'::regclass);
+
+
+--
 -- Name: form id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -207,11 +237,19 @@ ALTER TABLE ONLY public.track ALTER COLUMN id SET DEFAULT nextval('public.track_
 
 
 --
+-- Name: account account_acct_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.account
+    ADD CONSTRAINT account_acct_key UNIQUE (acct);
+
+
+--
 -- Name: account account_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE ONLY public.account
-    ADD CONSTRAINT account_pkey PRIMARY KEY (acct);
+    ADD CONSTRAINT account_pkey PRIMARY KEY (id);
 
 
 --
