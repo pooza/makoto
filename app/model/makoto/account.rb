@@ -1,8 +1,8 @@
 module Makoto
   class Account < Sequel::Model(:account)
-    def fav!(v)
-      return unless v
-      update(favorability: (favorability || 0) + v)
+    def fav!(value)
+      return unless value
+      update(favorability: (favorability || 0) + value)
     end
 
     def self.get(acct)
