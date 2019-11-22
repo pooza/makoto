@@ -1,7 +1,7 @@
 require 'bootsnap'
 
 Bootsnap.setup(
-  cache_dir: File.join(File.expand_path('..', __dir__), 'tmp/cache'),
+  cache_dir: File.join(File.expand_path('../..', __dir__), 'tmp/cache'),
   load_path_cache: true,
   autoload_paths_cache: true,
   compile_cache_iseq: true,
@@ -16,12 +16,20 @@ require 'sidekiq-scheduler'
 require 'ginseng'
 
 module Makoto
+  def self.dir
+    return File.expand_path('../..', __dir__)
+  end
+
   def self.configure_autoload
     loader = Zeitwerk::Loader.new
     loader.inflector.inflect(
       'http' => 'HTTP',
     )
-    loader.push_dir(File.expand_path(__dir__))
+    loader.push_dir(File.join(dir, 'app/lib'))
+    loader.push_dir(File.join(dir, 'app/daemon'))
+    loader.push_dir(File.join(dir, 'app/model'))
+    loader.push_dir(File.join(dir, 'app/responder'))
+    loader.push_dir(File.join(dir, 'app/worker'))
     loader.setup
   end
 

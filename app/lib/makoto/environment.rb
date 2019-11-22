@@ -5,7 +5,7 @@ module Makoto
     end
 
     def self.dir
-      return File.expand_path('../..', __dir__)
+      return Makoto.dir
     end
 
     def self.auth(username, password)
