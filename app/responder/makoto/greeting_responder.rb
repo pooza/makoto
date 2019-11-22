@@ -10,6 +10,10 @@ module Makoto
       return false
     end
 
+    def fav
+      return rand(1..(@matches['/fav'] || 1))
+    end
+
     def exec
       message = [@matches['/response/body']]
       if @matches['/hours'].include?(Time.now.hour)

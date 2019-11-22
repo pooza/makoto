@@ -60,6 +60,10 @@ respond:
     - pattern: 'おめでとう([、。!]|\s|$)'
       response:
         body: ありがとう
+      fav: 5
+    - pattern: '(お(つかれ|疲れ)(さま)?|乙)(でした)?([、。!]|\s|$)'
+      response:
+        body: おつかれさま
   interested:
     - quote: 王女
     - words:
@@ -77,9 +81,6 @@ respond:
     - quote: キュアロゼッタ
     - quote: キュアエース
     - quote: レジーナ
-    - quote: シャルル
-    - quote: ラケル
-    - quote: ランス
     - quote: ダビィ
     - quote: マナ
     - quote: 六花

@@ -21,14 +21,21 @@ module Makoto
     end
 
     def executable?
-      @config["/respond/#{underscore_name}/words"].each do |word|
-        return true if @params['content'].include?(word)
-      end
-      return false
+      raise Ginseng::ImplementError, "'#{__method__}' not implemented"
     end
 
     def exec
       raise Ginseng::ImplementError, "'#{__method__}' not implemented"
+    end
+
+    def fav
+      return nil
+    end
+
+    def account
+      @account = Account.get(params['account']['acct'])
+    rescue
+      return nil
     end
 
     def self.all

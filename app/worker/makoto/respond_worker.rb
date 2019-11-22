@@ -19,6 +19,7 @@ module Makoto
         responder.params = params
         next unless responder.executable?
         @logger.info(responder: responder.class.to_s)
+        Account.get(params['account']['acct']).fav!(responder.fav)
         return responder.exec
       end
       raise 'All responders are not executable!'

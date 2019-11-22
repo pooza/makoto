@@ -7,6 +7,10 @@ module Makoto
       return @title.present?
     end
 
+    def fav
+      return rand(1..2)
+    end
+
     def exec
       track = Track.pickup(title: @title)
       return @config['/respond/song/response/error'].sample % [@title] unless track

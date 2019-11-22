@@ -12,6 +12,10 @@ module Makoto
       return false
     end
 
+    def fav
+      return 1
+    end
+
     def exec
       quote = Quote.pickup(form: @config['/quote/all_forms'], keyword: @keyword)
       raise 'empty' unless quote

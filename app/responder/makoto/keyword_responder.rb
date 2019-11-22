@@ -15,6 +15,10 @@ module Makoto
       return @paragraphs.present?
     end
 
+    def fav
+      return rand(0..1)
+    end
+
     def exec
       return @paragraphs.join
     end
