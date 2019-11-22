@@ -1,13 +1,4 @@
 require 'bootsnap'
-
-Bootsnap.setup(
-  cache_dir: File.join(File.expand_path('../..', __dir__), 'tmp/cache'),
-  load_path_cache: true,
-  autoload_paths_cache: true,
-  compile_cache_iseq: true,
-  compile_cache_yaml: true,
-)
-
 require 'active_support'
 require 'active_support/core_ext'
 require 'zeitwerk'
@@ -20,7 +11,17 @@ module Makoto
     return File.expand_path('../..', __dir__)
   end
 
-  def self.configure_autoload
+  def self.bootsnap
+    Bootsnap.setup(
+      cache_dir: File.join(dir, 'tmp/cache'),
+      load_path_cache: true,
+      autoload_paths_cache: true,
+      compile_cache_iseq: true,
+      compile_cache_yaml: true,
+    )
+  end
+
+  def self.loader
     loader = Zeitwerk::Loader.new
     loader.inflector.inflect(
       'http' => 'HTTP',
@@ -33,7 +34,7 @@ module Makoto
     loader.setup
   end
 
-  def self.configure_sidekiq
+  def self.sidekiq
     Sidekiq.configure_client do |config|
       config.redis = {url: Config.instance['/sidekiq/redis/dsn']}
     end
@@ -43,5 +44,6 @@ module Makoto
   end
 end
 
-Makoto.configure_autoload
-Makoto.configure_sidekiq
+Makoto.bootsnap
+Makoto.loader
+Makoto.sidekiq
