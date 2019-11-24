@@ -5,12 +5,13 @@ module Makoto
     end
 
     def test_exec
+      return if Environment.ci?
       @responder.params = {'content' => 'ネギトロ丼'}
       assert_false(@responder.executable?)
 
       @responder.params = {'content' => 'ちんこ'}
       assert(@responder.executable?)
-      assert(@responder.exec.present?) unless Environment.ci?
+      assert(@responder.exec.present?)
     end
   end
 end
