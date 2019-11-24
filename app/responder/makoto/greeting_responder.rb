@@ -15,14 +15,28 @@ module Makoto
     end
 
     def exec
-      message = [@matches['/response/body']]
+      message = []
       if @matches['/hours'].include?(Time.now.hour)
-        message.unshift("#{@params['account']['display_name'].sub(/:$/, ': ')}さん、")
-        message.push(['！', '。'].sample)
+        message.push("#{display_name}、") unless account.dislike?
+        if account.friendry?
+          message.push(@matches['/response/friendry'] || @matches['/response/normal'])
+          message.push(['！', '。'].sample)
+        else
+          message.push(@matches['/response/normal'])
+          message.push('。')
+        end
       else
-        message.push(['？？', 'って…。😅', '？😅'].sample)
+        message.push(@matches['/response/ignore'] || @matches['/response/normal'])
+        message.push(['？？', 'って…。', '？'].sample)
+        message.push('😅') if account.friendry?
       end
       return message.join
+    end
+
+    def display_name
+      name = @params['account']['display_name'].sub(/:$/, ': ')
+      name += 'さん' unless account.friendry?
+      return name
     end
   end
 end

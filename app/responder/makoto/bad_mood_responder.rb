@@ -1,6 +1,7 @@
 module Makoto
   class BadMoodResponder < Responder
     def executable?
+      return true if account.hate?
       @config['/respond/bad_mood/words'].each do |word|
         return true if @params['content'].include?(word)
       end
