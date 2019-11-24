@@ -26,6 +26,9 @@ jobs:
           name: check gem
           command: bundle exec rake bundle:check
       - run:
+          name: install postgresql-client
+          command: sudo apt install postgresql-client
+      - run:
           name: initialize database
           command: 'psql -U postgres makoto < ./db/init.sql'
       - run:
