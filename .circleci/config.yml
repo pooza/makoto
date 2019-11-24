@@ -29,9 +29,6 @@ jobs:
           name: install postgresql-client
           command: sudo apt install postgresql-client
       - run:
-          name: create database
-          command: 'sudo createdb makoto'
-      - run:
           name: initialize database
           command: 'psql -U postgres makoto < ./db/init.sql'
       - run:
