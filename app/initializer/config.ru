@@ -5,7 +5,6 @@ ENV['BUNDLE_GEMFILE'] ||= File.join(dir, 'Gemfile')
 require 'bundler/setup'
 require 'sidekiq/web'
 require 'sidekiq-scheduler/web'
-require 'sequel'
 require 'makoto'
 
 Makoto::Postgres.connect
