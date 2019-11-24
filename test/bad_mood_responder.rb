@@ -7,6 +7,7 @@ module Makoto
 
     def test_exec
       return if Environment.ci?
+
       @responder.params = {
         'content' => 'ネギトロ丼',
         'account' => {'display_name' => 'ぷーざ', 'acct' => @config['/test/acct']},
@@ -18,7 +19,7 @@ module Makoto
         'account' => {'display_name' => 'ぷーざ', 'acct' => @config['/test/acct']},
       }
       assert(@responder.executable?)
-      assert(@responder.exec.present?) unless Environment.ci?
+      assert(@responder.exec.present?)
     end
   end
 end
