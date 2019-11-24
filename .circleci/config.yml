@@ -27,7 +27,7 @@ jobs:
           command: bundle exec rake bundle:check
       - run:
           name: initialize database
-          command: 'sudo -u postgres psql < ./db/init.sql'
+          command: 'psql -U postgres makoto < ./db/init.sql'
       - run:
           name: run test
           command: bundle exec rake test
