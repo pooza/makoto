@@ -32,5 +32,11 @@ jobs:
           name: initialize database
           command: 'psql -U postgres -h localhost -p 5432 makoto < ./db/init.sql'
       - run:
+          name: update quote
+          command: bundle exec rake makoto:quote:update
+      - run:
+          name: update track
+          command: bundle exec rake makoto:track:update
+      - run:
           name: run test
           command: bundle exec rake test
