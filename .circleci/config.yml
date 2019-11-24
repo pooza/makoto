@@ -30,7 +30,7 @@ jobs:
           command: sudo apt install postgresql-client
       - run:
           name: initialize database
-          command: 'psql -U postgres -p 5432 makoto < ./db/init.sql'
+          command: 'psql -U postgres -h localhost -p 5432 makoto < ./db/init.sql'
       - run:
           name: run test
           command: bundle exec rake test
