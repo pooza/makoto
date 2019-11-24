@@ -4,7 +4,6 @@ require 'active_support/core_ext'
 require 'zeitwerk'
 require 'sidekiq'
 require 'sidekiq-scheduler'
-require 'sequel'
 require 'ginseng'
 
 module Makoto
