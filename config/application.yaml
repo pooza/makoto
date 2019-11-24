@@ -69,6 +69,7 @@ respond:
       response:
         normal: おつかれさま
   interested:
+    - quote: 歌
     - quote: 王女
     - words:
         - 歯医者
