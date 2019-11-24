@@ -6,8 +6,6 @@ module Makoto
     end
 
     def test_exec
-      return if Environment.ci?
-
       @responder.params = {
         'content' => 'ネギトロ丼',
         'account' => {'display_name' => 'ぷーざ', 'acct' => @config['/test/acct']},

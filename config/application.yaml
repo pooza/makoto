@@ -5,6 +5,8 @@ package:
     - Tatsuya Koishi
   email:
     - tkoishi@b-shock.co.jp
+test:
+  acct: user
 mastodon:
   hashtag:
     pattern: (?:^|[^\/\)\w])#([[:word:]_]*[[:alpha:]_·][[:word:]_]*)
