@@ -3,7 +3,7 @@ jobs:
   build:
     docker:
       - image: circleci/ruby:2.6.5
-      - image: circleci/postgres:11
+      - image: circleci/postgres:11-alpine-ram
         environment:
           POSTGRES_USER: postgres
           POSTGRES_DB: makoto
@@ -27,7 +27,7 @@ jobs:
           command: bundle exec rake bundle:check
       - run:
           name: install postgresql-client
-          command: sudo apt install postgresql-client
+          command: sudo apt install postgresql-client-10
       - run:
           name: initialize database
           command: 'psql -U postgres makoto < ./db/init.sql'
