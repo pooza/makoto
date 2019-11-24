@@ -12,7 +12,7 @@ module Makoto
       return false
     end
 
-    def fav
+    def favorability
       return 1
     end
 

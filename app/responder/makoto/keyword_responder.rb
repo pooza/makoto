@@ -15,7 +15,7 @@ module Makoto
       return @paragraphs.present?
     end
 
-    def fav
+    def favorability
       return rand(0..1)
     end
 

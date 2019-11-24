@@ -28,7 +28,7 @@ module Makoto
       raise Ginseng::ImplementError, "'#{__method__}' not implemented"
     end
 
-    def fav
+    def favorability
       return nil
     end
 

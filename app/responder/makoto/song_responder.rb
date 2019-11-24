@@ -7,7 +7,7 @@ module Makoto
       return @title.present?
     end
 
-    def fav
+    def favorability
       return rand(1..2)
     end
 

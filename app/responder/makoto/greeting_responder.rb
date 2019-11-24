@@ -10,7 +10,7 @@ module Makoto
       return false
     end
 
-    def fav
+    def favorability
       return rand(1..(@matches['/fav'] || 1))
     end
 
