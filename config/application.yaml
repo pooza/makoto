@@ -67,7 +67,8 @@ respond:
       fav: 5
     - pattern: '(お(つかれ|疲れ)(さま)?|乙)(でした)?([、。!]|\s|$)'
       response:
-        normal: おつかれさま
+        normal: おつかれさまです
+        friendry: おつかれさま
   interested:
     - quote: 歌
     - quote: 王女
