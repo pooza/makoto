@@ -20,6 +20,7 @@ module Makoto
         @template[:greeting] += @config['/respond/song/response/other_singer'].sample
       end
       @template[:url] = track.url
+      @template[:intro] = track.intro
       return @template.to_s
     end
   end

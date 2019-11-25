@@ -173,7 +173,8 @@ CREATE TABLE public.track (
     id integer NOT NULL,
     title text,
     url text,
-    makoto boolean DEFAULT false NOT NULL
+    makoto boolean DEFAULT false NOT NULL,
+    intro text
 );
 
 

@@ -17,6 +17,7 @@ module Makoto
         fetch.each do |entry|
           entry['title'] = Unicode.nfkc(entry['title'])
           entry['makoto'] = (entry['makoto'] == 1)
+          entry.delete('intro') unless entry['intro'].present?
           Track.create(entry)
         rescue => e
           Logger.new.error(e)
