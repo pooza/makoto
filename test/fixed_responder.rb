@@ -7,7 +7,7 @@ module Makoto
     def test_exec
       @responder.params = {'content' => ''}
       assert(@responder.executable?)
-      assert(@responder.exec.present?) unless Environment.ci?
+      assert(@responder.exec.present?)
     end
   end
 end
