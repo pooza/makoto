@@ -1,11 +1,12 @@
 module Makoto
-  class BirthdayMonologueWorker < Worker
+  class MakotoBirthdayMonologueWorker < Worker
     def perform
-      template = Template.new('birthday')
+      template = Template.new('makoto_birthday')
       template[:greeting] = @config['/birthday/greeting'].sample
       template[:message] = @config['/birthday/messages'].sample
-      template[:url] = Track.pickup(makoto: true).url
-      template[:intro] = Track.pickup(makoto: true).intro
+      track = Track.pickup(makoto: true)
+      template[:url] = track.url
+      template[:intro] = track.intro
       mastodon.toot(template.to_s)
     end
   end

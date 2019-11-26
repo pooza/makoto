@@ -1,7 +1,7 @@
 module Makoto
-  class BirthdayMonologueWorkerTest < Test::Unit::TestCase
+  class PrecureBirthdayMonologueWorkerTest < Test::Unit::TestCase
     def setup
-      @worker = BirthdayMonologueWorker.new
+      @worker = PrecureBirthdayMonologueWorker.new
     end
 
     def test_perform
