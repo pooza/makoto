@@ -1,0 +1,12 @@
+<%# encoding: UTF-8 -%>
+<%
+all_girls = params[:girls].map do |girl|
+  if girl[:title]
+    "「#{girl[:title]}」#{girl[:precure_name]}"
+  else
+    girl[:precure_name]
+  end
+end.join('、')
+-%>
+今日<%= Date.today.month %>月<%= Date.today.day %>日は、<%= all_girls %>の誕生日です。
+おめでとうございます！
