@@ -11,6 +11,7 @@ module Makoto
         template[:greeting] = @config['/nowplaying/messages/normal'].sample
       end
       template[:url] = track.url
+      template[:intro] = track.intro
       mastodon.toot(template.to_s)
     end
   end
