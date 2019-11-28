@@ -39,7 +39,6 @@ module Makoto
       words = []
       Natto::MeCab.new.parse(message) do |word|
         features = word.feature.split(',')
-        #Slack.broadcast(word: word.surface, fields: fields)
         next unless features.include?('名詞')
         next if features.include?('サ変接続')
         next if features.include?('接尾')
