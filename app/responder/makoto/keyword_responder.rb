@@ -1,3 +1,6 @@
+require 'natto'
+require 'unicode'
+
 module Makoto
   class KeywordResponder < Responder
     def initialize
@@ -27,8 +30,6 @@ module Makoto
       words = @config['/word/topics'].clone.keep_if{|v| message.include?(v)}
       words.concat(Ginseng::TagContainer.scan(message))
       words -= @config['/word/ignore']
-      # words.concat(keywords(message)) unless words.present?
-      # words -= @config['/word/ignore']
       words.concat(morph(message)) unless words.present?
       words -= @config['/word/ignore']
       return words.uniq
@@ -36,13 +37,13 @@ module Makoto
 
     def morph(message)
       words = []
-      body = {app_id: @config['/goo/app_id'], sentence: message}
-      r = HTTP.new.post(@config['/goo/morph/url'], {body: body.to_json}).parsed_response
-      r['word_list'].each do |clause|
-        clause.each do |word|
-          next unless word[1] == '名詞'
-          words.push(word.first)
-        end
+      Natto::MeCab.new.parse(message) do |word|
+        features = word.feature.split(',')
+        #Slack.broadcast(word: word.surface, fields: fields)
+        next unless features.include?('名詞')
+        next if features.include?('サ変接続')
+        next if features.include?('接尾')
+        words.push(Unicode.nfkc(word.surface))
       end
       return words.uniq
     end

@@ -3,7 +3,7 @@ require 'rubicure'
 module Makoto
   class PrecureBirthdayMonologueWorker < Worker
     def perform
-      girls = Precure.all.keep_if{|girl| girl.birthday?(Date.today)}
+      girls = Precure.all.keep_if{|girl| girl.birthday?}
       return unless girls.present?
       template = Template.new('precure_birthday')
       template[:girls] = girls
