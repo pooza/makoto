@@ -138,11 +138,6 @@ quote:
     - キュアソード
   default_forms:
     - 剣崎真琴
-goo:
-  morph:
-    url: https://labs.goo.ne.jp/api/morph
-  keyword:
-    url: https://labs.goo.ne.jp/api/keyword
 postgres:
   dsn: postgres://postgres@localhost:5432/makoto
 sidekiq:

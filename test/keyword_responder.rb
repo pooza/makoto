@@ -5,9 +5,7 @@ module Makoto
     end
 
     def test_exec
-      return if Environment.ci?
-
-      @responder.params = {'content' => 'こんにちは。'}
+      @responder.params = {'content' => 'おはようございます。'}
       assert_false(@responder.executable?)
 
       @responder.params = {'content' => 'ある晴れた昼下がり、市場へ続く道。荷馬車がゴトゴト、子牛を乗せてゆく。'}
