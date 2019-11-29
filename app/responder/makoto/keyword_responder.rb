@@ -19,7 +19,6 @@ module Makoto
         break if template.match(/[！？!?]$/)
       rescue => e
         @logger.error(e)
-        next
       end
       return @paragraphs.present?
     end
