@@ -10,7 +10,7 @@ module Makoto
 
     def executable?
       templates = {}
-      words = analyze(@params['content']).shuffle
+      words = analyze.shuffle
       [rand(2..@config['/respond/paragraph/max']), words.count].min.times do
         word = words.pop
         templates[word[:feature]] ||= @config["/respond/templates/#{word[:feature]}"].shuffle
@@ -31,9 +31,9 @@ module Makoto
       return @paragraphs.join
     end
 
-    def analyze(message)
-      words = []
-      Natto::MeCab.new.parse(message) do |word|
+    def analyze
+      words = {}
+      Natto::MeCab.new.parse(@params['content']) do |word|
         surface = Unicode.nfkc(word.surface)
         features = word.feature.split(',')
         next unless features.include?('名詞')
@@ -43,9 +43,9 @@ module Makoto
         ['人名', '地域'].each do |v|
           feature = v if features.include?(v)
         end
-        words.push(surface: surface, feature: feature)
+        words[surface] = {surface: surface, feature: feature}
       end
-      return words.uniq
+      return words.values
     end
   end
 end
