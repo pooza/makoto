@@ -84,28 +84,6 @@ respond:
         - 知覚過敏
         - 歯周病
       quote: 歯
-    - quote: キュアハート
-    - quote: キュアダイヤモンド
-    - quote: キュアロゼッタ
-    - quote: キュアエース
-    - quote: レジーナ
-    - quote: ダビィ
-    - quote: マナ
-    - quote: 六花
-    - quote: ありす
-    - quote: 亜久里
-    - quote: ジコチュー
-    - quote: ジャネジー
-    - quote: プシュケー
-    - quote: 魔法の鏡
-    - quote: ロイヤルクリスタル
-    - quote: ラブリーフォースアロー
-    - quote: ラビーズ
-    - quote: コミューン
-    - quote: ロイヤルホワイト
-    - quote: マジカルラブリーパッド
-    - quote: エターナルゴールデンクラウン
-    - quote: ミラクルドラゴングレイブ
   song:
     pattern: '([[:alnum:]]+|「(.*?)」)を(歌|うた)って([。!]|\s|$)'
     response:
