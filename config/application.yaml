@@ -1,10 +1,12 @@
 package:
-  version: 1.1.0
+  version: 2.0.0
   url: https://github.com/pooza/makoto
   authors:
     - Tatsuya Koishi
   email:
     - tkoishi@b-shock.co.jp
+test:
+  acct: user
 mastodon:
   hashtag:
     pattern: (?:^|[^\/\)\w])#([[:word:]_]*[[:alpha:]_·][[:word:]_]*)
@@ -41,26 +43,36 @@ respond:
   greeting:
     - pattern: 'おはよう(ございます)?([、。!]|\s|$)'
       response:
-        body: おはよう
+        ignore: おはよう
+        normal: おはようございます
+        friendry: おはよう
       hours: [3, 4, 5, 6, 7, 8, 9, 10, 11]
     - pattern: 'こんにち[はわ]([、。!]|\s|$)'
       response:
-        body: こんにちは
+        normal: こんにちは
       hours: [10, 11, 12, 13, 14, 15, 16, 17, 18]
     - pattern: 'こんばん[はわ]([、。!]|\s|$)'
       response:
-        body: こんばんは
+        normal: こんばんは
       hours: [0, 1, 2, 3, 4, 18, 19, 20, 21, 22, 23]
     - pattern: '[い行]ってきます([、。!]|\s|$)'
       response:
-        body: いってらっしゃい
+        normal: いってらっしゃい
     - pattern: 'ただいま([、。!]|\s|$)'
       response:
-        body: おかえりなさい
+        normal: おかえりなさい
+        friendry: おかえり
     - pattern: 'おめでとう([、。!]|\s|$)'
       response:
-        body: ありがとう
+        normal: ありがとうございます
+        friendry: ありがとう
+      fav: 5
+    - pattern: '(お(つかれ|疲れ)(さま)?|乙)(でした)?([、。!]|\s|$)'
+      response:
+        normal: おつかれさまです
+        friendry: おつかれさま
   interested:
+    - quote: 歌
     - quote: 王女
     - words:
         - 歯医者
@@ -72,31 +84,6 @@ respond:
         - 知覚過敏
         - 歯周病
       quote: 歯
-    - quote: キュアハート
-    - quote: キュアダイヤモンド
-    - quote: キュアロゼッタ
-    - quote: キュアエース
-    - quote: レジーナ
-    - quote: シャルル
-    - quote: ラケル
-    - quote: ランス
-    - quote: ダビィ
-    - quote: マナ
-    - quote: 六花
-    - quote: ありす
-    - quote: 亜久里
-    - quote: ジコチュー
-    - quote: ジャネジー
-    - quote: プシュケー
-    - quote: 魔法の鏡
-    - quote: ロイヤルクリスタル
-    - quote: ラブリーフォースアロー
-    - quote: ラビーズ
-    - quote: コミューン
-    - quote: ロイヤルホワイト
-    - quote: マジカルラブリーパッド
-    - quote: エターナルゴールデンクラウン
-    - quote: ミラクルドラゴングレイブ
   song:
     pattern: '([[:alnum:]]+|「(.*?)」)を(歌|うた)って([。!]|\s|$)'
     response:
@@ -129,11 +116,8 @@ quote:
     - キュアソード
   default_forms:
     - 剣崎真琴
-goo:
-  morph:
-    url: https://labs.goo.ne.jp/api/morph
-  keyword:
-    url: https://labs.goo.ne.jp/api/keyword
+postgres:
+  dsn: postgres://postgres@localhost:5432/makoto
 sidekiq:
   redis:
     dsn: redis://localhost:6379/3

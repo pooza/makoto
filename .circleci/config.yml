@@ -3,9 +3,19 @@ jobs:
   build:
     docker:
       - image: circleci/ruby:2.6.5
+      - image: circleci/postgres:11
+        environment:
+          POSTGRES_USER: postgres
+          POSTGRES_DB: makoto
     working_directory: ~/repos
     steps:
       - checkout
+      - run:
+          name: install postgresql-client
+          command: sudo apt install postgresql-client
+      - run:
+          name: install mecab
+          command: sudo apt install mecab libmecab-dev mecab-ipadic-utf8
       - run:
           name: install bundler
           command: gem install bundler
@@ -21,6 +31,15 @@ jobs:
       - run:
           name: check gem
           command: bundle exec rake bundle:check
+      - run:
+          name: initialize database
+          command: 'psql -U postgres -h localhost -p 5432 makoto < ./db/init.sql'
+      - run:
+          name: update quotes
+          command: bundle exec rake makoto:quote:update
+      - run:
+          name: update tracks
+          command: bundle exec rake makoto:track:update
       - run:
           name: run test
           command: bundle exec rake test
