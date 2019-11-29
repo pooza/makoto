@@ -1,5 +1,3 @@
-require 'unicode'
-
 module Makoto
   class Quote < Sequel::Model(:quote)
     def self.pickup(params = {})
@@ -12,7 +10,7 @@ module Makoto
       quotes = quotes.where(exclude_respond: false) if params[:respond]
       quotes = quotes.where(emotion: params[:emotion].to_s) if params[:emotion]
       if params[:keyword]
-        keyword = Unicode.nfkc(params[:keyword])
+        keyword = params[:keyword]
         quotes = quotes.where(
           Sequel.like(:body, "%#{keyword}%") | Sequel.like(:remark, "%#{keyword}%"),
         )
@@ -27,7 +25,7 @@ module Makoto
           values = {
             series_id: Series.get(entry['series']).id,
             form_id: Form.get(entry['form']).id,
-            body: Unicode.nfkc(entry['quote']),
+            body: entry['quote'],
             exclude: entry['exclude'].present?,
             exclude_respond: entry['exclude_respond'].present?,
             priority: entry['priority'],
