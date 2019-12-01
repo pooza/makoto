@@ -20,7 +20,7 @@ module Makoto
         message.push("#{display_name}、") unless account.dislike?
         if account.friendry?
           message.push(@matches['/response/friendry'] || @matches['/response/normal'])
-          message.push(['！', '。'].sample)
+          message.push(['！', '。', '〜。'].sample)
         else
           message.push(@matches['/response/normal'])
           message.push('。')
