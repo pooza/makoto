@@ -8,5 +8,5 @@ all_girls = params[:girls].map do |girl|
   end
 end.join('、')
 -%>
-今日<%= Date.today.month %>月<%= Date.today.day %>日は、<%= all_girls %>の誕生日です。
+今日<%= Date.today.month %>月<%= Date.today.day %>日は、<%= all_girls %>の #誕生日 です。
 おめでとうございます！
