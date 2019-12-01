@@ -1,5 +1,5 @@
 package:
-  version: 2.0.0
+  version: 2.0.1
   url: https://github.com/pooza/makoto
   authors:
     - Tatsuya Koishi
@@ -71,6 +71,11 @@ respond:
       response:
         normal: おつかれさまです
         friendry: おつかれさま
+    - pattern: 'お(やす|休)み(なさい)?([、。!]|\s|$)'
+      response:
+        normal: おやすみなさい
+        friendry: おやすみ
+      fav: 5
   interested:
     - quote: 歌
     - quote: 王女
@@ -100,6 +105,17 @@ respond:
   bad_mood:
     words:
       - ちんこ
+nowplaying:
+  messages:
+    normal:
+      - '次の曲です。どうぞ。 #オンエア'
+      - '次の曲をどうぞ！ #オンエア'
+      - 'はい、では次の曲を。どうぞ。 #オンエア'
+      - 'では次の曲を聴いてください。どうぞ。 #オンエア'
+    self:
+      - '次はわたしの曲。聴いてくださいね！どうぞ。 #オンエア'
+      - '次はわたし、剣崎真琴の曲です！どうぞ。 #オンエア'
+      - 'では聴いてください。わたし、剣崎真琴の曲です！どうぞ。 #オンエア'
 birthday:
   greeting:
     - ノンストップで歌い続けます！
