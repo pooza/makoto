@@ -2,8 +2,9 @@ module Makoto
   class BadMoodResponder < Responder
     def executable?
       return true if account.hate?
+      words = analyze.map{|v| v[:surface]}
       @config['/respond/bad_mood/words'].each do |word|
-        return true if @params['content'].include?(word)
+        return true if words.include?(word)
       end
       return false
     end
@@ -13,7 +14,7 @@ module Makoto
     end
 
     def exec
-      return Quote.pickup(emotion: :bad).body + '🤨'
+      return Quote.pickup(emotion: :bad, respond: true).body + '🤨'
     end
   end
 end
