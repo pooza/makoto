@@ -12,6 +12,7 @@ module Makoto
       }
       assert_false(@responder.executable?)
 
+      return if Environment.ci?
       @responder.params = {
         'content' => 'ちんこ',
         'account' => {'display_name' => 'ぷーざ', 'acct' => @config['/test/acct']},

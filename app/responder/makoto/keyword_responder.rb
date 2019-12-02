@@ -1,6 +1,3 @@
-require 'natto'
-require 'unicode'
-
 module Makoto
   class KeywordResponder < Responder
     def initialize
@@ -29,23 +26,6 @@ module Makoto
 
     def exec
       return @paragraphs.join
-    end
-
-    def analyze
-      words = {}
-      Natto::MeCab.new.parse(@params['content']) do |word|
-        surface = Unicode.nfkc(word.surface)
-        features = word.feature.split(',')
-        next unless features.include?('名詞')
-        next if @config['/word/ignore'].include?(surface)
-        next if features.join =~ /(サ変接続|接尾|非自立|代名詞)/
-        feature = '一般'
-        ['人名', '地域'].each do |v|
-          feature = v if features.include?(v)
-        end
-        words[surface] = {surface: surface, feature: feature}
-      end
-      return words.values
     end
   end
 end
