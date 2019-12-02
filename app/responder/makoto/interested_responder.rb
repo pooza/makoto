@@ -1,10 +1,11 @@
 module Makoto
   class InterestedResponder < Responder
     def executable?
+      words = analyze.map{|v| v[:surface]}
       @config['/respond/interested'].each do |entry|
         entry['words'] ||= [entry['quote']]
         entry['words'].each do |word|
-          next unless @params['content'].include?(word)
+          next unless words.include?(word)
           @keyword = entry['quote']
           return true
         end
