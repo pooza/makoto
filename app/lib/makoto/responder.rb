@@ -34,15 +34,18 @@ module Makoto
     end
 
     def account
-      @account = Account.get(params['account']['acct'])
+      @account ||= Account.get(params['account']['acct'])
+      return @account
     rescue
       return nil
     end
 
     def analyze
       words = {}
-      Natto::MeCab.new.parse(@params['content']) do |word|
-        surface = Unicode.nfkc(word.surface)
+      source = @params['content']
+      @params['content'].scan(%r{https?://[^\s[:cntrl:]]+}).each{|link| source.gsub!(link, '')}
+      Natto::MeCab.new.parse(source) do |word|
+        surface = Responder.sanitize(word.surface)
         features = word.feature.split(',')
         next unless features.include?('名詞')
         next if @config['/word/ignore'].include?(surface)
