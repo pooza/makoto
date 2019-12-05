@@ -12,6 +12,7 @@ module Makoto
       end
       template[:url] = track.url
       template[:intro] = track.intro
+      template[:tags] = ['#オンエア']
       mastodon.toot(template.to_s)
     end
   end

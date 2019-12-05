@@ -22,15 +22,13 @@ module Makoto
   end
 
   def self.loader
+    config = YAML.load_file(File.join(dir, 'config/autoload.yaml'))
     loader = Zeitwerk::Loader.new
-    loader.inflector.inflect(
-      'http' => 'HTTP',
-    )
+    loader.inflector.inflect(config['inflections'])
     loader.push_dir(File.join(dir, 'app/lib'))
-    loader.push_dir(File.join(dir, 'app/daemon'))
-    loader.push_dir(File.join(dir, 'app/model'))
-    loader.push_dir(File.join(dir, 'app/responder'))
-    loader.push_dir(File.join(dir, 'app/worker'))
+    config['dirs'].each do |d|
+      loader.push_dir(File.join(dir, 'app', d))
+    end
     loader.setup
   end
 

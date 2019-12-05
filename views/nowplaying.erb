@@ -6,3 +6,6 @@
 
 <%= params[:intro] %>
 <% end -%>
+<% if params[:tags] -%>
+<%= params[:tags].join(' ') %>
+<% end -%>
