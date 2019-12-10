@@ -5,6 +5,7 @@ module Makoto
     end
 
     def test_perform
+      return if Environment.ci?
       @worker.perform
     end
   end
