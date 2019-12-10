@@ -6,15 +6,15 @@ module Makoto
     end
 
     def friendry?
-      return 50 < favorability
+      return 30 < favorability
     end
 
     def dislike?
-      return favorability < -50
+      return favorability < -30
     end
 
     def hate?
-      return favorability < -100
+      return favorability < -60
     end
 
     def self.get(acct)
