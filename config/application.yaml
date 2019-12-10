@@ -15,6 +15,7 @@ mastodon:
 websocket:
   keepalive: 15
 word:
+  url: https://script.google.com/macros/s/AKfycbws9aCXxNQt3khdJ9bEt1ADeV7HzZV_Idg-DvN5t_X3nnca0nc/exec
   topics:
     - MAKOTO
     - 真琴
@@ -121,8 +122,6 @@ birthday:
     - ノンストップで歌い続けます！
     - まだまだ歌い続けるわ！
     - 持ち歌を歌いつくすつもりで歌うわ！
-word:
-  url: https://script.google.com/macros/s/AKfycbws9aCXxNQt3khdJ9bEt1ADeV7HzZV_Idg-DvN5t_X3nnca0nc/exec
 track:
   url: https://script.google.com/macros/s/AKfycbym_KI7OhjP545B_jdJM5JxkF6RNZhtPrzuHQRhLffCi-E0cvlK/exec
 quote:
