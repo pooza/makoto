@@ -21,6 +21,9 @@ schedule:
   track_lib:
     every: 5m
     class: Makoto::TrackRefreshWorker
+  dictionary:
+    every: 5m
+    class: Makoto::DictionaryRefreshWorker
   follow_maintenance:
     every: 5m
     class: Makoto::FollowMaintenanceWorker

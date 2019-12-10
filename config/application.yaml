@@ -1,5 +1,5 @@
 package:
-  version: 2.0.4
+  version: 2.0.5
   url: https://github.com/pooza/makoto
   authors:
     - Tatsuya Koishi
@@ -121,6 +121,8 @@ birthday:
     - ノンストップで歌い続けます！
     - まだまだ歌い続けるわ！
     - 持ち歌を歌いつくすつもりで歌うわ！
+word:
+  url: https://script.google.com/macros/s/AKfycbws9aCXxNQt3khdJ9bEt1ADeV7HzZV_Idg-DvN5t_X3nnca0nc/exec
 track:
   url: https://script.google.com/macros/s/AKfycbym_KI7OhjP545B_jdJM5JxkF6RNZhtPrzuHQRhLffCi-E0cvlK/exec
 quote:
@@ -134,6 +136,10 @@ quote:
     - 剣崎真琴
 postgres:
   dsn: postgres://postgres@localhost:5432/makoto
+mecab:
+  dict-index_bin: /usr/local/libexec/mecab/mecab-dict-index
+  dict_path: /usr/local/lib/mecab/dic/ipadic
+  userdict_path: /usr/local/lib/mecab/dic
 sidekiq:
   redis:
     dsn: redis://localhost:6379/3
