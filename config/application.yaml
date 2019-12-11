@@ -137,9 +137,9 @@ postgres:
   dsn: postgres://postgres@localhost:5432/makoto
 mecab:
   dic:
-    bin: /usr/libexec/mecab/mecab-dict-index
-    system: /usr/local/lib/mecab/dic/ipadic
-    user: /usr/local/lib/mecab/dic
+    bin: /usr/lib/mecab/mecab-dict-index
+    system: /usr/share/mecab/dic/ipadic
+    user: /usr/share/mecab/dic
 sidekiq:
   redis:
     dsn: redis://localhost:6379/3
