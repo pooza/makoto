@@ -139,7 +139,7 @@ mecab:
   dic:
     bin: /usr/lib/mecab/mecab-dict-index
     system: /usr/share/mecab/dic/ipadic
-    user: /usr/share/mecab/dic
+    user: /tmp
 sidekiq:
   redis:
     dsn: redis://localhost:6379/3
