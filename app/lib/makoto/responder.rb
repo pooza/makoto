@@ -43,7 +43,7 @@ module Makoto
     def analyze
       words = {}
       source = @params['content']
-      @params['content'].scan(%r{https?://[^\s[:cntrl:]]+}).each{|link| source.gsub!(link, '')}
+      @params['content'].scan(%r{https?://[^\s[:cntrl:]]+}).each {|link| source.gsub!(link, '')}
       Natto::MeCab.new.parse(source) do |word|
         surface = Responder.sanitize(word.surface)
         features = word.feature.split(',')

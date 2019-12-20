@@ -5,7 +5,7 @@ task :test do
   require 'sidekiq/testing'
   Makoto::Postgres.connect
   Sidekiq::Testing.fake!
-  Dir.glob(File.join(Makoto::Environment.dir, 'test/*.rb')).each do |t|
+  Dir.glob(File.join(Makoto::Environment.dir, 'test/*.rb')).sort.each do |t|
     require t
   end
 end
