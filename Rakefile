@@ -14,6 +14,6 @@ require 'makoto'
   ]
 end
 
-Dir.glob(File.join(Makoto::Environment.dir, 'app/task/*.rb')).each do |f|
+Dir.glob(File.join(Makoto::Environment.dir, 'app/task/*.rb')).sort.each do |f|
   require f
 end

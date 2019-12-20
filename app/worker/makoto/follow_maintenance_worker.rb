@@ -16,12 +16,12 @@ module Makoto
     end
 
     def follower_ids
-      @follower_ids ||= mastodon.followers.parsed_response.map{|v| v['id'].to_i}
+      @follower_ids ||= mastodon.followers.parsed_response.map {|v| v['id'].to_i}
       return @follower_ids
     end
 
     def followee_ids
-      @followee_ids ||= mastodon.followees.parsed_response.map{|v| v['id'].to_i}
+      @followee_ids ||= mastodon.followees.parsed_response.map {|v| v['id'].to_i}
       return @followee_ids
     end
   end

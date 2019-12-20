@@ -32,9 +32,9 @@ module Makoto
 
     def quotes
       quotes = Quote.dataset.where(
-        form_id: @config['/quote/all_forms'].map{|v| Form.first(name: v).id},
+        form_id: @config['/quote/all_forms'].map {|v| Form.first(name: v).id},
       )
-      quotes = quotes.where{2 <= priority}
+      quotes = quotes.where {2 <= priority}
       quotes = quotes.where(
         Sequel.like(:body, "%#{@keyword}%") | Sequel.like(:remark, "%#{@keyword}%"),
       )
