@@ -20,7 +20,7 @@ module Makoto
           entry.delete('intro') unless entry['intro'].present?
           Track.create(entry)
         rescue => e
-          Logger.new.error(e)
+          Logger.new.error(Ginseng::Error.create(e).to_h.merge(entry: entry))
         end
       end
     end
