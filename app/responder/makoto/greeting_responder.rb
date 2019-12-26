@@ -4,7 +4,6 @@ module Makoto
       @config['/respond/greeting'].each do |v|
         next unless @params['content'].match(Regexp.new(v['pattern']))
         @matches = Config.flatten('', v)
-        @matches['/hours'] ||= (0..23).to_a
         return true
       end
       return false
@@ -16,7 +15,7 @@ module Makoto
 
     def exec
       message = []
-      if @matches['/hours'].include?(Time.now.hour)
+      if on_time?
         message.push("#{display_name}、") unless account.dislike?
         if account.friendry?
           message.push(@matches['/response/friendry'] || @matches['/response/normal'])
@@ -37,6 +36,20 @@ module Makoto
       name = @params['account']['display_name'].sub(/:$/, ': ')
       name += 'さん' unless account.friendry?
       return name
+    end
+
+    def on_time?
+      return false unless @matches['/hours'].nil? || @matches['/hours'].member?(hour)
+      return false unless @matches['/dates'].nil? || @matches['/dates'].member?(date)
+      return true
+    end
+
+    def hour
+      return Time.now.hour
+    end
+
+    def date
+      return Time.now.strftime('%m%d')
     end
   end
 end
