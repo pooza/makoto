@@ -21,23 +21,27 @@ module Makoto
     def self.refresh
       Postgres.instance.connection.transaction do
         Quote.dataset.destroy
-        fetch.each do |entry|
-          values = {
-            series_id: Series.get(entry['series']).id,
-            form_id: Form.get(entry['form']).id,
-            body: entry['quote'],
-            exclude: entry['exclude'].present?,
-            exclude_respond: entry['exclude_respond'].present?,
-            priority: entry['priority'],
-          }
-          [:emotion, :episode, :remark].each do |k|
-            values[k] = entry[k.to_s] if entry[k.to_s].present?
-          end
-          Quote.create(values)
+        fetch.each do |values|
+          Quote.create(create_entry(values))
         rescue => e
-          Logger.new.error(Ginseng::Error.create(e).to_h.merge(entry: entry))
+          Logger.new.error(Ginseng::Error.create(e).to_h.merge(entry: values))
         end
       end
+    end
+
+    def self.create_entry(values)
+      entry = {
+        series_id: Series.get(values['series']).id,
+        form_id: Form.get(values['form']).id,
+        body: values['quote'],
+        exclude: values['exclude'].present?,
+        exclude_respond: values['exclude_respond'].present?,
+        priority: values['priority'],
+      }
+      [:emotion, :episode, :remark].each do |k|
+        entry[k] = values[k.to_s] if values[k.to_s].present?
+      end
+      return entry
     end
 
     def self.fetch
