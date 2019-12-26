@@ -35,7 +35,7 @@ module Makoto
           end
           Quote.create(values)
         rescue => e
-          Logger.new.error(e)
+          Logger.new.error(Ginseng::Error.create(e).to_h.merge(entry: entry))
         end
       end
     end
