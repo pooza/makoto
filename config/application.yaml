@@ -146,6 +146,18 @@ birthday:
     - ノンストップで歌い続けます！
     - まだまだ歌い続けるわ！
     - 持ち歌を歌いつくすつもりで歌うわ！
+holidays:
+  - date: '0101'
+    greeting: |-
+      明けましておめでとうございます！剣崎真琴です。
+      真琴は今年も、皆さまに愛をお届けします！
+      #あけおめ
+  - date: '0201'
+    greeting: |-
+      おはよう！みんな、元気してるかな？剣崎真琴です。
+      今日から、新たなプリキュア・イヤーの始まりです。
+  - date: '0214'
+    greeting: おはようございます。今日は聖バレンタインデーです！
 track:
   url: https://script.google.com/macros/s/AKfycbym_KI7OhjP545B_jdJM5JxkF6RNZhtPrzuHQRhLffCi-E0cvlK/exec
 quote:

@@ -1,4 +1,8 @@
 <%# encoding: UTF-8 -%>
-おはよう！みんな、元気してるかな？剣崎真琴です。
+<% if params[:greeting] -%>
 <%= params[:greeting] %>
+<% else -%>
+おはよう！みんな、元気してるかな？剣崎真琴です。
+<%= params[:topic] %>
+<% end -%>
 #おはよう
