@@ -15,6 +15,9 @@ schedule:
   makoto_birthday:
     cron: '0 10,40 * 4 11 *'
     class: Makoto::MakotoBirthdayMonologueWorker
+  new_year:
+    cron: '0 0 0 1 1 *'
+    class: Makoto::NewYearMonologueWorker
   quote_lib:
     every: 5m
     class: Makoto::QuoteRefreshWorker
