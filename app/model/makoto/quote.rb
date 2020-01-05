@@ -52,7 +52,7 @@ module Makoto
     end
 
     def self.uri
-      return URI.parse(Config.instance['/quote/url'])
+      return Ginseng::URI.parse(Config.instance['/quote/url'])
     end
   end
 end

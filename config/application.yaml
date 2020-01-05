@@ -1,5 +1,5 @@
 package:
-  version: 2.0.9
+  version: 2.0.10
   url: https://github.com/pooza/makoto
   authors:
     - Tatsuya Koishi
@@ -42,6 +42,31 @@ respond:
   templates:
     - '%sは好きよ。'
   greeting:
+    - pattern: '((あ|明)けましておめでとう(ございます)|あけおめ)([、。!]|\s|$)'
+      response:
+        normal: 明けましておめでとうございます
+        friendry: 明けましておめでとう
+      dates:
+        - '0101'
+        - '0102'
+        - '0103'
+        - '0104'
+        - '0105'
+        - '0106'
+        - '0107'
+      fav: 3
+    - pattern: '(よ|良)いお年を([、。!]|\s|$)'
+      response:
+        normal: よいお年を
+      dates:
+        - '1225'
+        - '1226'
+        - '1227'
+        - '1228'
+        - '1229'
+        - '1230'
+        - '1231'
+      fav: 2
     - pattern: 'おはよう(ございます)?([、。!]|\s|$)'
       response:
         ignore: おはよう
@@ -76,31 +101,6 @@ respond:
       response:
         normal: おやすみなさい
         friendry: おやすみ
-    - pattern: '((あ|明)けましておめでとう(ございます)|あけおめ)([、。!]|\s|$)'
-      response:
-        normal: 明けましておめでとうございます
-        friendry: 明けましておめでとう
-      dates:
-        - '0101'
-        - '0102'
-        - '0103'
-        - '0104'
-        - '0105'
-        - '0106'
-        - '0107'
-      fav: 3
-    - pattern: '(よ|良)いお年を([、。!]|\s|$)'
-      response:
-        normal: よいお年を
-      dates:
-        - '1225'
-        - '1226'
-        - '1227'
-        - '1228'
-        - '1229'
-        - '1230'
-        - '1231'
-      fav: 2
   interested:
     - quote: 歌
     - quote: 王女

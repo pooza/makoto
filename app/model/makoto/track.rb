@@ -33,7 +33,7 @@ module Makoto
     end
 
     def self.uri
-      return URI.parse(Config.instance['/track/url'])
+      return Ginseng::URI.parse(Config.instance['/track/url'])
     end
   end
 end

@@ -13,7 +13,7 @@ module Makoto
         templates[word[:feature]] ||= @config["/respond/templates/#{word[:feature]}"].shuffle
         template = templates[word[:feature]].pop
         @paragraphs.push(template % [word[:surface]])
-        break if template.match(/[！？!?]$/)
+        break if /[！？!?]$/.match?(template)
       rescue => e
         @logger.error(e)
       end

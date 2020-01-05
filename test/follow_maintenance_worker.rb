@@ -7,8 +7,8 @@ module Makoto
     def test_perform
       return if Environment.ci?
       @worker.perform
-      assert(@worker.follower_ids.is_a?(Array))
-      assert(@worker.followee_ids.is_a?(Array))
+      assert_kind_of(Array, @worker.follower_ids)
+      assert_kind_of(Array, @worker.followee_ids)
     end
   end
 end
