@@ -27,7 +27,7 @@ module Makoto
       @logger.error(e)
     rescue => e
       message = Ginseng::Error.create(e).to_h
-      message.merge!(payload: payload) if payload
+      message[:payload] = payload if payload
       Slack.broadcast(message)
       @logger.error(message)
     end
