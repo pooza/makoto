@@ -60,7 +60,7 @@ module Makoto
     alias save save_dic
 
     def uri
-      return URI.parse(@config['/word/url'])
+      return Ginseng::URI.parse(@config['/word/url'])
     end
 
     def temp_csv_path
