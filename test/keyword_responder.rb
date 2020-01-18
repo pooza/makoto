@@ -9,7 +9,7 @@ module Makoto
       assert_false(@responder.executable?)
 
       return if Environment.ci?
-      @responder.params = {'content' => '新しい朝がきた、希望の朝だ。'}
+      @responder.params = {'content' => 'ヒーリングっど♥プリキュア、楽しみですね〜'}
       assert(@responder.executable?)
       assert(@responder.exec.present?)
     end
