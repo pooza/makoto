@@ -49,7 +49,7 @@ module Makoto
         features = word.feature.split(',')
         next unless features.include?('名詞')
         next if @config['/word/ignore'].include?(surface)
-        next if /(サ変接続|接尾|非自立|代名詞|形容動詞語幹)/.match?(features.join)
+        next if /(サ変接続|接尾|非自立|代名詞|形容動詞語幹|副詞可能)/.match?(features.join)
         feature = '一般'
         ['人名', '地域'].each do |v|
           feature = v if features.include?(v)
