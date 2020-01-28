@@ -40,6 +40,19 @@ module Makoto
       config.redis = {url: Config.instance['/sidekiq/redis/dsn']}
     end
   end
+
+  def self.rack
+    require 'sidekiq/web'
+    require 'sidekiq-scheduler/web'
+
+    config = Makoto::Config.instance
+    if config['/sidekiq/auth/user'].present? && config['/sidekiq/auth/password'].present?
+      Sidekiq::Web.use Rack::Auth::Basic do |username, password|
+        Makoto::Environment.auth(username, password)
+      end
+    end
+    return Rack::URLMap.new('/makoto/sidekiq' => Sidekiq::Web)
+  end
 end
 
 Makoto.bootsnap
