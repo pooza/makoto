@@ -1,5 +1,5 @@
 package:
-  version: 2.0.14
+  version: 2.0.15
   url: https://github.com/pooza/makoto
   authors:
     - Tatsuya Koishi
@@ -130,6 +130,15 @@ respond:
   bad_mood:
     words:
       - ちんこ
+  keyword:
+    ignore_features:
+      - サ変接続
+      - 接尾
+      - 非自立
+      - 代名詞
+      - 形容動詞語幹
+      - 副詞可能
+      - 数
 nowplaying:
   messages:
     normal:
