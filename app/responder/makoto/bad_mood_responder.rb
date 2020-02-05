@@ -4,7 +4,7 @@ module Makoto
       return true if account.hate?
       words = analyze.map {|v| v[:surface]}
       @config['/respond/bad_mood/words'].each do |word|
-        return true if words.include?(word)
+        return true if words.member?(word)
       end
       return false
     end

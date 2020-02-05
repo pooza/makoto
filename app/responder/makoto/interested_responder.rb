@@ -5,7 +5,7 @@ module Makoto
       @config['/respond/interested'].each do |entry|
         entry['words'] ||= [entry['quote']]
         entry['words'].each do |word|
-          next unless words.include?(word)
+          next unless words.member?(word)
           @keyword = entry['quote']
           return true
         end

@@ -4,12 +4,12 @@ module Makoto
 
     def perform
       follower_ids.each do |id|
-        mastodon.follow(id) unless followee_ids.include?(id)
+        mastodon.follow(id) unless followee_ids.member?(id)
       rescue => e
         @logger.error(Ginseng::Error.create(e).to_h.merge(follow: id))
       end
       followee_ids.each do |id|
-        mastodon.unfollow(id) unless follower_ids.include?(id)
+        mastodon.unfollow(id) unless follower_ids.member?(id)
       rescue => e
         @logger.error(Ginseng::Error.create(e).to_h.merge(unfollow: id))
       end
