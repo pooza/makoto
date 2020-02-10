@@ -10,14 +10,14 @@ module Makoto
       @logger.info(class: self.class.to_s, message: 'open', uri: @uri.to_s)
     end
 
-    def close(e)
+    def close(event)
       @client = nil
-      @logger.info(class: self.class.to_s, message: 'close', reason: e.reason)
+      @logger.info(class: self.class.to_s, message: 'close', reason: event.reason)
     end
 
-    def error(e)
+    def error(event)
       @client = nil
-      @logger.error(class: self.class.to_s, message: 'error', reason: e.reason)
+      @logger.error(class: self.class.to_s, message: 'error', reason: event.reason)
     end
 
     def receive(message)
