@@ -7,12 +7,17 @@ module Makoto
     attr_reader :uri
 
     def open
-      @logger.info(class: self.class.to_s, uri: @uri.to_s, action: 'start')
+      @logger.info(class: self.class.to_s, message: 'open', uri: @uri.to_s)
     end
 
-    def error(error)
-      Slack.broadcast(error)
-      @logger.error(error)
+    def close(e)
+      @client = nil
+      @logger.info(class: self.class.to_s, message: 'close', reason: e.reason)
+    end
+
+    def error(e)
+      @client = nil
+      @logger.error(class: self.class.to_s, message: 'error', reason: e.reason)
     end
 
     def receive(message)
@@ -76,19 +81,21 @@ module Makoto
         end
 
         listener.client.on :close do |e|
+          listener.close(e)
           raise 'closed'
         end
 
         listener.client.on :error do |e|
           listener.error(e)
+          raise 'error'
         end
 
         listener.client.on :message do |message|
           listener.receive(message)
         end
       end
-    rescue => e
-      Slack.broadcast(e)
+    rescue
+      sleep(5)
       retry
     end
 
