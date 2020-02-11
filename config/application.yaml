@@ -115,7 +115,7 @@ respond:
         - 歯周病
       quote: 歯
   song:
-    pattern: '([[:alnum:]]+|「(.*?)」)を(歌|うた)って([。!]|\s|$)'
+    pattern: '「(.*?)」を(歌|うた)って([。!]|\s|$)'
     response:
       normal:
         - では聴いてください。

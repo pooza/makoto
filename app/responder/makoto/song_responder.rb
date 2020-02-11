@@ -3,7 +3,7 @@ module Makoto
     def executable?
       pattern = Regexp.new(@config['/respond/song/pattern'])
       return false unless matches = @params['content'].match(pattern)
-      @title = matches[2] || matches[1]
+      @title = matches[1]
       return @title.present?
     end
 
