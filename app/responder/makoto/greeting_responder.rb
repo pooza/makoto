@@ -33,7 +33,7 @@ module Makoto
     end
 
     def display_name
-      name = @params['account']['display_name'].sub(/:$/, ': ')
+      name = account.nickname || @params['account']['display_name'].sub(/:$/, ': ')
       name += 'さん' unless account.friendry?
       return name
     end

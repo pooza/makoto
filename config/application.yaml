@@ -1,5 +1,5 @@
 package:
-  version: 2.0.16
+  version: 2.1.0
   url: https://github.com/pooza/makoto
   authors:
     - Tatsuya Koishi
@@ -35,6 +35,7 @@ respond:
   classes:
     - bad_mood
     - greeting
+    - naming
     - song
     - interested
     - keyword
@@ -115,7 +116,7 @@ respond:
         - 歯周病
       quote: 歯
   song:
-    pattern: '([[:alnum:]]+|「(.*?)」)を(歌|うた)って([。!]|\s|$)'
+    pattern: '「(.*?)」を(歌|うた)って([。!]|\s|$)'
     response:
       normal:
         - では聴いてください。
@@ -130,6 +131,11 @@ respond:
   bad_mood:
     words:
       - ちんこ
+  naming:
+    pattern: '「(.*?)」って呼んで([。!]|\s|$)'
+    response:
+      normal: わかりました。次から「%s」と呼びますね。
+      friendry: わかったわ。次から「%s」と呼ぶわ。😉
   keyword:
     ignore_features:
       - サ変接続
@@ -168,7 +174,9 @@ holidays:
       おはよう！みんな、元気してるかな？剣崎真琴です。
       今日から、新たなプリキュア・イヤーの始まりです。
   - date: '0214'
-    greeting: おはようございます。今日は聖バレンタインデーです！
+    greeting: |-
+      おはよう！みんな、元気してるかな？剣崎真琴です。
+      今日は聖バレンタインデーです。ハッピーバレンタインデー！
 track:
   url: https://script.google.com/macros/s/AKfycbym_KI7OhjP545B_jdJM5JxkF6RNZhtPrzuHQRhLffCi-E0cvlK/exec
 quote:

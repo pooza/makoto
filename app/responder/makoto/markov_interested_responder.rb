@@ -44,16 +44,16 @@ module Makoto
     def markov
       random = Random.new
       prefix = ['BEGIN', 'BEGIN']
-      body = ''
+      body = []
       loop do
         prefix = [prefix[1], @table[prefix][random.rand(0..(@table[prefix].length - 1))]]
-        body += prefix.first unless prefix.first == 'BEGIN'
+        body.push(prefix.first) unless prefix.first == 'BEGIN'
         if @table[prefix].last == 'END'
-          body += prefix[1]
+          body.push(prefix[1])
           break
         end
       end
-      return body
+      return body.join
     end
   end
 end
