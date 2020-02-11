@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 11.5
--- Dumped by pg_dump version 11.5
+-- Dumped from database version 12.1
+-- Dumped by pg_dump version 12.1
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -18,7 +18,7 @@ SET row_security = off;
 
 SET default_tablespace = '';
 
-SET default_with_oids = false;
+SET default_table_access_method = heap;
 
 --
 -- Name: account; Type: TABLE; Schema: public; Owner: postgres
@@ -27,7 +27,8 @@ SET default_with_oids = false;
 CREATE TABLE public.account (
     id integer NOT NULL,
     acct character varying(64) NOT NULL,
-    favorability integer DEFAULT 0 NOT NULL
+    favorability integer DEFAULT 0 NOT NULL,
+    nickname character varying(64)
 );
 
 
