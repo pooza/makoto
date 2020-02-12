@@ -1,5 +1,5 @@
 package:
-  version: 2.1.0
+  version: 2.1.1
   url: https://github.com/pooza/makoto
   authors:
     - Tatsuya Koishi
@@ -134,7 +134,7 @@ respond:
   naming:
     pattern: '「(.*?)」って呼んで([。!]|\s|$)'
     response:
-      normal: わかりました。次から「%s」と呼びますね。
+      normal: わかりました。次から「%s」さん呼びますね。
       friendry: わかったわ。次から「%s」と呼ぶわ。😉
   keyword:
     ignore_features:
@@ -201,3 +201,40 @@ sidekiq:
   auth:
     user: admin
     password: ''
+  concurrency: 5
+  schedule:
+    good_morning:
+      cron: '0 0 7 * * *'
+      class: Makoto::GoodMorningMonologueWorker
+    nowplaying:
+      cron: '0 0 9,21 * * *'
+      class: Makoto::NowplayingMonologueWorker
+    good_quote:
+      cron: '0 0 5,11,17,23 * * *'
+      class: Makoto::GoodQuoteMonologueWorker
+    precure_birthday:
+      cron: '0 1 0 * * *'
+      class: Makoto::PrecureBirthdayMonologueWorker
+    makoto_birthday:
+      cron: '0 10,40 * 4 11 *'
+      class: Makoto::MakotoBirthdayMonologueWorker
+    new_year:
+      cron: '0 0 0 1 1 *'
+      class: Makoto::NewYearMonologueWorker
+    quote_lib:
+      every: 5m
+      class: Makoto::QuoteRefreshWorker
+    track_lib:
+      every: 5m
+      class: Makoto::TrackRefreshWorker
+    dictionary:
+      every: 5m
+      class: Makoto::DictionaryRefreshWorker
+    follow_maintenance:
+      every: 5m
+      class: Makoto::FollowMaintenanceWorker
+thin:
+  timeout: 30
+  port: 3011
+  environment: production
+  rackup: app/initializer/config.ru

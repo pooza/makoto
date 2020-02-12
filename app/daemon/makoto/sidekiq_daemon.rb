@@ -1,15 +1,13 @@
 module Makoto
-  class SidekiqDaemon < Ginseng::Daemon
-    include Package
+  class SidekiqDaemon < Daemon
+    def command
+      return Ginseng::CommandLine.new(
+        ['sidekiq', '--config', config_cache_path, '--require', initializer_path],
+      )
+    end
 
-    def cmd
-      return [
-        'sidekiq',
-        '--config',
-        File.join(Environment.dir, 'config/sidekiq.yaml'),
-        '--require',
-        File.join(Environment.dir, 'app/initializer/sidekiq.rb'),
-      ]
+    def initializer_path
+      return File.join(Environment.dir, 'app/initializer/sidekiq.rb')
     end
 
     def motd
