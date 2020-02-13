@@ -1,5 +1,5 @@
 package:
-  version: 2.1.1
+  version: 2.1.2
   url: https://github.com/pooza/makoto
   authors:
     - Tatsuya Koishi
@@ -10,7 +10,9 @@ test:
 mastodon:
   hashtag:
     pattern: (?:^|[^\/\)\w])#([[:word:]_]*[[:alpha:]_·][[:word:]_]*)
-  account:
+  followers:
+    limit: 500
+  followees:
     limit: 500
 websocket:
   keepalive: 15
@@ -132,9 +134,9 @@ respond:
     words:
       - ちんこ
   naming:
-    pattern: '「(.*?)」って呼んで([。!]|\s|$)'
+    pattern: '「(.*?)」(って|と)呼んで([。!]|\s|$)'
     response:
-      normal: わかりました。次から「%s」さん呼びますね。
+      normal: わかりました。次から「%s」さんと呼びますね。
       friendry: わかったわ。次から「%s」と呼ぶわ。😉
   keyword:
     ignore_features:
@@ -176,7 +178,14 @@ holidays:
   - date: '0214'
     greeting: |-
       おはよう！みんな、元気してるかな？剣崎真琴です。
-      今日は聖バレンタインデーです。ハッピーバレンタインデー！
+      今日は聖バレンタインデーです。
+      わたしは大貝町にいるから、みんなにチョコレートを届けることはできないけど。こころをこめて、おいしそうなチョコレートを選んでみたわ！
+      https://www.bandai.co.jp/candy/products/2020/1000142848.html
+      https://www.bandai.co.jp/candy/products/2020/4904501200043000.html
+      https://www.bandai.co.jp/candy/products/2019/4549660393603000.html
+      https://www.bandai.co.jp/candy/products/2019/4549660339045199.html
+
+      みんな、ハッピーバレンタインデー！
 track:
   url: https://script.google.com/macros/s/AKfycbym_KI7OhjP545B_jdJM5JxkF6RNZhtPrzuHQRhLffCi-E0cvlK/exec
 quote:
