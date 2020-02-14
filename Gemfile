@@ -11,6 +11,6 @@ gem 'rubicure', git: 'https://github.com/pooza/rubicure.git', branch: 'master.po
 gem 'rubocop'
 gem 'rubocop-performance'
 gem 'sanitize'
-gem 'sidekiq', git: 'https://github.com/mperham/sidekiq.git'
+gem 'sidekiq'
 gem 'sidekiq-scheduler'
 gem 'timecop'
