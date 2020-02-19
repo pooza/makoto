@@ -35,7 +35,10 @@ jobs:
           bundle exec rake bundle:check
       - name: update database
         run: |
-          psql -U postgres -h localhost -p 5432 --password password -d makoto < ./db/init.sql
+          touch ~/.pgpass
+          chmod 600 ~/.pgpass
+          echo '*:*:*:*:password' >> ~/.pgpass
+          psql -U postgres -h localhost -p 5432 -w makoto < ./db/init.sql
           bundle exec rake makoto:quote:update
           bundle exec rake makoto:track:update
       - name: Run lint
