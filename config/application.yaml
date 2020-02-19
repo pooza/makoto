@@ -198,7 +198,7 @@ quote:
   default_forms:
     - 剣崎真琴
 postgres:
-  dsn: postgres://postgres@localhost:5432/makoto
+  dsn: postgres://postgres:password@localhost:5432/makoto
 mecab:
   dic:
     bin: /usr/lib/mecab/mecab-dict-index
