@@ -1,10 +1,7 @@
 require 'bootsnap'
-require 'active_support'
-require 'active_support/core_ext'
-require 'zeitwerk'
+require 'ginseng'
 require 'sidekiq'
 require 'sidekiq-scheduler'
-require 'ginseng'
 
 module Makoto
   def self.dir
@@ -29,7 +26,7 @@ module Makoto
     config['dirs'].each do |d|
       loader.push_dir(File.join(dir, 'app', d))
     end
-    loader.setup
+    return loader
   end
 
   def self.sidekiq
@@ -56,5 +53,5 @@ module Makoto
 end
 
 Makoto.bootsnap
-Makoto.loader
+Makoto.loader.setup
 Makoto.sidekiq
