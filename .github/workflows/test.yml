@@ -33,9 +33,9 @@ jobs:
           bundle install --jobs 4 --retry 3
           bundle exec rake bundle:update
           bundle exec rake bundle:check
-      - name: update quotes/tracks
+      - name: update database
         run: |
-          psql -U postgres -h localhost -p 5432 --password password makoto < ./db/init.sql
+          psql -U postgres -h localhost -p 5432 --password password -d makoto < ./db/init.sql
           bundle exec rake makoto:quote:update
           bundle exec rake makoto:track:update
       - name: Run lint
