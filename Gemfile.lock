@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/pooza/ginseng-core.git
-  revision: 754b15387ea0d92ef9bab75f06f96872bfb8f106
+  revision: 22bb0407269e10ee90ce6cd2946c8c6286c096a5
   specs:
-    ginseng-core (1.5.8)
+    ginseng-core (1.6.2)
       activesupport
       addressable
       bundler
@@ -11,25 +11,27 @@ GIT
       httparty
       rake
       rest-client
+      rubocop
+      rubocop-performance
       syslog-logger
       test-unit
       unicode
       yajl-ruby
+      zeitwerk
 
 GIT
   remote: https://github.com/pooza/ginseng-postgres.git
-  revision: 5e974924863bf5994c5382547847e57aab993bc7
+  revision: be9e9ea0596566b7e93d3c66011fe23d766469ed
   specs:
-    ginseng-postgres (1.2.1)
+    ginseng-postgres (1.2.4)
       pg
       sequel
 
 GIT
   remote: https://github.com/pooza/ginseng-web.git
-  revision: 630978d919b0e8dac4a270cd2bc9e17523046e91
+  revision: 3327faeaaf598d6d809ba6e66d0b9afaf67aeea5
   specs:
-    ginseng-web (1.1.0)
-      rack-test
+    ginseng-web (1.1.1)
       sass
       sinatra
       thin
@@ -113,8 +115,6 @@ GEM
     rack (2.2.2)
     rack-protection (2.0.8.1)
       rack
-    rack-test (1.1.0)
-      rack (>= 1.0, < 3)
     rainbow (3.0.0)
     rake (13.0.1)
     rb-fsevent (0.10.3)
@@ -126,11 +126,13 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
-    rubocop (0.79.0)
+    rexml (3.2.4)
+    rubocop (0.80.0)
       jaro_winkler (~> 1.5.1)
       parallel (~> 1.10)
       parser (>= 2.7.0.1)
       rainbow (>= 2.2.2, < 4.0)
+      rexml
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 1.7)
     rubocop-performance (1.5.2)
@@ -203,8 +205,6 @@ DEPENDENCIES
   ginseng-web!
   natto
   rubicure!
-  rubocop
-  rubocop-performance
   sanitize
   sidekiq
   sidekiq-scheduler
