@@ -51,16 +51,6 @@ Metrics/ClassLength:
   Exclude:
     - test/*
 
-Naming/FileName:
-  Exclude:
-    - Rakefile.rb
-    - '**/Rakefile*.rb'
-
-Metrics/BlockLength:
-  Exclude:
-    - Rakefile.rb
-    - '**/Rakefile*.rb'
-
 Style/Documentation:
   Enabled: false
 
@@ -140,3 +130,5 @@ Metrics/CyclomaticComplexity:
 Metrics/PerceivedComplexity:
   Max: 10
 
+Naming/RescuedExceptionsVariableName:
+  PreferredName: e

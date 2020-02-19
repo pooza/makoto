@@ -21,7 +21,7 @@ GIT
 
 GIT
   remote: https://github.com/pooza/ginseng-postgres.git
-  revision: be9e9ea0596566b7e93d3c66011fe23d766469ed
+  revision: 33f6dfebd499165b2a2fcdc09b0867997cf16d35
   specs:
     ginseng-postgres (1.2.4)
       pg
@@ -29,9 +29,10 @@ GIT
 
 GIT
   remote: https://github.com/pooza/ginseng-web.git
-  revision: 3327faeaaf598d6d809ba6e66d0b9afaf67aeea5
+  revision: 4d014476dadac085f041fd58cd71db5324c788c6
   specs:
-    ginseng-web (1.1.1)
+    ginseng-web (1.1.2)
+      rack-test
       sass
       sinatra
       thin
@@ -115,6 +116,8 @@ GEM
     rack (2.2.2)
     rack-protection (2.0.8.1)
       rack
+    rack-test (1.1.0)
+      rack (>= 1.0, < 3)
     rainbow (3.0.0)
     rake (13.0.1)
     rb-fsevent (0.10.3)
