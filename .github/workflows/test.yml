@@ -35,16 +35,14 @@ jobs:
           bundle exec rake bundle:check
       - name: update database
         run: |
-          touch ~/.pgpass
-          chmod 600 ~/.pgpass
           echo '*:*:*:*:password' >> ~/.pgpass
+          chmod 600 ~/.pgpass
           psql -U postgres -h localhost -p 5432 -w makoto < ./db/init.sql
           bundle exec rake makoto:quote:update
           bundle exec rake makoto:track:update
       - name: Run lint
         run: |
           bundle exec rubocop
-          bundle exec rake erb:check
       - name: Run test
         run: |
           bundle exec rake test
