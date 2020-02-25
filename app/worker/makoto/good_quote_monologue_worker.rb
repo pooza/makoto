@@ -6,7 +6,7 @@ module Makoto
       quote = Quote.pickup(priority: 4, form: @config['/quote/all_forms'])
       template = Template.new('good_quote')
       template[:quote] = quote.body
-      template[:series] = Series[quote.series_id].name
+      template[:series] = quote.series.name
       template[:episode] = quote.episode
       mastodon.toot(template.to_s)
     end

@@ -1,5 +1,5 @@
 package:
-  version: 2.1.5
+  version: 2.1.6
   url: https://github.com/pooza/makoto
   authors:
     - Tatsuya Koishi
@@ -164,28 +164,21 @@ birthday:
     - まだまだ歌い続けるわ！
     - 持ち歌を歌いつくすつもりで歌うわ！
     - 歌い続けます！愛を込めて！
+  messages:
+    - |-
+      こんなわたしを応援してくれる人がいる。
+      だからその人達の為に、自分の為に、わたしは歌う！
 holidays:
   - date: '0101'
     greeting: |-
       明けましておめでとうございます！剣崎真琴です。
-      真琴は2020年もこころをこめて、歌とダジャレと愛をお届けし続けます。
-      本年もよろしくお願い致します！
       #あけおめ
-  - date: '0201'
-    greeting: |-
-      おはよう！みんな、元気してるかな？剣崎真琴です。
-      今日から、新たなプリキュア・イヤーの始まりです。
-  - date: '0214'
-    greeting: |-
-      おはよう！みんな、元気してるかな？剣崎真琴です。
-      今日は聖バレンタインデーです。
-      わたしは大貝町にいるから、みんなにチョコレートを届けることはできないけど。こころをこめて、おいしそうなチョコレートを選んでみたわ！
-      https://www.bandai.co.jp/candy/products/2020/1000142848.html
-      https://www.bandai.co.jp/candy/products/2020/4904501200043000.html
-      https://www.bandai.co.jp/candy/products/2019/4549660393603000.html
-      https://www.bandai.co.jp/candy/products/2019/4549660339045199.html
-
-      みんな、ハッピーバレンタインデー！
+new_year:
+  greeting: |-
+    明けましておめでとうございます。
+morning:
+  topics:
+    - みんなは好き嫌いってある？実はわたし、きのこが嫌いなんです。
 track:
   url: https://script.google.com/macros/s/AKfycbym_KI7OhjP545B_jdJM5JxkF6RNZhtPrzuHQRhLffCi-E0cvlK/exec
 quote:

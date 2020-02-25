@@ -1,5 +1,8 @@
 module Makoto
   class Quote < Sequel::Model(:quote)
+    many_to_one :series
+    many_to_one :form
+
     def self.pickup(params = {})
       config = Config.instance
       quotes = Quote.dataset.where(
