@@ -1,5 +1,5 @@
 package:
-  version: 2.1.4
+  version: 2.1.5
   url: https://github.com/pooza/makoto
   authors:
     - Tatsuya Koishi
@@ -38,8 +38,8 @@ respond:
     - bad_mood
     - greeting
     - naming
-    - song
     - interested
+    - song
     - keyword
     - fixed
   templates:
