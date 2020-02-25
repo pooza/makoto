@@ -3,7 +3,7 @@ module Makoto
     def executable?
       @config['/respond/greeting'].each do |v|
         next unless @params['content'].match(Regexp.new(v['pattern']))
-        @matches = Config.flatten('', v)
+        @matches = v.key_flatten
         return true
       end
       return false
