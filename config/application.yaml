@@ -18,6 +18,8 @@ websocket:
   keepalive: 15
 message:
   url: https://script.google.com/macros/s/AKfycbyDGKCg5BZP0EOTdpGp60UDwzhyoCVtAslZ619U4FJF84T7Z9Wm/exec
+keyword:
+  url: https://script.google.com/macros/s/AKfycbz0gQsDGir6dVsp8O7gDIHukP0YgtRwbPEXB4eA04HgFvt0dvU8/exec
 word:
   url: https://script.google.com/macros/s/AKfycbws9aCXxNQt3khdJ9bEt1ADeV7HzZV_Idg-DvN5t_X3nnca0nc/exec
   topics:
@@ -235,9 +237,12 @@ sidekiq:
     track_lib:
       every: 5m
       class: Makoto::TrackRefreshWorker
-    track_lib:
+    message_lib:
       every: 5m
       class: Makoto::MessageRefreshWorker
+    keyword_lib:
+      every: 5m
+      class: Makoto::KeywordRefreshWorker
     dictionary:
       every: 5m
       class: Makoto::DictionaryRefreshWorker
