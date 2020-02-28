@@ -12,10 +12,10 @@ module Makoto
     end
 
     def self.create_entry(values)
-      return ({
+      return {
         type: values['type'],
         word: values['word'],
-      })
+      }
     end
 
     def self.fetch

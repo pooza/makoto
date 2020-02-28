@@ -1,8 +1,7 @@
 module Makoto
   class Message < Sequel::Model(:message)
     def self.pickup(params = {})
-      config = Config.instance
-      message = Message.dataset
+      messages = Message.dataset
       messages = messages.where(feature: params[:feature]) if params[:feature]
       messages = messages.where(message: params[:message]) if params[:message]
       return messages.all.sample(random: Random.create)
@@ -20,11 +19,11 @@ module Makoto
     end
 
     def self.create_entry(values)
-      return ({
+      return {
         type: values['type'],
         feature: values['feature'],
         message: values['message'],
-      })
+      }
     end
 
     def self.fetch
