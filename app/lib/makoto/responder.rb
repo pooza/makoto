@@ -47,7 +47,7 @@ module Makoto
         features = word.feature.split(',')
         pattern = Regexp.new('(' + @config['/respond/keyword/ignore_features'].join('|') + ')')
         next unless features.member?('名詞')
-        next if @config['/word/ignore'].member?(surface)
+        next if ignore_words.member?(surface)
         next if pattern.match?(features.join('|'))
         feature = '一般'
         ['人名', '地域'].each do |v|
@@ -77,13 +77,18 @@ module Makoto
       return false if config['/respond/ignore_accounts'].member?(payload['account']['acct'])
       content = sanitize(payload['content'])
       return false if content.match(Regexp.new("@#{config['/mastodon/account/name']}(\\s|$)"))
-      config['/word/topics'].each do |topic|
-        return true if content.include?(topic)
+      Keyword.dataset.where(type: 'topic').all do |topic|
+        return true if content.include?(topic.word)
       end
       return false
     end
 
     private
+
+    def ignore_words
+      @ignore_words ||= Keyword.dataset.where(type: 'ignore').all.map(&:word)
+      return @ignore_words
+    end
 
     def create_source_text(text)
       temp = text.clone

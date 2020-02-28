@@ -3,8 +3,8 @@ module Makoto
     def executable?
       return true if account.hate?
       words = analyze.map {|v| v[:surface]}
-      @config['/respond/bad_mood/words'].each do |word|
-        return true if words.member?(word)
+      Keyword.dataset.where(type: 'bad').all do |word|
+        return true if words.member?(word.word)
       end
       return false
     end
