@@ -33,8 +33,6 @@ respond:
     - song
     - keyword
     - fixed
-  templates:
-    - '%sは好きよ。'
   greeting:
     - pattern: '((あ|明)けましておめでとう(ございます)|あけおめ)([、。!]|\s|$)'
       response:
