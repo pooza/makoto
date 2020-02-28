@@ -91,6 +91,77 @@ ALTER SEQUENCE public.form_id_seq OWNED BY public.form.id;
 
 
 --
+-- Name: keyword; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.keyword (
+    id integer NOT NULL,
+    type character varying(64),
+    word character varying(64)
+);
+
+
+ALTER TABLE public.keyword OWNER TO postgres;
+
+--
+-- Name: keyword_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.keyword_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.keyword_id_seq OWNER TO postgres;
+
+--
+-- Name: keyword_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.keyword_id_seq OWNED BY public.keyword.id;
+
+
+--
+-- Name: message; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.message (
+    id integer NOT NULL,
+    type character varying(64) NOT NULL,
+    feature character varying(64),
+    message text NOT NULL
+);
+
+
+ALTER TABLE public.message OWNER TO postgres;
+
+--
+-- Name: message_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.message_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.message_id_seq OWNER TO postgres;
+
+--
+-- Name: message_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.message_id_seq OWNED BY public.message.id;
+
+
+--
 -- Name: quote; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -218,6 +289,20 @@ ALTER TABLE ONLY public.form ALTER COLUMN id SET DEFAULT nextval('public.form_id
 
 
 --
+-- Name: keyword id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.keyword ALTER COLUMN id SET DEFAULT nextval('public.keyword_id_seq'::regclass);
+
+
+--
+-- Name: message id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.message ALTER COLUMN id SET DEFAULT nextval('public.message_id_seq'::regclass);
+
+
+--
 -- Name: quote id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -263,6 +348,22 @@ ALTER TABLE ONLY public.form
 
 
 --
+-- Name: keyword keyword_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.keyword
+    ADD CONSTRAINT keyword_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: message message_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.message
+    ADD CONSTRAINT message_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: quote quote_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -291,6 +392,27 @@ ALTER TABLE ONLY public.track
 --
 
 CREATE UNIQUE INDEX form_name_idx ON public.form USING btree (name);
+
+
+--
+-- Name: keyword_type_word_idx; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE UNIQUE INDEX keyword_type_word_idx ON public.keyword USING btree (type, word);
+
+
+--
+-- Name: message_feature_idx; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX message_feature_idx ON public.message USING btree (feature);
+
+
+--
+-- Name: message_type_idx; Type: INDEX; Schema: public; Owner: postgres
+--
+
+CREATE INDEX message_type_idx ON public.message USING btree (type);
 
 
 --

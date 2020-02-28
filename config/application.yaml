@@ -16,6 +16,8 @@ mastodon:
     limit: 500
 websocket:
   keepalive: 15
+message:
+  url: https://script.google.com/macros/s/AKfycbyDGKCg5BZP0EOTdpGp60UDwzhyoCVtAslZ619U4FJF84T7Z9Wm/exec
 word:
   url: https://script.google.com/macros/s/AKfycbws9aCXxNQt3khdJ9bEt1ADeV7HzZV_Idg-DvN5t_X3nnca0nc/exec
   topics:
@@ -233,6 +235,9 @@ sidekiq:
     track_lib:
       every: 5m
       class: Makoto::TrackRefreshWorker
+    track_lib:
+      every: 5m
+      class: Makoto::MessageRefreshWorker
     dictionary:
       every: 5m
       class: Makoto::DictionaryRefreshWorker
