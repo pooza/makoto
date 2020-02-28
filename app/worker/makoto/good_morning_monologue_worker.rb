@@ -12,7 +12,7 @@ module Makoto
     end
 
     def topic
-      return @config['/morning/topics'].sample(random: Random.create)
+      return Message.pickup(type: 'morning').message
     end
 
     def holiday_greeting

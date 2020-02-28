@@ -169,9 +169,6 @@ holidays:
 new_year:
   greeting: |-
     明けましておめでとうございます。
-morning:
-  topics:
-    - みんなは好き嫌いってある？実はわたし、きのこが嫌いなんです。
 track:
   url: https://script.google.com/macros/s/AKfycbym_KI7OhjP545B_jdJM5JxkF6RNZhtPrzuHQRhLffCi-E0cvlK/exec
 quote:
