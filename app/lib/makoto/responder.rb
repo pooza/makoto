@@ -42,9 +42,7 @@ module Makoto
 
     def analyze
       words = {}
-      source = @params['content']
-      @params['content'].scan(%r{https?://[^\s[:cntrl:]]+}).each {|link| source.gsub!(link, '')}
-      Natto::MeCab.new.parse(source) do |word|
+      Natto::MeCab.new.parse(create_source_text(@params['content'])) do |word|
         surface = Responder.sanitize(word.surface)
         features = word.feature.split(',')
         pattern = Regexp.new('(' + @config['/respond/keyword/ignore_features'].join('|') + ')')
@@ -83,6 +81,19 @@ module Makoto
         return true if content.include?(topic)
       end
       return false
+    end
+
+    private
+
+    def create_source_text(text)
+      temp = text.clone
+      text.scan(%r{https?://[^\s[:cntrl:]]+}).each do |link|
+        temp.gsub!(link, '')
+      end
+      Ginseng::TagContainer.scan(text).each do |tag|
+        temp.gsub!(Mastodon.create_tag(tag), '')
+      end
+      return temp
     end
   end
 end
