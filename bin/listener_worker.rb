@@ -7,4 +7,5 @@ ENV['BUNDLE_GEMFILE'] ||= File.join(dir, 'Gemfile')
 require 'bundler/setup'
 require 'makoto'
 
+Makoto::Postgres.connect
 Makoto::Listener.start

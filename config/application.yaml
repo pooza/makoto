@@ -1,5 +1,5 @@
 package:
-  version: 2.1.6
+  version: 2.2.0
   url: https://github.com/pooza/makoto
   authors:
     - Tatsuya Koishi
@@ -16,21 +16,12 @@ mastodon:
     limit: 500
 websocket:
   keepalive: 15
+message:
+  url: https://script.google.com/macros/s/AKfycbyDGKCg5BZP0EOTdpGp60UDwzhyoCVtAslZ619U4FJF84T7Z9Wm/exec
+keyword:
+  url: https://script.google.com/macros/s/AKfycbz0gQsDGir6dVsp8O7gDIHukP0YgtRwbPEXB4eA04HgFvt0dvU8/exec
 word:
   url: https://script.google.com/macros/s/AKfycbws9aCXxNQt3khdJ9bEt1ADeV7HzZV_Idg-DvN5t_X3nnca0nc/exec
-  topics:
-    - MAKOTO
-    - 真琴
-    - まこぴー
-    - キュアソード
-  ignore:
-    - stg_precure_fun
-    - precure_fun
-    - fun
-    - image
-    - video
-    - audio
-    - nowplaying
 respond:
   paragraph:
     max: 5
@@ -38,12 +29,11 @@ respond:
     - bad_mood
     - greeting
     - naming
+    - overfamiliar
     - interested
     - song
     - keyword
     - fixed
-  templates:
-    - '%sは好きよ。'
   greeting:
     - pattern: '((あ|明)けましておめでとう(ございます)|あけおめ)([、。!]|\s|$)'
       response:
@@ -70,17 +60,17 @@ respond:
         - '1230'
         - '1231'
       fav: 2
-    - pattern: 'おはよう(ございます)?([、。!]|\s|$)'
+    - pattern: 'おは(よう)?(ございます)?([〜、。!]|\s|$)'
       response:
         ignore: おはよう
         normal: おはようございます
         friendry: おはよう
       hours: [3, 4, 5, 6, 7, 8, 9, 10, 11]
-    - pattern: 'こんにち[はわ]([、。!]|\s|$)'
+    - pattern: 'こんにち[はわ]([〜、。!]|\s|$)'
       response:
         normal: こんにちは
       hours: [10, 11, 12, 13, 14, 15, 16, 17, 18]
-    - pattern: 'こんばん[はわ]([、。!]|\s|$)'
+    - pattern: 'こんばん[はわ]([〜、。!]|\s|$)'
       response:
         normal: こんばんは
       hours: [0, 1, 2, 3, 4, 18, 19, 20, 21, 22, 23]
@@ -91,6 +81,10 @@ respond:
       response:
         normal: おかえりなさい
         friendry: おかえり
+    - pattern: 'おハロ[ー〜]([、。!]|\s|$)'
+      response:
+        normal: こんにちは
+        friendry: おハロ〜
     - pattern: 'おめでとう([、。!]|\s|$)'
       response:
         normal: ありがとうございます
@@ -107,7 +101,15 @@ respond:
   interested:
     - quote: 歌
     - quote: 王女
-    - words:
+      words:
+        - 王女
+        - 王女様
+        - 王女さま
+        - アン王女
+        - アンジュ王女
+    - quote: 歯
+      words:
+        - 歯
         - 歯医者
         - 虫歯
         - 歯みがき
@@ -116,7 +118,6 @@ respond:
         - 歯槽膿漏
         - 知覚過敏
         - 歯周病
-      quote: 歯
   song:
     pattern: '「(.*?)」を(歌|うた)って([。!]|\s|$)'
     response:
@@ -130,9 +131,6 @@ respond:
       error:
         - 「%s」はわたしの曲じゃないわ。😉
         - 「%s」…？🙂
-  bad_mood:
-    words:
-      - ちんこ
   naming:
     pattern: '「(.*?)」(って|と)呼んで([。!]|\s|$)'
     response:
@@ -147,6 +145,21 @@ respond:
       - 形容動詞語幹
       - 副詞可能
       - 数
+  overfamiliar:
+    patterns:
+      match:
+        - アンジュ
+        - アン
+      ignore:
+        - キュアアンジュ
+      suffix:
+        - さん
+        - さま
+        - 様
+        - 王女
+        - 姫
+        - 殿下
+    message: 馴れ馴れしく王女様を呼び捨てにしないでください！
 nowplaying:
   messages:
     normal:
@@ -176,9 +189,6 @@ holidays:
 new_year:
   greeting: |-
     明けましておめでとうございます。
-morning:
-  topics:
-    - みんなは好き嫌いってある？実はわたし、きのこが嫌いなんです。
 track:
   url: https://script.google.com/macros/s/AKfycbym_KI7OhjP545B_jdJM5JxkF6RNZhtPrzuHQRhLffCi-E0cvlK/exec
 quote:
@@ -229,6 +239,12 @@ sidekiq:
     track_lib:
       every: 5m
       class: Makoto::TrackRefreshWorker
+    message_lib:
+      every: 5m
+      class: Makoto::MessageRefreshWorker
+    keyword_lib:
+      every: 5m
+      class: Makoto::KeywordRefreshWorker
     dictionary:
       every: 5m
       class: Makoto::DictionaryRefreshWorker
