@@ -15,7 +15,7 @@ module Makoto
     end
 
     def favorability
-      return rand(0..1)
+      return rand(0..1) * -1
     end
 
     def exec
