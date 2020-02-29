@@ -3,7 +3,7 @@ module Makoto
     def self.pickup(params = {})
       messages = Message.dataset
       messages = messages.where(feature: params[:feature]) if params[:feature]
-      messages = messages.where(message: params[:message]) if params[:message]
+      messages = messages.where(type: params[:type]) if params[:type]
       return messages.all.sample(random: Random.create)
     end
 

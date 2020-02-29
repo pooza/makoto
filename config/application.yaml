@@ -29,6 +29,7 @@ respond:
     - bad_mood
     - greeting
     - naming
+    - overfamiliar
     - interested
     - song
     - keyword
@@ -100,8 +101,15 @@ respond:
   interested:
     - quote: 歌
     - quote: 王女
+      words:
+        - 王女
+        - 王女様
+        - 王女さま
+        - アン王女
+        - アンジュ王女
     - quote: 歯
       words:
+        - 歯
         - 歯医者
         - 虫歯
         - 歯みがき
@@ -137,6 +145,21 @@ respond:
       - 形容動詞語幹
       - 副詞可能
       - 数
+  overfamiliar:
+    patterns:
+      match:
+        - アンジュ
+        - アン
+      ignore:
+        - キュアアンジュ
+      suffix:
+        - さん
+        - さま
+        - 様
+        - 王女
+        - 姫
+        - 殿下
+    message: 馴れ馴れしく王女様を呼び捨てにしないでください！
 nowplaying:
   messages:
     normal:

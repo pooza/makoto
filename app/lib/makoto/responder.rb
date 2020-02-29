@@ -76,7 +76,7 @@ module Makoto
       config = Config.instance
       return false if config['/respond/ignore_accounts'].member?(payload['account']['acct'])
       content = sanitize(payload['content'])
-      return false if content.match(Regexp.new("@#{config['/mastodon/account/name']}(\\s|$)"))
+      return false if content.match?(Regexp.new("@#{config['/mastodon/account/name']}(\\s|$)"))
       Keyword.dataset.where(type: 'topic').all do |topic|
         return true if content.include?(topic.word)
       end
