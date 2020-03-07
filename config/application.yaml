@@ -1,5 +1,5 @@
 package:
-  version: 2.2.1
+  version: 2.2.2
   url: https://github.com/pooza/makoto
   authors:
     - Tatsuya Koishi
@@ -252,6 +252,6 @@ sidekiq:
       every: 5m
       class: Makoto::FollowMaintenanceWorker
 puma:
-  port: 3008
+  port: 3011
   pidfile: tmp/pids/puma.pid
   rackup: app/initializer/config.ru
