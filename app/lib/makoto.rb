@@ -23,9 +23,7 @@ module Makoto
     loader = Zeitwerk::Loader.new
     loader.inflector.inflect(config['inflections'])
     loader.push_dir(File.join(dir, 'app/lib'))
-    config['dirs'].each do |d|
-      loader.push_dir(File.join(dir, 'app', d))
-    end
+    loader.collapse('app/lib/makoto/*')
     return loader
   end
 

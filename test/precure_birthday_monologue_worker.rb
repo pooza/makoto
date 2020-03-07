@@ -8,6 +8,8 @@ module Makoto
 
     def test_perform
       return if Environment.ci?
+      Timecop.travel(Time.parse('2020/03/09'))
+      @worker.perform
       Timecop.travel(Time.parse('2020/09/08'))
       @worker.perform
       Timecop.travel(Time.parse('2020/09/09'))

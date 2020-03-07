@@ -7,4 +7,4 @@ ENV['BUNDLE_GEMFILE'] ||= File.join(dir, 'Gemfile')
 require 'bundler/setup'
 require 'makoto'
 
-Makoto::ThinDaemon.spawn!
+Makoto::PumaDaemon.spawn!

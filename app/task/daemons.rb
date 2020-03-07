@@ -1,5 +1,5 @@
 namespace :makoto do
-  [:listener, :sidekiq, :thin].each do |ns|
+  [:listener, :sidekiq, :puma].each do |ns|
     namespace ns do
       [:start, :stop].each do |action|
         desc "#{action} #{ns}"
@@ -20,7 +20,7 @@ end
   desc "#{action} all"
   task action => [
     "makoto:listener:#{action}",
-    "makoto:thin:#{action}",
+    "makoto:puma:#{action}",
     "makoto:sidekiq:#{action}",
   ]
 end

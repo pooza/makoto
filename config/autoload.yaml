@@ -1,7 +1,2 @@
 inflections:
   http: HTTP
-dirs:
-  - daemon
-  - model
-  - responder
-  - worker
