@@ -66,7 +66,7 @@ respond:
         normal: おはようございます
         friendry: おはよう
       hours: [3, 4, 5, 6, 7, 8, 9, 10, 11]
-    - pattern: 'こんにち[はわ]([〜、。!]|\s|$)'
+    - pattern: 'こんに?ち[はわ]([〜、。!]|\s|$)'
       response:
         normal: こんにちは
       hours: [10, 11, 12, 13, 14, 15, 16, 17, 18]
@@ -94,7 +94,7 @@ respond:
       response:
         normal: おつかれさまです
         friendry: おつかれさま
-    - pattern: 'お(やす|休)み(なさい)?([、。!]|\s|$)'
+    - pattern: '(おやすみ|お休み|オヤスミ)(なさい)?([、。!]|\s|$)'
       response:
         normal: おやすみなさい
         friendry: おやすみ
