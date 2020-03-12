@@ -46,6 +46,7 @@ module Makoto
         toot_id: payload['status']['id'],
         content: payload['status']['content'],
         visibility: payload['status']['visibility'],
+        mention: true,
       )
     end
 
