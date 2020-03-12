@@ -2,12 +2,14 @@ module Makoto
   class InterestedResponder < Responder
     def executable?
       @config['/respond/interested'].each do |entry|
+        next unless @params['content'].include?(entry['quote'])
         entry['words'] ||= [entry['quote']]
         entry['words'].each do |word|
           next unless @params['content'].include?(word)
           @keyword = entry['quote']
           return true
         end
+        raise Ginseng::NotFoundError, "no match (#{entry['words'].join(',')})"
       end
       return false
     end
