@@ -1,5 +1,5 @@
 package:
-  version: 2.2.2
+  version: 2.2.3
   url: https://github.com/pooza/makoto
   authors:
     - Tatsuya Koishi
@@ -10,6 +10,8 @@ test:
 mastodon:
   hashtag:
     pattern: (?:^|[^\/\)\w])#([[:word:]_]*[[:alpha:]_·][[:word:]_]*)
+  acct:
+    pattern: '((?<=^|[^\/[:word:]])@(([a-z0-9_]+([a-z0-9_\.-]+[a-z0-9_]+)?)(?:@[a-z0-9\.\-]+[a-z0-9]+)?))'
   followers:
     limit: 500
   followees:
@@ -100,6 +102,19 @@ respond:
         friendry: おやすみ
   interested:
     - quote: 歌
+      words:
+        - 歌う
+        - 歌います
+        - 歌った
+        - 歌いました
+        - 歌って
+        - 歌おう
+        - 歌いましょう
+        - 歌える
+        - 歌えます
+        - 歌われ
+        - 歌えば
+        - 歌ったら
     - quote: 王女
       words:
         - 王女

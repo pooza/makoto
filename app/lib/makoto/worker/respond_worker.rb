@@ -6,7 +6,7 @@ module Makoto
       template = Template.new('respond')
       account = Account.get(params['account']['acct'])
       template[:account] = account.acct
-      template[:message] = create_message(params)
+      return unless template[:message] = create_message(params)
       mastodon.toot(
         status: template.to_s,
         visibility: params['visibility'],
@@ -21,6 +21,9 @@ module Makoto
         @logger.info(responder: responder.class.to_s)
         Account.get(params['account']['acct']).fav!(responder.favorability)
         return responder.exec
+      rescue Ginseng::NotFoundError => e
+        @logger.info(e)
+        return nil
       end
       raise 'All responders are not executable!'
     rescue => e

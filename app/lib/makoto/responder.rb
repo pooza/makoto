@@ -55,6 +55,9 @@ module Makoto
         end
         words[surface] = {surface: surface, feature: feature}
       end
+      usernames(@params['content']) do |username|
+        words[username] = {surface: username, feature: '人名'}
+      end
       return words.values
     end
 
@@ -88,6 +91,18 @@ module Makoto
     def ignore_words
       @ignore_words ||= Keyword.dataset.where(type: 'ignore').all.map(&:word)
       return @ignore_words
+    end
+
+    def usernames(text)
+      text.scan(acct_pattern).each do |acct|
+        username = acct.first.sub(/^@/, '').split('@').first
+        next if username == @config['/mastodon/account/name']
+        yield username
+      end
+    end
+
+    def acct_pattern
+      return Regexp.new(@config['/mastodon/acct/pattern'], Regexp::IGNORECASE)
     end
 
     def create_source_text(text)
