@@ -2,7 +2,8 @@ module Makoto
   class GreetingResponder < Responder
     def executable?
       @config['/respond/greeting'].each do |v|
-        next unless @params['content'].match(Regexp.new(v['pattern']))
+        check_ignore(v)
+        next unless @params['content'].match?(Regexp.new(v['pattern']))
         @matches = v.key_flatten
         return true
       end
@@ -32,16 +33,25 @@ module Makoto
       return message.join
     end
 
-    def display_name
-      name = account.nickname || @params['account']['display_name'].sub(/:$/, ': ')
-      name += 'さん' unless account.friendry?
-      return name
-    end
-
     def on_time?
       return false unless @matches['/hours'].nil? || @matches['/hours'].member?(hour)
       return false unless @matches['/dates'].nil? || @matches['/dates'].member?(date)
       return true
+    end
+
+    private
+
+    def check_ignore(entry)
+      return unless entry['pattern_rough']
+      return unless @params['content'].include?(entry['pattern_rough'])
+      return if @params['content'].match?(Regexp.new(entry['pattern']))
+      raise Ginseng::NotFoundError, 'no match pattern'
+    end
+
+    def display_name
+      name = account.nickname || @params['account']['display_name'].sub(/:$/, ': ')
+      name += 'さん' unless account.friendry?
+      return name
     end
 
     def hour

@@ -15,7 +15,7 @@ module Makoto
         templates[feature] ||= records.all.shuffle
         template = templates[feature].pop.message
         @paragraphs.push(template % [word[:surface]])
-        break if /[！？!?]$/.match?(template)
+        break if template.match?(/[！？!?]$/)
       rescue => e
         @logger.error(e)
       end
