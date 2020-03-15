@@ -262,6 +262,9 @@ sidekiq:
     follow_maintenance:
       every: 5m
       class: Makoto::FollowMaintenanceWorker
+    past_keywords_purge:
+      every: 5m
+      class: Makoto::PastKeywordsPurgeWorker
 puma:
   port: 3011
   pidfile: tmp/pids/puma.pid

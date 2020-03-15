@@ -164,6 +164,43 @@ ALTER SEQUENCE public.message_id_seq OWNED BY public.message.id;
 
 
 --
+-- Name: past_keyword; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.past_keyword (
+    id integer NOT NULL,
+    account_id integer NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    surface character varying(64) NOT NULL,
+    feature character varying(16) NOT NULL
+);
+
+
+ALTER TABLE public.past_keyword OWNER TO postgres;
+
+--
+-- Name: past_keyword_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.past_keyword_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.past_keyword_id_seq OWNER TO postgres;
+
+--
+-- Name: past_keyword_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.past_keyword_id_seq OWNED BY public.past_keyword.id;
+
+
+--
 -- Name: quote; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -305,6 +342,13 @@ ALTER TABLE ONLY public.message ALTER COLUMN id SET DEFAULT nextval('public.mess
 
 
 --
+-- Name: past_keyword id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.past_keyword ALTER COLUMN id SET DEFAULT nextval('public.past_keyword_id_seq'::regclass);
+
+
+--
 -- Name: quote id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -363,6 +407,14 @@ ALTER TABLE ONLY public.keyword
 
 ALTER TABLE ONLY public.message
     ADD CONSTRAINT message_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: past_keyword past_keyword_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.past_keyword
+    ADD CONSTRAINT past_keyword_pkey PRIMARY KEY (id);
 
 
 --
@@ -436,6 +488,14 @@ CREATE UNIQUE INDEX track_title_idx ON public.track USING btree (title);
 --
 
 CREATE UNIQUE INDEX track_url_idx ON public.track USING btree (url);
+
+
+--
+-- Name: past_keyword past_keyword_account_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.past_keyword
+    ADD CONSTRAINT past_keyword_account_id_fkey FOREIGN KEY (account_id) REFERENCES public.account(id) ON DELETE CASCADE;
 
 
 --
