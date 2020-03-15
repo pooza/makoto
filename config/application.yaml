@@ -1,5 +1,5 @@
 package:
-  version: 2.2.5
+  version: 2.3.0
   url: https://github.com/pooza/makoto
   authors:
     - Tatsuya Koishi
@@ -197,11 +197,6 @@ birthday:
     - |-
       こんなわたしを応援してくれる人がいる。
       だからその人達の為に、自分の為に、わたしは歌う！
-holidays:
-  - date: '0101'
-    greeting: |-
-      明けましておめでとうございます！剣崎真琴です。
-      #あけおめ
 new_year:
   greeting: |-
     明けましておめでとうございます。
@@ -267,6 +262,9 @@ sidekiq:
     follow_maintenance:
       every: 5m
       class: Makoto::FollowMaintenanceWorker
+    past_keywords_purge:
+      every: 5m
+      class: Makoto::PastKeywordsPurgeWorker
 puma:
   port: 3011
   pidfile: tmp/pids/puma.pid

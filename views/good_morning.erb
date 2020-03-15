@@ -1,8 +1,10 @@
 <%# encoding: UTF-8 -%>
-<% if params[:greeting] -%>
-<%= params[:greeting] %>
+<% if params[:holiday_messages].present? -%>
+<% params[:holiday_messages].each do |message| -%>
+<%= message %>
+<% end -%>
 <% else -%>
 おはよう！みんな、元気してるかな？剣崎真琴です。
-<%= params[:topic] %>
+<%= params[:greeting] %>
 <% end -%>
 #おはよう

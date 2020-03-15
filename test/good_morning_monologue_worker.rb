@@ -4,21 +4,24 @@ module Makoto
       @worker = GoodMorningMonologueWorker.new
     end
 
-    def test_holiday_greeting
+    def holiday_messages
       Timecop.travel(Time.parse('2000/5/17'))
-      assert_nil(@worker.holiday_greeting)
+      assert_equal(@worker.holiday_messages, [])
       Timecop.travel(Time.parse('2000/1/1'))
-      assert(@worker.holiday_greeting.present?)
+      assert(@worker.holiday_messages.present?)
     end
 
-    def test_topic
-      return if Environment.ci?
-      assert(@worker.topic.present?)
+    def test_greeting
+      assert(@worker.greeting.present?)
     end
 
     def test_perform
       return if Environment.ci?
-      Timecop.travel(Time.parse('2000/5/17'))
+      Timecop.travel(Time.parse('2020/01/01'))
+      @worker.perform
+      Timecop.travel(Time.parse('2020/02/01'))
+      @worker.perform
+      Timecop.travel(Time.parse('2020/02/02'))
       @worker.perform
     end
   end

@@ -19,11 +19,15 @@ module Makoto
     end
 
     def self.create_entry(values)
-      return {
+      entry = {
         type: values['type'],
         feature: values['feature'],
         message: values['message'],
       }
+      [:month, :day].each do |k|
+        entry[k] = values[k.to_s] if values[k.to_s].present?
+      end
+      return entry
     end
 
     def self.fetch
