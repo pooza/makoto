@@ -6,21 +6,21 @@ module Makoto
 
     def perform
       template = Template.new('good_morning')
-      template[:greeting] = holiday_greeting
-      template[:topic] = topic unless template[:greeting]
+      template[:holiday_messages] = holiday_messages
+      template[:greeting] = greeting
       mastodon.toot(template.to_s)
     end
 
-    def topic
+    def greeting
       return Message.pickup(type: 'morning').message
     end
 
-    def holiday_greeting
-      @config['/holidays'].each do |holiday|
-        next unless holiday['date'] == Time.now.strftime('%m%d')
-        return holiday['greeting']
-      end
-      return nil
+    def holiday_messages
+      return Message.dataset.where(
+        type: 'holiday',
+        month: Time.now.month,
+        day: Time.now.day,
+      ).all.map(&:message)
     end
   end
 end

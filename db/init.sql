@@ -133,7 +133,9 @@ CREATE TABLE public.message (
     id integer NOT NULL,
     type character varying(64) NOT NULL,
     feature character varying(64),
-    message text NOT NULL
+    message text NOT NULL,
+    month smallint,
+    day smallint
 );
 
 
