@@ -1,6 +1,8 @@
 require 'bootsnap'
 require 'ginseng'
+require 'ginseng/web'
 require 'sidekiq'
+require 'sidekiq-failures'
 require 'sidekiq-scheduler'
 
 module Makoto
@@ -46,7 +48,10 @@ module Makoto
         Makoto::Environment.auth(username, password)
       end
     end
-    return Rack::URLMap.new('/makoto/sidekiq' => Sidekiq::Web)
+    return Rack::URLMap.new(
+      '/' => Server,
+      '/makoto/sidekiq' => Sidekiq::Web,
+    )
   end
 end
 
