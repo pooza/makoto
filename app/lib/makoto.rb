@@ -1,9 +1,8 @@
 require 'bootsnap'
+require 'sidekiq'
+require 'sidekiq-scheduler'
 require 'ginseng'
 require 'ginseng/web'
-require 'sidekiq'
-require 'sidekiq-failures'
-require 'sidekiq-scheduler'
 
 module Makoto
   def self.dir
@@ -41,6 +40,7 @@ module Makoto
   def self.rack
     require 'sidekiq/web'
     require 'sidekiq-scheduler/web'
+    require 'sidekiq-failures'
 
     config = Makoto::Config.instance
     if config['/sidekiq/auth/user'].present? && config['/sidekiq/auth/password'].present?

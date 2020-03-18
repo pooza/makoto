@@ -15,8 +15,8 @@ module Makoto
     def self.health
       instance.connection.from(:account).first
       return {status: 'OK'}
-    rescue
-      return {status: 'NG'}
+    rescue => e
+      return {error: e.message, status: 'NG'}
     end
   end
 end
