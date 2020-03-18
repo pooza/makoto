@@ -7,6 +7,7 @@ package:
     - tkoishi@b-shock.co.jp
 test:
   acct: user
+environment: development
 mastodon:
   hashtag:
     pattern: (?:^|[^\/\)\w])#([[:word:]_]*[[:alpha:]_·][[:word:]_]*)
