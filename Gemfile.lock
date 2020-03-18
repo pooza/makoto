@@ -163,6 +163,8 @@ GEM
       rack (~> 2.0)
       rack-protection (>= 2.0.0)
       redis (>= 4.1.0)
+    sidekiq-failures (1.0.0)
+      sidekiq (>= 4.0.0)
     sidekiq-scheduler (3.0.1)
       e2mmap
       redis (>= 3, < 5)
@@ -213,6 +215,7 @@ DEPENDENCIES
   rubicure!
   sanitize
   sidekiq
+  sidekiq-failures
   sidekiq-scheduler
   timecop
 
