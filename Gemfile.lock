@@ -70,7 +70,7 @@ GEM
     domain_name (0.5.20190701)
       unf (>= 0.0.5, < 1.0.0)
     e2mmap (0.1.0)
-    et-orbi (1.2.3)
+    et-orbi (1.2.4)
       tzinfo
     eventmachine (1.2.7)
     faye-websocket (0.10.9)
