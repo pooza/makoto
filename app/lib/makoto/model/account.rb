@@ -20,10 +20,7 @@ module Makoto
     end
 
     def self.get(acct)
-      unless account = Account.first(acct: acct)
-        account = Account.create(acct: acct)
-      end
-      return account
+      return Account.first(acct: acct) || Account.create(acct: acct)
     end
   end
 end

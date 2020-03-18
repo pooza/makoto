@@ -7,4 +7,7 @@ ENV['BUNDLE_GEMFILE'] ||= File.join(dir, 'Gemfile')
 require 'bundler/setup'
 require 'makoto'
 
+config = Makoto::Config.instance
+ENV['RACK_ENV'] ||= config['/environment']
+
 Makoto::ListenerDaemon.spawn!
