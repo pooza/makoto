@@ -6,10 +6,7 @@ module Makoto
 
     def self.get(name)
       name = Unicode.nfkc(name)
-      unless form = Form.first(name: name)
-        form = Form.create(name: name)
-      end
-      return form
+      return Form.first(name: name) || Form.create(name: name)
     end
   end
 end

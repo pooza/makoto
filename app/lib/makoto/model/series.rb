@@ -6,10 +6,7 @@ module Makoto
 
     def self.get(name)
       name = Unicode.nfkc(name)
-      unless series = Series.first(name: name)
-        series = Series.create(name: name)
-      end
-      return series
+      return Series.first(name: name) || Series.create(name: name)
     end
   end
 end
