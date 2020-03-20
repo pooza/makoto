@@ -42,7 +42,7 @@ module Makoto
 
     def analyze
       words = {}
-      Natto::MeCab.new.parse(create_source_text(@params['content'])) do |word|
+      Natto::MeCab.new.parse(Responder.create_source_text(@params['content'])) do |word|
         surface = Responder.sanitize(word.surface)
         features = word.feature.split(',')
         pattern = Regexp.new('(' + @config['/respond/keyword/ignore_features'].join('|') + ')')
@@ -75,10 +75,21 @@ module Makoto
       return message
     end
 
+    def self.create_source_text(text)
+      text = Responder.sanitize(text)
+      text.clone.scan(%r{https?://[^\s[:cntrl:]]+}).each do |link|
+        text.gsub!(link, '')
+      end
+      Ginseng::TagContainer.scan(text).each do |tag|
+        text.gsub!(Mastodon.create_tag(tag), '')
+      end
+      return text
+    end
+
     def self.respondable?(payload)
       config = Config.instance
       return false if config['/respond/ignore_accounts'].member?(payload['account']['acct'])
-      content = sanitize(payload['content'])
+      content = Responder.create_source_text(payload['content'])
       return false if content.match?(Regexp.new("@#{config['/mastodon/account/name']}(\\s|$)"))
       Keyword.dataset.where(type: 'topic').all do |topic|
         return true if content.include?(topic.word)
@@ -103,17 +114,6 @@ module Makoto
 
     def acct_pattern
       return Regexp.new(@config['/mastodon/acct/pattern'], Regexp::IGNORECASE)
-    end
-
-    def create_source_text(text)
-      temp = text.clone
-      text.scan(%r{https?://[^\s[:cntrl:]]+}).each do |link|
-        temp.gsub!(link, '')
-      end
-      Ginseng::TagContainer.scan(text).each do |tag|
-        temp.gsub!(Mastodon.create_tag(tag), '')
-      end
-      return temp
     end
   end
 end
