@@ -21,7 +21,7 @@ module Makoto
 
     def self.health
       pid = File.read(File.join(Environment.dir, 'tmp/pids/ListenerDaemon.pid')).to_i
-      Process.kill(0, pid)
+      raise "PID '#{pid}' was dead" unless Process.alive?(pid)
       return {status: 'OK'}
     rescue => e
       return {error: e.message, status: 'NG'}

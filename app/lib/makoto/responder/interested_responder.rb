@@ -1,11 +1,12 @@
 module Makoto
   class InterestedResponder < Responder
     def executable?
+      text = Responder.create_source_text(@params['content'])
       @config['/respond/interested'].each do |entry|
-        next unless @params['content'].include?(entry['quote'])
+        next unless text.include?(entry['quote'])
         entry['words'] ||= [entry['quote']]
         entry['words'].each do |word|
-          next unless @params['content'].include?(word)
+          next unless text.include?(word)
           @keyword = entry['quote']
           return true
         end
