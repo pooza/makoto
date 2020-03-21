@@ -7,12 +7,10 @@ module Makoto
     end
 
     def test_exec
-      assert_raise Ginseng::NotFoundError do
-        @responder.params = {'content' => '博多ラーメン！', 'account' => @account}
-        @responder.executable?
-      end
+      @responder.params = {'content' => '博多ラーメン！', 'account' => @account}
+      assert_false(@responder.executable?)
 
-      @responder.params = {'content' => 'おはよう！', 'account' => @account}
+      @responder.params = {'content' => 'おはよう', 'account' => @account}
       Timecop.travel(Time.parse('8:00'))
       assert(@responder.executable?)
       assert(@responder.on_time?)
@@ -27,6 +25,7 @@ module Makoto
       assert(@responder.executable?)
       @responder.params = {'content' => 'おはようでプルンス', 'account' => @account}
       assert(@responder.executable?)
+
       assert_raise Ginseng::NotFoundError do
         @responder.params = {'content' => 'おはようさん', 'account' => @account}
         @responder.executable?
@@ -35,6 +34,10 @@ module Makoto
         @responder.params = {'content' => 'おはようのプルンス', 'account' => @account}
         @responder.executable?
       end
+      @responder.params = {'content' => 'おはようさん', 'account' => @account, 'mention' => true}
+      assert_false(@responder.executable?)
+      @responder.params = {'content' => 'おはようのプルンス', 'account' => @account, 'mention' => true}
+      assert_false(@responder.executable?)
 
       @responder.params = {'content' => 'あけおめ！', 'account' => @account}
       Timecop.travel(Time.parse('2000/1/1'))

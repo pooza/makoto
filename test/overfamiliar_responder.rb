@@ -17,11 +17,15 @@ module Makoto
       @responder.params = {'content' => 'キュアアンジュ'}
       assert_false(@responder.executable?)
 
-      @responder.params = {'content' => 'アン王女'}
+      @responder.params = {'content' => 'アン王女', 'mention' => true}
       assert_false(@responder.executable?)
 
-      @responder.params = {'content' => 'アン殿下'}
+      @responder.params = {'content' => 'アン殿下', 'mention' => true}
       assert_false(@responder.executable?)
+      assert_raise Ginseng::NotFoundError do
+        @responder.params = {'content' => 'アン殿下'}
+        @responder.executable?
+      end
     end
   end
 end

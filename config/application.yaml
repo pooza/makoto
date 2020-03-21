@@ -1,5 +1,5 @@
 package:
-  version: 2.3.3
+  version: 2.3.4
   url: https://github.com/pooza/makoto
   authors:
     - Tatsuya Koishi
@@ -252,22 +252,22 @@ sidekiq:
       cron: '0 0 0 1 1 *'
       class: Makoto::NewYearMonologueWorker
     fairy_lib:
-      cron: '1 0 2 * * *'
+      cron: '0 2 2 * * *'
       class: Makoto::FairyRefreshWorker
     quote_lib:
-      every: 5m
+      cron: '0 4 2 * * *'
       class: Makoto::QuoteRefreshWorker
     track_lib:
-      every: 5m
+      cron: '0 6 2 * * *'
       class: Makoto::TrackRefreshWorker
     message_lib:
-      every: 5m
+      cron: '0 8 2 * * *'
       class: Makoto::MessageRefreshWorker
     keyword_lib:
-      every: 5m
+      cron: '0 10 2 * * *'
       class: Makoto::KeywordRefreshWorker
     dictionary:
-      every: 5m
+      cron: '0 12 2 * * *'
       class: Makoto::DictionaryRefreshWorker
     follow_maintenance:
       every: 5m

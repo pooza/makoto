@@ -42,7 +42,7 @@ module Makoto
 
     def analyze
       words = {}
-      Natto::MeCab.new.parse(Responder.create_source_text(@params['content'])) do |word|
+      Natto::MeCab.new.parse(source_text) do |word|
         surface = Responder.sanitize(word.surface)
         features = word.feature.split(',')
         pattern = Regexp.new('(' + @config['/respond/keyword/ignore_features'].join('|') + ')')
@@ -55,7 +55,7 @@ module Makoto
         end
         words[surface] = {surface: surface, feature: feature}
       end
-      usernames(@params['content']) do |username|
+      usernames(source_text) do |username|
         words[username] = {surface: username, feature: '人名'}
       end
       return words.values
@@ -98,6 +98,14 @@ module Makoto
     end
 
     private
+
+    def source_text
+      return Responder.create_source_text(@params['content'])
+    end
+
+    def mention?
+      return @params['mention'].present?
+    end
 
     def ignore_words
       @ignore_words ||= Keyword.dataset.where(type: 'ignore').all.map(&:word)

@@ -6,8 +6,11 @@ module Makoto
         @config['/respond/overfamiliar/patterns/ignore'].join('|'),
         @config['/respond/overfamiliar/patterns/suffix'].join('|'),
       ]
-      return false unless matches = Regexp.new(pattern).match(@params['content'])
-      return false if matches[2].present?
+      return false unless matches = Regexp.new(pattern).match(source_text)
+      if matches[2].present?
+        return false if mention?
+        raise Ginseng::NotFoundError, 'no match'
+      end
 
       pattern = "(#{@config['/respond/overfamiliar/patterns/ignore'].join('|')})"
       return false if matches[1].match?(pattern)
