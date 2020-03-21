@@ -57,6 +57,42 @@ ALTER SEQUENCE public.account_id_seq OWNED BY public.account.id;
 
 
 --
+-- Name: fairy; Type: TABLE; Schema: public; Owner: postgres
+--
+
+CREATE TABLE public.fairy (
+    id integer NOT NULL,
+    name text NOT NULL,
+    human_name text,
+    suffix text
+);
+
+
+ALTER TABLE public.fairy OWNER TO postgres;
+
+--
+-- Name: fairy_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+--
+
+CREATE SEQUENCE public.fairy_id_seq
+    AS integer
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE public.fairy_id_seq OWNER TO postgres;
+
+--
+-- Name: fairy_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+--
+
+ALTER SEQUENCE public.fairy_id_seq OWNED BY public.fairy.id;
+
+
+--
 -- Name: form; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -321,6 +357,13 @@ ALTER TABLE ONLY public.account ALTER COLUMN id SET DEFAULT nextval('public.acco
 
 
 --
+-- Name: fairy id; Type: DEFAULT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.fairy ALTER COLUMN id SET DEFAULT nextval('public.fairy_id_seq'::regclass);
+
+
+--
 -- Name: form id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -383,6 +426,22 @@ ALTER TABLE ONLY public.account
 
 ALTER TABLE ONLY public.account
     ADD CONSTRAINT account_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: fairy fairy_name_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.fairy
+    ADD CONSTRAINT fairy_name_key UNIQUE (name);
+
+
+--
+-- Name: fairy fairy_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE ONLY public.fairy
+    ADD CONSTRAINT fairy_pkey PRIMARY KEY (id);
 
 
 --

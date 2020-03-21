@@ -39,6 +39,7 @@ jobs:
           psql -U postgres -h localhost -p 5432 -w makoto < ./db/init.sql
           bundle exec rake makoto:quote:update
           bundle exec rake makoto:track:update
+          bundle exec rake makoto:fairy:update
           bundle exec rake makoto:keyword:update
           bundle exec rake makoto:message:update
       - run: bundle exec rubocop
