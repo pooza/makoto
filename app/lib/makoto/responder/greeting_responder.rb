@@ -1,15 +1,13 @@
 module Makoto
   class GreetingResponder < Responder
     def executable?
-      text = Responder.create_source_text(@params['content'])
       @config['/respond/greeting'].each do |v|
         check_ignore(v)
-        next unless text.match?(create_pattern(v['pattern']))
+        next unless source_text.match?(create_pattern(v['pattern']))
         @matches = v.key_flatten
         return true
       end
-      return false if @params['mention']
-      raise Ginseng::NotFoundError, self.class.to_s
+      return false
     end
 
     def favorability
@@ -48,9 +46,10 @@ module Makoto
     end
 
     def check_ignore(entry)
+      return if mention?
       return unless entry['pattern_rough']
-      return unless @params['content'].include?(entry['pattern_rough'])
-      return if @params['content'].match?(create_pattern(entry['pattern']))
+      return unless source_text.include?(entry['pattern_rough'])
+      return if source_text.match?(create_pattern(entry['pattern']))
       raise Ginseng::NotFoundError, 'no match pattern'
     end
 
