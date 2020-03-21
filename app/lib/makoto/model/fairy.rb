@@ -1,6 +1,7 @@
 module Makoto
   class Fairy < Sequel::Model(:fairy)
     def self.suffixes
+      return Fairy.all.map(&:suffix).compact
     end
 
     def self.refresh

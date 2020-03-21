@@ -44,12 +44,7 @@ module Makoto
     private
 
     def create_pattern(source)
-      return Regexp.new("#{source}[でだ]?(#{suffixes.join('|')})?([〜、。!]|\s|$)")
-    end
-
-    def suffixes
-      @suffixes ||= Fairy.all.map {|f| f.suffix}.compact
-      return @suffixes
+      return Regexp.new("#{source}[でだ]?(#{Fairy.suffixes.join('|')})?([〜、。!]|\s|$)")
     end
 
     def check_ignore(entry)
