@@ -9,7 +9,7 @@ module Makoto
       return false unless matches = Regexp.new(pattern).match(source_text)
       if matches[2].present?
         return false if mention?
-        raise Ginseng::NotFoundError, 'no match'
+        raise MatchingError, 'no match overfamiliar patterns'
       end
 
       pattern = "(#{@config['/respond/overfamiliar/patterns/ignore'].join('|')})"

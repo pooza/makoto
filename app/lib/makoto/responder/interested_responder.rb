@@ -9,7 +9,8 @@ module Makoto
           @keyword = entry['quote']
           return true
         end
-        raise Ginseng::NotFoundError, "no match (#{entry['words'].join('|')})"
+        raise MatchingError, "no match (#{entry['words'].join('|')})" unless mention?
+        return false
       end
       return false
     end

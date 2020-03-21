@@ -16,10 +16,12 @@ module Makoto
       assert(@responder.executable?)
       assert(@responder.exec.present?)
 
-      assert_raise Ginseng::NotFoundError do
+      assert_raise MatchingError do
         @responder.params = {'content' => '歌'}
         @responder.executable?
       end
+      @responder.params = {'content' => '歌', 'mention' => true}
+      assert_false(@responder.executable?)
 
       @responder.params = {'content' => '歌う'}
       assert(@responder.executable?)

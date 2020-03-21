@@ -2,7 +2,7 @@ module Makoto
   class GreetingResponder < Responder
     def executable?
       @config['/respond/greeting'].each do |v|
-        check_ignore(v)
+        raise MatchingError, 'no match greeting patterns' if !mention? && ignore?(v)
         next unless source_text.match?(create_pattern(v['pattern']))
         @matches = v.key_flatten
         return true
@@ -45,12 +45,11 @@ module Makoto
       return Regexp.new("#{source}[でだ]?(#{Fairy.suffixes.join('|')})?([〜、。!]|\s|$)")
     end
 
-    def check_ignore(entry)
-      return if mention?
-      return unless entry['pattern_rough']
-      return unless source_text.include?(entry['pattern_rough'])
-      return if source_text.match?(create_pattern(entry['pattern']))
-      raise Ginseng::NotFoundError, 'no match pattern'
+    def ignore?(entry)
+      return false unless entry['pattern_rough']
+      return false unless source_text.include?(entry['pattern_rough'])
+      return false if source_text.match?(create_pattern(entry['pattern']))
+      return true
     end
 
     def display_name

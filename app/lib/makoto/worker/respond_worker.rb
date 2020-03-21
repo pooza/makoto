@@ -22,7 +22,7 @@ module Makoto
         @logger.info(responder: responder.class.to_s, source: Responder.sanitize(params['content']))
         Account.get(params['account']['acct']).fav!(responder.favorability)
         return responder.exec
-      rescue Ginseng::NotFoundError => e
+      rescue MatchingError => e
         @logger.info(error: e.message, source: Responder.sanitize(params['content']))
         return nil unless params['mention']
       end

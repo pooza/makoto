@@ -26,11 +26,11 @@ module Makoto
       @responder.params = {'content' => 'おはようでプルンス', 'account' => @account}
       assert(@responder.executable?)
 
-      assert_raise Ginseng::NotFoundError do
+      assert_raise MatchingError do
         @responder.params = {'content' => 'おはようさん', 'account' => @account}
         @responder.executable?
       end
-      assert_raise Ginseng::NotFoundError do
+      assert_raise MatchingError do
         @responder.params = {'content' => 'おはようのプルンス', 'account' => @account}
         @responder.executable?
       end

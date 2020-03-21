@@ -22,7 +22,7 @@ module Makoto
 
       @responder.params = {'content' => 'アン殿下', 'mention' => true}
       assert_false(@responder.executable?)
-      assert_raise Ginseng::NotFoundError do
+      assert_raise MatchingError do
         @responder.params = {'content' => 'アン殿下'}
         @responder.executable?
       end
