@@ -5,6 +5,7 @@ require 'natto'
 module Makoto
   class Responder
     attr_reader :params
+    attr_reader :source_text
 
     def initialize
       @config = Config.instance
@@ -18,7 +19,7 @@ module Makoto
 
     def params=(params)
       @params = params
-      @params['content'] = Responder.sanitize(@params['content'])
+      @source_text = Responder.planize(@params['content'])
     end
 
     def executable?
@@ -68,43 +69,40 @@ module Makoto
       end
     end
 
-    def self.sanitize(message)
-      message = Sanitize.clean(message)
-      message = Unicode.nfkc(message)
-      message.strip!
-      return message
+    def self.sanitize(text)
+      text = Sanitize.clean(text)
+      text = Unicode.nfkc(text)
+      return text.strip
     end
 
-    def self.create_source_text(text)
-      text = Responder.sanitize(text)
+    def self.planize(text)
+      text = sanitize(text)
       text.clone.scan(%r{https?://[^\s[:cntrl:]]+}).each do |link|
         text.gsub!(link, '')
       end
       Ginseng::TagContainer.scan(text).each do |tag|
         text.gsub!(Mastodon.create_tag(tag), '')
       end
-      return text
+      return text.strip
     end
 
     def self.respondable?(payload)
       config = Config.instance
       return false if config['/respond/ignore_accounts'].member?(payload['account']['acct'])
-      content = Responder.create_source_text(payload['content'])
-      return false if content.match?(Regexp.new("@#{config['/mastodon/account/name']}(\\s|$)"))
+      text = planize(payload['content'])
+      return false if text.match?(Regexp.new("@#{config['/mastodon/account/name']}(\\s|$)"))
       Keyword.dataset.where(type: 'topic').all do |topic|
-        return true if content.include?(topic.word)
+        return true if text.include?(topic.word)
       end
       return false
     end
 
     private
 
-    def source_text
-      return Responder.create_source_text(@params['content'])
-    end
-
     def mention?
       return @params['mention'].present?
+    rescue
+      return false
     end
 
     def ignore_words

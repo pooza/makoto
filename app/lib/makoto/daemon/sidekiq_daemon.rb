@@ -1,3 +1,5 @@
+require 'sidekiq/api'
+
 module Makoto
   class SidekiqDaemon < Daemon
     def command

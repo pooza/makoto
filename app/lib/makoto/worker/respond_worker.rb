@@ -19,11 +19,11 @@ module Makoto
       Responder.all do |responder|
         responder.params = params
         next unless responder.executable?
-        @logger.info(responder: responder.class.to_s)
+        @logger.info(responder: responder.class.to_s, source: Responder.sanitize(params['content']))
         Account.get(params['account']['acct']).fav!(responder.favorability)
         return responder.exec
-      rescue Ginseng::NotFoundError => e
-        @logger.info(e)
+      rescue MatchingError => e
+        @logger.info(error: e.message, source: Responder.sanitize(params['content']))
         return nil unless params['mention']
       end
       raise 'All responders are not executable!'
