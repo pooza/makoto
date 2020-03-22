@@ -52,12 +52,6 @@ module Makoto
       return true
     end
 
-    def display_name
-      name = account.nickname || @params['account']['display_name'].sub(/:$/, ': ')
-      name += 'さん' unless account.friendry?
-      return name
-    end
-
     def hour
       return Time.now.hour
     end

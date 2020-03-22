@@ -56,10 +56,16 @@ module Makoto
         end
         words[surface] = {surface: surface, feature: feature}
       end
-      usernames(source_text) do |username|
+      usernames do |username|
         words[username] = {surface: username, feature: '人名'}
       end
       return words.values
+    end
+
+    def display_name
+      name = account.nickname || @params['account']['display_name'].sub(/:$/, ': ')
+      name += 'さん' unless account.friendry?
+      return name
     end
 
     def self.all
