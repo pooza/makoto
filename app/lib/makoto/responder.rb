@@ -116,8 +116,9 @@ module Makoto
       return @ignore_words
     end
 
-    def usernames(text)
-      text.scan(acct_pattern).each do |acct|
+    def usernames
+      return enum_for(__method__) unless block_given?
+      source_text.scan(acct_pattern).each do |acct|
         username = acct.first.sub(/^@/, '').split('@').first
         next if username == @config['/mastodon/account/name']
         yield username
