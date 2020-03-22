@@ -14,6 +14,7 @@ module Makoto
     end
 
     def test_analyze
+      return if Environment.ci?
       @responder.params = {'content' => '@pooza @info @makoto 納豆餃子飴'}
       assert_equal(
         @responder.analyze,
