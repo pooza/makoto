@@ -56,10 +56,16 @@ module Makoto
         end
         words[surface] = {surface: surface, feature: feature}
       end
-      usernames(source_text) do |username|
+      usernames do |username|
         words[username] = {surface: username, feature: '人名'}
       end
       return words.values
+    end
+
+    def display_name
+      name = account.nickname || @params['account']['display_name'].sub(/:$/, ': ')
+      name += 'さん' unless account.friendry?
+      return name
     end
 
     def self.all
@@ -110,8 +116,9 @@ module Makoto
       return @ignore_words
     end
 
-    def usernames(text)
-      text.scan(acct_pattern).each do |acct|
+    def usernames
+      return enum_for(__method__) unless block_given?
+      source_text.scan(acct_pattern).each do |acct|
         username = acct.first.sub(/^@/, '').split('@').first
         next if username == @config['/mastodon/account/name']
         yield username
