@@ -55,6 +55,7 @@ module Makoto
           )
         end
       end
+      @logger.info(class: self.class.to_s, words: words)
     end
   end
 end
