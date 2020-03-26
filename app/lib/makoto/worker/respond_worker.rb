@@ -4,9 +4,11 @@ module Makoto
 
     def perform(params)
       template = Template.new('respond')
-      account = Account.get(params['account']['acct'])
-      template[:account] = account.acct
+      @account = Account.get(params['account']['acct'])
+      params['analyzer'] = Analyzer.new(params['content'])
+      template[:account] = @account.acct
       template[:message] = create_message(params)
+      save(params['analyzer'].result)
       return if template[:message].nil? && params['mention'].nil?
       mastodon.toot(
         status: template.to_s,
@@ -19,17 +21,33 @@ module Makoto
       Responder.all do |responder|
         responder.params = params
         next unless responder.executable?
-        @logger.info(responder: responder.class.to_s, source: Responder.sanitize(params['content']))
+        @logger.info(responder: responder.class.to_s, source: Analyzer.sanitize(params['content']))
         Account.get(params['account']['acct']).fav!(responder.favorability)
         return responder.exec
       rescue MatchingError => e
-        @logger.info(error: e.message, source: Responder.sanitize(params['content']))
+        @logger.info(error: e.message, source: Analyzer.sanitize(params['content']))
         return nil unless params['mention']
       end
       raise 'All responders are not executable!'
     rescue => e
       @logger.error(e)
       return FixedResponder.new.exec
+    end
+
+    def save(result)
+      return unless @account
+      Postgres.instance.connection.transaction do
+        result.each do |word|
+          next unless word[:feature].present?
+          PastKeyword.create(
+            account_id: @account.id,
+            surface: word[:surface],
+            feature: word[:feature],
+            created_at: Time.new,
+          )
+        end
+      end
+      @logger.info(class: self.class.to_s, words: result)
     end
   end
 end

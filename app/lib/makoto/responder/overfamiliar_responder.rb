@@ -6,7 +6,7 @@ module Makoto
         @config['/respond/overfamiliar/patterns/ignore'].join('|'),
         @config['/respond/overfamiliar/patterns/suffix'].join('|'),
       ]
-      return false unless matches = Regexp.new(pattern).match(source_text)
+      return false unless matches = analyzer.match(pattern)
       if matches[2].present?
         return false if mention?
         raise MatchingError, 'no match overfamiliar patterns'
