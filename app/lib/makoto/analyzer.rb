@@ -83,7 +83,7 @@ module Makoto
 
     def self.respondable?(payload)
       config = Config.instance
-      return false if config['/respond/ignore_accounts'].member?(payload['account']['acct'])
+      return false if config['/analyzer/ignore_accounts'].member?(payload['account']['acct'])
       text = create_source(payload['content'])
       return false if text.match?("@#{config['/mastodon/account/name']}(\\s|$)")
       Keyword.dataset.where(type: 'topic').all do |topic|
@@ -100,7 +100,7 @@ module Makoto
     end
 
     def ignore_features_pattern
-      return Regexp.new('(' + @config['/respond/keyword/ignore_features'].join('|') + ')')
+      return Regexp.new('(' + @config['/analyzer/ignore_features'].join('|') + ')')
     end
 
     def acct_pattern
