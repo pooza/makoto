@@ -1,8 +1,7 @@
 module Makoto
   class NamingResponder < Responder
     def executable?
-      pattern = Regexp.new(@config['/respond/naming/pattern'])
-      return false unless matches = source_text.match(pattern)
+      return false unless matches = analyzer.match(@config['/respond/naming/pattern'])
       @name = matches[1]
       return @name.present?
     end

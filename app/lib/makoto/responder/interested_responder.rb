@@ -2,10 +2,10 @@ module Makoto
   class InterestedResponder < Responder
     def executable?
       @config['/respond/interested'].each do |entry|
-        next unless source_text.include?(entry['quote'])
+        next unless analyzer.match?(entry['quote'])
         entry['words'] ||= [entry['quote']]
         entry['words'].each do |word|
-          next unless source_text.include?(word)
+          next unless analyzer.match?(word)
           @keyword = entry['quote']
           return true
         end

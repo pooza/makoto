@@ -59,7 +59,7 @@ module Makoto
     def handle_reblog_notification(payload); end
 
     def handle_update(payload)
-      return unless Responder.respondable?(payload)
+      return unless Analyzer.respondable?(payload)
       RespondWorker.perform_async(
         account: {
           acct: payload['account']['acct'],

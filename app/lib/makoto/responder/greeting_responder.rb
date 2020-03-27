@@ -1,9 +1,12 @@
+require 'rubicure'
+
 module Makoto
   class GreetingResponder < Responder
     def executable?
       @config['/respond/greeting'].each do |v|
         raise MatchingError, 'no match greeting patterns' if !mention? && ignore?(v)
-        next unless source_text.match?(create_pattern(v['pattern']))
+        return false if v['pattern_rough'] && past_keywords.member?(v['pattern_rough'])
+        next unless analyzer.match?(create_pattern(v['pattern']))
         @matches = v.key_flatten
         return true
       end
@@ -42,14 +45,25 @@ module Makoto
     private
 
     def create_pattern(source)
-      return Regexp.new("#{source}[でだ]?(#{Fairy.suffixes.join('|')})?([〜、。!]|\s|$)")
+      return Regexp.new("#{source}[でだ]?(#{quote_suffixes.join('|')})?([〜、。!]|\s|$)")
+    end
+
+    def quote_suffixes
+      suffixes = Fairy.suffixes.clone
+      suffixes.concat(Precure.all.map(&:quote_suffixes).flatten)
+      return suffixes.uniq.compact
     end
 
     def ignore?(entry)
       return false unless entry['pattern_rough']
-      return false unless source_text.include?(entry['pattern_rough'])
-      return false if source_text.match?(create_pattern(entry['pattern']))
+      return true if past_keywords.member?(entry['pattern_rough'])
+      return false unless analyzer.match?(entry['pattern_rough'])
+      return false if analyzer.match?(create_pattern(entry['pattern']))
       return true
+    end
+
+    def past_keywords
+      return account.past_keyword.map(&:surface)
     end
 
     def hour

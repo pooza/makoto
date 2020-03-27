@@ -2,9 +2,8 @@ module Makoto
   class BadMoodResponder < Responder
     def executable?
       return true if account.hate?
-      words = analyze.map {|v| v[:surface]}
       Keyword.dataset.where(type: 'bad').all do |word|
-        return true if words.member?(word.word)
+        return true if analyzer.words.member?(word.word)
       end
       return false
     end

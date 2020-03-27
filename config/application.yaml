@@ -1,5 +1,5 @@
 package:
-  version: 2.3.6
+  version: 2.4.0
   url: https://github.com/pooza/makoto
   authors:
     - Tatsuya Koishi
@@ -27,6 +27,26 @@ word:
   url: https://script.google.com/macros/s/AKfycbws9aCXxNQt3khdJ9bEt1ADeV7HzZV_Idg-DvN5t_X3nnca0nc/exec
 fairy:
   url: https://script.google.com/macros/s/AKfycbzfal5ejlywb-AbizAX4zq-90LNhKOR217QcxObjFZI5ZQeeFVY/exec
+analyzer:
+  ignore_features:
+    - サ変接続
+    - 接尾
+    - 非自立
+    - 代名詞
+    - 助詞
+    - 助動詞
+    - 副詞
+    - 接続詞
+    - 形容動詞語幹
+    - 副詞可能
+    - 数
+    - 記号
+    - フィラー
+    - BOS/EOS
+  ignore_accounts:
+    - makoto
+    - info
+    - infomation # キュアスタ！のお知らせアカウント
 respond:
   paragraph:
     max: 5
@@ -109,6 +129,9 @@ respond:
       response:
         normal: また来てくださいね
         friendry: またね
+    - pattern: ごきげんよう
+      response:
+        normal: ごきげんよう
   interested:
     - quote: 歌
       words:
@@ -133,14 +156,13 @@ respond:
         - アンジュ王女
     - quote: 歯
       words:
-        - 歯
         - 歯医者
+        - 歯科
         - 虫歯
         - 歯みがき
         - 歯磨き
         - 抜歯
         - 歯槽膿漏
-        - 知覚過敏
         - 歯周病
   song:
     pattern: '「(.*?)」を(歌|うた)って([。!]|\s|$)'
@@ -160,15 +182,6 @@ respond:
     response:
       normal: わかりました。次から「%s」さんと呼びますね。
       friendry: わかったわ。次から「%s」と呼ぶわ。😉
-  keyword:
-    ignore_features:
-      - サ変接続
-      - 接尾
-      - 非自立
-      - 代名詞
-      - 形容動詞語幹
-      - 副詞可能
-      - 数
   overfamiliar:
     patterns:
       match:

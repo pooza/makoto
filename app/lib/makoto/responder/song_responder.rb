@@ -1,8 +1,7 @@
 module Makoto
   class SongResponder < Responder
     def executable?
-      pattern = Regexp.new(@config['/respond/song/pattern'])
-      return false unless matches = source_text.match(pattern)
+      return false unless matches = analyzer.match(@config['/respond/song/pattern'])
       @title = matches[1]
       return @title.present?
     end

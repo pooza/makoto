@@ -7,11 +7,8 @@ module Makoto
 
     def executable?
       templates = {}
-      past_words = load.to_a
-      words = analyze.shuffle
-      save(words)
-      words.concat(past_words)
-      [rand(2..@config['/respond/paragraph/max']), words.count].min.times do
+      words = create_word_entries
+      [rand(2..@config['/respond/paragraph/max']), words.clone.count].min.times do
         word = words.pop
         feature = word[:feature]
         records = Message.dataset.where(type: 'template', feature: feature)
@@ -33,29 +30,15 @@ module Makoto
       return @paragraphs.join
     end
 
-    private
-
-    def load
-      return enum_for(__method__) unless block_given?
-      return unless account&.past_keyword.present?
-      rand(0..1).times do
-        yield account.past_keyword.sample
-      end
-    end
-
-    def save(words)
-      return unless account
-      Postgres.instance.connection.transaction do
-        words.each do |word|
-          PastKeyword.create(
-            account_id: account.id,
-            surface: word[:surface],
-            feature: word[:feature],
-            created_at: Time.new,
-          )
+    def create_word_entries
+      words = analyzer.result.select {|v| v[:feature].present?}
+      if account&.past_keyword.present?
+        rand(0..1).times do
+          word = account.past_keyword.select {|v| v[:feature].present?}.sample
+          words.push(word.values) if word
         end
       end
-      @logger.info(class: self.class.to_s, words: words)
+      return words.shuffle
     end
   end
 end
