@@ -34,7 +34,8 @@ module Makoto
       words = analyzer.result.select {|v| v[:feature].present?}
       if account&.past_keyword.present?
         rand(0..1).times do
-          words.push(account.past_keyword.sample)
+          word = account.past_keyword.select {|v| v[:feature].present?}.sample
+          words.push(word.values) if word
         end
       end
       return words.shuffle

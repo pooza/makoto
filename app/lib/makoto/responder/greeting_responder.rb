@@ -3,6 +3,7 @@ module Makoto
     def executable?
       @config['/respond/greeting'].each do |v|
         raise MatchingError, 'no match greeting patterns' if !mention? && ignore?(v)
+        return false if v['pattern_rough'] && past_keywords.member?(v['pattern_rough'])
         next unless analyzer.match?(create_pattern(v['pattern']))
         @matches = v.key_flatten
         return true
@@ -47,9 +48,14 @@ module Makoto
 
     def ignore?(entry)
       return false unless entry['pattern_rough']
+      return true if past_keywords.member?(entry['pattern_rough'])
       return false unless analyzer.match?(entry['pattern_rough'])
       return false if analyzer.match?(create_pattern(entry['pattern']))
       return true
+    end
+
+    def past_keywords
+      return account.past_keyword.map(&:surface)
     end
 
     def hour

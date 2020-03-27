@@ -14,6 +14,8 @@ module Makoto
 
     def source=(source)
       @source = Analyzer.create_source(source)
+      @result = nil
+      @words = nil
     end
 
     def result
@@ -37,7 +39,7 @@ module Makoto
     def surfaces
       return enum_for(__method__) unless block_given?
       Natto::MeCab.new.parse(@source) do |word|
-        features = word.feature.split(',')
+        features = word.feature.split(',').select {|v| v.strip.present?}
         next if ignore_words.member?(word.surface)
         next if ignore_features_pattern.match?(features.join('|'))
         entry = {surface: word.surface, feature: analyze_feature(features), features: features}

@@ -38,7 +38,6 @@ module Makoto
       return unless @account
       Postgres.instance.connection.transaction do
         result.each do |word|
-          next unless word[:feature].present?
           PastKeyword.create(
             account_id: @account.id,
             surface: word[:surface],

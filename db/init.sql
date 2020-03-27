@@ -208,7 +208,7 @@ CREATE TABLE public.past_keyword (
     account_id integer NOT NULL,
     created_at timestamp without time zone NOT NULL,
     surface character varying(64) NOT NULL,
-    feature character varying(16) NOT NULL
+    feature character varying(16)
 );
 
 
