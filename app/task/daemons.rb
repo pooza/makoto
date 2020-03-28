@@ -18,7 +18,7 @@ end
 
 [:start, :stop, :restart].each do |action|
   desc "#{action} all"
-  task action => [
+  multitask action => [
     "makoto:listener:#{action}",
     "makoto:puma:#{action}",
     "makoto:sidekiq:#{action}",
