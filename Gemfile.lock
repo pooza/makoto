@@ -206,7 +206,6 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap
-  eventmachine
   faye-websocket
   ginseng-core!
   ginseng-postgres!
