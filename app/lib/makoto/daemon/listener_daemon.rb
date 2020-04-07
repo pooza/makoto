@@ -1,5 +1,5 @@
 module Makoto
-  class ListenerDaemon < Ginseng::Daemon
+  class ListenerDaemon < Daemon
     include Package
 
     def command

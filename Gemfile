@@ -1,7 +1,6 @@
 source 'https://rubygems.org'
 ruby '2.7.0'
 gem 'bootsnap'
-gem 'eventmachine'
 gem 'faye-websocket'
 gem 'ginseng-core', github: 'pooza/ginseng-core'
 gem 'ginseng-postgres', github: 'pooza/ginseng-postgres'
@@ -12,4 +11,7 @@ gem 'sanitize'
 gem 'sidekiq'
 gem 'sidekiq-failures'
 gem 'sidekiq-scheduler'
-gem 'timecop'
+
+group :development do
+  gem 'timecop'
+end
