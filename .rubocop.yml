@@ -132,3 +132,10 @@ Metrics/PerceivedComplexity:
 
 Naming/RescuedExceptionsVariableName:
   PreferredName: e
+
+Lint/RaiseException:
+  Enabled: true
+
+Lint/StructNewOverride:
+  Enabled: true
+
