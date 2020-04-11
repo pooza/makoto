@@ -1,23 +1,22 @@
 GIT
   remote: https://github.com/pooza/ginseng-core.git
-  revision: fbaf7066472c244bd37cec2580a5f3ead7f904c9
+  revision: ae04675f3fb73d4979a2c64252fab4640bdd4781
   specs:
-    ginseng-core (1.6.4)
+    ginseng-core (1.6.5)
       activesupport
       addressable
-      bundler
+      bundler (>= 2.0.0)
       csv
       daemon-spawn
       httparty
+      json (>= 2.3.0)
       rake
       rest-client
-      rubocop
-      rubocop-performance
       syslog-logger
       test-unit
       unicode
       yajl-ruby
-      zeitwerk
+      zeitwerk (>= 2.3.0)
 
 GIT
   remote: https://github.com/pooza/ginseng-postgres.git
@@ -90,6 +89,7 @@ GEM
     i18n (1.8.2)
       concurrent-ruby (~> 1.0)
     jaro_winkler (1.5.4)
+    json (2.3.0)
     mime-types (3.3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2019.1009)
@@ -212,6 +212,8 @@ DEPENDENCIES
   ginseng-web!
   natto
   rubicure!
+  rubocop
+  rubocop-performance
   sanitize
   sidekiq
   sidekiq-failures
@@ -219,7 +221,7 @@ DEPENDENCIES
   timecop
 
 RUBY VERSION
-   ruby 2.7.0p0
+   ruby 2.7.1p83
 
 BUNDLED WITH
    2.1.4
