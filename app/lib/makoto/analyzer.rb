@@ -82,6 +82,7 @@ module Makoto
     end
 
     def self.respondable?(payload)
+      return false if payload['reblog']
       config = Config.instance
       return false if config['/analyzer/ignore_accounts'].member?(payload['account']['acct'])
       text = create_source(payload['content'])
