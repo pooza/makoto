@@ -4,7 +4,7 @@ require 'fileutils'
 module Makoto
   class Dictionary < Array
     def initialize(size = 0, val = nil)
-      super(size, val)
+      super
       @config = Config.instance
     end
 
