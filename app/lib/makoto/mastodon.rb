@@ -1,5 +1,5 @@
 module Makoto
-  class Mastodon < Ginseng::Mastodon
+  class Mastodon < Ginseng::Fediverse::MastodonService
     include Package
   end
 end

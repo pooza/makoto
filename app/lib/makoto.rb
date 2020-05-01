@@ -2,6 +2,7 @@ require 'bootsnap'
 require 'sidekiq'
 require 'sidekiq-scheduler'
 require 'ginseng'
+require 'ginseng/fediverse'
 require 'ginseng/web'
 
 module Makoto

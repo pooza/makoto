@@ -1,8 +1,10 @@
 source 'https://rubygems.org'
 ruby '2.7.1'
 gem 'bootsnap'
+gem 'bundler', '>=2.0.0'
 gem 'faye-websocket'
 gem 'ginseng-core', github: 'pooza/ginseng-core'
+gem 'ginseng-fediverse', github: 'pooza/ginseng-fediverse'
 gem 'ginseng-postgres', github: 'pooza/ginseng-postgres'
 gem 'ginseng-web', github: 'pooza/ginseng-web'
 gem 'natto'
@@ -15,5 +17,6 @@ gem 'sidekiq-scheduler'
 group :development do
   gem 'rubocop'
   gem 'rubocop-performance'
+  gem 'test-unit'
   gem 'timecop'
 end
