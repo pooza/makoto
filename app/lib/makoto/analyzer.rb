@@ -1,5 +1,6 @@
 require 'natto'
 require 'sanitize'
+require 'nokogiri'
 require 'unicode'
 
 module Makoto
@@ -66,10 +67,10 @@ module Makoto
 
     def self.create_source(text)
       text = sanitize(text)
-      text.scan(%r{https?://[^\s[:cntrl:]]+}).each do |link|
-        text.gsub!(link, '')
+      Ginseng::URI.scan(text).each do |link|
+        text.gsub!(link.to_s, '')
       end
-      Ginseng::TagContainer.scan(text).each do |tag|
+      Ginseng::Fediverse::TagContainer.scan(text).each do |tag|
         text.gsub!(Mastodon.create_tag(tag), '')
       end
       return text.strip
@@ -77,6 +78,7 @@ module Makoto
 
     def self.sanitize(text)
       text = Sanitize.clean(text)
+      text = Nokogiri::HTML.parse(text).text
       text = Unicode.nfkc(text)
       return text.strip
     end
