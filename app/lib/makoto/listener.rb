@@ -12,7 +12,7 @@ module Makoto
 
     def close(event)
       @client = nil
-      @logger.info(class: self.class.to_s, message: 'close', reason: event.reason)
+      @logger.error(class: self.class.to_s, message: 'close', reason: event.reason)
     end
 
     def error(event)
@@ -29,7 +29,7 @@ module Makoto
         send("handle_#{data['event']}".to_sym, payload)
       end
     rescue NoMethodError => e
-      @logger.error(e)
+      @logger.error(e.message)
     rescue => e
       message = Ginseng::Error.create(e).to_h
       message[:payload] = payload if payload
@@ -55,8 +55,6 @@ module Makoto
         account_id: payload['account']['id'],
       )
     end
-
-    def handle_reblog_notification(payload); end
 
     def handle_update(payload)
       return unless Analyzer.respondable?(payload)
