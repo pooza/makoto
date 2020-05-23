@@ -1,7 +1,4 @@
 require 'natto'
-require 'sanitize'
-require 'nokogiri'
-require 'unicode'
 
 module Makoto
   class Analyzer
@@ -77,10 +74,7 @@ module Makoto
     end
 
     def self.sanitize(text)
-      text = Sanitize.clean(text)
-      text = Nokogiri::HTML.parse(text).text
-      text = Unicode.nfkc(text)
-      return text.strip
+      return text.to_s.sanitize.nfkc.strip
     end
 
     def self.respondable?(payload)

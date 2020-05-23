@@ -1,5 +1,3 @@
-require 'ginseng/postgres'
-
 module Makoto
   class Postgres < Ginseng::Postgres::Database
     include Package
