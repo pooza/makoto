@@ -1,9 +1,11 @@
 module Makoto
-  class ListenerDaemon < Daemon
+  class ListenerDaemon < Ginseng::Daemon
     include Package
 
     def command
-      return Ginseng::CommandLine.new([File.join(Environment.dir, 'bin/listener_worker.rb')])
+      return Ginseng::CommandLine.new([
+        File.join(Environment.dir, 'bin/listener_worker.rb'),
+      ])
     end
 
     def motd

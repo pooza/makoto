@@ -1,7 +1,12 @@
 module Makoto
-  class PumaDaemon < Daemon
+  class PumaDaemon < Ginseng::Daemon
+    include Package
+
     def command
-      return Ginseng::CommandLine.new(['puma', '--config', initializer_path])
+      return Ginseng::CommandLine.new([
+        'puma',
+        '--config', initializer_path
+      ])
     end
 
     def initializer_path
