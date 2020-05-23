@@ -1,5 +1,3 @@
-require 'unicode'
-
 module Makoto
   class Track < Sequel::Model(:track)
     alias makoto? makoto
@@ -15,7 +13,7 @@ module Makoto
       Postgres.instance.connection.transaction do
         Track.dataset.destroy
         fetch.each do |entry|
-          entry['title'] = Unicode.nfkc(entry['title'])
+          entry['title'] = entry['title'].nfkc
           entry['makoto'] = (entry['makoto'] == 1)
           entry.delete('intro') unless entry['intro'].present?
           Track.create(entry)

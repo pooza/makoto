@@ -1,5 +1,4 @@
 require 'natto'
-require 'unicode'
 
 module Makoto
   class MarkovInterestedResponder < InterestedResponder

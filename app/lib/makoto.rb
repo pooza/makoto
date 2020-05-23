@@ -2,8 +2,6 @@ require 'bootsnap'
 require 'sidekiq'
 require 'sidekiq-scheduler'
 require 'ginseng'
-require 'ginseng/fediverse'
-require 'ginseng/web'
 
 module Makoto
   def self.dir
@@ -64,4 +62,5 @@ end
 
 Makoto.bootsnap
 Makoto.loader.setup
+Bundler.require
 Makoto.sidekiq
