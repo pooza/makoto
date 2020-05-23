@@ -1,14 +1,16 @@
 GIT
   remote: https://github.com/pooza/ginseng-core.git
-  revision: 2c4cb5345d5ac562e3c62078b8422ef83a68db3a
+  revision: 97a5a9470a437ab05897ea98a426592e03c96251
   specs:
-    ginseng-core (1.7.3)
+    ginseng-core (1.7.4)
       activesupport
       addressable
       daemon-spawn
       httparty
+      nokogiri
       rake
       rest-client
+      sanitize
       syslog-logger
       unicode
       yajl-ruby
@@ -16,34 +18,31 @@ GIT
 
 GIT
   remote: https://github.com/pooza/ginseng-fediverse.git
-  revision: 53fbdfc665526f4f0c9aec855267a8e5e6353c92
+  revision: ae906a6558c1dff364c438a6197f23077bed95ad
   specs:
-    ginseng-fediverse (1.1.1)
-      nokogiri
-      sanitize
+    ginseng-fediverse (1.1.2)
 
 GIT
   remote: https://github.com/pooza/ginseng-postgres.git
-  revision: 33f6dfebd499165b2a2fcdc09b0867997cf16d35
+  revision: 4ef5195ba3adab7bc042f69cf951737dd71136fc
   specs:
-    ginseng-postgres (1.2.4)
+    ginseng-postgres (1.2.5)
       pg
       sequel
 
 GIT
   remote: https://github.com/pooza/ginseng-web.git
-  revision: a47d102be2dc746763f3150a4376e82842474800
+  revision: 991d750b118f623b25ca5ffd50ab71965dee374d
   specs:
-    ginseng-web (1.2.0)
+    ginseng-web (1.2.1)
       puma
-      rack-test
       sass
       sinatra
       slim
 
 GIT
   remote: https://github.com/pooza/rubicure.git
-  revision: dcc6145dcb560bc4f185f238cd8475123acf407a
+  revision: 4b63f3c4c8361a7aee61a8df0de1dfb2d2c835f9
   branch: master.pooza
   specs:
     rubicure (1.3.2.0)
@@ -114,7 +113,7 @@ GEM
     pg (1.2.3)
     power_assert (1.2.0)
     public_suffix (4.0.5)
-    puma (4.3.4)
+    puma (4.3.5)
       nio4r (~> 2.0)
     raabro (1.3.1)
     rack (2.2.2)
@@ -134,14 +133,17 @@ GEM
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
     rexml (3.2.4)
-    rubocop (0.83.0)
+    rubocop (0.84.0)
       parallel (~> 1.10)
       parser (>= 2.7.0.1)
       rainbow (>= 2.2.2, < 4.0)
       rexml
+      rubocop-ast (>= 0.0.3)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 2.0)
-    rubocop-performance (1.5.2)
+    rubocop-ast (0.0.3)
+      parser (>= 2.7.0.1)
+    rubocop-performance (1.6.0)
       rubocop (>= 0.71.0)
     ruby-progressbar (1.10.1)
     ruby2_keywords (0.0.2)
@@ -195,7 +197,7 @@ GEM
     unf_ext (0.0.7.7)
     unicode (0.4.4.4)
     unicode-display_width (1.7.0)
-    websocket-driver (0.7.1)
+    websocket-driver (0.7.2)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.4)
     yajl-ruby (1.4.1)
@@ -206,17 +208,16 @@ PLATFORMS
 
 DEPENDENCIES
   bootsnap
-  bundler (>= 2.0.0)
   faye-websocket
   ginseng-core!
   ginseng-fediverse!
   ginseng-postgres!
   ginseng-web!
   natto
+  rack-test
   rubicure!
   rubocop
   rubocop-performance
-  sanitize
   sidekiq
   sidekiq-failures
   sidekiq-scheduler
