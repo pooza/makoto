@@ -57,10 +57,11 @@ module Makoto
 
     def self.create_source(text)
       text = sanitize(text)
-      Ginseng::URI.scan(text).each do |link|
-        text.gsub!(link.to_s, '')
+      parser = Ginseng::Fediverse::TootParser.new(text)
+      parser.uris.each do |uri|
+        text.gsub!(uri.to_s, '')
       end
-      Ginseng::Fediverse::TagContainer.scan(text).each do |tag|
+      parser.tags.each do |tag|
         text.gsub!(Mastodon.create_tag(tag), '')
       end
       return text.strip
