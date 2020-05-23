@@ -22,7 +22,9 @@ module Makoto
         surfaces do |surface|
           @result[surface[:surface]] = surface
         end
-        usernames do |username|
+        @source.scan(Ginseng::Fediverse::Acct.pattern).each do |acct|
+          username = acct.first.sub(/^@/, '').split('@').first
+          next if username == @config['/mastodon/account/name']
           @result[username] = {surface: username, feature: '人名'}
         end
       end
@@ -42,15 +44,6 @@ module Makoto
         next if ignore_features_pattern.match?(features.join('|'))
         entry = {surface: word.surface, feature: analyze_feature(features), features: features}
         yield entry
-      end
-    end
-
-    def usernames
-      return enum_for(__method__) unless block_given?
-      @source.scan(acct_pattern).each do |acct|
-        username = acct.first.sub(/^@/, '').split('@').first
-        next if username == @config['/mastodon/account/name']
-        yield username
       end
     end
 
@@ -98,10 +91,6 @@ module Makoto
 
     def ignore_features_pattern
       return Regexp.new('(' + @config['/analyzer/ignore_features'].join('|') + ')')
-    end
-
-    def acct_pattern
-      return Regexp.new(@config['/mastodon/acct/pattern'], Regexp::IGNORECASE)
     end
 
     def analyze_feature(features)
