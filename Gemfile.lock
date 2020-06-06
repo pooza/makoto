@@ -161,7 +161,7 @@ GEM
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
     sengiri_yaml (0.0.3)
-    sequel (5.32.0)
+    sequel (5.33.0)
     sidekiq (6.0.7)
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
