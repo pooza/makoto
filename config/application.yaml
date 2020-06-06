@@ -1,5 +1,5 @@
 package:
-  version: 2.4.6
+  version: 2.4.7
   url: https://github.com/pooza/makoto
   authors:
     - Tatsuya Koishi
@@ -125,13 +125,106 @@ respond:
       response:
         normal: おやすみなさい
         friendry: おやすみ
-    - pattern: '(じゃあね|またね|バイバ[〜ー]?イ|ばいば[〜ー]?い|さよう?なら)'
+    - pattern: '(じゃあね|またね|バイバ[〜ー]?イ|ばいば[〜ー]?い|さよう?なら|ヒーリングッバ[ー〜]イ)'
       response:
         normal: また来てくださいね
         friendry: またね
     - pattern: ごきげんよう
       response:
         normal: ごきげんよう
+    - pattern: (ぶっちやけ)?、?ありえな[ー〜]?い
+      response:
+        normal: ありえませんね。
+        friendry: ありえなーい！
+    - pattern: 絶好調(なり|ナリ)[〜ー]
+      response:
+        normal: 絶好調ですね！
+        friendry: 絶好調なり🙂
+    - pattern: けって[ー〜]い
+      response:
+        normal: けってーい
+    - pattern: (しあわせ|幸せ)ゲットだよ
+      response:
+        normal: しあわせゲットだよ
+    - pattern: あたし(完璧|かんぺき|カンペキ)っ?
+      response:
+        normal: あたしカンペキっ🙂
+    - pattern: (わたし|私)、?(信|しん)じてる
+      response:
+        normal: ええ、わたしも信じてます。
+        friendry: わたし信じてる🙂
+    - pattern: (せいいっぱい|精一杯)(頑張る|がんばる)わ
+      response:
+        normal: 精一杯がんばってください。
+        friendry: 精一杯がんばるわ🙂
+    - pattern: 堪忍袋の[緒お]が(切れ|キレ)ました
+      response:
+        normal: わたしも堪忍袋の緒が切れました。
+        friendry: キレました🙂
+    - pattern: ここらが(我慢|がまん|ガマン)の限界よ
+      response:
+        normal: そうね、ここらが我慢の限界ですね。
+        friendry: ここらが我慢の限界だわ🙂
+    - pattern: ここで[決き]めなきゃ、?女がすたる
+      response:
+        normal: ええ、女がすたりますね。
+        friendry: 女がすたるわ🙂
+    - pattern: 気合いのレシピ、?見せてあげるわ?
+      response:
+        normal: 気合いのレシピ、見せてください！
+        friendry: 見せて、気合いのレシピ🙂
+    - pattern: やっ?かましいわ
+      response:
+        normal: やっかましいわ！
+    - pattern: 心のビートは、?[止と]められないわ
+      response:
+        normal: 止められないわ🙂
+    - pattern: はっぷっぷー
+      response:
+        normal: はっぴっぷー🙂
+    - pattern: ウルトラハッピー
+      response:
+        normal: ウルトラハッピー
+    - pattern: キュンキュン(する|くる)ね?
+      response:
+        normal: キュンキュンしますね。
+        friendry: キュンキュンするわね🙂
+    - pattern: (幸せ|しあわせ)ハピネス
+      response:
+        normal: しあわせハピネス
+    - pattern: すごご+[ー〜]い
+      response:
+        normal: すごごごーい🙂
+    - pattern: そんなこと、?あるけど
+      response:
+        normal: そんなこと、あるけど
+    - pattern: (ステキ|素敵)すぎるよ?
+      response:
+        normal: キュンキュンしますね。
+        friendry: キュンキュンするわね
+    - pattern: (いま|今)、?.*って[言い]いました？?
+      response:
+        normal: 言いました。
+        friendry: 言いました
+    - pattern: (わくわく|ワクワク)もんだ
+      response:
+        normal: わくわくもんだ🙂
+    - pattern: ホイップ、?ステップ、?ジャ[ー〜]ンプ
+      response:
+        normal: ホイップ、ステップ、ジャーンプ🙂
+    - pattern: キラ[ッっ]とひらめいた
+      response:
+        normal: キラッとひらめいた🙂
+    - pattern: めちょっく
+      response:
+        normal: めちょっく🙂
+    - pattern: キラやば☆?[〜ー]?
+      response:
+        normal: キラやば☆〜🙂
+    - pattern: (ふわぁ[〜ー])?、?生きてるって(感じ|かんじ|カンジ)
+      response:
+        normal: 生きてるって感じですね。
+        friendry: 生きてるって感じね🙂
   interested:
     - quote: 歌
       words:

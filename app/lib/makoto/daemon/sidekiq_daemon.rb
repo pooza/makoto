@@ -1,11 +1,15 @@
 require 'sidekiq/api'
 
 module Makoto
-  class SidekiqDaemon < Daemon
+  class SidekiqDaemon < Ginseng::Daemon
+    include Package
+
     def command
-      return Ginseng::CommandLine.new(
-        ['sidekiq', '--config', config_cache_path, '--require', initializer_path],
-      )
+      return Ginseng::CommandLine.new([
+        'sidekiq',
+        '--config', config_cache_path,
+        '--require', initializer_path
+      ])
     end
 
     def initializer_path
