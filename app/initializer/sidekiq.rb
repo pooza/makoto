@@ -6,3 +6,4 @@ require 'bundler/setup'
 require 'makoto'
 
 Makoto::Postgres.connect
+Redis.exists_returns_integer = false
