@@ -12,7 +12,7 @@ module Makoto
     end
 
     def greeting
-      return Message.pickup(type: 'morning').message
+      return Message.pickup(type: 'morning', season: Time.now.month).message
     end
 
     def holiday_messages

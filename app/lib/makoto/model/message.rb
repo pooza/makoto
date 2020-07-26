@@ -4,7 +4,13 @@ module Makoto
       messages = Message.dataset
       messages = messages.where(feature: params[:feature]) if params[:feature]
       messages = messages.where(type: params[:type]) if params[:type]
-      return messages.all.sample(random: Random.create)
+      messages = messages.all
+      if params[:season]
+        messages.select! do |v|
+          v.data.nil? || JSON.parse(v.data)['season'].member?(Time.now.month)
+        end
+      end
+      return messages.sample(random: Random.create)
     end
 
     def self.refresh
@@ -24,7 +30,7 @@ module Makoto
         feature: values['feature'],
         message: values['message'],
       }
-      [:month, :day].each do |k|
+      [:month, :day, :data].each do |k|
         entry[k] = values[k.to_s] if values[k.to_s].present?
       end
       return entry
