@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 12.1
--- Dumped by pg_dump version 12.1
+-- Dumped from database version 12.3
+-- Dumped by pg_dump version 12.3
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -21,7 +21,7 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- Name: account; Type: TABLE; Schema: public; Owner: postgres
+-- Name: account; Type: TABLE; Schema: public; Owner: makoto
 --
 
 CREATE TABLE public.account (
@@ -32,10 +32,10 @@ CREATE TABLE public.account (
 );
 
 
-ALTER TABLE public.account OWNER TO postgres;
+ALTER TABLE public.account OWNER TO makoto;
 
 --
--- Name: account_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: account_id_seq; Type: SEQUENCE; Schema: public; Owner: makoto
 --
 
 CREATE SEQUENCE public.account_id_seq
@@ -47,17 +47,17 @@ CREATE SEQUENCE public.account_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.account_id_seq OWNER TO postgres;
+ALTER TABLE public.account_id_seq OWNER TO makoto;
 
 --
--- Name: account_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: account_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: makoto
 --
 
 ALTER SEQUENCE public.account_id_seq OWNED BY public.account.id;
 
 
 --
--- Name: fairy; Type: TABLE; Schema: public; Owner: postgres
+-- Name: fairy; Type: TABLE; Schema: public; Owner: makoto
 --
 
 CREATE TABLE public.fairy (
@@ -68,10 +68,10 @@ CREATE TABLE public.fairy (
 );
 
 
-ALTER TABLE public.fairy OWNER TO postgres;
+ALTER TABLE public.fairy OWNER TO makoto;
 
 --
--- Name: fairy_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: fairy_id_seq; Type: SEQUENCE; Schema: public; Owner: makoto
 --
 
 CREATE SEQUENCE public.fairy_id_seq
@@ -83,17 +83,17 @@ CREATE SEQUENCE public.fairy_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.fairy_id_seq OWNER TO postgres;
+ALTER TABLE public.fairy_id_seq OWNER TO makoto;
 
 --
--- Name: fairy_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: fairy_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: makoto
 --
 
 ALTER SEQUENCE public.fairy_id_seq OWNED BY public.fairy.id;
 
 
 --
--- Name: form; Type: TABLE; Schema: public; Owner: postgres
+-- Name: form; Type: TABLE; Schema: public; Owner: makoto
 --
 
 CREATE TABLE public.form (
@@ -102,10 +102,10 @@ CREATE TABLE public.form (
 );
 
 
-ALTER TABLE public.form OWNER TO postgres;
+ALTER TABLE public.form OWNER TO makoto;
 
 --
--- Name: form_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: form_id_seq; Type: SEQUENCE; Schema: public; Owner: makoto
 --
 
 CREATE SEQUENCE public.form_id_seq
@@ -117,17 +117,17 @@ CREATE SEQUENCE public.form_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.form_id_seq OWNER TO postgres;
+ALTER TABLE public.form_id_seq OWNER TO makoto;
 
 --
--- Name: form_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: form_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: makoto
 --
 
 ALTER SEQUENCE public.form_id_seq OWNED BY public.form.id;
 
 
 --
--- Name: keyword; Type: TABLE; Schema: public; Owner: postgres
+-- Name: keyword; Type: TABLE; Schema: public; Owner: makoto
 --
 
 CREATE TABLE public.keyword (
@@ -137,10 +137,10 @@ CREATE TABLE public.keyword (
 );
 
 
-ALTER TABLE public.keyword OWNER TO postgres;
+ALTER TABLE public.keyword OWNER TO makoto;
 
 --
--- Name: keyword_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: keyword_id_seq; Type: SEQUENCE; Schema: public; Owner: makoto
 --
 
 CREATE SEQUENCE public.keyword_id_seq
@@ -152,17 +152,17 @@ CREATE SEQUENCE public.keyword_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.keyword_id_seq OWNER TO postgres;
+ALTER TABLE public.keyword_id_seq OWNER TO makoto;
 
 --
--- Name: keyword_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: keyword_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: makoto
 --
 
 ALTER SEQUENCE public.keyword_id_seq OWNED BY public.keyword.id;
 
 
 --
--- Name: message; Type: TABLE; Schema: public; Owner: postgres
+-- Name: message; Type: TABLE; Schema: public; Owner: makoto
 --
 
 CREATE TABLE public.message (
@@ -171,14 +171,15 @@ CREATE TABLE public.message (
     feature character varying(64),
     message text NOT NULL,
     month smallint,
-    day smallint
+    day smallint,
+    data json
 );
 
 
-ALTER TABLE public.message OWNER TO postgres;
+ALTER TABLE public.message OWNER TO makoto;
 
 --
--- Name: message_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: message_id_seq; Type: SEQUENCE; Schema: public; Owner: makoto
 --
 
 CREATE SEQUENCE public.message_id_seq
@@ -190,17 +191,17 @@ CREATE SEQUENCE public.message_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.message_id_seq OWNER TO postgres;
+ALTER TABLE public.message_id_seq OWNER TO makoto;
 
 --
--- Name: message_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: message_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: makoto
 --
 
 ALTER SEQUENCE public.message_id_seq OWNED BY public.message.id;
 
 
 --
--- Name: past_keyword; Type: TABLE; Schema: public; Owner: postgres
+-- Name: past_keyword; Type: TABLE; Schema: public; Owner: makoto
 --
 
 CREATE TABLE public.past_keyword (
@@ -212,10 +213,10 @@ CREATE TABLE public.past_keyword (
 );
 
 
-ALTER TABLE public.past_keyword OWNER TO postgres;
+ALTER TABLE public.past_keyword OWNER TO makoto;
 
 --
--- Name: past_keyword_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: past_keyword_id_seq; Type: SEQUENCE; Schema: public; Owner: makoto
 --
 
 CREATE SEQUENCE public.past_keyword_id_seq
@@ -227,17 +228,17 @@ CREATE SEQUENCE public.past_keyword_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.past_keyword_id_seq OWNER TO postgres;
+ALTER TABLE public.past_keyword_id_seq OWNER TO makoto;
 
 --
--- Name: past_keyword_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: past_keyword_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: makoto
 --
 
 ALTER SEQUENCE public.past_keyword_id_seq OWNED BY public.past_keyword.id;
 
 
 --
--- Name: quote; Type: TABLE; Schema: public; Owner: postgres
+-- Name: quote; Type: TABLE; Schema: public; Owner: makoto
 --
 
 CREATE TABLE public.quote (
@@ -254,10 +255,10 @@ CREATE TABLE public.quote (
 );
 
 
-ALTER TABLE public.quote OWNER TO postgres;
+ALTER TABLE public.quote OWNER TO makoto;
 
 --
--- Name: quote_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: quote_id_seq; Type: SEQUENCE; Schema: public; Owner: makoto
 --
 
 CREATE SEQUENCE public.quote_id_seq
@@ -269,17 +270,17 @@ CREATE SEQUENCE public.quote_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.quote_id_seq OWNER TO postgres;
+ALTER TABLE public.quote_id_seq OWNER TO makoto;
 
 --
--- Name: quote_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: quote_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: makoto
 --
 
 ALTER SEQUENCE public.quote_id_seq OWNED BY public.quote.id;
 
 
 --
--- Name: series; Type: TABLE; Schema: public; Owner: postgres
+-- Name: series; Type: TABLE; Schema: public; Owner: makoto
 --
 
 CREATE TABLE public.series (
@@ -288,10 +289,10 @@ CREATE TABLE public.series (
 );
 
 
-ALTER TABLE public.series OWNER TO postgres;
+ALTER TABLE public.series OWNER TO makoto;
 
 --
--- Name: series_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: series_id_seq; Type: SEQUENCE; Schema: public; Owner: makoto
 --
 
 CREATE SEQUENCE public.series_id_seq
@@ -303,17 +304,17 @@ CREATE SEQUENCE public.series_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.series_id_seq OWNER TO postgres;
+ALTER TABLE public.series_id_seq OWNER TO makoto;
 
 --
--- Name: series_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: series_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: makoto
 --
 
 ALTER SEQUENCE public.series_id_seq OWNED BY public.series.id;
 
 
 --
--- Name: track; Type: TABLE; Schema: public; Owner: postgres
+-- Name: track; Type: TABLE; Schema: public; Owner: makoto
 --
 
 CREATE TABLE public.track (
@@ -325,10 +326,10 @@ CREATE TABLE public.track (
 );
 
 
-ALTER TABLE public.track OWNER TO postgres;
+ALTER TABLE public.track OWNER TO makoto;
 
 --
--- Name: track_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
+-- Name: track_id_seq; Type: SEQUENCE; Schema: public; Owner: makoto
 --
 
 CREATE SEQUENCE public.track_id_seq
@@ -340,80 +341,80 @@ CREATE SEQUENCE public.track_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.track_id_seq OWNER TO postgres;
+ALTER TABLE public.track_id_seq OWNER TO makoto;
 
 --
--- Name: track_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
+-- Name: track_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: makoto
 --
 
 ALTER SEQUENCE public.track_id_seq OWNED BY public.track.id;
 
 
 --
--- Name: account id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: account id; Type: DEFAULT; Schema: public; Owner: makoto
 --
 
 ALTER TABLE ONLY public.account ALTER COLUMN id SET DEFAULT nextval('public.account_id_seq'::regclass);
 
 
 --
--- Name: fairy id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: fairy id; Type: DEFAULT; Schema: public; Owner: makoto
 --
 
 ALTER TABLE ONLY public.fairy ALTER COLUMN id SET DEFAULT nextval('public.fairy_id_seq'::regclass);
 
 
 --
--- Name: form id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: form id; Type: DEFAULT; Schema: public; Owner: makoto
 --
 
 ALTER TABLE ONLY public.form ALTER COLUMN id SET DEFAULT nextval('public.form_id_seq'::regclass);
 
 
 --
--- Name: keyword id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: keyword id; Type: DEFAULT; Schema: public; Owner: makoto
 --
 
 ALTER TABLE ONLY public.keyword ALTER COLUMN id SET DEFAULT nextval('public.keyword_id_seq'::regclass);
 
 
 --
--- Name: message id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: message id; Type: DEFAULT; Schema: public; Owner: makoto
 --
 
 ALTER TABLE ONLY public.message ALTER COLUMN id SET DEFAULT nextval('public.message_id_seq'::regclass);
 
 
 --
--- Name: past_keyword id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: past_keyword id; Type: DEFAULT; Schema: public; Owner: makoto
 --
 
 ALTER TABLE ONLY public.past_keyword ALTER COLUMN id SET DEFAULT nextval('public.past_keyword_id_seq'::regclass);
 
 
 --
--- Name: quote id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: quote id; Type: DEFAULT; Schema: public; Owner: makoto
 --
 
 ALTER TABLE ONLY public.quote ALTER COLUMN id SET DEFAULT nextval('public.quote_id_seq'::regclass);
 
 
 --
--- Name: series id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: series id; Type: DEFAULT; Schema: public; Owner: makoto
 --
 
 ALTER TABLE ONLY public.series ALTER COLUMN id SET DEFAULT nextval('public.series_id_seq'::regclass);
 
 
 --
--- Name: track id; Type: DEFAULT; Schema: public; Owner: postgres
+-- Name: track id; Type: DEFAULT; Schema: public; Owner: makoto
 --
 
 ALTER TABLE ONLY public.track ALTER COLUMN id SET DEFAULT nextval('public.track_id_seq'::regclass);
 
 
 --
--- Name: account account_acct_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: account account_acct_key; Type: CONSTRAINT; Schema: public; Owner: makoto
 --
 
 ALTER TABLE ONLY public.account
@@ -421,7 +422,7 @@ ALTER TABLE ONLY public.account
 
 
 --
--- Name: account account_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: account account_pkey; Type: CONSTRAINT; Schema: public; Owner: makoto
 --
 
 ALTER TABLE ONLY public.account
@@ -429,7 +430,7 @@ ALTER TABLE ONLY public.account
 
 
 --
--- Name: fairy fairy_name_key; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: fairy fairy_name_key; Type: CONSTRAINT; Schema: public; Owner: makoto
 --
 
 ALTER TABLE ONLY public.fairy
@@ -437,7 +438,7 @@ ALTER TABLE ONLY public.fairy
 
 
 --
--- Name: fairy fairy_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: fairy fairy_pkey; Type: CONSTRAINT; Schema: public; Owner: makoto
 --
 
 ALTER TABLE ONLY public.fairy
@@ -445,7 +446,7 @@ ALTER TABLE ONLY public.fairy
 
 
 --
--- Name: form form_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: form form_pkey; Type: CONSTRAINT; Schema: public; Owner: makoto
 --
 
 ALTER TABLE ONLY public.form
@@ -453,7 +454,7 @@ ALTER TABLE ONLY public.form
 
 
 --
--- Name: keyword keyword_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: keyword keyword_pkey; Type: CONSTRAINT; Schema: public; Owner: makoto
 --
 
 ALTER TABLE ONLY public.keyword
@@ -461,7 +462,7 @@ ALTER TABLE ONLY public.keyword
 
 
 --
--- Name: message message_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: message message_pkey; Type: CONSTRAINT; Schema: public; Owner: makoto
 --
 
 ALTER TABLE ONLY public.message
@@ -469,7 +470,7 @@ ALTER TABLE ONLY public.message
 
 
 --
--- Name: past_keyword past_keyword_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: past_keyword past_keyword_pkey; Type: CONSTRAINT; Schema: public; Owner: makoto
 --
 
 ALTER TABLE ONLY public.past_keyword
@@ -477,7 +478,7 @@ ALTER TABLE ONLY public.past_keyword
 
 
 --
--- Name: quote quote_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: quote quote_pkey; Type: CONSTRAINT; Schema: public; Owner: makoto
 --
 
 ALTER TABLE ONLY public.quote
@@ -485,7 +486,7 @@ ALTER TABLE ONLY public.quote
 
 
 --
--- Name: series series_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: series series_pkey; Type: CONSTRAINT; Schema: public; Owner: makoto
 --
 
 ALTER TABLE ONLY public.series
@@ -493,7 +494,7 @@ ALTER TABLE ONLY public.series
 
 
 --
--- Name: track track_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
+-- Name: track track_pkey; Type: CONSTRAINT; Schema: public; Owner: makoto
 --
 
 ALTER TABLE ONLY public.track
@@ -501,56 +502,56 @@ ALTER TABLE ONLY public.track
 
 
 --
--- Name: form_name_idx; Type: INDEX; Schema: public; Owner: postgres
+-- Name: form_name_idx; Type: INDEX; Schema: public; Owner: makoto
 --
 
 CREATE UNIQUE INDEX form_name_idx ON public.form USING btree (name);
 
 
 --
--- Name: keyword_type_word_idx; Type: INDEX; Schema: public; Owner: postgres
+-- Name: keyword_type_word_idx; Type: INDEX; Schema: public; Owner: makoto
 --
 
 CREATE UNIQUE INDEX keyword_type_word_idx ON public.keyword USING btree (type, word);
 
 
 --
--- Name: message_feature_idx; Type: INDEX; Schema: public; Owner: postgres
+-- Name: message_feature_idx; Type: INDEX; Schema: public; Owner: makoto
 --
 
 CREATE INDEX message_feature_idx ON public.message USING btree (feature);
 
 
 --
--- Name: message_type_idx; Type: INDEX; Schema: public; Owner: postgres
+-- Name: message_type_idx; Type: INDEX; Schema: public; Owner: makoto
 --
 
 CREATE INDEX message_type_idx ON public.message USING btree (type);
 
 
 --
--- Name: series_name_idx; Type: INDEX; Schema: public; Owner: postgres
+-- Name: series_name_idx; Type: INDEX; Schema: public; Owner: makoto
 --
 
 CREATE UNIQUE INDEX series_name_idx ON public.series USING btree (name);
 
 
 --
--- Name: track_title_idx; Type: INDEX; Schema: public; Owner: postgres
+-- Name: track_title_idx; Type: INDEX; Schema: public; Owner: makoto
 --
 
 CREATE UNIQUE INDEX track_title_idx ON public.track USING btree (title);
 
 
 --
--- Name: track_url_idx; Type: INDEX; Schema: public; Owner: postgres
+-- Name: track_url_idx; Type: INDEX; Schema: public; Owner: makoto
 --
 
 CREATE UNIQUE INDEX track_url_idx ON public.track USING btree (url);
 
 
 --
--- Name: past_keyword past_keyword_account_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: past_keyword past_keyword_account_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: makoto
 --
 
 ALTER TABLE ONLY public.past_keyword
@@ -558,7 +559,7 @@ ALTER TABLE ONLY public.past_keyword
 
 
 --
--- Name: quote quote_form_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: quote quote_form_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: makoto
 --
 
 ALTER TABLE ONLY public.quote
@@ -566,7 +567,7 @@ ALTER TABLE ONLY public.quote
 
 
 --
--- Name: quote quote_serias_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
+-- Name: quote quote_serias_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: makoto
 --
 
 ALTER TABLE ONLY public.quote

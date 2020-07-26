@@ -15,7 +15,7 @@ module Makoto
         fetch.each do |entry|
           entry['title'] = entry['title'].nfkc
           entry['makoto'] = (entry['makoto'] == 1)
-          entry.delete('intro') unless entry['intro'].present?
+          entry.delete('intro') if entry['intro'].empty?
           Track.create(entry)
         rescue => e
           Logger.new.error(Ginseng::Error.create(e).to_h.merge(entry: entry))

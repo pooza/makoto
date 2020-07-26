@@ -8,7 +8,7 @@ module Makoto
     def executable?
       templates = {}
       words = create_word_entries
-      [rand(2..@config['/respond/paragraph/max']), words.clone.count].min.times do
+      [rand(1..@config['/respond/paragraph/max']), words.clone.count].min.times do
         word = words.pop
         feature = word[:feature]
         records = Message.dataset.where(type: 'template', feature: feature)
@@ -33,7 +33,7 @@ module Makoto
     def create_word_entries
       words = analyzer.result.select {|v| v[:feature].present?}
       if account&.past_keyword.present?
-        rand(0..3).times do
+        rand(0..2).times do
           word = account.past_keyword.select {|v| v[:feature].present?}.sample
           words.push(word.values) if word
         end
