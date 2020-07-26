@@ -49,7 +49,7 @@ analyzer:
     - infomation # キュアスタ！のお知らせアカウント
 respond:
   paragraph:
-    max: 5
+    max: 3
   classes:
     - bad_mood
     - greeting
