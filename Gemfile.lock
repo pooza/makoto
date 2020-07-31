@@ -74,7 +74,7 @@ GEM
     et-orbi (1.2.4)
       tzinfo
     eventmachine (1.2.7)
-    faye-websocket (0.10.9)
+    faye-websocket (0.11.0)
       eventmachine (>= 0.12.0)
       websocket-driver (>= 0.5.1)
     ffi (1.13.1)
