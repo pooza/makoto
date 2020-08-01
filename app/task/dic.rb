@@ -1,12 +1,16 @@
 namespace :makoto do
   namespace :dic do
-    desc 'update dictionary'
-    task :update do
-      dic = Makoto::LocalDictionary.new
-      dic.refresh
-      puts "fetch: #{dic.count} words"
-      dic.install
-      puts "install: #{dic.user_dic_path}"
+    [:local, :neologd].each do |key|
+      namespace key do
+        desc "update #{key} dictionary"
+        task :update do
+          dic = "Makoto::#{key.to_s.classify}Dictionary".constantize.new
+          dic.refresh
+          puts "csv: #{dic.count} words"
+          dic.install
+          puts "install: #{dic.path}"
+        end
+      end
     end
   end
 end
