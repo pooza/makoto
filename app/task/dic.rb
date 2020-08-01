@@ -6,9 +6,9 @@ namespace :makoto do
         task :update do
           dic = "Makoto::#{key.to_s.classify}Dictionary".constantize.new
           dic.refresh
-          puts "csv: #{dic.count} words"
+          puts "words: #{dic.count.commaize}"
           dic.install
-          puts "install: #{dic.path}"
+          puts "path: #{dic.path}"
         end
       end
     end
