@@ -4,7 +4,7 @@
 ![test](https://github.com/pooza/makoto/workflows/test/badge.svg)
 
 なりきりボット[MAKOTO](https://precure.ml/@makoto)の為に作成したツール。  
-MAKOTO以外のボットも作れる汎用性も一応意識してる。
+MAKOTO以外のボットも作れる汎用性を、一応意識してる。
 
 ### 用語説明
 - __MAKOTO__ ボットの本名。
