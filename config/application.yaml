@@ -1,5 +1,5 @@
 package:
-  version: 2.5.0
+  version: 2.5.1
   url: https://github.com/pooza/makoto
   authors:
     - Tatsuya Koishi
@@ -332,6 +332,8 @@ mecab:
     bin: /usr/lib/mecab/mecab-dict-index
     system: /usr/share/mecab/dic/ipadic
     user: /tmp
+    neologd:
+      repos: nil
 sidekiq:
   redis:
     dsn: redis://localhost:6379/3
@@ -373,9 +375,12 @@ sidekiq:
     keyword_lib:
       cron: '0 10 2 * * *'
       class: Makoto::KeywordRefreshWorker
-    dictionary:
+    local_dictionary:
       cron: '0 12 2 * * *'
-      class: Makoto::DictionaryRefreshWorker
+      class: Makoto::LocalDictionaryRefreshWorker
+    neologd_dictionary:
+      cron: '0 15 2 * * 6'
+      class: Makoto::NeologdDictionaryRefreshWorker
     follow_maintenance:
       every: 5m
       class: Makoto::FollowMaintenanceWorker
