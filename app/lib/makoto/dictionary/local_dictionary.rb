@@ -2,7 +2,7 @@ require 'csv'
 require 'fileutils'
 
 module Makoto
-  class Dictionary < Array
+  class LocalDictionary < Array
     def initialize(size = 0, val = nil)
       super
       @config = Config.instance

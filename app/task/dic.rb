@@ -2,7 +2,7 @@ namespace :makoto do
   namespace :dic do
     desc 'update dictionary'
     task :update do
-      dic = Makoto::Dictionary.new
+      dic = Makoto::LocalDictionary.new
       dic.refresh
       puts "fetch: #{dic.count} words"
       dic.install

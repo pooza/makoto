@@ -373,9 +373,9 @@ sidekiq:
     keyword_lib:
       cron: '0 10 2 * * *'
       class: Makoto::KeywordRefreshWorker
-    dictionary:
+    local_dictionary:
       cron: '0 12 2 * * *'
-      class: Makoto::DictionaryRefreshWorker
+      class: Makoto::LocalDictionaryRefreshWorker
     follow_maintenance:
       every: 5m
       class: Makoto::FollowMaintenanceWorker

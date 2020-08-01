@@ -1,9 +1,9 @@
 module Makoto
-  class DictionaryRefreshWorker < Worker
+  class LocalDictionaryRefreshWorker < Worker
     sidekiq_options retry: false
 
     def perform
-      dic = Makoto::Dictionary.new
+      dic = LocalDictionary.new
       dic.refresh
       dic.install
     end
