@@ -1,5 +1,5 @@
 module Makoto
-  class NoelogdDictionaryRefreshWorker < Worker
+  class NeologdDictionaryRefreshWorker < Worker
     sidekiq_options retry: 3
 
     def perform

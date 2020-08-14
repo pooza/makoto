@@ -91,7 +91,7 @@ module Makoto
     end
 
     def ignore_features_pattern
-      return Regexp.new('(' + @config['/analyzer/ignore_features'].join('|') + ')')
+      return Regexp.new("(#{@config['/analyzer/ignore_features'].join('|')})")
     end
 
     def analyze_feature(features)

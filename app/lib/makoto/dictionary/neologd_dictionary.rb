@@ -40,7 +40,7 @@ module Makoto
     end
 
     def temp_xz_path
-      return temp_csv_path + '.xz'
+      return "#{temp_csv_path}.xz"
     end
   end
 end
