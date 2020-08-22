@@ -280,8 +280,6 @@ respond:
       match:
         - アンジュ
         - アン
-      ignore:
-        - キュアアンジュ
       suffix:
         - さん
         - さま
