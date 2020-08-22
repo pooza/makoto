@@ -15,13 +15,14 @@ module Makoto
       assert(@responder.executable?)
 
       @responder.params = {'content' => 'キュアアンジュ'}
-      assert_false(@responder.executable?)
+      assert(@responder.executable?)
 
       @responder.params = {'content' => 'アン王女', 'mention' => true}
       assert_false(@responder.executable?)
 
       @responder.params = {'content' => 'アン殿下', 'mention' => true}
       assert_false(@responder.executable?)
+
       assert_raise MatchingError do
         @responder.params = {'content' => 'アン殿下'}
         @responder.executable?

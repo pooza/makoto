@@ -1,5 +1,5 @@
 package:
-  version: 2.5.2
+  version: 2.5.3
   url: https://github.com/pooza/makoto
   authors:
     - Tatsuya Koishi
@@ -280,8 +280,6 @@ respond:
       match:
         - アンジュ
         - アン
-      ignore:
-        - キュアアンジュ
       suffix:
         - さん
         - さま
