@@ -12,7 +12,7 @@ test:
       cases:
         - analyzer
         - follow_maintenance_worker
-        - goog_quote_monologure_worker
+        - good_quote_monologure_worker
         - makoto_birthday_monologue_worker
         - new_year_monologue_worker
         - nowplaying_monologue_worker
