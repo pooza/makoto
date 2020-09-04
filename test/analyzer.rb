@@ -1,5 +1,5 @@
 module Makoto
-  class AnalyzerTest < Test::Unit::TestCase
+  class AnalyzerTest < TestCase
     def setup
       @analyzer = Analyzer.new
     end
@@ -14,7 +14,6 @@ module Makoto
     end
 
     def test_analyze
-      return if Environment.ci?
       @analyzer.source = '@pooza @info @makoto 納豆餃子飴'
       assert_equal(@analyzer.result.map {|v| v[:surface]}, ['pooza', 'info', '納豆餃子飴'])
     end

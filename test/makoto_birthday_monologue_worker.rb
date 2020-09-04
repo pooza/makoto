@@ -1,11 +1,10 @@
 module Makoto
-  class MakotoBirthdayMonologueWorkerTest < Test::Unit::TestCase
+  class MakotoBirthdayMonologueWorkerTest < TestCase
     def setup
       @worker = MakotoBirthdayMonologueWorker.new
     end
 
     def test_perform
-      return if Environment.ci?
       @worker.perform
     end
   end

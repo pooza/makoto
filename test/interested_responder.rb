@@ -1,5 +1,5 @@
 module Makoto
-  class InterestedResponderTest < Test::Unit::TestCase
+  class InterestedResponderTest < TestCase
     def setup
       @responder = InterestedResponder.new
     end

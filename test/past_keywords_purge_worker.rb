@@ -1,5 +1,5 @@
 module Makoto
-  class PastKeywordsPurgeWorkerTest < Test::Unit::TestCase
+  class PastKeywordsPurgeWorkerTest < TestCase
     def setup
       @worker = PastKeywordsPurgeWorker.new
     end

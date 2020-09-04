@@ -1,5 +1,5 @@
 module Makoto
-  class FixedResponderTest < Test::Unit::TestCase
+  class FixedResponderTest < TestCase
     def setup
       @responder = FixedResponder.new
     end

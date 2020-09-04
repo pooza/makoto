@@ -1,5 +1,5 @@
 module Makoto
-  class LocalDictionaryRefreshWorkerTest < Test::Unit::TestCase
+  class LocalDictionaryRefreshWorkerTest < TestCase
     def setup
       @worker = LocalDictionaryRefreshWorker.new
     end

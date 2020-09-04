@@ -1,5 +1,5 @@
 module Makoto
-  class OverfamiliarResponderTest < Test::Unit::TestCase
+  class OverfamiliarResponderTest < TestCase
     def setup
       @responder = OverfamiliarResponder.new
     end

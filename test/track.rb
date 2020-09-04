@@ -1,5 +1,5 @@
 module Makoto
-  class TrackTest < Test::Unit::TestCase
+  class TrackTest < TestCase
     def test_pickup
       track = Track.pickup
       assert_kind_of(Track, track)

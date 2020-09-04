@@ -7,6 +7,16 @@ package:
     - tkoishi@b-shock.co.jp
 test:
   acct: user
+  filters:
+    - name: ci
+      cases:
+        - analyzer
+        - follow_maintenance_worker
+        - goog_quote_monologure_worker
+        - makoto_birthday_monologue_worker
+        - new_year_monologue_worker
+        - nowplaying_monologue_worker
+        - precure_birthday_monologue_worker
 environment: development
 mastodon:
   hashtag:

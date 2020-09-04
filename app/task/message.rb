@@ -2,7 +2,6 @@ namespace :makoto do
   namespace :message do
     desc 'update message'
     task :update do
-      Makoto::Postgres.connect
       Makoto::Message.refresh
       puts "#{Makoto::Message.count} messages"
     end
