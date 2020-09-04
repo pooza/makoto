@@ -11,8 +11,10 @@ test:
     - name: ci
       cases:
         - analyzer
+        - greeting_responder
         - follow_maintenance_worker
-        - good_quote_monologure_worker
+        - good_morning_monologue_worker
+        - good_quote_monologue_worker
         - makoto_birthday_monologue_worker
         - new_year_monologue_worker
         - nowplaying_monologue_worker
