@@ -1,5 +1,5 @@
 module Makoto
-  class RandomTest < Test::Unit::TestCase
+  class RandomTest < TestCase
     def test_create
       assert_kind_of(Makoto::Random, Random.create)
     end

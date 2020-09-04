@@ -1,5 +1,5 @@
 module Makoto
-  class MessageRefreshWorkerTest < Test::Unit::TestCase
+  class MessageRefreshWorkerTest < TestCase
     def setup
       @worker = MessageRefreshWorker.new
     end

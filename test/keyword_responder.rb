@@ -1,5 +1,5 @@
 module Makoto
-  class KeywordResponderTest < Test::Unit::TestCase
+  class KeywordResponderTest < TestCase
     def setup
       @responder = KeywordResponder.new
     end

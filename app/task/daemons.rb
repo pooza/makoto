@@ -1,7 +1,7 @@
 namespace :makoto do
   [:listener, :sidekiq, :puma].each do |ns|
     namespace ns do
-      [:start, :stop].each do |action|
+      [:start, :stop].freeze.each do |action|
         desc "#{action} #{ns}"
         task action do
           sh "#{File.join(Makoto::Environment.dir, 'bin', "#{ns}_daemon.rb")} #{action}"

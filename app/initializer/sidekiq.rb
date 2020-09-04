@@ -4,6 +4,6 @@ ENV['BUNDLE_GEMFILE'] = File.join(dir, 'Gemfile')
 
 require 'bundler/setup'
 require 'makoto'
+require 'redis'
 
-Makoto::Postgres.connect
 Redis.exists_returns_integer = false

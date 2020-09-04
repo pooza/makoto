@@ -1,5 +1,5 @@
 module Makoto
-  class GoodMorningMonologueWorkerTest < Test::Unit::TestCase
+  class GoodMorningMonologueWorkerTest < TestCase
     def setup
       @worker = GoodMorningMonologueWorker.new
     end

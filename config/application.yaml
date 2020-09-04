@@ -1,5 +1,5 @@
 package:
-  version: 2.5.3
+  version: 2.5.4
   url: https://github.com/pooza/makoto
   authors:
     - Tatsuya Koishi
@@ -7,6 +7,18 @@ package:
     - tkoishi@b-shock.co.jp
 test:
   acct: user
+  filters:
+    - name: ci
+      cases:
+        - analyzer
+        - greeting_responder
+        - follow_maintenance_worker
+        - good_morning_monologue_worker
+        - good_quote_monologue_worker
+        - makoto_birthday_monologue_worker
+        - new_year_monologue_worker
+        - nowplaying_monologue_worker
+        - precure_birthday_monologue_worker
 environment: development
 mastodon:
   hashtag:

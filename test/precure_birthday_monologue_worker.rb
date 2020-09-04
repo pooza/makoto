@@ -1,13 +1,12 @@
 require 'timecop'
 
 module Makoto
-  class PrecureBirthdayMonologueWorkerTest < Test::Unit::TestCase
+  class PrecureBirthdayMonologueWorkerTest < TestCase
     def setup
       @worker = PrecureBirthdayMonologueWorker.new
     end
 
     def test_perform
-      return if Environment.ci?
       Timecop.travel(Time.parse('2020/03/09'))
       @worker.perform
       Timecop.travel(Time.parse('2020/09/08'))

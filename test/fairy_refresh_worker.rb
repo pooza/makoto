@@ -1,5 +1,5 @@
 module Makoto
-  class FairyRefreshWorkerTest < Test::Unit::TestCase
+  class FairyRefreshWorkerTest < TestCase
     def setup
       @worker = FairyRefreshWorker.new
     end

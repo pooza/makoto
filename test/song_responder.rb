@@ -1,5 +1,5 @@
 module Makoto
-  class SongResponderTest < Test::Unit::TestCase
+  class SongResponderTest < TestCase
     def setup
       @responder = SongResponder.new
     end

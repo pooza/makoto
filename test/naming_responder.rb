@@ -1,5 +1,5 @@
 module Makoto
-  class NamingResponderTest < Test::Unit::TestCase
+  class NamingResponderTest < TestCase
     def setup
       @responder = NamingResponder.new
       @config = Config.instance

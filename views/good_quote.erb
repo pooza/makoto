@@ -1,4 +1,4 @@
 <%# encoding: UTF-8 -%>
 <%= params[:quote] %>
-<%= Makoto::Mastodon.create_tag(params[:series]) %><% if params[:episode].to_i.positive? %> #<%= params[:episode] %>話<% end %>
+<%= params[:series].to_hashtag %><% if params[:episode].to_i.positive? %> #<%= params[:episode] %>話<% end %>
 #印象的なセリフ

@@ -64,3 +64,4 @@ Makoto.bootsnap
 Makoto.loader.setup
 Bundler.require
 Makoto.sidekiq
+Makoto::Postgres.connect

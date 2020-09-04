@@ -1,5 +1,5 @@
 module Makoto
-  class BadMoodResponderTest < Test::Unit::TestCase
+  class BadMoodResponderTest < TestCase
     def setup
       @responder = BadMoodResponder.new
       @config = Config.instance
