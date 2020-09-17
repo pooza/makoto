@@ -13,7 +13,7 @@ module Makoto
       template[:url] = track.url
       template[:intro] = track.intro
       template[:tags] = ['#オンエア']
-      mastodon.toot(template.to_s)
+      mastodon.toot(status: template.to_s, visibility: visibility)
     end
   end
 end

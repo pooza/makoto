@@ -8,7 +8,7 @@ module Makoto
       template[:quote] = quote.body
       template[:series] = quote.series.name
       template[:episode] = quote.episode
-      mastodon.toot(template.to_s)
+      mastodon.toot(status: template.to_s, visibility: visibility)
     end
   end
 end

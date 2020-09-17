@@ -3,7 +3,7 @@ module Makoto
     def perform
       template = Template.new('new_year')
       template[:greeting] = @config['/new_year/greeting']
-      mastodon.toot(template.to_s)
+      mastodon.toot(status: template.to_s, visibility: visibility)
     end
   end
 end

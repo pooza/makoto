@@ -7,7 +7,7 @@ module Makoto
       return if girls.empty?
       template = Template.new('precure_birthday')
       template[:girls] = girls
-      mastodon.toot(template.to_s)
+      mastodon.toot(status: template.to_s, visibility: visibility)
     end
   end
 end
