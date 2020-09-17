@@ -15,6 +15,10 @@ module Makoto
       return @mastodon
     end
 
+    def visibility
+      return @config['/mastodon/visibility']
+    end
+
     def perform
       raise Ginseng::ImplementError, "'#{__method__}' not implemented"
     end
