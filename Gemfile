@@ -16,6 +16,7 @@ group :development do
   gem 'rack-test'
   gem 'rubocop'
   gem 'rubocop-performance'
+  gem 'sinatra-contrib', require: false
   gem 'test-unit'
   gem 'timecop'
 end
