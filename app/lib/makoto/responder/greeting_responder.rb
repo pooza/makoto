@@ -45,7 +45,7 @@ module Makoto
     private
 
     def create_pattern(source)
-      return Regexp.new("#{source}[でだ]?(#{quote_suffixes.join('|')})?([〜ー、。!?w]|\s|$)")
+      return Regexp.new("#{source}[でだ]?(#{quote_suffixes.join('|')})?([〜～~ー、。!?w]|\s|$)")
     end
 
     def quote_suffixes
