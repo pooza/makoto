@@ -10,15 +10,20 @@ module Makoto
       @responder.params = {'content' => '博多ラーメン！', 'account' => @account}
       assert_false(@responder.executable?)
 
-      @responder.params = {'content' => 'おはよう～', 'account' => @account}
+      @responder.params = {'content' => 'おはよう', 'account' => @account}
       Timecop.travel(Time.parse('8:00'))
       assert(@responder.executable?)
       assert(@responder.on_time?)
       assert(@responder.exec.present?)
+      @responder.params = {'content' => 'おはよう～', 'account' => @account}
+      assert(@responder.executable?)
+      @responder.params = {'content' => 'おはよう〜', 'account' => @account}
+      assert(@responder.executable?)
       Timecop.travel(Time.parse('17:00'))
       assert(@responder.executable?)
       assert_false(@responder.on_time?)
       assert(@responder.exec.present?)
+
 
       Timecop.travel(Time.parse('8:00'))
       @responder.params = {'content' => 'おはようモフ', 'account' => @account}
