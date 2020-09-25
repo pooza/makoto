@@ -1,12 +1,13 @@
 GIT
   remote: https://github.com/pooza/ginseng-core.git
-  revision: 0c4442361fd45a336f896a3abb30c212f7a0aeef
+  revision: 394d8075eaa9d39283c0070dba8fab4132a68325
   specs:
-    ginseng-core (1.8.0)
+    ginseng-core (1.8.1)
       activesupport
       addressable
       daemon-spawn
       httparty
+      json-schema
       nokogiri
       rake
       rest-client
@@ -32,9 +33,9 @@ GIT
 
 GIT
   remote: https://github.com/pooza/ginseng-web.git
-  revision: 6f418565e58d1861ac9d1e07a2fc4ea258fa827e
+  revision: b848898f65c88b915eccee1dbf8ea18b4e6ea264
   specs:
-    ginseng-web (1.2.3)
+    ginseng-web (1.3.0)
       puma
       sass
       sinatra
@@ -90,12 +91,15 @@ GEM
       multi_xml (>= 0.5.2)
     i18n (1.8.5)
       concurrent-ruby (~> 1.0)
+    json-schema (2.8.1)
+      addressable (>= 2.4)
     mime-types (3.3.1)
       mime-types-data (~> 3.2015)
     mime-types-data (3.2020.0512)
     mini_portile2 (2.4.0)
     minitest (5.14.2)
     msgpack (1.3.3)
+    multi_json (1.15.0)
     multi_xml (0.6.0)
     mustermann (1.1.1)
       ruby2_keywords (~> 0.0.1)
@@ -108,14 +112,14 @@ GEM
     nokogumbo (2.0.2)
       nokogiri (~> 1.8, >= 1.8.4)
     parallel (1.19.2)
-    parser (2.7.1.4)
+    parser (2.7.1.5)
       ast (~> 2.4.1)
     pg (1.2.3)
     power_assert (1.2.0)
     public_suffix (4.0.6)
     puma (5.0.0)
       nio4r (~> 2.0)
-    raabro (1.3.1)
+    raabro (1.3.3)
     rack (2.2.3)
     rack-protection (2.1.0)
       rack
@@ -127,14 +131,14 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     redis (4.2.2)
-    regexp_parser (1.7.1)
+    regexp_parser (1.8.0)
     rest-client (2.1.0)
       http-accept (>= 1.7.0, < 2.0)
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
     rexml (3.2.4)
-    rubocop (0.91.0)
+    rubocop (0.91.1)
       parallel (~> 1.10)
       parser (>= 2.7.1.1)
       rainbow (>= 2.2.2, < 4.0)
@@ -143,10 +147,11 @@ GEM
       rubocop-ast (>= 0.4.0, < 1.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 2.0)
-    rubocop-ast (0.4.1)
-      parser (>= 2.7.1.4)
-    rubocop-performance (1.8.0)
+    rubocop-ast (0.5.0)
+      parser (>= 2.7.1.5)
+    rubocop-performance (1.8.1)
       rubocop (>= 0.87.0)
+      rubocop-ast (>= 0.4.0)
     ruby-progressbar (1.10.1)
     ruby2_keywords (0.0.2)
     rufus-scheduler (3.6.0)
@@ -179,6 +184,12 @@ GEM
       mustermann (~> 1.0)
       rack (~> 2.2)
       rack-protection (= 2.1.0)
+      tilt (~> 2.0)
+    sinatra-contrib (2.1.0)
+      multi_json
+      mustermann (~> 1.0)
+      rack-protection (= 2.1.0)
+      sinatra (= 2.1.0)
       tilt (~> 2.0)
     slim (4.1.0)
       temple (>= 0.7.6, < 0.9)
@@ -223,6 +234,7 @@ DEPENDENCIES
   sidekiq
   sidekiq-failures
   sidekiq-scheduler
+  sinatra-contrib
   test-unit
   timecop
 
