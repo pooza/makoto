@@ -24,7 +24,6 @@ module Makoto
       assert_false(@responder.on_time?)
       assert(@responder.exec.present?)
 
-
       Timecop.travel(Time.parse('8:00'))
       @responder.params = {'content' => 'おはようモフ', 'account' => @account}
       assert(@responder.executable?)
