@@ -9,10 +9,6 @@ module Makoto
       ])
     end
 
-    def initializer_path
-      return File.join(Environment.dir, 'app/initializer/puma.rb')
-    end
-
     def motd
       return [
         `puma -V`.chomp,
@@ -28,6 +24,12 @@ module Makoto
         @uri.port = @config['/puma/port']
       end
       return @uri
+    end
+
+    private
+
+    def initializer_path
+      return File.join(Environment.dir, 'app/initializer/puma.rb')
     end
   end
 end
