@@ -12,10 +12,6 @@ module Makoto
       ])
     end
 
-    def initializer_path
-      return File.join(Environment.dir, 'app/initializer/sidekiq.rb')
-    end
-
     def motd
       return [
         `sidekiq -V`.chomp,
@@ -37,6 +33,18 @@ module Makoto
       return values
     rescue => e
       return {error: e.message, status: 'NG'}
+    end
+
+    private
+
+    def initializer_path
+      return File.join(Environment.dir, 'app/initializer/sidekiq.rb')
+    end
+
+    def create_log_entry(line)
+      return {daemon: app_name}.merge(JSON.parse(line))
+    rescue
+      return super
     end
   end
 end
