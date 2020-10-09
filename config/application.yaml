@@ -306,22 +306,25 @@ nowplaying:
     normal:
       - 次の曲です。どうぞ。
       - 次の曲をどうぞ！
-      - はい、では次の曲を。どうぞ。
+      - では次の曲を。どうぞ。
       - では次の曲を聴いてください。どうぞ。
     self:
       - 次はわたしの曲。聴いてくださいね！どうぞ。
       - 次はわたし、剣崎真琴の曲です！どうぞ。
       - では聴いてください。わたし、剣崎真琴の曲です！どうぞ。
 birthday:
-  greeting:
+  titlecalls1:
     - ノンストップで歌い続けます！
+    - わたしについてきて！
     - まだまだ歌い続けるわ！
     - 持ち歌を歌いつくすつもりで歌うわ！
-    - 歌い続けます！愛を込めて！
-  messages:
-    - |-
-      こんなわたしを応援してくれる人がいる。
-      だからその人達の為に、自分の為に、わたしは歌う！
+    - 歌い続けます。愛を込めて！
+    - では次の曲を。
+    - 次の曲です。
+  titlecalls2:
+    - 聴いてください。
+    - 次はこの曲です。
+    - 次の曲は、この曲です。
 new_year:
   greeting: |-
     明けましておめでとうございます。
@@ -354,43 +357,52 @@ sidekiq:
   concurrency: 5
   schedule:
     good_morning:
-      cron: '0 0 7 * * *'
+      cron: '0 7 * * *'
       class: Makoto::GoodMorningMonologueWorker
     nowplaying:
-      cron: '0 0 9,21 * * *'
+      cron: '0 3,9,15,21 * * *'
       class: Makoto::NowplayingMonologueWorker
     good_quote:
-      cron: '0 0 5,11,17,23 * * *'
+      cron: '0 5,11,17,23 * * *'
       class: Makoto::GoodQuoteMonologueWorker
     precure_birthday:
-      cron: '0 1 0 * * *'
+      cron: '1 0 * * *'
       class: Makoto::PrecureBirthdayMonologueWorker
+    makoto_birthday_notice:
+      cron: '2 7 1-3 11 *'
+      class: Makoto::MakotoBirthdayNoticeWorker
+    makoto_birthday_start:
+      cron: '0 12 4 11 *'
+      class: Makoto::MakotoBirthdayLiveStartWorker
     makoto_birthday:
-      cron: '0 10,40 * 4 11 *'
+      cron: '1,21,41 12-19 4 11 *'
       class: Makoto::MakotoBirthdayMonologueWorker
+    makoto_birthday_end:
+      cron: '0 20 4 11 *'
+      class: Makoto::MakotoBirthdayLiveEndWorker
     new_year:
-      cron: '0 0 0 1 1 *'
+      cron: '0 0 1 1 *'
       class: Makoto::NewYearMonologueWorker
     fairy_lib:
-      cron: '0 2 2 * * *'
+      cron: '2 2 * * *'
       class: Makoto::FairyRefreshWorker
     quote_lib:
-      cron: '0 4 2 * * *'
+      cron: '4 2 * * *'
       class: Makoto::QuoteRefreshWorker
     track_lib:
-      cron: '0 6 2 * * *'
+      cron: '6 2 * * *'
       class: Makoto::TrackRefreshWorker
     message_lib:
-      cron: '0 8 2 * * *'
+      cron: '8 2 * * *'
       class: Makoto::MessageRefreshWorker
     keyword_lib:
-      cron: '0 10 2 * * *'
+      cron: '10 2 * * *'
       class: Makoto::KeywordRefreshWorker
     local_dictionary:
-      cron: '0 12 2 * * *'
+      cron: '12 2 * * *'
       class: Makoto::LocalDictionaryRefreshWorker
     neologd_dictionary:
-      cron: '0 15 2 * * 6'
+      cron: '15 2 * * 6'
       class: Makoto::NeologdDictionaryRefreshWorker
     follow_maintenance:
       every: 5m
