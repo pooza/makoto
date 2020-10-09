@@ -325,6 +325,12 @@ birthday:
     - 聴いてください。
     - 次はこの曲です。
     - 次の曲は、この曲です。
+  notice: |-
+    11/4はMAKOTOのバースデーライブです。
+  start: |-
+    バースデーライブを始めます。
+  end: |-
+    バースデーライブを終わります。
 new_year:
   greeting: |-
     明けましておめでとうございます。
@@ -370,16 +376,16 @@ sidekiq:
       class: Makoto::PrecureBirthdayMonologueWorker
     makoto_birthday_notice:
       cron: '2 7 1-3 11 *'
-      class: Makoto::MakotoBirthdayNoticeWorker
+      class: Makoto::MakotoBirthdayNoticeMonologueWorker
     makoto_birthday_start:
       cron: '0 12 4 11 *'
-      class: Makoto::MakotoBirthdayLiveStartWorker
+      class: Makoto::MakotoBirthdayLiveStartMonologueWorker
     makoto_birthday:
       cron: '1,21,41 12-19 4 11 *'
       class: Makoto::MakotoBirthdayMonologueWorker
     makoto_birthday_end:
       cron: '0 20 4 11 *'
-      class: Makoto::MakotoBirthdayLiveEndWorker
+      class: Makoto::MakotoBirthdayLiveEndMonologueWorker
     new_year:
       cron: '0 0 1 1 *'
       class: Makoto::NewYearMonologueWorker
