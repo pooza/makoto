@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/pooza/ginseng-core.git
-  revision: ae58ca7da8b8a333180df1988f04b45f5f746f29
+  revision: 7138104c683993e366efdcd5f9a02fc726da0f9e
   specs:
-    ginseng-core (1.8.2)
+    ginseng-core (1.8.4)
       activesupport
       addressable
       daemon-spawn
@@ -19,9 +19,9 @@ GIT
 
 GIT
   remote: https://github.com/pooza/ginseng-fediverse.git
-  revision: f03928814cc6329841a0839e180be154336af9a4
+  revision: 1670a26676c11f7d9538a32822cda7f7effbf431
   specs:
-    ginseng-fediverse (1.4.0)
+    ginseng-fediverse (1.4.1)
 
 GIT
   remote: https://github.com/pooza/ginseng-postgres.git
@@ -33,9 +33,9 @@ GIT
 
 GIT
   remote: https://github.com/pooza/ginseng-web.git
-  revision: b848898f65c88b915eccee1dbf8ea18b4e6ea264
+  revision: 4b4bd65ada6f4394aee0e41d9175afff49ddb979
   specs:
-    ginseng-web (1.3.0)
+    ginseng-web (1.3.1)
       puma
       sass
       sinatra
@@ -43,10 +43,10 @@ GIT
 
 GIT
   remote: https://github.com/pooza/rubicure.git
-  revision: 81376000201afb7698dbda42978088dfad697dea
+  revision: dd8cb4bb63cfa6218e259c81718b13aa1cf517bc
   branch: master.pooza
   specs:
-    rubicure (1.3.4.0)
+    rubicure (1.3.5.0)
       activesupport (>= 5.0.0)
       hashie (>= 2.0.5)
       sengiri_yaml (>= 0.0.2)
@@ -63,7 +63,7 @@ GEM
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
     ast (2.4.1)
-    bootsnap (1.4.8)
+    bootsnap (1.5.0)
       msgpack (~> 1.0)
     concurrent-ruby (1.1.7)
     connection_pool (2.2.3)
@@ -79,9 +79,9 @@ GEM
       eventmachine (>= 0.12.0)
       websocket-driver (>= 0.5.1)
     ffi (1.13.1)
-    fugit (1.3.9)
+    fugit (1.4.0)
       et-orbi (~> 1.1, >= 1.1.8)
-      raabro (~> 1.3)
+      raabro (~> 1.4)
     hashie (4.1.0)
     http-accept (1.7.0)
     http-cookie (1.0.3)
@@ -95,7 +95,7 @@ GEM
       addressable (>= 2.4)
     mime-types (3.3.1)
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2020.0512)
+    mime-types-data (3.2020.1104)
     mini_portile2 (2.4.0)
     minitest (5.14.2)
     msgpack (1.3.3)
@@ -117,7 +117,7 @@ GEM
     pg (1.2.3)
     power_assert (1.2.0)
     public_suffix (4.0.6)
-    puma (5.0.2)
+    puma (5.0.4)
       nio4r (~> 2.0)
     raabro (1.4.0)
     rack (2.2.3)
@@ -138,16 +138,16 @@ GEM
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
     rexml (3.2.4)
-    rubocop (1.0.0)
+    rubocop (1.2.0)
       parallel (~> 1.10)
       parser (>= 2.7.1.5)
       rainbow (>= 2.2.2, < 4.0)
       regexp_parser (>= 1.8)
       rexml
-      rubocop-ast (>= 0.6.0)
+      rubocop-ast (>= 1.0.1)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 2.0)
-    rubocop-ast (1.0.0)
+    rubocop-ast (1.1.1)
       parser (>= 2.7.1.5)
     rubocop-performance (1.8.1)
       rubocop (>= 0.87.0)
@@ -166,7 +166,7 @@ GEM
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
     sengiri_yaml (0.0.3)
-    sequel (5.37.0)
+    sequel (5.38.0)
     sidekiq (6.1.2)
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
@@ -214,7 +214,7 @@ GEM
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     yajl-ruby (1.4.1)
-    zeitwerk (2.4.0)
+    zeitwerk (2.4.1)
 
 PLATFORMS
   ruby

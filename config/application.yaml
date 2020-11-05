@@ -1,5 +1,5 @@
 package:
-  version: 2.6.1
+  version: 2.7.0
   url: https://github.com/pooza/makoto
   authors:
     - Tatsuya Koishi
@@ -73,6 +73,7 @@ respond:
     - overfamiliar
     - interested
     - song
+    - markov
     - keyword
     - calling
     - fixed
@@ -239,7 +240,7 @@ respond:
         normal: キラやば☆〜🙂
     - pattern: (ふわぁ[〜ー])?、?生きてるって(感じ|かんじ|カンジ)
       response:
-        normal: 生きてるって感じですね。
+        normal: 生きてるって感じですね
         friendry: 生きてるって感じね🙂
   interested:
     - quote: 歌
