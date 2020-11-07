@@ -4,6 +4,10 @@ module Makoto
       @responder = MarkovResponder.new
     end
 
+    def test_executable?
+      assert_boolean(@responder.executable?)
+    end
+
     def test_table
       @responder.table.each do |entry|
         assert_kind_of(Array, entry)
@@ -13,6 +17,7 @@ module Makoto
     end
 
     def test_markov
+      puts @responder.markov
       assert(@responder.markov.present?)
     end
   end

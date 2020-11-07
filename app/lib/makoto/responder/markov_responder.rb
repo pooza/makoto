@@ -3,7 +3,7 @@ require 'natto'
 module Makoto
   class MarkovResponder < Responder
     def executable?
-      return rand(0..99) < 20
+      return rand < @config['/respond/markov/frequency']
     end
 
     def exec
@@ -12,12 +12,7 @@ module Makoto
     end
 
     def quotes
-      quotes = Quote.dataset.where(
-        exclude: false,
-        exclude_respond: false,
-      )
-      quotes = quotes.where {3 <= priority}
-      return quotes
+      return Quote.dataset.where(exclude: false).where {3 <= priority}
     end
 
     def mecab

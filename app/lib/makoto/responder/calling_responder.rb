@@ -1,7 +1,7 @@
 module Makoto
   class CallingResponder < Responder
     def executable?
-      return rand(0..99) < 80
+      return rand < @config['/respond/calling/frequency']
     end
 
     def exec
