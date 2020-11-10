@@ -383,7 +383,7 @@ sidekiq:
       cron: '1 0 * * *'
       class: Makoto::PrecureBirthdayMonologueWorker
     makoto_birthday_notice:
-      cron: '2 7 1-3 11 *'
+      cron: '2 7 1-4 11 *'
       class: Makoto::MakotoBirthdayNoticeMonologueWorker
     makoto_birthday_start:
       cron: '0 12 4 11 *'
@@ -419,10 +419,10 @@ sidekiq:
       cron: '15 2 * * 6'
       class: Makoto::NeologdDictionaryRefreshWorker
     follow_maintenance:
-      every: 5m
+      every: '0-59/5 * * * *'
       class: Makoto::FollowMaintenanceWorker
     past_keywords_purge:
-      every: 5m
+      every: '0-59/5 * * * *'
       class: Makoto::PastKeywordsPurgeWorker
 puma:
   port: 3011
