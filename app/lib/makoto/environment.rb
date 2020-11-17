@@ -8,6 +8,18 @@ module Makoto
       return Makoto.dir
     end
 
+    def self.type
+      return Config.instance['/environment'] || 'development'
+    end
+
+    def self.development?
+      return type == 'development'
+    end
+
+    def self.production?
+      return type == 'production'
+    end
+
     def self.health
       values = {
         version: Package.version,
