@@ -1,3 +1,4 @@
+require 'bundler/setup'
 require 'bootsnap'
 require 'sidekiq'
 require 'sidekiq-scheduler'
@@ -8,9 +9,10 @@ module Makoto
     return File.expand_path('../..', __dir__)
   end
 
-  def self.bootsnap
+  def self.setup_bootsnap
     Bootsnap.setup(
       cache_dir: File.join(dir, 'tmp/cache'),
+      development_mode: Environment.development?,
       load_path_cache: true,
       autoload_paths_cache: true,
       compile_cache_iseq: true,
@@ -27,7 +29,7 @@ module Makoto
     return loader
   end
 
-  def self.sidekiq
+  def self.setup_sidekiq
     Sidekiq.configure_client do |config|
       config.redis = {url: Config.instance['/sidekiq/redis/dsn']}
     end
@@ -35,6 +37,7 @@ module Makoto
       config.redis = {url: Config.instance['/sidekiq/redis/dsn']}
       config.log_formatter = Sidekiq::Logger::Formatters::JSON.new
     end
+    Redis.exists_returns_integer = true
   end
 
   def self.rack
@@ -61,10 +64,8 @@ module Makoto
   end
 end
 
-Redis.exists_returns_integer = true
-
-Makoto.bootsnap
-Makoto.loader.setup
 Bundler.require
-Makoto.sidekiq
+Makoto.loader.setup
+Makoto.setup_bootsnap
+Makoto.setup_sidekiq
 Makoto::Postgres.connect
