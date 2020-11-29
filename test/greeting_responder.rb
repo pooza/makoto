@@ -55,5 +55,9 @@ module Makoto
       assert_false(@responder.on_time?)
       assert(@responder.exec.present?)
     end
+
+    def test_continue?
+      assert(@responder.continue?)
+    end
   end
 end

@@ -12,5 +12,9 @@ module Makoto
       assert(@responder.executable?)
       assert(@responder.exec.present?)
     end
+
+    def test_continue?
+      assert_false(@responder.continue?)
+    end
   end
 end

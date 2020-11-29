@@ -8,6 +8,10 @@ module Makoto
       assert_boolean(@responder.executable?)
     end
 
+    def test_continue?
+      assert_boolean(@responder.continue?)
+    end
+
     def test_table
       @responder.table.each do |entry|
         assert_kind_of(Array, entry)

@@ -27,5 +27,9 @@ module Makoto
       assert(@responder.executable?)
       assert(@responder.exec.present?)
     end
+
+    def test_continue?
+      assert_boolean(@responder.continue?)
+    end
   end
 end

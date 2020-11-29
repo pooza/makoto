@@ -28,5 +28,9 @@ module Makoto
         @responder.executable?
       end
     end
+
+    def test_continue?
+      assert_false(@responder.continue?)
+    end
   end
 end

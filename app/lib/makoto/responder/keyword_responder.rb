@@ -22,6 +22,10 @@ module Makoto
       return @paragraphs.present?
     end
 
+    def continue?
+      return rand < @config['/respond/keyword/continue']
+    end
+
     def favorability
       return rand(0..1)
     end

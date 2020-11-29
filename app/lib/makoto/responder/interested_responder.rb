@@ -15,6 +15,10 @@ module Makoto
       return false
     end
 
+    def continue?
+      return true
+    end
+
     def favorability
       return 1
     end
