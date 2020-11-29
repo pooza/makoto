@@ -16,5 +16,9 @@ module Makoto
       @responder.params = {'content' => '「ぷーざ」って呼んで。', 'account' => @account}
       assert(@responder.executable?)
     end
+
+    def test_continue?
+      assert_false(@responder.continue?)
+    end
   end
 end

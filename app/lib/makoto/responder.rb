@@ -26,6 +26,10 @@ module Makoto
       raise Ginseng::ImplementError, "'#{__method__}' not implemented"
     end
 
+    def continue?
+      return false
+    end
+
     def exec
       raise Ginseng::ImplementError, "'#{__method__}' not implemented"
     end

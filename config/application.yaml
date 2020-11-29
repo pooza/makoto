@@ -1,5 +1,5 @@
 package:
-  version: 2.7.3
+  version: 2.7.4
   url: https://github.com/pooza/makoto
   authors:
     - Tatsuya Koishi
@@ -306,9 +306,12 @@ respond:
         - 殿下
     message: 馴れ馴れしく王女様を呼び捨てにしないでください！
   markov:
-    frequency: 0.6
+    frequency: 0.8
   calling:
     frequency: 0.8
+    continue: 0.9
+  keyword:
+    continue: 0.4
 nowplaying:
   messages:
     normal:

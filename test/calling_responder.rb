@@ -8,5 +8,9 @@ module Makoto
       @responder.params = {'content' => 'えええええ'}
       assert_boolean(@responder.executable?)
     end
+
+    def test_continue?
+      assert_boolean(@responder.continue?)
+    end
   end
 end
