@@ -30,7 +30,7 @@ module Makoto
         @logger.info(error: e.message, source: Analyzer.sanitize(params['content']))
         return nil unless params['mention']
       end
-      return sentences.shuffle.join
+      return sentences.join
     rescue => e
       @logger.error(e)
       return FixedResponder.new.exec
