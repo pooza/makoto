@@ -4,7 +4,7 @@ module Makoto
       @responder = SongResponder.new
     end
 
-    def test_exec
+    def test_executable?
       @responder.params = {'content' => '歌って！'}
       assert_false(@responder.executable?)
 
@@ -15,6 +15,10 @@ module Makoto
 
     def test_continue?
       assert_false(@responder.continue?)
+    end
+
+    def test_exec
+      assert_kind_of(Array, @responder.exec)
     end
   end
 end

@@ -6,7 +6,7 @@ module Makoto
       @account = {'display_name' => 'ぷーざ', 'acct' => @config['/test/acct']}
     end
 
-    def test_exec
+    def test_executable?
       @responder.params = {'content' => '博多ラーメン！', 'account' => @account}
       assert_false(@responder.executable?)
 

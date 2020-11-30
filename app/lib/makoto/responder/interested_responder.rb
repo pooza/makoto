@@ -20,7 +20,7 @@ module Makoto
     end
 
     def favorability
-      return 1
+      return rand(0..1)
     end
 
     def exec
@@ -30,7 +30,7 @@ module Makoto
         respond: true,
       )
       raise 'empty' unless quote
-      return quote.body
+      return [quote.body]
     end
   end
 end

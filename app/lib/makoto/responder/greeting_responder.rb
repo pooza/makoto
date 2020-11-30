@@ -33,7 +33,7 @@ module Makoto
         message.push(['？？', 'って…。', '？'].sample)
         message.push('😅') if account.friendry?
       end
-      return message.join
+      return [message.join]
     end
 
     def on_time?

@@ -65,6 +65,7 @@ analyzer:
     - infomation # キュアスタ！のお知らせアカウント
 respond:
   paragraph:
+    min: 2
     max: 3
   classes:
     - bad_mood

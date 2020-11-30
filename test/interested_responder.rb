@@ -4,7 +4,7 @@ module Makoto
       @responder = InterestedResponder.new
     end
 
-    def test_exec
+    def test_executable?
       @responder.params = {'content' => '王女様！'}
       assert(@responder.executable?)
       assert(@responder.exec.present?)
@@ -30,6 +30,10 @@ module Makoto
 
     def test_continue?
       assert_boolean(@responder.continue?)
+    end
+
+    def test_exec
+      assert_kind_of(Array, @responder.exec)
     end
   end
 end
