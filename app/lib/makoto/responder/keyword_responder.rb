@@ -30,7 +30,7 @@ module Makoto
     end
 
     def exec
-      return @paragraphs
+      return @paragraphs.compact.uniq
     end
 
     def create_word_entries

@@ -7,7 +7,6 @@ module Makoto
     end
 
     def exec
-      @table = nil
       return markov.gsub(/[！？!?。]/, '\\0|').split('|').compact.uniq
     end
 
