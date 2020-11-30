@@ -5,11 +5,11 @@ module Makoto
     end
 
     def continue?
-      return rand < @config['/respond/calling/continue']
+      return true
     end
 
     def exec
-      return Message.pickup(type: 'calling').message % [display_name]
+      return [Message.pickup(type: 'calling').message % [display_name]]
     end
   end
 end

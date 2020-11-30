@@ -7,13 +7,13 @@ module Makoto
     end
 
     def favorability
-      return 1
+      return rand(0..1)
     end
 
     def exec
       account.update(nickname: @name)
-      return @config['/respond/naming/response/friendry'] % [@name] if account.friendry?
-      return @config['/respond/naming/response/normal'] % [@name]
+      return [@config['/respond/naming/response/friendry'] % [@name]] if account.friendry?
+      return [@config['/respond/naming/response/normal'] % [@name]]
     end
   end
 end

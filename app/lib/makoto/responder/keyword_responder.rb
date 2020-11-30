@@ -8,14 +8,13 @@ module Makoto
     def executable?
       templates = {}
       words = create_word_entries
-      [rand(1..@config['/respond/paragraph/max']), words.clone.count].min.times do
+      words.clone.count.times do
         word = words.pop
         feature = word[:feature]
         records = Message.dataset.where(type: 'template', feature: feature)
         templates[feature] ||= records.all.shuffle
         template = templates[feature].pop.message
         @paragraphs.push(template % [word[:surface]])
-        break if template.match?(/[！？!?]$/)
       rescue => e
         @logger.error(e)
       end
@@ -23,7 +22,7 @@ module Makoto
     end
 
     def continue?
-      return rand < @config['/respond/keyword/continue']
+      return true
     end
 
     def favorability
@@ -31,7 +30,7 @@ module Makoto
     end
 
     def exec
-      return @paragraphs.join
+      return @paragraphs.compact.uniq
     end
 
     def create_word_entries

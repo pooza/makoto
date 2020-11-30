@@ -1,5 +1,7 @@
 module Makoto
   class Message < Sequel::Model(:message)
+    alias body message
+
     def self.pickup(params = {})
       messages = Message.dataset
       messages = messages.where(feature: params[:feature]) if params[:feature]

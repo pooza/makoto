@@ -20,7 +20,7 @@ module Makoto
       end
       @template[:url] = track.url
       @template[:intro] = track.intro
-      return @template.to_s
+      return [@template.to_s]
     end
   end
 end

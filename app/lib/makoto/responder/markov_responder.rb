@@ -7,12 +7,19 @@ module Makoto
     end
 
     def exec
-      @table = nil
-      return markov
+      return markov.gsub(/[！？!?。]/, '\\0|').split('|').compact.uniq
+    end
+
+    def favorability
+      return rand(0..1)
     end
 
     def quotes
-      return Quote.dataset.where(exclude: false).where {3 <= priority}
+      return Quote.dataset.where(exclude: false, emotion: nil).where {3 <= priority}
+    end
+
+    def messages
+      return Message.dataset.where(type: 'morning')
     end
 
     def mecab
@@ -24,11 +31,13 @@ module Makoto
       unless @table
         @table = {}
         data = ['START', 'START']
-        quotes.all.shuffle.each do |quote|
-          mecab.parse(quote.body) do |word|
-            data.push(word.surface)
+        [quotes, messages].each do |collection|
+          collection.all.shuffle.each do |item|
+            mecab.parse(item.body) do |word|
+              data.push(word.surface)
+            end
+            data.push('END')
           end
-          data.push('END')
         end
         data.each_cons(3).each do |v|
           suffix = v.pop
