@@ -15,7 +15,9 @@ module Makoto
     end
 
     def quotes
-      return Quote.dataset.where(exclude: false, emotion: nil).where {3 <= priority}
+      return Quote.dataset
+          .where(exclude: false, exclude_respond: false, emotion: nil)
+          .where {3 <= priority}
     end
 
     def messages
