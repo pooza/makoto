@@ -74,7 +74,9 @@ module Makoto
       EM.run do
         listener = Listener.new
 
-        listener.client.on :open, &:open
+        listener.client.on :open do |e| # rubocop:disable Style/SymbolProc
+          listener.open
+        end
 
         listener.client.on :close do |e|
           listener.close(e)
