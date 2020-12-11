@@ -1,5 +1,20 @@
 module Makoto
-  class InterestedResponder < Responder
+  class InterestedResponder < MarkovResponder
+    def quotes
+      dataset = Quote.dataset
+        .where(exclude: false, emotion: nil)
+        .where(Sequel.like(:body, "%#{@keyword}%") | Sequel.like(:remark, "%#{@keyword}%"))
+        .where {3 <= priority}
+      return dataset
+    end
+
+    def messages
+      dataset = Message.dataset
+        .where(type: 'morning')
+        .where(Sequel.like(:message, "%#{@keyword}%"))
+      return dataset
+    end
+
     def executable?
       @config['/respond/interested'].each do |entry|
         next unless analyzer.match?(entry['quote'])
@@ -7,6 +22,7 @@ module Makoto
         entry['words'].each do |word|
           next unless analyzer.match?(word)
           @keyword = entry['quote']
+          @table = nil
           return true
         end
         raise MatchingError, "no match (#{entry['words'].join('|')})" unless mention?
@@ -16,21 +32,7 @@ module Makoto
     end
 
     def continue?
-      return true
-    end
-
-    def favorability
-      return rand(0..1)
-    end
-
-    def exec
-      quote = Quote.pickup(
-        form: @config['/quote/all_forms'],
-        keyword: @keyword,
-        respond: true,
-      )
-      raise 'empty' unless quote
-      return [quote.body]
+      return false
     end
   end
 end
