@@ -196,7 +196,7 @@ GEM
       tilt (>= 2.0.6, < 2.1)
     syslog-logger (1.6.8)
     temple (0.8.2)
-    test-unit (3.3.7)
+    test-unit (3.3.9)
       power_assert
     thwait (0.2.0)
       e2mmap
