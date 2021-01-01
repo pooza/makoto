@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.7.2'
+ruby '~>3.0.0'
 gem 'bootsnap'
 gem 'faye-websocket'
 gem 'ginseng-core', github: 'pooza/ginseng-core'
@@ -16,7 +16,7 @@ group :development do
   gem 'rack-test'
   gem 'rubocop'
   gem 'rubocop-performance'
-  gem 'sinatra-contrib', require: false
+  gem 'rubocop-sequel', github: 'pooza/rubocop-sequel', branch: 'master.pooza'
   gem 'test-unit'
   gem 'timecop'
 end

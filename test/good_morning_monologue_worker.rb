@@ -1,3 +1,5 @@
+require 'timecop'
+
 module Makoto
   class GoodMorningMonologueWorkerTest < TestCase
     def setup
@@ -22,6 +24,8 @@ module Makoto
       Timecop.travel(Time.parse('2020/02/01'))
       @worker.perform
       Timecop.travel(Time.parse('2020/02/02'))
+      @worker.perform
+      Timecop.travel(Time.parse('2020/12/24'))
       @worker.perform
     end
   end
