@@ -1,7 +1,5 @@
 require 'bundler/setup'
-require 'bootsnap'
-require 'sidekiq'
-require 'sidekiq-scheduler'
+require 'makoto/refines'
 require 'ginseng'
 
 module Makoto
@@ -30,6 +28,8 @@ module Makoto
   end
 
   def self.setup_sidekiq
+    require 'sidekiq'
+    require 'sidekiq-scheduler'
     Sidekiq.configure_client do |config|
       config.redis = {url: Config.instance['/sidekiq/redis/dsn']}
     end
@@ -44,7 +44,6 @@ module Makoto
     require 'sidekiq/web'
     require 'sidekiq-scheduler/web'
     require 'sidekiq-failures'
-
     config = Config.instance
     if config['/sidekiq/auth/user'].present? && config['/sidekiq/auth/password'].present?
       Sidekiq::Web.use Rack::Auth::Basic do |username, password|
