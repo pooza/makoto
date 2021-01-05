@@ -10,7 +10,7 @@ gem 'natto'
 gem 'rubicure', github: 'pooza/rubicure', branch: 'master.pooza'
 gem 'sidekiq'
 gem 'sidekiq-failures'
-gem 'sidekiq-scheduler'
+gem 'sidekiq-scheduler', github: 'pooza/sidekiq-scheduler', branch: 'master.pooza'
 
 group :development do
   gem 'rack-test'
