@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/pooza/ginseng-core.git
-  revision: 138db502fd714bdc0b5c41f61bc220b60b4de718
+  revision: b7963da3b245c185f4fc6d326efb9c98aa6ece9a
   specs:
-    ginseng-core (1.8.10)
+    ginseng-core (1.9.2)
       activesupport (>= 6.1.1)
       addressable
       daemon-spawn
@@ -16,13 +16,13 @@ GIT
       syslog-logger
       unicode
       yajl-ruby
-      zeitwerk (>= 2.3.0)
+      zeitwerk (>= 2.4.0)
 
 GIT
   remote: https://github.com/pooza/ginseng-fediverse.git
-  revision: 73bdb1ba3baa06e1923683a296bcf5724523428d
+  revision: 380b692553c9d8332efcdabc8491a58e754f2578
   specs:
-    ginseng-fediverse (1.4.8)
+    ginseng-fediverse (1.5.0)
 
 GIT
   remote: https://github.com/pooza/ginseng-postgres.git
@@ -87,7 +87,7 @@ GEM
     ast (2.4.1)
     bootsnap (1.5.1)
       msgpack (~> 1.0)
-    concurrent-ruby (1.1.7)
+    concurrent-ruby (1.1.8)
     connection_pool (2.2.3)
     crass (1.0.6)
     daemon-spawn (0.4.2)
@@ -179,7 +179,7 @@ GEM
       rubocop (>= 0.90.0, < 2.0)
       rubocop-ast (>= 0.4.0)
     ruby-progressbar (1.11.0)
-    ruby2_keywords (0.0.2)
+    ruby2_keywords (0.0.4)
     rufus-scheduler (3.7.0)
       fugit (~> 1.1, >= 1.1.6)
     sanitize (5.2.3)
@@ -193,7 +193,7 @@ GEM
       rb-inotify (~> 0.9, >= 0.9.7)
     sengiri_yaml (0.0.3)
     sequel (5.40.0)
-    sidekiq (6.1.2)
+    sidekiq (6.1.3)
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
       redis (>= 4.2.0)
