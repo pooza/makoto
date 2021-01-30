@@ -16,7 +16,7 @@ group :development do
   gem 'rack-test'
   gem 'rubocop'
   gem 'rubocop-performance'
-  gem 'rubocop-sequel', github: 'pooza/rubocop-sequel', branch: 'master.pooza'
+  gem 'rubocop-sequel'
   gem 'test-unit'
   gem 'timecop'
 end
