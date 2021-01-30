@@ -1,16 +1,17 @@
 module Makoto
   class TestCaseFilter < Ginseng::TestCaseFilter
+    include Package
+
     def self.create(name)
-      Config.instance['/test/filters'].each do |entry|
-        next unless entry['name'] == name
-        return "Makoto::#{name.camelize}TestCaseFilter".constantize.new(entry)
+      all do |filter|
+        return filter if filter.name == name
       end
     end
 
     def self.all
       return enum_for(__method__) unless block_given?
-      Config.instance['/test/filters'].each do |entry|
-        yield TestCaseFilter.create(entry['name'])
+      Config.instance.raw.dig('test', 'filters').each do |entry|
+        yield "Makoto::#{entry['name'].camelize}TestCaseFilter".constantize.new(entry)
       end
     end
   end
