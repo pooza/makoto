@@ -45,6 +45,13 @@ module Makoto
       @responder.params = {'content' => 'おはようのプルンス', 'account' => @account, 'mention' => true}
       assert_false(@responder.executable?)
 
+      @responder.params = {'content' => 'ヒーリングッボイ', 'account' => @account, 'mention' => true}
+      assert_false(@responder.executable?)
+      @responder.params = {'content' => 'ヒーリングッバイ', 'account' => @account, 'mention' => true}
+      assert(@responder.executable?)
+      @responder.params = {'content' => 'ヒーリングッバ〜イ', 'account' => @account, 'mention' => true}
+      assert(@responder.executable?)
+
       @responder.params = {'content' => 'あけおめ！', 'account' => @account}
       Timecop.travel(Time.parse('2000/1/1'))
       assert(@responder.executable?)
