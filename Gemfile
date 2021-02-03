@@ -14,6 +14,7 @@ gem 'sidekiq-scheduler', github: 'pooza/sidekiq-scheduler', branch: 'master.pooz
 
 group :development do
   gem 'rack-test'
+  gem 'ricecream'
   gem 'rubocop'
   gem 'rubocop-performance'
   gem 'rubocop-sequel'
