@@ -60,10 +60,10 @@ module Makoto
       require f
     end
   end
-end
 
-Bundler.require
-Makoto.loader.setup
-Makoto.setup_bootsnap
-Makoto.setup_sidekiq
-Makoto::Postgres.connect
+  Bundler.require
+  loader.setup
+  setup_bootsnap
+  setup_sidekiq
+  Postgres.connect
+end
