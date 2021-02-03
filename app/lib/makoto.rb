@@ -1,6 +1,6 @@
 require 'bundler/setup'
+require 'ricecream'
 require 'makoto/refines'
-require 'ginseng'
 
 module Makoto
   def self.dir
@@ -12,7 +12,6 @@ module Makoto
       cache_dir: File.join(dir, 'tmp/cache'),
       development_mode: Environment.development?,
       load_path_cache: true,
-      autoload_paths_cache: true,
       compile_cache_iseq: true,
       compile_cache_yaml: true,
     )
@@ -40,6 +39,16 @@ module Makoto
     Redis.exists_returns_integer = true
   end
 
+  def self.setup_debug
+    Ricecream.disable
+    return unless Environment.development?
+    Ricecream.enable
+    Ricecream.include_context = true
+    Ricecream.colorize = true
+    Ricecream.prefix = "#{Package.name} | "
+    Ricecream.define_singleton_method(:arg_to_s, proc {|v| PP.pp(v)})
+  end
+
   def self.rack
     require 'sidekiq/web'
     require 'sidekiq-scheduler/web'
@@ -61,10 +70,11 @@ module Makoto
       require f
     end
   end
-end
 
-Bundler.require
-Makoto.loader.setup
-Makoto.setup_bootsnap
-Makoto.setup_sidekiq
-Makoto::Postgres.connect
+  Bundler.require
+  loader.setup
+  setup_bootsnap
+  setup_debug
+  setup_sidekiq
+  Postgres.connect
+end

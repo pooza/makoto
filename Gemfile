@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 ruby '~>3.0.0'
-gem 'bootsnap'
+gem 'bootsnap', '>=1.7.0'
 gem 'faye-websocket'
 gem 'ginseng-core', github: 'pooza/ginseng-core'
 gem 'ginseng-fediverse', github: 'pooza/ginseng-fediverse', require: 'ginseng/fediverse'
@@ -14,6 +14,7 @@ gem 'sidekiq-scheduler', github: 'pooza/sidekiq-scheduler', branch: 'master.pooz
 
 group :development do
   gem 'rack-test'
+  gem 'ricecream'
   gem 'rubocop'
   gem 'rubocop-performance'
   gem 'rubocop-sequel'

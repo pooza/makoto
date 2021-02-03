@@ -5,5 +5,7 @@ $LOAD_PATH.unshift(File.join(dir, 'app/lib'))
 ENV['BUNDLE_GEMFILE'] = File.join(dir, 'Gemfile')
 
 require 'makoto'
-Makoto::Postgres.connect
-Makoto::Listener.start
+module Makoto
+  Postgres.connect
+  Listener.start
+end
