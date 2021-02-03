@@ -5,6 +5,7 @@ package:
     - Tatsuya Koishi
   email:
     - tkoishi@b-shock.co.jp
+  license: MIT
 test:
   acct: user
 environment: development
@@ -131,7 +132,7 @@ respond:
       response:
         normal: おやすみなさい
         friendry: おやすみ
-    - pattern: '(じゃあね|またね|バイバ[〜ー]?イ|ばいば[〜ー]?い|さよう?なら|ヒーリングッバ[ー〜]イ)'
+    - pattern: '(じゃあね|またね|バイバ[〜ー]?イ|ばいば[〜ー]?い|さよう?なら|ヒ[ー〜]リングッバ[ー〜]*イ)'
       response:
         normal: また来てくださいね
         friendry: またね
