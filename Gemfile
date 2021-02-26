@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '~>3.0.0'
+ruby '>=2.7.0'
 gem 'bootsnap', '>=1.7.0'
 gem 'faye-websocket'
 gem 'ginseng-core', github: 'pooza/ginseng-core', 'require': 'ginseng'
