@@ -4,7 +4,7 @@ on:
 env:
   CI: "true"
 jobs:
-  test:
+  test-ruby30:
     runs-on: ubuntu-latest
     services:
       postgres:
@@ -28,7 +28,7 @@ jobs:
           sudo apt install mecab libmecab-dev mecab-ipadic-utf8
       - name: bundle install
         run: |
-          gem install bundler
+          gem install bundler -v '~>2.2.0'
           bundle install --jobs 4 --retry 3
           bundle exec rake bundle:update
           bundle exec rake bundle:check
