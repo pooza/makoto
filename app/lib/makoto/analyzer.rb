@@ -95,13 +95,7 @@ module Makoto
     end
 
     def analyze_feature(features)
-      feature = nil
-      ['人名', '地域', '一般'].each do |v|
-        next unless features.member?(v)
-        feature = v
-        break
-      end
-      return feature
+      return ['人名', '地域', '一般'].find {|v| features.member?(v)}
     end
   end
 end

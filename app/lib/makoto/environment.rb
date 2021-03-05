@@ -28,10 +28,8 @@ module Makoto
         sidekiq: SidekiqDaemon.health,
         status: 200,
       }
-      [:listener, :postgres, :sidekiq].each do |k|
-        next if values.dig(k, :status) == 'OK'
+      if [:listener, :postgres, :sidekiq].any? {|v| values.dig(v, :status) != 'OK'}
         values[:status] = 503
-        break
       end
       return values
     end
