@@ -31,6 +31,10 @@ module Makoto
       assert(@responder.executable?)
       @responder.params = {'content' => 'おはようルン！', 'account' => @account}
       assert(@responder.executable?)
+      @responder.params = {'content' => 'おはよ', 'account' => @account}
+      assert(@responder.executable?)
+      @responder.params = {'content' => 'おはよ〜', 'account' => @account}
+      assert(@responder.executable?)
 
       assert_raise MatchingError do
         @responder.params = {'content' => 'おはようさん', 'account' => @account}

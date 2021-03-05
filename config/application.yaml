@@ -95,7 +95,13 @@ respond:
         - '1231'
       fav: 2
     - pattern: 'おはよ?う?(ございま[ー〜]*す)?'
-      pattern_rough: おはよ
+      pattern_rough: おはよう
+      response:
+        ignore: おはよう
+        normal: おはようございます
+        friendry: おはよう
+      hours: [3, 4, 5, 6, 7, 8, 9, 10, 11]
+    - pattern: 'おはよ[ー〜]*'
       response:
         ignore: おはよう
         normal: おはようございます
