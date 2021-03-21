@@ -22,15 +22,12 @@ module Makoto
 
     def self.health
       values = {
-        version: Package.version,
         listener: ListenerDaemon.health,
         postgres: Postgres.health,
         sidekiq: SidekiqDaemon.health,
-        status: 200,
       }
-      if [:listener, :postgres, :sidekiq].any? {|v| values.dig(v, :status) != 'OK'}
-        values[:status] = 503
-      end
+      values[:status] = 503 if values.values.any? {|v| v[:status] != 'OK'}
+      values[:status] ||= 200
       return values
     end
 
