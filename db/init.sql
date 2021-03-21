@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 12.3
--- Dumped by pg_dump version 12.3
+-- Dumped from database version 13.1
+-- Dumped by pg_dump version 13.1
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -534,13 +534,6 @@ CREATE INDEX message_type_idx ON public.message USING btree (type);
 --
 
 CREATE UNIQUE INDEX series_name_idx ON public.series USING btree (name);
-
-
---
--- Name: track_title_idx; Type: INDEX; Schema: public; Owner: makoto
---
-
-CREATE UNIQUE INDEX track_title_idx ON public.track USING btree (title);
 
 
 --
