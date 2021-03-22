@@ -82,7 +82,7 @@ GEM
     addressable (2.7.0)
       public_suffix (>= 2.0.2, < 5.0)
     ast (2.4.2)
-    bootsnap (1.7.2)
+    bootsnap (1.7.3)
       msgpack (~> 1.0)
     concurrent-ruby (1.1.8)
     connection_pool (2.2.3)
@@ -240,6 +240,7 @@ GEM
     zlib (1.1.0)
 
 PLATFORMS
+  ruby
   x86_64-freebsd-12
   x86_64-linux
 
