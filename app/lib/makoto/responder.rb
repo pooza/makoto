@@ -52,9 +52,7 @@ module Makoto
     end
 
     def mention?
-      return @params['mention'].present?
-    rescue
-      return false
+      return @params['mention'].present? rescue false
     end
 
     def self.all
