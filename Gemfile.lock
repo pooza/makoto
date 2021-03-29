@@ -238,6 +238,7 @@ GEM
     zlib (1.1.0)
 
 PLATFORMS
+  ruby
   x86_64-freebsd-12
 
 DEPENDENCIES
