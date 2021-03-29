@@ -19,6 +19,28 @@ module Makoto
       ].join("\n")
     end
 
+    def self.username
+      config = Config.instance
+      return config['/sidekiq/auth/user'] rescue nil
+    end
+
+    def self.password
+      config = Config.instance
+      return config['/sidekiq/auth/password'] rescue nil
+    end
+
+    def self.basic_auth?
+      return username.present? && password.present?
+    end
+
+    def self.auth(username, password)
+      return true unless basic_auth?
+      return false unless username == self.username
+      return true if password == self.password.decrypt
+      return true if password == self.password
+      return false
+    end
+
     def self.health
       stats = Sidekiq::Stats.new
       pids = Sidekiq::ProcessSet.new.map {|p| p['pid']}
@@ -42,9 +64,7 @@ module Makoto
     end
 
     def create_log_entry(line)
-      return {daemon: app_name}.merge(JSON.parse(line))
-    rescue
-      return super
+      return {daemon: app_name}.merge(JSON.parse(line)) rescue super
     end
   end
 end
