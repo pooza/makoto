@@ -1,5 +1,4 @@
 require 'bundler/setup'
-require 'ricecream'
 require 'makoto/refines'
 
 module Makoto
@@ -40,6 +39,7 @@ module Makoto
   end
 
   def self.setup_debug
+    require 'ricecream'
     Ricecream.disable
     return unless Environment.development?
     Ricecream.enable
@@ -56,7 +56,7 @@ module Makoto
     config = Config.instance
     if config['/sidekiq/auth/user'].present? && config['/sidekiq/auth/password'].present?
       Sidekiq::Web.use Rack::Auth::Basic do |username, password|
-        Environment.auth(username, password)
+        SidekiqDaemon.auth(username, password)
       end
     end
     return Rack::URLMap.new(

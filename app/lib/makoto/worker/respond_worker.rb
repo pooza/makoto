@@ -27,7 +27,7 @@ module Makoto
         paragraphs.concat(responder.exec)
         break unless responder.continue?
       rescue MatchingError => e
-        @logger.info(error: e.message, source: Analyzer.sanitize(params['content']))
+        @logger.info(error: e, source: Analyzer.sanitize(params['content']))
         return nil unless params['mention']
       end
       return paragraphs.sample(rand(min..max)).join
