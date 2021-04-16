@@ -5,10 +5,10 @@ module Makoto
     include Package
 
     def self.load
-      ENV['TEST'] = Package.name
+      ENV['TEST'] = Package.full_name
       Sidekiq::Testing.fake!
       names.each do |name|
-        puts "case: #{name}"
+        puts "+ case: #{name}" if Environment.test?
         require File.join(dir, "#{name}.rb")
       end
     end
