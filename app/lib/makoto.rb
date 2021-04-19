@@ -59,6 +59,11 @@ module Makoto
         SidekiqDaemon.auth(username, password)
       end
     end
+    Sidekiq::Web.use(Rack::Session::Cookie, {
+      secret: Config.instance['/sidekiq/dashboard/session/password'],
+      same_site: true,
+      max_age: Config.instance['/sidekiq/dashboard/session/max_age'],
+    })
     return Rack::URLMap.new(
       '/' => Server,
       '/makoto/sidekiq' => Sidekiq::Web,
