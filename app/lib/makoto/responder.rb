@@ -39,10 +39,8 @@ module Makoto
     end
 
     def account
-      @account ||= Account.get(params['account']['acct'])
+      @account ||= Account.get(params['account']['acct']) rescue nil
       return @account
-    rescue
-      return nil
     end
 
     def display_name
