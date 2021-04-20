@@ -8,7 +8,7 @@ gem 'ginseng-postgres', github: 'pooza/ginseng-postgres', require: 'ginseng/post
 gem 'ginseng-web', github: 'pooza/ginseng-web', require: 'ginseng/web'
 gem 'natto'
 gem 'rubicure', github: 'pooza/rubicure', branch: 'master.pooza'
-gem 'sidekiq', '~>6.1.0'
+gem 'sidekiq', '~>6.2.0'
 gem 'sidekiq-failures'
 gem 'sidekiq-scheduler', github: 'pooza/sidekiq-scheduler', branch: 'master.pooza'
 
