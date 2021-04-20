@@ -94,14 +94,12 @@ GEM
     et-orbi (1.2.4)
       tzinfo
     eventmachine (1.2.7)
-    eventmachine (1.2.7-x64-mingw32)
     execjs (2.7.0)
     facets (3.1.0)
     faye-websocket (0.11.0)
       eventmachine (>= 0.12.0)
       websocket-driver (>= 0.5.1)
     ffi (1.15.0)
-    ffi (1.15.0-x64-mingw32)
     fugit (1.4.4)
       et-orbi (~> 1.1, >= 1.1.8)
       raabro (~> 1.4)
@@ -136,8 +134,6 @@ GEM
     nokogiri (1.11.3)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
-    nokogiri (1.11.3-x64-mingw32)
-      racc (~> 1.4)
     nokogumbo (2.0.5)
       nokogiri (~> 1.8, >= 1.8.4)
     parallel (1.20.1)
@@ -164,17 +160,11 @@ GEM
       http-cookie (>= 1.0.2, < 2.0)
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
-    rest-client (2.1.0-x64-mingw32)
-      ffi (~> 1.9)
-      http-accept (>= 1.7.0, < 2.0)
-      http-cookie (>= 1.0.2, < 2.0)
-      mime-types (>= 1.16, < 4.0)
-      netrc (~> 0.8)
     rexml (3.2.5)
     ricecream (0.2.0)
     rss (0.2.9)
       rexml
-    rubocop (1.12.1)
+    rubocop (1.13.0)
       parallel (~> 1.10)
       parser (>= 3.0.0.0)
       rainbow (>= 2.2.2, < 4.0)
@@ -201,8 +191,6 @@ GEM
       nokogiri (>= 1.8.0)
       nokogumbo (~> 2.0)
     sassc (2.4.0)
-      ffi (~> 1.9)
-    sassc (2.4.0-x64-mingw32)
       ffi (~> 1.9)
     sengiri_yaml (0.0.3)
     sequel (5.43.0)
@@ -244,8 +232,6 @@ GEM
     zlib (1.1.0)
 
 PLATFORMS
-  ruby
-  x64-mingw32
   x86_64-freebsd-12
 
 DEPENDENCIES
@@ -270,7 +256,7 @@ DEPENDENCIES
   timecop
 
 RUBY VERSION
-   ruby 3.0.0p0
+   ruby 3.0.1p64
 
 BUNDLED WITH
-   2.2.15
+   2.2.16
