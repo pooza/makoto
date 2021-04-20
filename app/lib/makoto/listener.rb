@@ -5,18 +5,18 @@ module Makoto
   class Listener
     attr_reader :client, :uri
 
-    def open
-      @logger.info(class: self.class.to_s, message: 'open', uri: @uri.to_s)
-    end
-
     def close(event)
       @client = nil
-      @logger.error(class: self.class.to_s, message: 'close', reason: event.reason)
+      e = Ginseng::GatewayError.new('close')
+      e.message = {reason: event.reason}
+      @logger.error(error: e)
     end
 
     def error(event)
       @client = nil
-      @logger.error(class: self.class.to_s, message: 'error', reason: event.reason)
+      e = Ginseng::GatewayError.new('error')
+      e.message = {reason: event.reason}
+      @logger.error(error: e)
     end
 
     def receive(message)
@@ -27,13 +27,8 @@ module Makoto
       else
         send("handle_#{data['event']}".to_sym, payload)
       end
-    rescue NoMethodError => e
-      @logger.error(e.message)
     rescue => e
-      message = Ginseng::Error.create(e).to_h
-      message[:payload] = payload if payload
-      Slack.broadcast(message)
-      @logger.error(message)
+      @logger.error(error: e, payload: payload)
     end
 
     def handle_mention_notification(payload)
@@ -73,10 +68,6 @@ module Makoto
     def self.start
       EM.run do
         listener = Listener.new
-
-        listener.client.on :open do |e|
-          listener.open
-        end
 
         listener.client.on :close do |e|
           listener.close(e)
