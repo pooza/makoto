@@ -49,7 +49,7 @@ GIT
 
 GIT
   remote: https://github.com/pooza/rubicure.git
-  revision: 8b2b67f81ae72f4ab73661240adc87b162002387
+  revision: b8f4c110b64bde58fd608a89e031456bcd645e41
   branch: master.pooza
   specs:
     rubicure (2.1.1.0)
