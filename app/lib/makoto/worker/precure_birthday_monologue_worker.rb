@@ -1,13 +1,20 @@
-require 'rubicure'
-
 module Makoto
   class PrecureBirthdayMonologueWorker < Worker
     def perform
-      girls = Precure.all.select(&:birthday?)
       return if girls.empty?
-      template = Template.new('precure_birthday')
-      template[:girls] = girls
-      mastodon.toot(status: template.to_s, visibility: visibility)
+      girls.each do |girl|
+        template = Template.new('precure_birthday')
+        template[:girl] = girl
+        mastodon.toot(status: template.to_s, visibility: visibility)
+      end
+    end
+
+    def girls
+      return RubicureAPIService.instance.girls.select do |girl|
+        next unless girl['birthday']
+        next unless date = Date.parse("#{Date.today.year}/#{girl['birthday']}")
+        date.today?
+      end
     end
   end
 end

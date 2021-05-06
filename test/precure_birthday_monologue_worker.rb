@@ -14,5 +14,9 @@ module Makoto
       Timecop.travel(Time.parse('2020/09/09'))
       @worker.perform
     end
+
+    def test_girls
+      assert_kind_of(Array, @worker.girls)
+    end
   end
 end

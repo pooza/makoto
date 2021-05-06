@@ -1,5 +1,5 @@
 package:
-  version: 2.8.16
+  version: 2.9.0
   url: https://github.com/pooza/makoto
   authors:
     - Tatsuya Koishi
@@ -33,6 +33,8 @@ word:
   url: https://script.google.com/macros/s/AKfycbws9aCXxNQt3khdJ9bEt1ADeV7HzZV_Idg-DvN5t_X3nnca0nc/exec
 fairy:
   url: https://script.google.com/macros/s/AKfycbzfal5ejlywb-AbizAX4zq-90LNhKOR217QcxObjFZI5ZQeeFVY/exec
+rubicure:
+  url: https://rubicure.precure.ml/
 analyzer:
   ignore_features:
     - サ変接続
@@ -292,6 +294,9 @@ sidekiq:
     precure_birthday:
       cron: '1 0 * * *'
       class: Makoto::PrecureBirthdayMonologueWorker
+    cast_birthday:
+      cron: '2 0 * * *'
+      class: Makoto::CastBirthdayMonologueWorker
     makoto_birthday_notice:
       cron: '2 7 1-4 11 *'
       class: Makoto::MakotoBirthdayNoticeMonologueWorker

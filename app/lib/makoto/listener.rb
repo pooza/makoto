@@ -63,7 +63,8 @@ module Makoto
       )
     end
 
-    def handle_delete(payload); end
+    def handle_delete(payload)
+    end
 
     def self.start
       EM.run do

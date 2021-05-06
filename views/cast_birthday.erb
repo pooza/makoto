@@ -1,0 +1,10 @@
+<%# encoding: UTF-8 -%>
+今日、<%= Date.today.month %>月<%= Date.today.day %>日は<%= params[:cast][:precure_name] %>役、<%= params[:cast][:cast_name] %>さんの誕生日です。おめでとうございます！
+<% if params[:cast][:birthday] -%>
+みんなもお祝いしてね。
+<% else -%>
+
+<%= params[:cast][:precure_name] %>の誕生日はわかりません。
+今日は<%= params[:cast][:precure_name] %>の分も、<%= params[:cast][:cast_name] %>さんのことと一緒にお祝いしてね。
+<% end -%>
+#誕生日
