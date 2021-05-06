@@ -2,9 +2,11 @@ module Makoto
   class PrecureBirthdayMonologueWorker < Worker
     def perform
       return if girls.empty?
-      template = Template.new('precure_birthday')
-      template[:girls] = girls
-      mastodon.toot(status: template.to_s, visibility: visibility)
+      girls.each do |girl|
+        template = Template.new('precure_birthday')
+        template[:girl] = girl
+        mastodon.toot(status: template.to_s, visibility: visibility)
+      end
     end
 
     def girls
