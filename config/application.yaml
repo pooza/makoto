@@ -294,6 +294,9 @@ sidekiq:
     precure_birthday:
       cron: '1 0 * * *'
       class: Makoto::PrecureBirthdayMonologueWorker
+    cast_birthday:
+      cron: '2 0 * * *'
+      class: Makoto::CastBirthdayMonologueWorker
     makoto_birthday_notice:
       cron: '2 7 1-4 11 *'
       class: Makoto::MakotoBirthdayNoticeMonologueWorker
