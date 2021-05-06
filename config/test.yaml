@@ -13,3 +13,4 @@ filters:
       - new_year_monologue_worker
       - nowplaying_monologue_worker
       - precure_birthday_monologue_worker
+      - cast_birthday_monologue_worker
