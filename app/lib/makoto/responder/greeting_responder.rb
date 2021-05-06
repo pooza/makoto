@@ -1,5 +1,3 @@
-require 'rubicure'
-
 module Makoto
   class GreetingResponder < Responder
     def executable?
@@ -42,16 +40,16 @@ module Makoto
       return true
     end
 
+    def quote_suffixes
+      suffixes = Fairy.suffixes.clone
+      suffixes.concat(RubicureAPIService.instance.quote_suffixes)
+      return suffixes.uniq.compact
+    end
+
     private
 
     def create_pattern(source)
       return Regexp.new("#{source}[でだ]?(#{quote_suffixes.join('|')})?([〜～~ー、。!?w]|\s|$)")
-    end
-
-    def quote_suffixes
-      suffixes = Fairy.suffixes.clone
-      suffixes.concat(Precure.all.map(&:quote_suffixes).flatten)
-      return suffixes.uniq.compact
     end
 
     def ignore?(entry)
