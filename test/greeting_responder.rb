@@ -68,7 +68,7 @@ module Makoto
     end
 
     def test_continue?
-      assert_false(@responder.continue?)
+      assert(@responder.continue?)
     end
 
     def test_quote_suffixes

@@ -56,15 +56,24 @@ module Makoto
     end
 
     def self.create_source(text)
+      http = HTTP.new
+      http.retry_limit = 1
       text = sanitize(text)
+      body = []
       parser = Ginseng::Fediverse::TootParser.new(text)
       parser.uris.each do |uri|
         text.gsub!(uri.to_s, '')
+        nokogiri = http.get(uri).body.nokogiri
+        body.concat(nokogiri.xpath('//h1').map(&:inner_text))
+        body.concat(nokogiri.xpath('//title').map(&:inner_text))
+      rescue => e
+        Logger.new.error(error: e)
       end
       parser.tags.each do |tag|
         text.gsub!(Mastodon.create_tag(tag), '')
       end
-      return text.strip
+      body.push(text)
+      return body.join('::::').strip
     end
 
     def self.sanitize(text)
