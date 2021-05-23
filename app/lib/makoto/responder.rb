@@ -22,7 +22,7 @@ module Makoto
       return @params['analyzer']
     end
 
-    def underscore_name
+    def underscore
       return self.class.to_s.split('::').last.sub(/Responder$/, '').underscore
     end
 
