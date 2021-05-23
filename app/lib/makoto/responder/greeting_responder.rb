@@ -34,6 +34,10 @@ module Makoto
       return [message.join]
     end
 
+    def continue?
+      return true
+    end
+
     def on_time?
       return false unless @matches['/hours'].nil? || @matches['/hours'].member?(hour)
       return false unless @matches['/dates'].nil? || @matches['/dates'].member?(date)
