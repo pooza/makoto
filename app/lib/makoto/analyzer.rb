@@ -67,13 +67,13 @@ module Makoto
         body.concat(nokogiri.xpath('//h1').map(&:inner_text))
         body.concat(nokogiri.xpath('//title').map(&:inner_text))
       rescue => e
-        @logger.error(error: e)
+        Logger.new.error(error: e)
       end
       parser.tags.each do |tag|
         text.gsub!(Mastodon.create_tag(tag), '')
       end
       body.push(text)
-      return body.join('::::')
+      return body.join('::::').strip
     end
 
     def self.sanitize(text)
