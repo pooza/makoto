@@ -14,6 +14,10 @@ module Makoto
       @account = nil
     end
 
+    def clear
+      @params = {}
+    end
+
     def analyzer
       return @params['analyzer']
     end
