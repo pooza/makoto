@@ -35,7 +35,7 @@ module Makoto
     end
 
     def continue?
-      return true
+      return analyzer.match?(/おはよう/)
     end
 
     def on_time?
