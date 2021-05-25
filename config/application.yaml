@@ -7,7 +7,9 @@ package:
     - tkoishi@b-shock.co.jp
   license: MIT
 test:
-  acct: user
+  account:
+    acct: pooza
+    display_name: ぷーざ
 environment: development
 mastodon:
   visibility: public
