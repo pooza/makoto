@@ -9,10 +9,9 @@ module Makoto
     end
 
     def messages
-      dataset = Message.dataset
-        .where(type: 'morning')
-        .where(Sequel.like(:message, "%#{@keyword}%"))
-      return dataset
+      return Message.dataset
+          .where(type: 'morning')
+          .where(Sequel.like(:message, "%#{@keyword}%"))
     end
 
     def executable?

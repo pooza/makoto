@@ -18,22 +18,25 @@ module Makoto
     end
 
     def create_message(params)
+      greetings = []
       paragraphs = []
       Responder.all do |responder|
         responder.params = params
         next unless responder.executable?
         @logger.info(responder: responder.class.to_s, source: Analyzer.sanitize(params['content']))
+        response = responder.exec
+        paragraphs.concat(response[:paragraphs]) if response[:paragraphs]
+        greetings.push(response[:greeting]) if response[:greeting]
         Account.get(params['account']['acct']).fav!(responder.favorability)
-        paragraphs.concat(responder.exec)
         break unless responder.continue?
       rescue MatchingError => e
         @logger.info(error: e, source: Analyzer.sanitize(params['content']))
         return nil unless params['mention']
       end
-      return paragraphs.sample(rand(min..max)).join
+      return greetings.concat(paragraphs.sample(rand(min..max))).join
     rescue => e
       @logger.error(e)
-      return FixedResponder.new.exec
+      return FixedResponder.new.exec[:paragraphs].join
     end
 
     def max

@@ -10,10 +10,16 @@ module Makoto
       return rand(0..1)
     end
 
+    def message
+      return @config['/respond/naming/response/friendry'] % [@name] if account.friendry?
+      return @config['/respond/naming/response/normal'] % [@name]
+    end
+
     def exec
       account.update(nickname: @name)
-      return [@config['/respond/naming/response/friendry'] % [@name]] if account.friendry?
-      return [@config['/respond/naming/response/normal'] % [@name]]
+      return {
+        paragraphs: [message],
+      }
     end
   end
 end

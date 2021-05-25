@@ -9,7 +9,9 @@ module Makoto
     end
 
     def exec
-      return [Message.pickup(type: 'calling').message % [display_name]]
+      return {
+        paragraphs: [Message.pickup(type: 'calling').message % [display_name]],
+      }
     end
   end
 end

@@ -13,7 +13,9 @@ module Makoto
     end
 
     def exec
-      return ["#{Quote.pickup(emotion: :bad, respond: true).body}🤨"]
+      return {
+        paragraphs: ["#{Quote.pickup(emotion: :bad, respond: true).body}🤨"],
+      }
     end
   end
 end

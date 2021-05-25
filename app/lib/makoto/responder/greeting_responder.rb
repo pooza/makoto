@@ -31,7 +31,9 @@ module Makoto
         message.push(['？？', 'って…。', '？'].sample)
         message.push('😅') if account.friendry?
       end
-      return [message.join]
+      return {
+        greeting: message.join,
+      }
     end
 
     def continue?
