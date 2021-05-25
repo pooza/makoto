@@ -10,9 +10,14 @@ module Makoto
     end
 
     def params=(params)
-      @params = params
-      @params['analyzer'] ||= Analyzer.new(params['content'])
+      params.deep_stringify_keys!
       @account = nil
+      @params = params
+      @params['analyzer'] ||= Analyzer.new(source)
+      return unless executable?
+      exec
+      account.fav!(favorability)
+      logger.info(responder: underscore, source: source)
     end
 
     def clear
@@ -41,6 +46,10 @@ module Makoto
 
     def favorability
       return nil
+    end
+
+    def source
+      return Analyzer.sanitize(params['content'])
     end
 
     def account

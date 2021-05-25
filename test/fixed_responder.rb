@@ -5,7 +5,7 @@ module Makoto
     end
 
     def test_executable?
-      @responder.params = {'content' => ''}
+      @responder.params = {'content' => '', 'account' => test_account}
       assert(@responder.executable?)
       assert(@responder.exec.present?)
     end
