@@ -18,7 +18,7 @@ module Makoto
       rescue => e
         logger.error(e)
       end
-      return phrases.present?
+      return @phrases.present?
     end
 
     def continue?
@@ -30,6 +30,7 @@ module Makoto
     end
 
     def exec
+      return unless executable?
       paragraphs.concat(@phrases.compact.uniq)
     end
 

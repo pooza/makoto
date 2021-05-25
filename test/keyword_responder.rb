@@ -25,6 +25,8 @@ module Makoto
     end
 
     def test_exec
+      @responder.clear
+      @responder.params = {'content' => 'ヒーリングっど♥プリキュア、楽しみですね〜'}
       @responder.exec
       assert(@responder.paragraphs.present?)
     end

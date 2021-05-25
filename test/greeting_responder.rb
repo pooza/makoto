@@ -67,6 +67,10 @@ module Makoto
     end
 
     def test_continue?
+      @responder.params = {'content' => 'ヒーリングッバ〜イ', 'account' => @account, 'mention' => true}
+      assert_false(@responder.continue?)
+
+      @responder.params = {'content' => 'おはよう', 'account' => @account, 'mention' => true}
       assert(@responder.continue?)
     end
 

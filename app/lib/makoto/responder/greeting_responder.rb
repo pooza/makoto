@@ -12,10 +12,12 @@ module Makoto
     end
 
     def favorability
+      return nil unless @matches
       return rand(1..(@matches['/fav'] || 1))
     end
 
     def exec
+      return nil unless executable?
       message = []
       if on_time?
         message.push("#{display_name}、") unless account.dislike?
@@ -35,10 +37,11 @@ module Makoto
     end
 
     def continue?
-      return @matches['/continue'] == true
+      return executable? && (@matches['/continue'] == true)
     end
 
     def on_time?
+      return false unless executable?
       return false unless @matches['/hours'].nil? || @matches['/hours'].member?(hour)
       return false unless @matches['/dates'].nil? || @matches['/dates'].member?(date)
       return true
