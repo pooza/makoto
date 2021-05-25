@@ -6,8 +6,8 @@ module Makoto
 
     def test_account
       return {
-        acct: config['/test/account/acct'],
-        display_name: config['/test/account/display_name'],
+        'acct' => config['/test/account/acct'],
+        'display_name' => config['/test/account/display_name'],
       }
     end
 

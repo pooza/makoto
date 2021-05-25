@@ -14,10 +14,6 @@ module Makoto
       @account = nil
       @params = params
       @params['analyzer'] ||= Analyzer.new(source)
-      return unless executable?
-      exec
-      account.fav!(favorability)
-      logger.info(responder: underscore, source: source)
     end
 
     def clear

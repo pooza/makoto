@@ -26,16 +26,19 @@ module Makoto
     def create_message(params)
       Responder.all do |responder|
         responder.params = params
+        next unless responder.executable?
+        responder.exec
+        @account.fav!(responder.favorability)
+        logger.info(responder: responder.underscore, source: responder.source)
         @paragraphs.concat(responder.paragraphs)
         @greetings.concat(responder.greetings)
         break unless responder.continue?
-      rescue MatchingError => e
-        logger.info(error: e, source: responder.source)
+      rescue MatchingError
         return nil unless params['mention']
       end
       return @greetings.concat(@paragraphs.sample(rand(min..max))).join
     rescue => e
-      logger.error(e)
+      logger.error(error: e)
       return FixedResponder.new.exec[:paragraphs].join
     end
 
