@@ -1,7 +1,7 @@
 module Makoto
   class GreetingResponder < Responder
     def executable?
-      @config['/respond/greeting'].each do |v|
+      config['/respond/greeting'].each do |v|
         raise MatchingError, 'no match greeting patterns' if !mention? && ignore?(v)
         next if v['pattern_rough'] && past_keywords.member?(v['pattern_rough'])
         next unless analyzer.match?(create_pattern(v['pattern']))

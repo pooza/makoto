@@ -12,8 +12,17 @@ module Makoto
       return Config
     end
 
+    def config
+      return Config.instance
+    end
+
     def logger_class
       return Logger
+    end
+
+    def logger
+      @logger ||= Logger.new
+      return @logger
     end
 
     def database_class
@@ -42,6 +51,20 @@ module Makoto
 
     def self.user_agent
       return "#{name}/#{version} (#{url})"
+    end
+
+    def self.included(base)
+      base.extend(Methods)
+    end
+
+    module Methods
+      def logger
+        return Logger.new
+      end
+
+      def config
+        return Config.instance
+      end
     end
   end
 end

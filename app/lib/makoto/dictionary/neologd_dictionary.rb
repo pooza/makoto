@@ -32,7 +32,7 @@ module Makoto
     end
 
     def neologd_repos_path
-      return @config['/mecab/dic/neologd/repos']
+      return config['/mecab/dic/neologd/repos']
     end
 
     def src_xz_path

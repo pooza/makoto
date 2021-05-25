@@ -22,9 +22,9 @@ module Makoto
     private
 
     def initialize
-      @config = Config.instance
+      config = Config.instance
       @http = HTTP.new
-      @http.base_uri = @config['/rubicure/url']
+      @http.base_uri = config['/rubicure/url']
     end
   end
 end

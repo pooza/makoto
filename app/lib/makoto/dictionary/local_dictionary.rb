@@ -32,7 +32,7 @@ module Makoto
     end
 
     def uri
-      return Ginseng::URI.parse(@config['/word/url'])
+      return Ginseng::URI.parse(config['/word/url'])
     end
   end
 end

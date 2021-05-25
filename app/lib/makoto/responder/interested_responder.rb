@@ -15,7 +15,7 @@ module Makoto
     end
 
     def executable?
-      @config['/respond/interested'].each do |entry|
+      config['/respond/interested'].each do |entry|
         next unless analyzer.match?(entry['quote'])
         entry['words'] ||= [entry['quote']]
         entry['words'].each do |word|

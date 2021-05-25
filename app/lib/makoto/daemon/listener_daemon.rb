@@ -16,7 +16,7 @@ module Makoto
     end
 
     def service
-      @service ||= Mastodon.new(@config['/mastodon/url'], @config['/mastodon/token'])
+      @service ||= Mastodon.new(config['/mastodon/url'], config['/mastodon/token'])
       return @service
     end
 

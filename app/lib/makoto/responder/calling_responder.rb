@@ -1,7 +1,7 @@
 module Makoto
   class CallingResponder < Responder
     def executable?
-      return rand < @config['/respond/calling/frequency']
+      return rand < config['/respond/calling/frequency']
     end
 
     def continue?

@@ -2,8 +2,7 @@ module Makoto
   class GreetingResponderTest < TestCase
     def setup
       @responder = GreetingResponder.new
-      @config = Config.instance
-      @account = {'display_name' => 'ぷーざ', 'acct' => @config['/test/acct']}
+      @account = {'display_name' => 'ぷーざ', 'acct' => config['/test/acct']}
     end
 
     def test_executable?

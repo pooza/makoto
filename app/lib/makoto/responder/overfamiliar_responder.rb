@@ -2,8 +2,8 @@ module Makoto
   class OverfamiliarResponder < Responder
     def executable?
       pattern = '(%s)(%s)?' % [ # rubocop:disable Style/FormatStringToken
-        @config['/respond/overfamiliar/patterns/match'].join('|'),
-        @config['/respond/overfamiliar/patterns/suffix'].join('|'),
+        config['/respond/overfamiliar/patterns/match'].join('|'),
+        config['/respond/overfamiliar/patterns/suffix'].join('|'),
       ]
       return false unless matches = analyzer.match(pattern)
       if matches[2].present?
@@ -18,7 +18,7 @@ module Makoto
     end
 
     def exec
-      paragraphs.push(@config['/respond/overfamiliar/message'])
+      paragraphs.push(config['/respond/overfamiliar/message'])
     end
   end
 end

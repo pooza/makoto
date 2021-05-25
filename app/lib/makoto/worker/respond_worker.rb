@@ -27,28 +27,28 @@ module Makoto
       Responder.all do |responder|
         responder.params = params
         next unless responder.executable?
-        @logger.info(responder: responder.class.to_s, source: Analyzer.sanitize(params['content']))
+        logger.info(responder: responder.class.to_s, source: Analyzer.sanitize(params['content']))
         responder.exec
         @paragraphs.concat(responder.paragraphs)
         @greetings.concat(responder.greetings)
         Account.get(params['account']['acct']).fav!(responder.favorability)
         break unless responder.continue?
       rescue MatchingError => e
-        @logger.info(error: e, source: Analyzer.sanitize(params['content']))
+        logger.info(error: e, source: Analyzer.sanitize(params['content']))
         return nil unless params['mention']
       end
       return @greetings.concat(@paragraphs.sample(rand(min..max))).join
     rescue => e
-      @logger.error(e)
+      logger.error(e)
       return FixedResponder.new.exec[:paragraphs].join
     end
 
     def max
-      return @config['/respond/paragraph/max']
+      return config['/respond/paragraph/max']
     end
 
     def min
-      return @config['/respond/paragraph/min']
+      return config['/respond/paragraph/min']
     end
 
     def save(result)
@@ -63,7 +63,7 @@ module Makoto
           )
         end
       end
-      @logger.info(class: self.class.to_s, words: result)
+      logger.info(class: self.class.to_s, words: result)
     end
   end
 end

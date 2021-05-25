@@ -3,7 +3,7 @@ require 'natto'
 module Makoto
   class MarkovResponder < Responder
     def executable?
-      return rand < @config['/respond/markov/frequency']
+      return rand < config['/respond/markov/frequency']
     end
 
     def exec

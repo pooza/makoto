@@ -3,20 +3,21 @@ require 'faye/websocket'
 
 module Makoto
   class Listener
+    include Package
     attr_reader :client, :uri
 
     def close(event)
       @client = nil
       e = Ginseng::GatewayError.new('close')
       e.message = {reason: event.reason}
-      @logger.error(error: e)
+      logger.error(error: e)
     end
 
     def error(event)
       @client = nil
       e = Ginseng::GatewayError.new('error')
       e.message = {reason: event.reason}
-      @logger.error(error: e)
+      logger.error(error: e)
     end
 
     def receive(message)
@@ -28,7 +29,7 @@ module Makoto
         send("handle_#{data['event']}".to_sym, payload)
       end
     rescue => e
-      @logger.error(error: e, payload: payload)
+      logger.error(error: e, payload: payload)
     end
 
     def handle_mention_notification(payload)
@@ -92,13 +93,11 @@ module Makoto
     private
 
     def initialize
-      @config = Config.instance
-      @mastodon = Mastodon.new(@config['/mastodon/url'], @config['/mastodon/token'])
+      @mastodon = Mastodon.new(config['/mastodon/url'], config['/mastodon/token'])
       @uri = @mastodon.create_streaming_uri
       @client = Faye::WebSocket::Client.new(@uri.to_s, nil, {
-        ping: @config['/websocket/keepalive'],
+        ping: config['/websocket/keepalive'],
       })
-      @logger = Logger.new
     end
   end
 end

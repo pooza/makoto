@@ -16,9 +16,9 @@ module Makoto
         template = templates[feature].pop.message
         @phrases.push(template % [word[:surface]])
       rescue => e
-        @logger.error(e)
+        logger.error(e)
       end
-      return @phrases.present?
+      return phrases.present?
     end
 
     def continue?
