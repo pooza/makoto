@@ -4,8 +4,7 @@ module Makoto
 
     def initialize
       super
-      @greetings = []
-      @paragraphs = []
+      @container = ResponseContainer.new
     end
 
     def perform(params)
@@ -24,19 +23,20 @@ module Makoto
     end
 
     def create_message(params)
+      @container.clear
       Responder.all do |responder|
         responder.params = params
         next unless responder.executable?
         responder.exec
         @account.fav!(responder.favorability)
         logger.info(responder: responder.underscore, source: responder.source)
-        @paragraphs.concat(responder.paragraphs)
-        @greetings.concat(responder.greetings)
+        @container.paragraphs.concat(responder.paragraphs)
+        @container.greetings.concat(responder.greetings)
         break unless responder.continue?
       rescue MatchingError
         return nil unless params['mention']
       end
-      return @greetings.concat(@paragraphs.sample(rand(min..max))).join
+      return @container.to_s
     rescue => e
       logger.error(error: e)
       return FixedResponder.new.exec[:paragraphs].join
