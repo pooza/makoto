@@ -1,7 +1,7 @@
 module Makoto
   class CallingResponder < Responder
     def executable?
-      return rand < @config['/respond/calling/frequency']
+      return rand < config['/respond/calling/frequency']
     end
 
     def continue?
@@ -9,7 +9,7 @@ module Makoto
     end
 
     def exec
-      return [Message.pickup(type: 'calling').message % [display_name]]
+      paragraphs.push(Message.pickup(type: 'calling').message % [display_name])
     end
   end
 end

@@ -4,6 +4,13 @@ module Makoto
   class TestCase < Ginseng::TestCase
     include Package
 
+    def test_account
+      return {
+        'acct' => config['/test/account/acct'],
+        'display_name' => config['/test/account/display_name'],
+      }
+    end
+
     def self.load
       ENV['TEST'] = Package.full_name
       Sidekiq::Testing.fake!

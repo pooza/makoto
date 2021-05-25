@@ -2,6 +2,11 @@ module Makoto
   class RespondWorker < Worker
     sidekiq_options retry: 3
 
+    def initialize
+      super
+      @container = ResponseContainer.new
+    end
+
     def perform(params)
       template = Template.new('respond')
       @account = Account.get(params['account']['acct'])
@@ -18,30 +23,31 @@ module Makoto
     end
 
     def create_message(params)
-      paragraphs = []
+      @container.clear
       Responder.all do |responder|
         responder.params = params
         next unless responder.executable?
-        @logger.info(responder: responder.class.to_s, source: Analyzer.sanitize(params['content']))
-        Account.get(params['account']['acct']).fav!(responder.favorability)
-        paragraphs.concat(responder.exec)
+        responder.exec
+        @account.fav!(responder.favorability)
+        logger.info(responder: responder.underscore, source: responder.source)
+        @container.paragraphs.concat(responder.paragraphs)
+        @container.greetings.concat(responder.greetings)
         break unless responder.continue?
-      rescue MatchingError => e
-        @logger.info(error: e, source: Analyzer.sanitize(params['content']))
+      rescue MatchingError
         return nil unless params['mention']
       end
-      return paragraphs.sample(rand(min..max)).join
+      return @container.to_s
     rescue => e
-      @logger.error(e)
-      return FixedResponder.new.exec
+      logger.error(error: e)
+      return FixedResponder.new.exec[:paragraphs].join
     end
 
     def max
-      return @config['/respond/paragraph/max']
+      return config['/respond/paragraph/max']
     end
 
     def min
-      return @config['/respond/paragraph/min']
+      return config['/respond/paragraph/min']
     end
 
     def save(result)
@@ -56,7 +62,7 @@ module Makoto
           )
         end
       end
-      @logger.info(class: self.class.to_s, words: result)
+      logger.info(class: self.class.to_s, words: result)
     end
   end
 end

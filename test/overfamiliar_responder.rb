@@ -5,26 +5,26 @@ module Makoto
     end
 
     def test_executable?
-      @responder.params = {'content' => 'アン'}
+      @responder.params = {'content' => 'アン', 'account' => test_account}
       assert(@responder.executable?)
 
-      @responder.params = {'content' => 'アンジュ'}
+      @responder.params = {'content' => 'アンジュ', 'account' => test_account}
       assert(@responder.executable?)
 
-      @responder.params = {'content' => 'アンテナ'}
+      @responder.params = {'content' => 'アンテナ', 'account' => test_account}
       assert(@responder.executable?)
 
-      @responder.params = {'content' => 'キュアアンジュ'}
+      @responder.params = {'content' => 'キュアアンジュ', 'account' => test_account}
       assert(@responder.executable?)
 
-      @responder.params = {'content' => 'アン王女', 'mention' => true}
+      @responder.params = {'content' => 'アン王女', 'mention' => true, 'account' => test_account}
       assert_false(@responder.executable?)
 
-      @responder.params = {'content' => 'アン殿下', 'mention' => true}
+      @responder.params = {'content' => 'アン殿下', 'mention' => true, 'account' => test_account}
       assert_false(@responder.executable?)
 
       assert_raise MatchingError do
-        @responder.params = {'content' => 'アン殿下'}
+        @responder.params = {'content' => 'アン殿下', 'account' => test_account}
         @responder.executable?
       end
     end
@@ -34,7 +34,8 @@ module Makoto
     end
 
     def test_exec
-      assert_kind_of(Array, @responder.exec)
+      @responder.exec
+      assert(@responder.paragraphs.present?)
     end
   end
 end

@@ -1,17 +1,19 @@
 module Makoto
   class Responder
-    attr_reader :params
+    include Package
+    attr_reader :params, :greetings, :paragraphs
 
     def initialize
-      @config = Config.instance
-      @logger = Logger.new
       @params = {}
+      @greetings = []
+      @paragraphs = []
     end
 
     def params=(params)
-      @params = params
-      @params['analyzer'] ||= Analyzer.new(params['content'])
+      params.deep_stringify_keys!
       @account = nil
+      @params = params
+      @params['analyzer'] ||= Analyzer.new(source)
     end
 
     def clear
@@ -40,6 +42,10 @@ module Makoto
 
     def favorability
       return nil
+    end
+
+    def source
+      return Analyzer.sanitize(params['content'])
     end
 
     def account

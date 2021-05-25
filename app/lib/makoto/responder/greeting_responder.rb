@@ -1,7 +1,7 @@
 module Makoto
   class GreetingResponder < Responder
     def executable?
-      @config['/respond/greeting'].each do |v|
+      config['/respond/greeting'].each do |v|
         raise MatchingError, 'no match greeting patterns' if !mention? && ignore?(v)
         next if v['pattern_rough'] && past_keywords.member?(v['pattern_rough'])
         next unless analyzer.match?(create_pattern(v['pattern']))
@@ -12,10 +12,12 @@ module Makoto
     end
 
     def favorability
+      return nil unless @matches
       return rand(1..(@matches['/fav'] || 1))
     end
 
     def exec
+      return nil unless executable?
       message = []
       if on_time?
         message.push("#{display_name}、") unless account.dislike?
@@ -31,14 +33,15 @@ module Makoto
         message.push(['？？', 'って…。', '？'].sample)
         message.push('😅') if account.friendry?
       end
-      return [message.join]
+      greetings.push(message.join)
     end
 
     def continue?
-      return true
+      return executable? && (@matches['/continue'] == true)
     end
 
     def on_time?
+      return false unless executable?
       return false unless @matches['/hours'].nil? || @matches['/hours'].member?(hour)
       return false unless @matches['/dates'].nil? || @matches['/dates'].member?(date)
       return true

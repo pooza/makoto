@@ -1,5 +1,5 @@
 package:
-  version: 2.9.3
+  version: 3.0.0
   url: https://github.com/pooza/makoto
   authors:
     - Tatsuya Koishi
@@ -7,7 +7,9 @@ package:
     - tkoishi@b-shock.co.jp
   license: MIT
 test:
-  acct: user
+  account:
+    acct: pooza
+    display_name: ぷーざ
 environment: development
 mastodon:
   visibility: public
@@ -65,7 +67,6 @@ respond:
     - naming
     - overfamiliar
     - interested
-    - song
     - keyword
     - markov
     - calling
@@ -102,19 +103,23 @@ respond:
         ignore: おはよう
         normal: おはようございます
         friendry: おはよう
+      continue: true
       hours: [3, 4, 5, 6, 7, 8, 9, 10, 11]
     - pattern: 'おはよ[ー〜]*'
       response:
         ignore: おはよう
         normal: おはようございます
         friendry: おはよう
+      continue: true
       hours: [3, 4, 5, 6, 7, 8, 9, 10, 11]
     - pattern: 'こんに?ち[はわ]'
       response:
         normal: こんにちは
+      continue: true
     - pattern: 'こんばん[はわ]'
       response:
         normal: こんばんは
+      continue: true
       hours: [0, 1, 2, 3, 4, 17, 18, 19, 20, 21, 22, 23]
     - pattern: '[い行]ってきま[ー〜]*す'
       response:
@@ -123,10 +128,12 @@ respond:
       response:
         normal: おかえりなさい
         friendry: おかえり
+      continue: true
     - pattern: 'おハロ[ー〜]'
       response:
         normal: こんにちは
         friendry: おハロ〜
+      continue: true
     - pattern: 'おめでとう'
       response:
         normal: ありがとうございます
@@ -147,6 +154,7 @@ respond:
     - pattern: ごきげんよう
       response:
         normal: ごきげんよう
+      continue: true
   interested:
     - quote: 歌
       words:
@@ -179,19 +187,6 @@ respond:
         - 抜歯
         - 歯槽膿漏
         - 歯周病
-  song:
-    pattern: '「(.*?)」を(歌|うた)って([。!]|\s|$)'
-    response:
-      normal:
-        - では聴いてください。
-        - 歌います。聴いてください。
-        - 聴いてくださいね。
-      other_singer:
-        - わたしの曲ではありませんが。😉
-        - わたしの曲ではないけど😉、こころをこめて。
-      error:
-        - 「%s」はわたしの曲じゃないわ。😉
-        - 「%s」…？🙂
   naming:
     pattern: '「(.*?)」(って|と)呼んで([。!]|\s|$)'
     response:

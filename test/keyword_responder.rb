@@ -6,16 +6,16 @@ module Makoto
 
     def test_executable?
       @responder.clear
-      @responder.params = {'content' => 'おはようございます。'}
+      @responder.params = {'content' => 'おはようございます。', 'account' => test_account}
       assert_false(@responder.executable?)
 
       @responder.clear
-      @responder.params = {'content' => 'ヒーリングっど♥プリキュア、楽しみですね〜'}
+      @responder.params = {'content' => 'ヒーリングっど♥プリキュア、楽しみですね〜', 'account' => test_account}
       assert(@responder.executable?)
       assert(@responder.exec.present?)
 
       @responder.clear
-      @responder.params = {'content' => 'https://www.toei-anim.co.jp/tv/precure5_gogo/episode/summary/48/'}
+      @responder.params = {'content' => 'https://www.toei-anim.co.jp/tv/precure5_gogo/episode/summary/48/', 'account' => test_account}
       assert(@responder.executable?)
       assert(@responder.exec.present?)
     end
@@ -25,7 +25,10 @@ module Makoto
     end
 
     def test_exec
-      assert_kind_of(Array, @responder.exec)
+      @responder.clear
+      @responder.params = {'content' => 'ヒーリングっど♥プリキュア、楽しみですね〜', 'account' => test_account}
+      @responder.exec
+      assert(@responder.paragraphs.present?)
     end
   end
 end

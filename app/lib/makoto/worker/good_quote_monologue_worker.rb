@@ -3,7 +3,7 @@ module Makoto
     sidekiq_options retry: 3
 
     def perform
-      quote = Quote.pickup(priority: 4, form: @config['/quote/all_forms'])
+      quote = Quote.pickup(priority: 4, form: config['/quote/all_forms'])
       template = Template.new('good_quote')
       template[:quote] = quote.body
       template[:series] = quote.series.name

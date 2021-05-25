@@ -2,15 +2,13 @@ module Makoto
   class BadMoodResponderTest < TestCase
     def setup
       @responder = BadMoodResponder.new
-      @config = Config.instance
-      @account = {'display_name' => 'ぷーざ', 'acct' => @config['/test/acct']}
     end
 
     def test_executable?
-      @responder.params = {'content' => 'ネギトロ丼', 'account' => @account}
+      @responder.params = {'content' => 'ネギトロ丼', 'account' => test_account}
       assert_false(@responder.executable?)
 
-      @responder.params = {'content' => 'おちんちん', 'account' => @account}
+      @responder.params = {'content' => 'おちんちん', 'account' => test_account}
       assert(@responder.executable?)
       assert(@responder.exec.present?)
     end
@@ -20,7 +18,8 @@ module Makoto
     end
 
     def test_exec
-      assert_kind_of(Array, @responder.exec)
+      @responder.exec
+      assert(@responder.paragraphs.present?)
     end
   end
 end

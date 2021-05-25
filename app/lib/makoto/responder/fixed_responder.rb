@@ -5,7 +5,7 @@ module Makoto
     end
 
     def exec
-      return [Quote.pickup(respond: true).body]
+      paragraphs.push(Quote.pickup(respond: true).body)
     end
   end
 end

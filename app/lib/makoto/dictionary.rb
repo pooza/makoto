@@ -3,9 +3,7 @@ require 'fileutils'
 
 module Makoto
   class Dictionary
-    def initialize
-      @config = Config.instance
-    end
+    include Package
 
     def name
       return self.class.to_s.split('::').last.sub(/Dictionary$/, '').underscore
@@ -42,7 +40,7 @@ module Makoto
     def save_dic
       save_csv unless File.exist?(temp_csv_path)
       cmd = Ginseng::CommandLine.new([
-        @config['/mecab/dic/bin'],
+        config['/mecab/dic/bin'],
         '-d', system_dic_dir_path,
         '-u', temp_dic_path,
         '-f', 'utf8',
@@ -68,15 +66,15 @@ module Makoto
     end
 
     def neologd_repos_path
-      return @config['/mecab/dic/neologd/repos']
+      return config['/mecab/dic/neologd/repos']
     end
 
     def system_dic_dir_path
-      return @config['/mecab/dic/system']
+      return config['/mecab/dic/system']
     end
 
     def user_dic_dir_path
-      return @config['/mecab/dic/user']
+      return config['/mecab/dic/user']
     end
   end
 end

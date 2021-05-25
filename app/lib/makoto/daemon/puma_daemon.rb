@@ -21,7 +21,7 @@ module Makoto
         @uri = Ginseng::URI.new
         @uri.host = Environment.hostname
         @uri.scheme = 'http'
-        @uri.port = @config['/puma/port']
+        @uri.port = config['/puma/port']
       end
       return @uri
     end

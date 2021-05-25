@@ -5,25 +5,25 @@ module Makoto
     end
 
     def test_executable?
-      @responder.params = {'content' => '王女様！'}
+      @responder.params = {'content' => '王女様！', 'account' => test_account}
       assert(@responder.executable?)
       assert(@responder.exec.present?)
 
-      @responder.params = {'content' => 'ばっちしバシシ'}
+      @responder.params = {'content' => 'ばっちしバシシ', 'account' => test_account}
       assert_false(@responder.executable?)
 
-      @responder.params = {'content' => '歯医者'}
+      @responder.params = {'content' => '歯医者', 'account' => test_account}
       assert(@responder.executable?)
       assert(@responder.exec.present?)
 
       assert_raise MatchingError do
-        @responder.params = {'content' => '歌'}
+        @responder.params = {'content' => '歌', 'account' => test_account}
         @responder.executable?
       end
-      @responder.params = {'content' => '歌', 'mention' => true}
+      @responder.params = {'content' => '歌', 'mention' => true, 'account' => test_account}
       assert_false(@responder.executable?)
 
-      @responder.params = {'content' => '歌う'}
+      @responder.params = {'content' => '歌う', 'account' => test_account}
       assert(@responder.executable?)
       assert(@responder.exec.present?)
     end
@@ -33,7 +33,8 @@ module Makoto
     end
 
     def test_exec
-      assert_kind_of(Array, @responder.exec)
+      @responder.exec
+      assert(@responder.paragraphs.present?)
     end
   end
 end

@@ -2,7 +2,7 @@ module Makoto
   class KeywordResponder < Responder
     def initialize
       super
-      @paragraphs = []
+      @phrases = []
     end
 
     def executable?
@@ -14,11 +14,11 @@ module Makoto
         records = Message.dataset.where(type: 'template', feature: feature)
         templates[feature] ||= records.all.shuffle
         template = templates[feature].pop.message
-        @paragraphs.push(template % [word[:surface]])
+        @phrases.push(template % [word[:surface]])
       rescue => e
-        @logger.error(e)
+        logger.error(e)
       end
-      return @paragraphs.present?
+      return @phrases.present?
     end
 
     def continue?
@@ -30,7 +30,8 @@ module Makoto
     end
 
     def exec
-      return @paragraphs.compact.uniq
+      return unless executable?
+      paragraphs.concat(@phrases.compact.uniq)
     end
 
     def create_word_entries

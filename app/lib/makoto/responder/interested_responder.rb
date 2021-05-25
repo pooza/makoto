@@ -9,14 +9,13 @@ module Makoto
     end
 
     def messages
-      dataset = Message.dataset
-        .where(type: 'morning')
-        .where(Sequel.like(:message, "%#{@keyword}%"))
-      return dataset
+      return Message.dataset
+          .where(type: 'morning')
+          .where(Sequel.like(:message, "%#{@keyword}%"))
     end
 
     def executable?
-      @config['/respond/interested'].each do |entry|
+      config['/respond/interested'].each do |entry|
         next unless analyzer.match?(entry['quote'])
         entry['words'] ||= [entry['quote']]
         entry['words'].each do |word|

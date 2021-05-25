@@ -2,11 +2,10 @@ require 'natto'
 
 module Makoto
   class Analyzer
+    include Package
     attr_reader :source
 
     def initialize(source = nil)
-      @config = Config.instance
-      @logger = Logger.new
       self.source = source
     end
 
@@ -24,7 +23,7 @@ module Makoto
           @result[surface[:surface]] = surface
         end
         @parser.accts.each do |acct|
-          next if acct.username == @config['/mastodon/account/name']
+          next if acct.username == config['/mastodon/account/name']
           @result[acct.username] = {surface: acct.username, feature: '人名'}
         end
       end
@@ -100,7 +99,7 @@ module Makoto
     end
 
     def ignore_features_pattern
-      return Regexp.new("(#{@config['/analyzer/ignore_features'].join('|')})")
+      return Regexp.new("(#{config['/analyzer/ignore_features'].join('|')})")
     end
 
     def analyze_feature(features)
