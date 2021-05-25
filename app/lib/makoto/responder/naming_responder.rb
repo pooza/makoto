@@ -17,9 +17,7 @@ module Makoto
 
     def exec
       account.update(nickname: @name)
-      return {
-        paragraphs: [message],
-      }
+      paragraphs.push(message)
     end
   end
 end

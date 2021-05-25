@@ -2,6 +2,12 @@ module Makoto
   class RespondWorker < Worker
     sidekiq_options retry: 3
 
+    def initialize
+      super
+      @greetings = []
+      @paragraphs = []
+    end
+
     def perform(params)
       template = Template.new('respond')
       @account = Account.get(params['account']['acct'])
@@ -18,22 +24,20 @@ module Makoto
     end
 
     def create_message(params)
-      greetings = []
-      paragraphs = []
       Responder.all do |responder|
         responder.params = params
         next unless responder.executable?
         @logger.info(responder: responder.class.to_s, source: Analyzer.sanitize(params['content']))
-        response = responder.exec
-        paragraphs.concat(response[:paragraphs]) if response[:paragraphs]
-        greetings.push(response[:greeting]) if response[:greeting]
+        responder.exec
+        @paragraphs.concat(responder.paragraphs)
+        @greetings.concat(responder.greetings)
         Account.get(params['account']['acct']).fav!(responder.favorability)
         break unless responder.continue?
       rescue MatchingError => e
         @logger.info(error: e, source: Analyzer.sanitize(params['content']))
         return nil unless params['mention']
       end
-      return greetings.concat(paragraphs.sample(rand(min..max))).join
+      return @greetings.concat(@paragraphs.sample(rand(min..max))).join
     rescue => e
       @logger.error(e)
       return FixedResponder.new.exec[:paragraphs].join

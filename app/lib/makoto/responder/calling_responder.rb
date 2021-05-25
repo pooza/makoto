@@ -9,9 +9,7 @@ module Makoto
     end
 
     def exec
-      return {
-        paragraphs: [Message.pickup(type: 'calling').message % [display_name]],
-      }
+      paragraphs.push(Message.pickup(type: 'calling').message % [display_name])
     end
   end
 end

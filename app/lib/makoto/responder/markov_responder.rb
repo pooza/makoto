@@ -7,9 +7,7 @@ module Makoto
     end
 
     def exec
-      return {
-        paragraphs: markov.gsub(/[！？!?。]/, '\\0|').split('|').compact.uniq,
-      }
+      paragraphs.concat(markov.gsub(/[！？!?。]/, '\\0|').split('|').compact.uniq)
     end
 
     def favorability

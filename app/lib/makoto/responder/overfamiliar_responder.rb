@@ -18,9 +18,7 @@ module Makoto
     end
 
     def exec
-      return {
-        paragraphs: [@config['/respond/overfamiliar/message']],
-      }
+      paragraphs.push(@config['/respond/overfamiliar/message'])
     end
   end
 end

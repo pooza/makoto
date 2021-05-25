@@ -1,11 +1,13 @@
 module Makoto
   class Responder
-    attr_reader :params
+    attr_reader :params, :greetings, :paragraphs
 
     def initialize
       @config = Config.instance
       @logger = Logger.new
       @params = {}
+      @greetings = []
+      @paragraphs = []
     end
 
     def params=(params)

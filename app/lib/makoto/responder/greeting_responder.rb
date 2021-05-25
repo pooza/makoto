@@ -31,13 +31,11 @@ module Makoto
         message.push(['？？', 'って…。', '？'].sample)
         message.push('😅') if account.friendry?
       end
-      return {
-        greeting: message.join,
-      }
+      greetings.push(message.join)
     end
 
     def continue?
-      return analyzer.match?(/おはよう/)
+      return @matches['/continue'] == true
     end
 
     def on_time?
