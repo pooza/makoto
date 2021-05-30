@@ -120,10 +120,10 @@ GEM
       ffi (>= 1.9.0)
     netrc (0.11.0)
     nio4r (2.5.7)
-    nokogiri (1.11.5)
+    nokogiri (1.11.6)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
-    nokogiri (1.11.5-x86_64-linux)
+    nokogiri (1.11.6-x86_64-linux)
       racc (~> 1.4)
     nokogumbo (2.0.5)
       nokogiri (~> 1.8, >= 1.8.4)
@@ -164,7 +164,7 @@ GEM
       rubocop-ast (>= 1.5.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 3.0)
-    rubocop-ast (1.5.0)
+    rubocop-ast (1.7.0)
       parser (>= 3.0.1.1)
     rubocop-performance (1.11.3)
       rubocop (>= 1.7.0, < 2.0)
@@ -199,7 +199,7 @@ GEM
       temple (>= 0.7.6, < 0.9)
       tilt (>= 2.0.6, < 2.1)
     temple (0.8.2)
-    test-unit (3.4.1)
+    test-unit (3.4.2)
       power_assert
     thwait (0.2.0)
       e2mmap
@@ -232,6 +232,7 @@ DEPENDENCIES
   ginseng-fediverse!
   ginseng-postgres!
   ginseng-web!
+  mini_portile2 (< 2.5.2)
   natto
   rack-test
   ricecream

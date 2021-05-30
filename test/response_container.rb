@@ -28,7 +28,7 @@ module Makoto
       @container.greetings.push('こんにちは。')
       @container.paragraphs.push('天ぷらそば')
       @container.paragraphs.push('ネギトロ丼')
-      assert_equal(@container.to_s, "こんにちは。\nネギトロ丼天ぷらそば")
+      assert(@container.to_s.match?(/^こんにちは。\n(天ぷらそば|ネギトロ丼)+$/))
     end
   end
 end
