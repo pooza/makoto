@@ -50,19 +50,6 @@ GIT
       slim
       uglifier
 
-GIT
-  remote: https://github.com/pooza/sidekiq-scheduler.git
-  revision: 14c089124ebe99c59c0c66523e42f16560a7440a
-  branch: master.pooza
-  specs:
-    sidekiq-scheduler (3.0.1)
-      e2mmap
-      redis (>= 3, < 5)
-      rufus-scheduler (~> 3.2)
-      sidekiq (>= 3)
-      thwait
-      tilt (>= 1.4.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -163,13 +150,13 @@ GEM
     ricecream (0.2.0)
     rss (0.2.9)
       rexml
-    rubocop (1.15.0)
+    rubocop (1.16.0)
       parallel (~> 1.10)
       parser (>= 3.0.0.0)
       rainbow (>= 2.2.2, < 4.0)
       regexp_parser (>= 1.8, < 3.0)
       rexml
-      rubocop-ast (>= 1.5.0, < 2.0)
+      rubocop-ast (>= 1.7.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 3.0)
     rubocop-ast (1.7.0)
@@ -191,13 +178,20 @@ GEM
       nokogumbo (~> 2.0)
     sassc (2.4.0)
       ffi (~> 1.9)
-    sequel (5.44.0)
+    sequel (5.45.0)
     sidekiq (6.2.1)
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
       redis (>= 4.2.0)
     sidekiq-failures (1.0.0)
       sidekiq (>= 4.0.0)
+    sidekiq-scheduler (3.1.0)
+      e2mmap
+      redis (>= 3, < 5)
+      rufus-scheduler (~> 3.2)
+      sidekiq (>= 3)
+      thwait
+      tilt (>= 1.4.0)
     sinatra (2.1.0)
       mustermann (~> 1.0)
       rack (~> 2.2)
@@ -252,7 +246,7 @@ DEPENDENCIES
   rubocop-sequel
   sidekiq (~> 6.2.0)
   sidekiq-failures
-  sidekiq-scheduler!
+  sidekiq-scheduler
   test-unit
   timecop
 
@@ -260,4 +254,4 @@ RUBY VERSION
    ruby 3.0.1p64
 
 BUNDLED WITH
-   2.2.18
+   2.2.19
