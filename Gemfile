@@ -9,7 +9,7 @@ gem 'ginseng-web', github: 'pooza/ginseng-web', require: 'ginseng/web'
 gem 'natto'
 gem 'sidekiq', '~>6.2.0'
 gem 'sidekiq-failures'
-gem 'sidekiq-scheduler', github: 'pooza/sidekiq-scheduler', branch: 'master.pooza'
+gem 'sidekiq-scheduler'
 
 group :development do
   gem 'rack-test'
