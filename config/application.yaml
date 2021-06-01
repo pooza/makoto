@@ -1,5 +1,5 @@
 package:
-  version: 3.0.1
+  version: 3.0.2
   url: https://github.com/pooza/makoto
   authors:
     - Tatsuya Koishi
@@ -33,6 +33,8 @@ keyword:
   url: https://script.google.com/macros/s/AKfycbz0gQsDGir6dVsp8O7gDIHukP0YgtRwbPEXB4eA04HgFvt0dvU8/exec
 word:
   url: https://script.google.com/macros/s/AKfycbws9aCXxNQt3khdJ9bEt1ADeV7HzZV_Idg-DvN5t_X3nnca0nc/exec
+  dic:
+    filename: makoto
 fairy:
   url: https://script.google.com/macros/s/AKfycbzfal5ejlywb-AbizAX4zq-90LNhKOR217QcxObjFZI5ZQeeFVY/exec
 rubicure:

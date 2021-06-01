@@ -7,7 +7,7 @@ module Makoto
     end
 
     def name
-      return 'makoto'
+      return config['/word/dic/filename']
     end
 
     def csv
