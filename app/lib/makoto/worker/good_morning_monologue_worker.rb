@@ -1,5 +1,3 @@
-require 'time'
-
 module Makoto
   class GoodMorningMonologueWorker < Worker
     sidekiq_options retry: 3
