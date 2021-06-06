@@ -1,5 +1,6 @@
 module Makoto
   class Quote < Sequel::Model(:quote)
+    include Package
     many_to_one :series
     many_to_one :form
 
@@ -7,13 +8,12 @@ module Makoto
       config = Config.instance
       quotes = Quote.dataset.where(
         exclude: false,
-        form_id: (params[:form] || config['/quote/default_forms']).map {|v| Form.first(name: v).id},
+        form_id: Form.ids(params[:form]),
       )
       quotes = quotes.where {(params[:priority] || config['/quote/priority/min']) <= priority}
       quotes = quotes.where(exclude_respond: false) if params[:respond]
       quotes = quotes.where(emotion: params[:emotion].to_s) if params[:emotion]
-      if params[:keyword]
-        keyword = params[:keyword]
+      if keyword = params[:keyword]
         quotes = quotes.where(
           Sequel.like(:body, "%#{keyword}%") | Sequel.like(:remark, "%#{keyword}%"),
         )

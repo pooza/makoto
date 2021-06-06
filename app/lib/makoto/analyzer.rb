@@ -10,8 +10,8 @@ module Makoto
     end
 
     def source=(source)
-      @source = Analyzer.create_source(source)
-      @parser = Ginseng::Fediverse::TootParser.new(source)
+      @source = Analyzer.create_source(source.dup)
+      @parser = Ginseng::Fediverse::TootParser.new(source.dup)
       @result = nil
       @words = nil
     end
