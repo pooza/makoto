@@ -7,7 +7,9 @@ module Makoto
       config = Config.instance
       quotes = Quote.dataset.where(
         exclude: false,
-        form_id: (params[:form] || config['/quote/default_forms']).map {|v| Form.first(name: v).id},
+        form_id: (params[:form] || config['/quote/default_forms']).map do |v|
+          Form.first(name: v)
+        end.reject(&:nil?).map(&:id),
       )
       quotes = quotes.where {(params[:priority] || config['/quote/priority/min']) <= priority}
       quotes = quotes.where(exclude_respond: false) if params[:respond]

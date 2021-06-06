@@ -16,7 +16,7 @@ module Makoto
         template = templates[feature].pop.message
         @phrases.push(template % [word[:surface]])
       rescue => e
-        logger.error(e)
+        logger.error(error: e)
       end
       return @phrases.present?
     end
@@ -43,6 +43,9 @@ module Makoto
         end
       end
       return words.uniq.shuffle
+    rescue => e
+      logger.error(error: e)
+      return []
     end
   end
 end
