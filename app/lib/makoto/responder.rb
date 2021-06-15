@@ -65,7 +65,7 @@ module Makoto
 
     def self.all
       return enum_for(__method__) unless block_given?
-      Config.instance['/respond/classes'].each do |v|
+      config['/respond/classes'].each do |v|
         yield "Makoto::#{v.classify}Responder".constantize.new
       end
     end

@@ -1,5 +1,7 @@
 module Makoto
   class Message < Sequel::Model(:message)
+    include Package
+
     alias body message
 
     def self.pickup(params = {})
@@ -21,7 +23,7 @@ module Makoto
         fetch.each do |values|
           Message.create(create_entry(values))
         rescue => e
-          Logger.new.error(Ginseng::Error.create(e).to_h.merge(entry: values))
+          logger.error(Ginseng::Error.create(e).to_h.merge(entry: values))
         end
       end
     end
@@ -41,7 +43,7 @@ module Makoto
     def self.fetch
       return HTTP.new.get(uri).parsed_response
     rescue => e
-      Logger.new.error(e)
+      logger.error(e)
       return []
     end
 

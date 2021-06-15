@@ -1,5 +1,7 @@
 module Makoto
   class Track < Sequel::Model(:track)
+    include Package
+
     alias makoto? makoto
 
     def self.pickup(params = {})
@@ -18,7 +20,7 @@ module Makoto
           entry.delete('intro') if entry['intro'].empty?
           Track.create(entry)
         rescue => e
-          Logger.new.error(Ginseng::Error.create(e).to_h.merge(entry: entry))
+          logger.error(Ginseng::Error.create(e).to_h.merge(entry: entry))
         end
       end
     end
@@ -26,12 +28,12 @@ module Makoto
     def self.fetch
       return HTTP.new.get(uri).parsed_response
     rescue => e
-      Logger.new.error(e)
+      logger.error(e)
       return []
     end
 
     def self.uri
-      return Ginseng::URI.parse(Config.instance['/track/url'])
+      return Ginseng::URI.parse(config['/track/url'])
     end
   end
 end

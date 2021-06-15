@@ -1,5 +1,7 @@
 module Makoto
   class Fairy < Sequel::Model(:fairy)
+    include Package
+
     def self.suffixes
       return Fairy.all.filter_map(&:suffix)
     end
@@ -10,7 +12,7 @@ module Makoto
         fetch.each do |values|
           Fairy.create(create_entry(values))
         rescue => e
-          Logger.new.error(Ginseng::Error.create(e).to_h.merge(entry: values))
+          logger.error(Ginseng::Error.create(e).to_h.merge(entry: values))
         end
       end
     end
@@ -28,12 +30,12 @@ module Makoto
     def self.fetch
       return HTTP.new.get(uri).parsed_response
     rescue => e
-      Logger.new.error(e)
+      logger.error(e)
       return []
     end
 
     def self.uri
-      return Ginseng::URI.parse(Config.instance['/fairy/url'])
+      return Ginseng::URI.parse(config['/fairy/url'])
     end
   end
 end
