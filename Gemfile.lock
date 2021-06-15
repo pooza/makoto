@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/pooza/ginseng-core.git
-  revision: f5279ac17b81c9ad00fea0ab2014a080597372fb
+  revision: 8bd905b3bf9215ee378d9567dced21abd61e8e71
   specs:
-    ginseng-core (1.10.21)
+    ginseng-core (1.10.23)
       activesupport (>= 6.1.3.2)
       addressable
       bundler
@@ -28,15 +28,15 @@ GIT
 
 GIT
   remote: https://github.com/pooza/ginseng-fediverse.git
-  revision: 7e85a3dba9d7594912bdda5f5b75b2a67f49ff00
+  revision: 789f84c330e199a96d804bffe238d064501a1a06
   specs:
-    ginseng-fediverse (1.5.14)
+    ginseng-fediverse (1.5.15)
 
 GIT
   remote: https://github.com/pooza/ginseng-postgres.git
-  revision: e88d89348becf583d0234be07113726ad90c39bc
+  revision: cb44ad48e2af490c328f47ea6f4323308304aed4
   specs:
-    ginseng-postgres (1.3.4)
+    ginseng-postgres (1.3.8)
       pg
       sequel
 
@@ -87,11 +87,11 @@ GEM
       websocket-driver (>= 0.5.1)
     ffi (1.15.1)
     fileutils (1.5.0)
-    fugit (1.4.5)
+    fugit (1.5.0)
       et-orbi (~> 1.1, >= 1.1.8)
       raabro (~> 1.4)
     http-accept (1.7.0)
-    http-cookie (1.0.3)
+    http-cookie (1.0.4)
       domain_name (~> 0.5)
     httparty (0.18.1)
       mime-types (~> 3.0)
@@ -145,7 +145,7 @@ GEM
       rack (>= 1.0, < 3)
     rainbow (3.0.0)
     rake (13.0.3)
-    redis (4.2.5)
+    redis (4.3.1)
     regexp_parser (2.1.1)
     rest-client (2.1.0)
       http-accept (>= 1.7.0, < 2.0)
@@ -156,7 +156,7 @@ GEM
     ricecream (0.2.0)
     rss (0.2.9)
       rexml
-    rubocop (1.16.0)
+    rubocop (1.17.0)
       parallel (~> 1.10)
       parser (>= 3.0.0.0)
       rainbow (>= 2.2.2, < 4.0)
@@ -225,7 +225,7 @@ GEM
     unf_ext (0.0.7.7)
     unicode (0.4.4.4)
     unicode-display_width (2.0.0)
-    websocket-driver (0.7.4)
+    websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     yajl-ruby (1.4.1)

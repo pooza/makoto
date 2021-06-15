@@ -54,8 +54,8 @@ module Makoto
     end
 
     def display_name
-      name = account.nickname || @params['account']['display_name'].sub(/:$/, ': ')
-      name += 'さん' unless account.friendry?
+      name = account&.nickname || @params['account']['display_name'].sub(/:$/, ': ')
+      name += config['/respond/suffix'] unless account.friendry?
       return name
     end
 
