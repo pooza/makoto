@@ -2,11 +2,15 @@ module Makoto
   class CallingResponderTest < TestCase
     def setup
       @responder = CallingResponder.new
+      @responder.params = {'content' => 'えええええ', 'account' => test_account}
     end
 
     def test_executable?
-      @responder.params = {'content' => 'えええええ', 'account' => test_account}
       assert_boolean(@responder.executable?)
+    end
+
+    def test_exec
+      assert(@responder.exec.present?)
     end
 
     def test_continue?
