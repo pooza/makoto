@@ -87,7 +87,7 @@ GEM
       websocket-driver (>= 0.5.1)
     ffi (1.15.1)
     fileutils (1.5.0)
-    fugit (1.4.5)
+    fugit (1.5.0)
       et-orbi (~> 1.1, >= 1.1.8)
       raabro (~> 1.4)
     http-accept (1.7.0)
@@ -145,7 +145,7 @@ GEM
       rack (>= 1.0, < 3)
     rainbow (3.0.0)
     rake (13.0.3)
-    redis (4.2.5)
+    redis (4.3.1)
     regexp_parser (2.1.1)
     rest-client (2.1.0)
       http-accept (>= 1.7.0, < 2.0)
@@ -156,7 +156,7 @@ GEM
     ricecream (0.2.0)
     rss (0.2.9)
       rexml
-    rubocop (1.16.1)
+    rubocop (1.17.0)
       parallel (~> 1.10)
       parser (>= 3.0.0.0)
       rainbow (>= 2.2.2, < 4.0)
@@ -213,6 +213,7 @@ GEM
       e2mmap
     tilt (2.0.10)
     time (0.1.0)
+      date
     timecop (0.9.4)
     timeout (0.1.1)
     tzinfo (2.0.4)
@@ -224,7 +225,7 @@ GEM
     unf_ext (0.0.7.7)
     unicode (0.4.4.4)
     unicode-display_width (2.0.0)
-    websocket-driver (0.7.4)
+    websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     yajl-ruby (1.4.1)
