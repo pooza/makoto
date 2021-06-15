@@ -73,6 +73,7 @@ respond:
     - markov
     - calling
     - fixed
+  suffix: さん
   greeting:
     - pattern: '((あ|明)けましておめでとう(ございます)|あけおめ)'
       response:
