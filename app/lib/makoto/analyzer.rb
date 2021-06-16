@@ -69,7 +69,7 @@ module Makoto
         logger.error(error: e)
       end
       parser.tags.each do |tag|
-        text.gsub!(Mastodon.create_tag(tag), '')
+        text.gsub!(tag.to_hashtag, '')
       end
       body.push(text)
       return body.join('::::').strip
