@@ -1,5 +1,3 @@
-require 'natto'
-
 module Makoto
   class Analyzer
     include Package

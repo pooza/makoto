@@ -1,6 +1,3 @@
-require 'csv'
-require 'fileutils'
-
 module Makoto
   class Dictionary
     include Package

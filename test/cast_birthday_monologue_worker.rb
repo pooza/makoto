@@ -1,5 +1,3 @@
-require 'timecop'
-
 module Makoto
   class CastBirthdayMonologueWorkerTest < TestCase
     def setup
