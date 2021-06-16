@@ -20,7 +20,7 @@ module Makoto
           entry.delete('intro') if entry['intro'].empty?
           Track.create(entry)
         rescue => e
-          logger.error(Ginseng::Error.create(e).to_h.merge(entry: entry))
+          logger.error(error: e, entry: entry)
         end
       end
     end
@@ -28,7 +28,7 @@ module Makoto
     def self.fetch
       return HTTP.new.get(uri).parsed_response
     rescue => e
-      logger.error(e)
+      logger.error(error: e)
       return []
     end
 

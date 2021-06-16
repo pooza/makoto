@@ -23,7 +23,7 @@ module Makoto
         fetch.each do |values|
           Message.create(create_entry(values))
         rescue => e
-          logger.error(Ginseng::Error.create(e).to_h.merge(entry: values))
+          logger.error(error: e, entry: values)
         end
       end
     end
@@ -43,7 +43,7 @@ module Makoto
     def self.fetch
       return HTTP.new.get(uri).parsed_response
     rescue => e
-      logger.error(e)
+      logger.error(error: e)
       return []
     end
 
