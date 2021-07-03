@@ -79,7 +79,7 @@ module Makoto
 
     def self.respondable?(payload)
       return false if payload['reblog']
-      return false if config['/respond/ignore_accounts'].member?(payload['account']['acct'])
+      return false if config['/analyzer/ignore_accounts'].member?(payload['account']['acct'])
       text = create_source(payload['content'])
       return false if text.match?("@#{config['/mastodon/account/name']}(\\s|$)")
       Keyword.dataset.where(type: 'topic').all do |topic|
