@@ -20,12 +20,10 @@ module Makoto
     end
 
     def self.username
-      config = Config.instance
       return config['/sidekiq/auth/user'] rescue nil
     end
 
     def self.password
-      config = Config.instance
       return config['/sidekiq/auth/password'] rescue nil
     end
 
@@ -50,7 +48,7 @@ module Makoto
         status: pids.present? ? 'OK' : 'NG',
       }
       pids.each do |pid|
-        raise "PID '#{pid}' was dead" unless Process.alive?(pid)
+        raise "PID '#{pid}' not alive" unless Process.alive?(pid)
       end
       return values
     rescue => e

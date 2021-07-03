@@ -1,12 +1,14 @@
 module Makoto
   class Keyword < Sequel::Model(:keyword)
+    include Package
+
     def self.refresh
       Postgres.instance.connection.transaction do
         Keyword.dataset.destroy
         fetch.each do |values|
           Keyword.create(create_entry(values))
         rescue => e
-          Logger.new.error(Ginseng::Error.create(e).to_h.merge(entry: values))
+          logger.error(error: e, entry: values)
         end
       end
     end
@@ -21,7 +23,7 @@ module Makoto
     def self.fetch
       return HTTP.new.get(uri).parsed_response
     rescue => e
-      Logger.new.error(e)
+      logger.error(error: e)
       return []
     end
 

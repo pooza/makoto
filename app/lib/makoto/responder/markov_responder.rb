@@ -1,5 +1,3 @@
-require 'natto'
-
 module Makoto
   class MarkovResponder < Responder
     def executable?

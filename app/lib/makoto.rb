@@ -26,8 +26,7 @@ module Makoto
   end
 
   def self.setup_sidekiq
-    require 'sidekiq'
-    require 'sidekiq-scheduler'
+    Redis.exists_returns_integer = true
     Sidekiq.configure_client do |config|
       config.redis = {url: Config.instance['/sidekiq/redis/dsn']}
     end
@@ -35,7 +34,6 @@ module Makoto
       config.redis = {url: Config.instance['/sidekiq/redis/dsn']}
       config.log_formatter = Sidekiq::Logger::Formatters::JSON.new
     end
-    Redis.exists_returns_integer = true
   end
 
   def self.setup_debug
@@ -52,9 +50,8 @@ module Makoto
     require 'sidekiq/web'
     require 'sidekiq-scheduler/web'
     require 'sidekiq-failures'
-    config = Config.instance
-    if config['/sidekiq/auth/user'].present? && config['/sidekiq/auth/password'].present?
-      Sidekiq::Web.use Rack::Auth::Basic do |username, password|
+    if SidekiqDaemon.basic_auth?
+      Sidekiq::Web.use(Rack::Auth::Basic) do |username, password|
         SidekiqDaemon.auth(username, password)
       end
     end

@@ -7,7 +7,7 @@ module Makoto
     end
 
     def self.dsn
-      return Ginseng::Postgres::DSN.parse(Config.instance['/postgres/dsn'])
+      return Ginseng::Postgres::DSN.parse(config['/postgres/dsn'])
     end
 
     def self.health
