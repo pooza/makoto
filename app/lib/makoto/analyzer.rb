@@ -1,5 +1,3 @@
-require 'natto'
-
 module Makoto
   class Analyzer
     include Package
@@ -66,10 +64,10 @@ module Makoto
         body.concat(nokogiri.xpath('//h1').map(&:inner_text))
         body.concat(nokogiri.xpath('//title').map(&:inner_text))
       rescue => e
-        Logger.new.error(error: e)
+        logger.error(error: e)
       end
       parser.tags.each do |tag|
-        text.gsub!(Mastodon.create_tag(tag), '')
+        text.gsub!(tag.to_hashtag, '')
       end
       body.push(text)
       return body.join('::::').strip
@@ -81,7 +79,6 @@ module Makoto
 
     def self.respondable?(payload)
       return false if payload['reblog']
-      config = Config.instance
       return false if config['/analyzer/ignore_accounts'].member?(payload['account']['acct'])
       text = create_source(payload['content'])
       return false if text.match?("@#{config['/mastodon/account/name']}(\\s|$)")
