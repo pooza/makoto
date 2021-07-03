@@ -1,4 +1,5 @@
 require 'sidekiq/testing'
+require 'timecop'
 
 module Makoto
   class TestCase < Ginseng::TestCase
