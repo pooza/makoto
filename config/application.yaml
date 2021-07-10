@@ -1,5 +1,5 @@
 package:
-  version: 3.0.5
+  version: 3.0.6
   url: https://github.com/pooza/makoto
   authors:
     - Tatsuya Koishi
@@ -11,6 +11,8 @@ test:
     acct: pooza
     display_name: ぷーざ
 environment: development
+bot:
+  name: MAKOTO
 mastodon:
   visibility: public
   hashtag:
