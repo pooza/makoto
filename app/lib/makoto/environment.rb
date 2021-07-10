@@ -4,6 +4,10 @@ module Makoto
       return File.basename(dir)
     end
 
+    def self.bot_name
+      return Config.instance['/bot/name']
+    end
+
     def self.dir
       return Makoto.dir
     end

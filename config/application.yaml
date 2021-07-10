@@ -11,6 +11,8 @@ test:
     acct: pooza
     display_name: ぷーざ
 environment: development
+bot:
+  name: MAKOTO
 mastodon:
   visibility: public
   hashtag:
