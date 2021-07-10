@@ -27,7 +27,7 @@ module Makoto
         fetch.each do |values|
           Quote.create(create_entry(values))
         rescue => e
-          loggererror(error: e, entry: values)
+          logger.error(error: e, entry: values)
         end
       end
     end
