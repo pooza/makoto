@@ -166,7 +166,7 @@ GEM
       rubocop-ast (>= 1.7.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 3.0)
-    rubocop-ast (1.7.0)
+    rubocop-ast (1.8.0)
       parser (>= 3.0.1.1)
     rubocop-performance (1.11.4)
       rubocop (>= 1.7.0, < 2.0)
@@ -177,7 +177,7 @@ GEM
       rubocop (~> 1.0)
     ruby-progressbar (1.11.0)
     ruby2_keywords (0.0.4)
-    rufus-scheduler (3.7.0)
+    rufus-scheduler (3.8.0)
       fugit (~> 1.1, >= 1.1.6)
     sanitize (5.2.3)
       crass (~> 1.0.2)
@@ -215,6 +215,7 @@ GEM
       e2mmap
     tilt (2.0.10)
     time (0.1.0)
+      date
     timecop (0.9.4)
     timeout (0.1.1)
     tzinfo (2.0.4)
@@ -235,6 +236,7 @@ GEM
 
 PLATFORMS
   x86_64-freebsd-12
+  x86_64-freebsd-13
   x86_64-linux
 
 DEPENDENCIES
@@ -263,4 +265,4 @@ RUBY VERSION
    ruby 3.0.1p64
 
 BUNDLED WITH
-   2.2.19
+   2.2.23
