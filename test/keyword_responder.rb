@@ -6,7 +6,7 @@ module Makoto
 
     def test_executable?
       @responder.clear
-      @responder.params = {'content' => 'おはようございます。', 'account' => test_account}
+      @responder.params = {'content' => 'ぬぬぬぬぬ', 'account' => test_account}
       assert_false(@responder.executable?)
 
       @responder.clear
