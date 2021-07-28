@@ -36,10 +36,20 @@ module Makoto
       rescue MatchingError
         return nil unless params['mention']
       end
-      return @container.to_s.tr('!', '！').tr('!', '！').tr('~', '〜').gsub('！{2,}', '!!')
+      return han2zen(@container.to_s)
     rescue => e
       logger.error(error: e)
       return FixedResponder.new.exec[:paragraphs].join
+    end
+
+    def han2zen(message)
+      message.tr!('!', '！')
+      message.tr!('?', '？')
+      message.tr!('~', '〜')
+      message.gsub!('！{2,}', '!!')
+      message.gsub!('！？', '!?')
+      message.gsub!('？！', '?!')
+      return message
     end
 
     def max
