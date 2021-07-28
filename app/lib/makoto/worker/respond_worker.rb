@@ -36,7 +36,7 @@ module Makoto
       rescue MatchingError
         return nil unless params['mention']
       end
-      return @container.to_s
+      return @container.to_s.tr('!', '！').tr('!', '！').tr('~', '〜').gsub('！{2,}', '!!')
     rescue => e
       logger.error(error: e)
       return FixedResponder.new.exec[:paragraphs].join
