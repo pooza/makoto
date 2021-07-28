@@ -62,7 +62,7 @@ module Makoto
           listener.receive(message)
         end
       end
-    rescue
+    rescue => e
       @client = nil
       logger.error(error: e)
       sleep(5)
