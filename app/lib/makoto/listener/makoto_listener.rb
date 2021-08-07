@@ -51,11 +51,11 @@ module Makoto
         listener = MakotoListener.new
 
         listener.client.on :close do |e|
-          raise Ginseng::GatewayError, event.reason
+          raise Ginseng::GatewayError, e.reason
         end
 
         listener.client.on :error do |e|
-          raise Ginseng::GatewayError, event.reason
+          raise Ginseng::GatewayError, e.reason
         end
 
         listener.client.on :message do |message|
