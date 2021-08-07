@@ -1,47 +1,8 @@
-package:
-  version: 3.0.9
-  url: https://github.com/pooza/makoto
-  authors:
-    - Tatsuya Koishi
-  email:
-    - tkoishi@b-shock.co.jp
-  license: MIT
-test:
-  account:
-    acct: pooza
-    display_name: ぷーざ
-environment: development
-bot:
-  name: MAKOTO
-mastodon:
-  visibility: public
-  hashtag:
-    pattern: (?:^|[^\/\)\w])#([[:word:]_]*[[:alpha:]_·][[:word:]_]*)
-  acct:
-    pattern: '((?<=^|[^\/[:word:]])@(([a-z0-9_]+([a-z0-9_\.-]+[a-z0-9_]+)?)(?:@[a-z0-9\.\-]+[a-z0-9]+)?))'
-  followers:
-    limit: 500
-  followees:
-    limit: 500
-websocket:
-  keepalive: 15
-http:
-  retry:
-    limit: 3
-    seconds: 1
-message:
-  url: https://script.google.com/macros/s/AKfycbyDGKCg5BZP0EOTdpGp60UDwzhyoCVtAslZ619U4FJF84T7Z9Wm/exec
-keyword:
-  url: https://script.google.com/macros/s/AKfycbz0gQsDGir6dVsp8O7gDIHukP0YgtRwbPEXB4eA04HgFvt0dvU8/exec
-word:
-  url: https://script.google.com/macros/s/AKfycbws9aCXxNQt3khdJ9bEt1ADeV7HzZV_Idg-DvN5t_X3nnca0nc/exec
-  dic:
-    filename: makoto
-fairy:
-  url: https://script.google.com/macros/s/AKfycbzfal5ejlywb-AbizAX4zq-90LNhKOR217QcxObjFZI5ZQeeFVY/exec
-rubicure:
-  url: https://rubicure.precure.ml/
 analyzer:
+  ignore_accounts:
+    - makoto
+    - info
+    - infomation
   ignore_features:
     - サ変接続
     - 接尾
@@ -57,14 +18,92 @@ analyzer:
     - 記号
     - フィラー
     - BOS/EOS
-  ignore_accounts:
-    - makoto
-    - info
-    - infomation # キュアスタ！のお知らせアカウント
-respond:
-  paragraph:
+birthday:
+  end: バースデーライブを終わります。
+  notice: 11/4はMAKOTOのバースデーライブです。
+  start: バースデーライブを始めます。
+  titlecalls1:
+    - ノンストップで歌い続けます！
+    - わたしについてきて！
+    - まだまだ歌い続けるわ！
+    - 持ち歌を歌いつくすつもりで歌うわ！
+    - 歌い続けます。愛を込めて！
+    - では次の曲を。
+    - 次の曲です。
+  titlecalls2:
+    - 聴いてください。
+    - 次はこの曲です。
+    - 次の曲は、この曲です。
+bot:
+  name: MAKOTO
+environment: development
+fairy:
+  url: https://script.google.com/macros/s/AKfycbzfal5ejlywb-AbizAX4zq-90LNhKOR217QcxObjFZI5ZQeeFVY/exec
+http:
+  retry:
+    limit: 3
+    seconds: 1
+keyword:
+  url: https://script.google.com/macros/s/AKfycbz0gQsDGir6dVsp8O7gDIHukP0YgtRwbPEXB4eA04HgFvt0dvU8/exec
+mastodon:
+  acct:
+    pattern: ((?<=^|[^\/[:word:]])@(([a-z0-9_]+([a-z0-9_\.-]+[a-z0-9_]+)?)(?:@[a-z0-9\.\-]+[a-z0-9]+)?))
+  followees:
+    limit: 500
+  followers:
+    limit: 500
+  hashtag:
+    pattern: (?:^|[^\/\)\w])#([[:word:]_]*[[:alpha:]_·][[:word:]_]*)
+  visibility: public
+mecab:
+  dic:
+    bin: /usr/lib/mecab/mecab-dict-index
+    neologd:
+      repos: nil
+    system: /usr/share/mecab/dic/ipadic
+    user: /tmp
+message:
+  url: https://script.google.com/macros/s/AKfycbyDGKCg5BZP0EOTdpGp60UDwzhyoCVtAslZ619U4FJF84T7Z9Wm/exec
+new_year:
+  greeting: 明けましておめでとうございます。
+nowplaying:
+  messages:
+    normal:
+      - 次の曲です。どうぞ。
+      - 次の曲をどうぞ！
+      - では次の曲を。どうぞ。
+      - では次の曲を聴いてください。どうぞ。
+    self:
+      - 次はわたしの曲。聴いてくださいね！どうぞ。
+      - 次はわたし、剣崎真琴の曲です！どうぞ。
+      - では聴いてください。わたし、剣崎真琴の曲です！どうぞ。
+package:
+  authors:
+    - Tatsuya Koishi
+  email:
+    - tkoishi@b-shock.co.jp
+  license: MIT
+  url: https://github.com/pooza/makoto
+  version: 3.0.9
+postgres:
+  dsn: postgres://postgres:password@localhost:5432/makoto
+puma:
+  pidfile: tmp/pids/puma.pid
+  port: 3011
+  rackup: app/initializer/config.ru
+quote:
+  all_forms:
+    - 剣崎真琴
+    - キュアソード
+  default_forms:
+    - 剣崎真琴
+  priority:
     min: 2
-    max: 3
+  url: https://script.google.com/macros/s/AKfycbw1GgW7a_leXTlGa48Zeo3O7W3OF_wQreb8A2EKLWooXJqQClE/exec
+respond:
+  calling:
+    continue: 0.9
+    frequency: 0.8
   classes:
     - bad_mood
     - greeting
@@ -75,13 +114,8 @@ respond:
     - markov
     - calling
     - fixed
-  suffix: さん
   greeting:
-    - pattern: '((あ|明)けましておめでとう(ございます)|あけおめ)'
-      response:
-        normal: 明けましておめでとうございます
-        friendry: 明けましておめでとう
-      dates:
+    - dates:
         - '0101'
         - '0102'
         - '0103'
@@ -90,10 +124,11 @@ respond:
         - '0106'
         - '0107'
       fav: 3
-    - pattern: '(よ|良)いお年を'
+      pattern: ((あ|明)けましておめでとう(ございます)|あけおめ)
       response:
-        normal: よいお年を
-      dates:
+        friendry: 明けましておめでとう
+        normal: 明けましておめでとうございます
+    - dates:
         - '1225'
         - '1226'
         - '1227'
@@ -102,64 +137,97 @@ respond:
         - '1230'
         - '1231'
       fav: 2
-    - pattern: 'おはよ?う?(ございま[ー〜]*す)?'
+      pattern: (よ|良)いお年を
+      response:
+        normal: よいお年を
+    - continue: true
+      hours:
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+        - 8
+        - 9
+        - 10
+        - 11
+      pattern: おはよ?う?(ございま[ー〜]*す)?
       pattern_rough: おはよう
       response:
+        friendry: おはよう
         ignore: おはよう
         normal: おはようございます
-        friendry: おはよう
-      continue: true
-      hours: [3, 4, 5, 6, 7, 8, 9, 10, 11]
-    - pattern: 'おはよ[ー〜]*'
+    - continue: true
+      hours:
+        - 3
+        - 4
+        - 5
+        - 6
+        - 7
+        - 8
+        - 9
+        - 10
+        - 11
+      pattern: おはよ[ー〜]*
       response:
+        friendry: おはよう
         ignore: おはよう
         normal: おはようございます
-        friendry: おはよう
-      continue: true
-      hours: [3, 4, 5, 6, 7, 8, 9, 10, 11]
-    - pattern: 'こんに?ち[はわ]'
+    - continue: true
+      pattern: こんに?ち[はわ]
       response:
         normal: こんにちは
-      continue: true
-    - pattern: 'こんばん[はわ]'
+    - continue: true
+      hours:
+        - 0
+        - 1
+        - 2
+        - 3
+        - 4
+        - 17
+        - 18
+        - 19
+        - 20
+        - 21
+        - 22
+        - 23
+      pattern: こんばん[はわ]
       response:
         normal: こんばんは
-      continue: true
-      hours: [0, 1, 2, 3, 4, 17, 18, 19, 20, 21, 22, 23]
     - pattern: '[い行]ってきま[ー〜]*す'
       response:
         normal: いってらっしゃい
-    - pattern: 'ただいま'
+    - continue: true
+      pattern: ただいま
       response:
-        normal: おかえりなさい
         friendry: おかえり
-      continue: true
-    - pattern: 'おハロ[ー〜]'
+        normal: おかえりなさい
+    - continue: true
+      pattern: おハロ[ー〜]
       response:
-        normal: こんにちは
         friendry: おハロ〜
-      continue: true
-    - pattern: 'おめでとう'
+        normal: こんにちは
+    - fav: 5
+      pattern: おめでとう
       response:
-        normal: ありがとうございます
         friendry: ありがとう
-      fav: 5
-    - pattern: '(お(つか|疲)れ(さま|様)?|乙)(でした)?'
+        normal: ありがとうございます
+    - pattern: (お(つか|疲)れ(さま|様)?|乙)(でした)?
       response:
-        normal: おつかれさまです
         friendry: おつかれさま
-    - pattern: '(おやすみ|お休み|オヤスミ)(なさい)?'
+        normal: おつかれさまです
+    - pattern: (おやすみ|お休み|オヤスミ)(なさい)?
       response:
-        normal: おやすみなさい
         friendry: おやすみ
-    - pattern: '(じゃあね|またね|バイバ[〜ー]?イ|ばいば[〜ー]?い|さよう?なら|ヒ[ー〜]リングッバ[ー〜]*イ)'
+        normal: おやすみなさい
+    - pattern: (じゃあね|またね|バイバ[〜ー]?イ|ばいば[〜ー]?い|さよう?なら|ヒ[ー〜]リングッバ[ー〜]*イ)
       response:
-        normal: また来てくださいね
         friendry: またね
-    - pattern: ごきげんよう
+        normal: また来てくださいね
+    - continue: true
+      pattern: ごきげんよう
       response:
         normal: ごきげんよう
-      continue: true
   interested:
     - quote: 歌
       words:
@@ -192,12 +260,17 @@ respond:
         - 抜歯
         - 歯槽膿漏
         - 歯周病
+  keyword:
+    continue: 0.4
+  markov:
+    frequency: 0.8
   naming:
-    pattern: '「(.*?)」(って|と)呼んで([。!]|\s|$)'
+    pattern: 「(.*?)」(って|と)呼んで([。!]|\s|$)
     response:
-      normal: わかりました。次から「%s」さんと呼びますね。
       friendry: わかったわ。次から「%s」と呼ぶわ。😉
+      normal: わかりました。次から「%s」さんと呼びますね。
   overfamiliar:
+    message: 馴れ馴れしく王女様を呼び捨てにしないでください！
     patterns:
       match:
         - アンジュ
@@ -209,137 +282,90 @@ respond:
         - 王女
         - 姫
         - 殿下
-    message: 馴れ馴れしく王女様を呼び捨てにしないでください！
-  markov:
-    frequency: 0.8
-  calling:
-    frequency: 0.8
-    continue: 0.9
-  keyword:
-    continue: 0.4
-nowplaying:
-  messages:
-    normal:
-      - 次の曲です。どうぞ。
-      - 次の曲をどうぞ！
-      - では次の曲を。どうぞ。
-      - では次の曲を聴いてください。どうぞ。
-    self:
-      - 次はわたしの曲。聴いてくださいね！どうぞ。
-      - 次はわたし、剣崎真琴の曲です！どうぞ。
-      - では聴いてください。わたし、剣崎真琴の曲です！どうぞ。
-birthday:
-  titlecalls1:
-    - ノンストップで歌い続けます！
-    - わたしについてきて！
-    - まだまだ歌い続けるわ！
-    - 持ち歌を歌いつくすつもりで歌うわ！
-    - 歌い続けます。愛を込めて！
-    - では次の曲を。
-    - 次の曲です。
-  titlecalls2:
-    - 聴いてください。
-    - 次はこの曲です。
-    - 次の曲は、この曲です。
-  notice: |-
-    11/4はMAKOTOのバースデーライブです。
-  start: |-
-    バースデーライブを始めます。
-  end: |-
-    バースデーライブを終わります。
-new_year:
-  greeting: |-
-    明けましておめでとうございます。
-track:
-  url: https://script.google.com/macros/s/AKfycbym_KI7OhjP545B_jdJM5JxkF6RNZhtPrzuHQRhLffCi-E0cvlK/exec
-quote:
-  url: https://script.google.com/macros/s/AKfycbw1GgW7a_leXTlGa48Zeo3O7W3OF_wQreb8A2EKLWooXJqQClE/exec
-  priority:
+  paragraph:
+    max: 3
     min: 2
-  all_forms:
-    - 剣崎真琴
-    - キュアソード
-  default_forms:
-    - 剣崎真琴
-postgres:
-  dsn: postgres://postgres:password@localhost:5432/makoto
-mecab:
-  dic:
-    bin: /usr/lib/mecab/mecab-dict-index
-    system: /usr/share/mecab/dic/ipadic
-    user: /tmp
-    neologd:
-      repos: nil
+  suffix: さん
+rubicure:
+  url: https://rubicure.precure.ml/
 sidekiq:
-  redis:
-    dsn: redis://localhost:6379/3
   auth:
-    user: admin
     password: ''
+    user: admin
+  concurrency: 5
   dashboard:
     session:
-      password: makoto
       max_age: 86400
-  concurrency: 5
+      password: makoto
+  redis:
+    dsn: redis://localhost:6379/3
   schedule:
-    good_morning:
-      cron: '0 7 * * *'
-      class: Makoto::GoodMorningMonologueWorker
-    nowplaying:
-      cron: '0 3,9,15,21 * * *'
-      class: Makoto::NowplayingMonologueWorker
-    good_quote:
-      cron: '0 5,11,17,23 * * *'
-      class: Makoto::GoodQuoteMonologueWorker
-    precure_birthday:
-      cron: '1 0 * * *'
-      class: Makoto::PrecureBirthdayMonologueWorker
     cast_birthday:
-      cron: '2 0 * * *'
       class: Makoto::CastBirthdayMonologueWorker
-    makoto_birthday_notice:
-      cron: '2 7 1-4 11 *'
-      class: Makoto::MakotoBirthdayNoticeMonologueWorker
-    makoto_birthday_start:
-      cron: '0 12 4 11 *'
-      class: Makoto::MakotoBirthdayLiveStartMonologueWorker
-    makoto_birthday:
-      cron: '1,21,41 12-19 4 11 *'
-      class: Makoto::MakotoBirthdayMonologueWorker
-    makoto_birthday_end:
-      cron: '0 20 4 11 *'
-      class: Makoto::MakotoBirthdayLiveEndMonologueWorker
-    new_year:
-      cron: '0 0 1 1 *'
-      class: Makoto::NewYearMonologueWorker
+      cron: 2 0 * * *
     fairy_lib:
-      cron: '2 2 * * *'
       class: Makoto::FairyRefreshWorker
-    quote_lib:
-      cron: '4 2 * * *'
-      class: Makoto::QuoteRefreshWorker
-    track_lib:
-      cron: '6 2 * * *'
-      class: Makoto::TrackRefreshWorker
-    message_lib:
-      cron: '8 2 * * *'
-      class: Makoto::MessageRefreshWorker
-    keyword_lib:
-      cron: '10 2 * * *'
-      class: Makoto::KeywordRefreshWorker
-    local_dictionary:
-      cron: '12 2 * * *'
-      class: Makoto::LocalDictionaryRefreshWorker
-    neologd_dictionary:
-      cron: '15 2 * * 6'
-      class: Makoto::NeologdDictionaryRefreshWorker
+      cron: 2 2 * * *
     follow_maintenance:
-      cron: '0-59/5 * * * *'
       class: Makoto::FollowMaintenanceWorker
+      cron: 0-59/5 * * * *
+    good_morning:
+      class: Makoto::GoodMorningMonologueWorker
+      cron: 0 7 * * *
+    good_quote:
+      class: Makoto::GoodQuoteMonologueWorker
+      cron: 0 5,11,17,23 * * *
+    keyword_lib:
+      class: Makoto::KeywordRefreshWorker
+      cron: 10 2 * * *
+    local_dictionary:
+      class: Makoto::LocalDictionaryRefreshWorker
+      cron: 12 2 * * *
+    makoto_birthday:
+      class: Makoto::MakotoBirthdayMonologueWorker
+      cron: 1,21,41 12-19 4 11 *
+    makoto_birthday_end:
+      class: Makoto::MakotoBirthdayLiveEndMonologueWorker
+      cron: 0 20 4 11 *
+    makoto_birthday_notice:
+      class: Makoto::MakotoBirthdayNoticeMonologueWorker
+      cron: 2 7 1-4 11 *
+    makoto_birthday_start:
+      class: Makoto::MakotoBirthdayLiveStartMonologueWorker
+      cron: 0 12 4 11 *
+    message_lib:
+      class: Makoto::MessageRefreshWorker
+      cron: 8 2 * * *
+    neologd_dictionary:
+      class: Makoto::NeologdDictionaryRefreshWorker
+      cron: 15 2 * * 6
+    new_year:
+      class: Makoto::NewYearMonologueWorker
+      cron: 0 0 1 1 *
+    nowplaying:
+      class: Makoto::NowplayingMonologueWorker
+      cron: 0 3,9,15,21 * * *
     past_keywords_purge:
-      cron: '0-59/5 * * * *'
       class: Makoto::PastKeywordsPurgeWorker
-puma:
-  port: 3011
-  pidfile: tmp/pids/puma.pid
-  rackup: app/initializer/config.ru
+      cron: 0-59/5 * * * *
+    precure_birthday:
+      class: Makoto::PrecureBirthdayMonologueWorker
+      cron: 1 0 * * *
+    quote_lib:
+      class: Makoto::QuoteRefreshWorker
+      cron: 4 2 * * *
+    track_lib:
+      class: Makoto::TrackRefreshWorker
+      cron: 6 2 * * *
+test:
+  account:
+    acct: pooza
+    display_name: ぷーざ
+track:
+  url: https://script.google.com/macros/s/AKfycbym_KI7OhjP545B_jdJM5JxkF6RNZhtPrzuHQRhLffCi-E0cvlK/exec
+websocket:
+  keepalive: 15
+word:
+  dic:
+    filename: makoto
+  url: https://script.google.com/macros/s/AKfycbws9aCXxNQt3khdJ9bEt1ADeV7HzZV_Idg-DvN5t_X3nnca0nc/exec
