@@ -66,7 +66,7 @@ GEM
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
     ast (2.4.2)
-    bootsnap (1.7.7)
+    bootsnap (1.8.0)
       msgpack (~> 1.0)
     cgi (0.2.0)
     concurrent-ruby (1.1.9)
@@ -215,7 +215,6 @@ GEM
       e2mmap
     tilt (2.0.10)
     time (0.1.0)
-      date
     timecop (0.9.4)
     timeout (0.1.1)
     tzinfo (2.0.4)
