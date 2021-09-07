@@ -67,9 +67,7 @@ module Makoto
   end
 
   def self.load_tasks
-    Dir.glob(File.join(dir, 'app/task/*.rb')).each do |f|
-      require f
-    end
+    Find.find(File.join(dir, 'app/task')).select {|f| File.extname(f) == '.rb'}.each {|f| require f}
   end
 
   Bundler.require
