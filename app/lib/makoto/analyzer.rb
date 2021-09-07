@@ -60,7 +60,7 @@ module Makoto
       parser = Ginseng::Fediverse::TootParser.new(text)
       parser.uris.each do |uri|
         text.gsub!(uri.to_s, '')
-        nokogiri = http.get(uri).body.nokogiri
+        nokogiri = http.get(uri).body.encode('UTF-8').nokogiri
         body.concat(nokogiri.xpath('//h1').map(&:inner_text))
         body.concat(nokogiri.xpath('//title').map(&:inner_text))
       rescue => e
