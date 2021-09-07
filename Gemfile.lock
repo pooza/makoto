@@ -187,7 +187,7 @@ GEM
       ffi (~> 1.9)
     securerandom (0.1.0)
     sequel (5.47.0)
-    sidekiq (6.2.1)
+    sidekiq (6.2.2)
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
       redis (>= 4.2.0)
