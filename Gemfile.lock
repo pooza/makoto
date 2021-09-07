@@ -90,6 +90,7 @@ GEM
       websocket-driver (>= 0.5.1)
     ffi (1.15.4)
     fileutils (1.5.0)
+    find (0.1.0)
     fugit (1.5.1)
       et-orbi (~> 1.1, >= 1.1.8)
       raabro (~> 1.4)
@@ -242,6 +243,7 @@ DEPENDENCIES
   bootsnap (>= 1.7.0)
   csv
   faye-websocket
+  find
   ginseng-core!
   ginseng-fediverse!
   ginseng-postgres!
