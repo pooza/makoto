@@ -11,5 +11,3 @@ module Makoto
     end
   end
 end
-
-
