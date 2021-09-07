@@ -1,4 +1,4 @@
-module Mulukhiya
+module Makoto
   extend Rake::DSL
 
   desc 'test all'

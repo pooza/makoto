@@ -1,4 +1,4 @@
-module Mulukhiya
+module Makoto
   extend Rake::DSL
 
   namespace :bundle do
