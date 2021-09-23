@@ -194,8 +194,6 @@ GEM
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
       redis (>= 4.2.0)
-    sidekiq-failures (1.0.1)
-      sidekiq (>= 4.0.0)
     sidekiq-scheduler (3.1.0)
       e2mmap
       redis (>= 3, < 5)
@@ -241,10 +239,9 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  bootsnap (>= 1.7.0)
+  bootsnap (>= 1.9.0)
   csv
   faye-websocket
-  find
   ginseng-core!
   ginseng-fediverse!
   ginseng-postgres!
@@ -257,7 +254,6 @@ DEPENDENCIES
   rubocop-rake
   rubocop-sequel
   sidekiq (~> 6.2.0)
-  sidekiq-failures
   sidekiq-scheduler
   test-unit
   timecop
