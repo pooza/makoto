@@ -13,6 +13,7 @@ module Makoto
       load_path_cache: true,
       compile_cache_iseq: true,
       compile_cache_yaml: true,
+      compile_cache_json: true,
     )
   end
 
@@ -49,7 +50,6 @@ module Makoto
   def self.rack
     require 'sidekiq/web'
     require 'sidekiq-scheduler/web'
-    require 'sidekiq-failures'
     if SidekiqDaemon.basic_auth?
       Sidekiq::Web.use(Rack::Auth::Basic) do |username, password|
         SidekiqDaemon.auth(username, password)
@@ -67,7 +67,11 @@ module Makoto
   end
 
   def self.load_tasks
-    Find.find(File.join(dir, 'app/task')).select {|f| File.extname(f) == '.rb'}.each {|f| require f}
+    finder = Ginseng::FileFinder.new
+    finder.dir = ::File.join(dir, 'app/task')
+    finder.patterns.push('*.rb')
+    finder.patterns.push('*.rake')
+    finder.exec.each {|f| require f}
   end
 
   Bundler.require

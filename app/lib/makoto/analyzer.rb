@@ -79,6 +79,7 @@ module Makoto
 
     def self.respondable?(payload)
       return false if payload['reblog']
+      return false if payload['spoiler_text'].present?
       return false if config['/analyzer/ignore_accounts'].member?(payload['account']['acct'])
       text = create_source(payload['content'])
       return false if text.match?("@#{config['/mastodon/account/name']}(\\s|$)")

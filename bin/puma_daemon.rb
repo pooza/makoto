@@ -6,7 +6,6 @@ ENV['BUNDLE_GEMFILE'] = File.join(dir, 'Gemfile')
 
 require 'makoto'
 module Makoto
-  config = Config.instance
-  ENV['RACK_ENV'] ||= config['/environment']
+  ENV['RACK_ENV'] ||= Environment.type
   PumaDaemon.spawn!
 end

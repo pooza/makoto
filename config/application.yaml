@@ -84,7 +84,7 @@ package:
     - tkoishi@b-shock.co.jp
   license: MIT
   url: https://github.com/pooza/makoto
-  version: 3.0.11
+  version: 3.0.12
 postgres:
   dsn: postgres://postgres:password@localhost:5432/makoto
 puma:
