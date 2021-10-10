@@ -43,5 +43,8 @@ jobs:
           bundle exec rake makoto:fairy:update
           bundle exec rake makoto:keyword:update
           bundle exec rake makoto:message:update
-      - run: bundle exec rubocop
+      - name: Run lint
+        run: |
+          bundle exec rubocop
+          bundle exec rake erb:lint
       - run: bundle exec rake test

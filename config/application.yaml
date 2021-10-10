@@ -84,7 +84,7 @@ package:
     - tkoishi@b-shock.co.jp
   license: MIT
   url: https://github.com/pooza/makoto
-  version: 3.0.12
+  version: 3.0.13
 postgres:
   dsn: postgres://postgres:password@localhost:5432/makoto
 puma:
@@ -365,6 +365,7 @@ track:
   url: https://script.google.com/macros/s/AKfycbym_KI7OhjP545B_jdJM5JxkF6RNZhtPrzuHQRhLffCi-E0cvlK/exec
 websocket:
   keepalive: 15
+  verify_peer: true
 word:
   dic:
     filename: makoto

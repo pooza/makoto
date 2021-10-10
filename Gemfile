@@ -9,10 +9,11 @@ gem 'ginseng-postgres', github: 'pooza/ginseng-postgres', require: 'ginseng/post
 gem 'ginseng-web', github: 'pooza/ginseng-web', require: 'ginseng/web'
 gem 'natto'
 gem 'sidekiq', '~>6.2.0'
-gem 'sidekiq-scheduler'
+gem 'sidekiq-scheduler', '~>3.1.0'
 
 group :development do
   gem 'rack-test'
+  gem 'rails-erb-lint'
   gem 'ricecream'
   gem 'rubocop'
   gem 'rubocop-performance'
