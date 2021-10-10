@@ -3,4 +3,7 @@ $LOAD_PATH.unshift(File.join(dir, 'app/lib'))
 ENV['BUNDLE_GEMFILE'] = File.join(dir, 'Gemfile')
 
 require 'makoto'
-Makoto.load_tasks
+module Makoto
+  ENV['RAKE'] = Package.full_name
+  load_tasks
+end
