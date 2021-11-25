@@ -39,7 +39,7 @@ module Makoto
       return han2zen(@container.to_s)
     rescue => e
       logger.error(error: e)
-      return FixedResponder.new.exec[:paragraphs].join
+      return FixedResponder.new.exec.join
     end
 
     def han2zen(message)
