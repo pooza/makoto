@@ -241,7 +241,7 @@ GEM
       temple (>= 0.7.6, < 0.9)
       tilt (>= 2.0.6, < 2.1)
     temple (0.8.2)
-    test-unit (3.5.2)
+    test-unit (3.5.3)
       power_assert
     thwait (0.2.0)
       e2mmap
