@@ -74,10 +74,13 @@ module Makoto
     finder.exec.each {|f| require f}
   end
 
+  Dir.chdir(dir)
+  ENV['BUNDLE_GEMFILE'] = File.join(dir, 'Gemfile')
   Bundler.require
   loader.setup
   setup_bootsnap
   setup_debug
   setup_sidekiq
+  ENV['RACK_ENV'] ||= Environment.type
   Postgres.connect
 end

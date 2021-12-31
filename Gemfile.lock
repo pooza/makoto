@@ -221,7 +221,7 @@ GEM
     securerandom (0.1.1)
     sequel (5.51.0)
     set (1.0.2)
-    sidekiq (6.2.2)
+    sidekiq (6.3.1)
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
       redis (>= 4.2.0)
@@ -260,7 +260,7 @@ GEM
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     yajl-ruby (1.4.1)
-    zeitwerk (2.5.2)
+    zeitwerk (2.5.3)
     zlib (2.1.1)
 
 PLATFORMS
@@ -285,7 +285,7 @@ DEPENDENCIES
   rubocop-performance
   rubocop-rake
   rubocop-sequel
-  sidekiq (~> 6.2.0)
+  sidekiq (~> 6.3.0)
   sidekiq-scheduler (~> 3.1.0)
   test-unit
   timecop

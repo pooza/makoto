@@ -1,10 +1,7 @@
 #!/usr/bin/env ruby
+$LOAD_PATH.unshift(File.join(File.expand_path('..', __dir__), 'app/lib'))
+ENV['RAKE'] = nil
 
-dir = File.expand_path('..', __dir__)
-$LOAD_PATH.unshift(File.join(dir, 'app/lib'))
-ENV['BUNDLE_GEMFILE'] = File.join(dir, 'Gemfile')
-
-Dir.chdir(dir)
 require 'makoto'
 module Makoto
   ENV['RACK_ENV'] ||= Environment.type
