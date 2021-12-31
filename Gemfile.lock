@@ -88,7 +88,7 @@ GEM
     concurrent-ruby (1.1.9)
     connection_pool (2.2.5)
     crass (1.0.6)
-    csv (3.2.1)
+    csv (3.2.2)
     daemon-spawn (0.4.2)
     date (3.2.2)
     domain_name (0.5.20190701)
@@ -188,21 +188,21 @@ GEM
       mime-types (>= 1.16, < 4.0)
       netrc (~> 0.8)
     rexml (3.2.5)
-    ricecream (0.2.0)
+    ricecream (0.2.1)
     rss (0.2.9)
       rexml
-    rubocop (1.23.0)
+    rubocop (1.24.0)
       parallel (~> 1.10)
       parser (>= 3.0.0.0)
       rainbow (>= 2.2.2, < 4.0)
       regexp_parser (>= 1.8, < 3.0)
       rexml
-      rubocop-ast (>= 1.12.0, < 2.0)
+      rubocop-ast (>= 1.15.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 3.0)
-    rubocop-ast (1.15.0)
+    rubocop-ast (1.15.1)
       parser (>= 3.0.1.1)
-    rubocop-performance (1.12.0)
+    rubocop-performance (1.13.0)
       rubocop (>= 1.7.0, < 2.0)
       rubocop-ast (>= 0.4.0)
     rubocop-rake (0.6.0)
@@ -221,7 +221,7 @@ GEM
     securerandom (0.1.1)
     sequel (5.51.0)
     set (1.0.2)
-    sidekiq (6.2.2)
+    sidekiq (6.3.1)
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
       redis (>= 4.2.0)
@@ -241,7 +241,7 @@ GEM
       temple (>= 0.7.6, < 0.9)
       tilt (>= 2.0.6, < 2.1)
     temple (0.8.2)
-    test-unit (3.5.2)
+    test-unit (3.5.3)
       power_assert
     thwait (0.2.0)
       e2mmap
@@ -260,7 +260,7 @@ GEM
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
     yajl-ruby (1.4.1)
-    zeitwerk (2.5.1)
+    zeitwerk (2.5.3)
     zlib (2.1.1)
 
 PLATFORMS
@@ -285,7 +285,7 @@ DEPENDENCIES
   rubocop-performance
   rubocop-rake
   rubocop-sequel
-  sidekiq (~> 6.2.0)
+  sidekiq (~> 6.3.0)
   sidekiq-scheduler (~> 3.1.0)
   test-unit
   timecop
@@ -294,4 +294,4 @@ RUBY VERSION
    ruby 3.0.3p157
 
 BUNDLED WITH
-   2.2.33
+   2.3.4

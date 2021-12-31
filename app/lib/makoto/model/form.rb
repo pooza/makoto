@@ -4,9 +4,9 @@ module Makoto
     one_to_many :quote
 
     def self.ids(names = nil)
-      return (names || config['/quote/default_forms']).map do |name|
+      return (names || config['/quote/default_forms']).filter_map do |name|
         Form.first(name: name)
-      end.reject(&:nil?).map(&:id)
+      end.map(&:id)
     end
 
     def self.get(name)

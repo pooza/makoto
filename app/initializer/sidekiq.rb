@@ -1,5 +1,3 @@
-dir = File.expand_path('../..', __dir__)
-$LOAD_PATH.unshift(File.join(dir, 'app/lib'))
-ENV['BUNDLE_GEMFILE'] = File.join(dir, 'Gemfile')
+$LOAD_PATH.unshift(File.join(File.expand_path('../..', __dir__), 'app/lib'))
 
 require 'makoto'
