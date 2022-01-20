@@ -4,7 +4,7 @@ on:
 env:
   CI: "true"
 jobs:
-  test-ruby30:
+  test-ruby31:
     runs-on: ubuntu-latest
     services:
       postgres:

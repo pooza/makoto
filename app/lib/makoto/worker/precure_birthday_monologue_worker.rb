@@ -5,7 +5,7 @@ module Makoto
       girls.each do |girl|
         template = Template.new('precure_birthday')
         template[:girl] = girl
-        mastodon.toot(status: template.to_s, visibility: visibility)
+        mastodon.toot(status: template.to_s, visibility:)
       end
     end
 
