@@ -8,7 +8,7 @@ module Makoto
       track = Track.pickup(makoto: true)
       template[:url] = track.url
       template[:intro] = track.intro
-      mastodon.toot(status: template.to_s, visibility: visibility)
+      mastodon.toot(status: template.to_s, visibility:)
     end
 
     def greetings

@@ -11,7 +11,7 @@ module Makoto
       words.clone.count.times do
         word = words.pop
         feature = word[:feature]
-        records = Message.dataset.where(type: 'template', feature: feature)
+        records = Message.dataset.where(type: 'template', feature:)
         templates[feature] ||= records.all.shuffle
         template = templates[feature].pop.message
         @phrases.push(template % [word[:surface]])

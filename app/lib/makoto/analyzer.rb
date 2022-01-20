@@ -39,7 +39,7 @@ module Makoto
         features = word.feature.split(',').select {|v| v.strip.present?}
         next if ignore_words.member?(word.surface)
         next if ignore_features_pattern.match?(features.join('|'))
-        entry = {surface: word.surface, feature: analyze_feature(features), features: features}
+        entry = {surface: word.surface, feature: analyze_feature(features), features:}
         yield entry
       end
     end

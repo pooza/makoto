@@ -5,7 +5,7 @@ module Makoto
 
     def self.ids(names = nil)
       return (names || config['/quote/default_forms']).filter_map do |name|
-        Form.first(name: name)
+        Form.first(name:)
       end.map(&:id)
     end
 
