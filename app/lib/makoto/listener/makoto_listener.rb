@@ -9,7 +9,7 @@ module Makoto
         send("handle_#{data['event']}".to_sym, payload)
       end
     rescue NoMethodError
-      logger.error(error: 'method undefined', payload: payload)
+      logger.error(error: 'method undefined', payload:)
     rescue => e
       logger.error(error: e, payload: (payload rescue message.data))
     end

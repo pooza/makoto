@@ -4,7 +4,7 @@ module Makoto
       casts.each do |cast|
         template = Template.new('cast_birthday')
         template[:cast] = cast
-        mastodon.toot(status: template.to_s, visibility: visibility)
+        mastodon.toot(status: template.to_s, visibility:)
       end
     end
 

@@ -6,7 +6,7 @@ module Makoto
       template = Template.new('good_morning')
       template[:holiday_messages] = holiday_messages
       template[:greeting] = greeting
-      mastodon.toot(status: template.to_s, visibility: visibility)
+      mastodon.toot(status: template.to_s, visibility:)
     end
 
     def greeting

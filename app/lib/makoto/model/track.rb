@@ -20,7 +20,7 @@ module Makoto
           entry.delete('intro') if entry['intro'].empty?
           Track.create(entry)
         rescue => e
-          logger.error(error: e, entry: entry)
+          logger.error(error: e, entry:)
         end
       end
     end
