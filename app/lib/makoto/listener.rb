@@ -10,6 +10,12 @@ module Makoto
       return config['/websocket/verify_peer']
     end
 
+    def root_cert_file
+      return config['/websocket/root_cert_file']
+    rescue
+      return ENV['SSL_CERT_FILE']
+    end
+
     def keepalive
       return config['/websocket/keepalive']
     end
@@ -22,6 +28,8 @@ module Makoto
       @client = Faye::WebSocket::Client.new(@uri.to_s, nil, {
         tls: {
           verify_peer: verify_peer?,
+          root_cert_file:,
+          logger:,
         },
         ping: keepalive,
       })
