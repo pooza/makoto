@@ -11,13 +11,13 @@ module Makoto
 
       @responder.clear
       @responder.params = {'content' => 'ヒーリングっど♥プリキュア、楽しみですね〜', 'account' => test_account}
-      assert(@responder.executable?)
-      assert(@responder.exec.present?)
+      assert_predicate(@responder, :executable?)
+      assert_predicate(@responder.exec, :present?)
 
       @responder.clear
       @responder.params = {'content' => 'https://www.toei-anim.co.jp/tv/precure5_gogo/episode/summary/48/', 'account' => test_account}
-      assert(@responder.executable?)
-      assert(@responder.exec.present?)
+      assert_predicate(@responder, :executable?)
+      assert_predicate(@responder.exec, :present?)
     end
 
     def test_continue?
@@ -28,7 +28,7 @@ module Makoto
       @responder.clear
       @responder.params = {'content' => 'ヒーリングっど♥プリキュア、楽しみですね〜', 'account' => test_account}
       @responder.exec
-      assert(@responder.paragraphs.present?)
+      assert_predicate(@responder.paragraphs, :present?)
     end
   end
 end

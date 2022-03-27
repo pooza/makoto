@@ -4,15 +4,15 @@ module Makoto
       @worker = GoodMorningMonologueWorker.new
     end
 
-    def holiday_messages
+    def test_holiday_messages
       Timecop.travel(Time.parse('2000/5/17'))
-      assert_equal(@worker.holiday_messages, [])
+      assert_empty(@worker.holiday_messages)
       Timecop.travel(Time.parse('2000/1/1'))
-      assert(@worker.holiday_messages.present?)
+      assert_predicate(@worker.holiday_messages, :present?)
     end
 
     def test_greeting
-      assert(@worker.greeting.present?)
+      assert_predicate(@worker.greeting, :present?)
     end
 
     def test_perform

@@ -19,8 +19,8 @@ module Makoto
       assert_false(@container.greetings.empty?)
       assert_false(@container.paragraphs.empty?)
       @container.clear
-      assert(@container.greetings.empty?)
-      assert(@container.paragraphs.empty?)
+      assert_empty(@container.greetings)
+      assert_empty(@container.paragraphs)
     end
 
     def test_to_s
