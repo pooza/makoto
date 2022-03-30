@@ -10,7 +10,7 @@ module Makoto
     end
 
     def test_exec
-      assert(@responder.exec.present?)
+      assert_predicate(@responder.exec, :present?)
     end
 
     def test_continue?

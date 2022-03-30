@@ -17,6 +17,7 @@ group :development do
   gem 'rails-erb-lint'
   gem 'ricecream'
   gem 'rubocop'
+  gem 'rubocop-minitest'
   gem 'rubocop-performance'
   gem 'rubocop-rake'
   gem 'rubocop-sequel'

@@ -4,7 +4,7 @@ module Makoto
       track = Track.pickup
       assert_kind_of(Track, track)
       assert_kind_of(String, track.title)
-      assert(track.title.present?)
+      assert_predicate(track.title, :present?)
     end
   end
 end

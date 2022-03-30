@@ -4,7 +4,7 @@ module Makoto
       quote = Quote.pickup
       assert_kind_of(Quote, quote)
       assert_kind_of(String, quote.body)
-      assert(quote.body.present?)
+      assert_predicate(quote.body, :present?)
     end
   end
 end

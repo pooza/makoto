@@ -9,10 +9,10 @@ module Makoto
       assert_false(@responder.executable?)
 
       @responder.params = {'content' => '「ぷーざ」って呼んで！', 'account' => test_account}
-      assert(@responder.executable?)
+      assert_predicate(@responder, :executable?)
 
       @responder.params = {'content' => '「ぷーざ」って呼んで。', 'account' => test_account}
-      assert(@responder.executable?)
+      assert_predicate(@responder, :executable?)
     end
 
     def test_continue?
