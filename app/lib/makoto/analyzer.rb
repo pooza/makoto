@@ -83,7 +83,7 @@ module Makoto
       return false if payload['spoiler_text'].present?
       return false if config['/analyzer/ignore_accounts'].member?(payload['account']['acct'])
       text = create_source(payload['content'])
-      return false if text.match?("@#{config['/mastodon/account/name']}(\\s|$)")
+      return false if text.match?("@#{config['/mastodon/account/name']}([[:blank:]]|$)")
       Keyword.dataset.where(type: 'topic').all do |topic|
         return true if text.include?(topic.word)
       end
