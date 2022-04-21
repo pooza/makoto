@@ -54,24 +54,24 @@ module Makoto
     end
 
     def self.create_source(text)
-      http = HTTP.new
-      http.retry_limit = 1
       text = sanitize(text)
       body = []
       parser = Ginseng::Fediverse::TootParser.new(text)
       parser.uris.each do |uri|
         text.gsub!(uri.to_s, '')
-        nokogiri = http.get(uri).body.encode('UTF-8').nokogiri
+        nokogiri = HTTP.new.get(uri, {timeout: http_timeout}).body.encode('UTF-8').nokogiri
         body.concat(nokogiri.xpath('//h1').map(&:inner_text))
         body.concat(nokogiri.xpath('//title').map(&:inner_text))
       rescue => e
         logger.error(error: e)
       end
-      parser.tags.each do |tag|
-        text.gsub!(tag.to_hashtag, '')
-      end
+      parser.tags.each {|tag| text.gsub!(tag.to_hashtag, '')}
       body.push(text)
       return body.join('::::').strip
+    end
+
+    def self.http_timeout
+      return config['/http/retry/limit'] * config['/http/retry/seconds']
     end
 
     def self.sanitize(text)
