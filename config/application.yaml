@@ -41,7 +41,7 @@ fairy:
   url: https://script.google.com/macros/s/AKfycbzfal5ejlywb-AbizAX4zq-90LNhKOR217QcxObjFZI5ZQeeFVY/exec
 http:
   retry:
-    limit: 3
+    limit: 2
     seconds: 1
 keyword:
   url: https://script.google.com/macros/s/AKfycbz0gQsDGir6dVsp8O7gDIHukP0YgtRwbPEXB4eA04HgFvt0dvU8/exec
@@ -84,7 +84,7 @@ package:
     - tkoishi@b-shock.co.jp
   license: MIT
   url: https://github.com/pooza/makoto
-  version: 3.0.27
+  version: 3.0.28
 postgres:
   dsn: postgres://postgres:password@localhost:5432/makoto
 puma:
