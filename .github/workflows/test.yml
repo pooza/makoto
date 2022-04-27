@@ -47,4 +47,3 @@ jobs:
         run: |
           bundle exec rubocop
           bundle exec rake erb:lint
-      - run: bundle exec rake test

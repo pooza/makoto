@@ -16,7 +16,6 @@ module Makoto
     end
 
     def test_perform
-      return if Environment.ci?
       Timecop.travel(Time.parse('2020/01/01'))
       @worker.perform
       Timecop.travel(Time.parse('2020/02/01'))
