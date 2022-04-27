@@ -12,7 +12,7 @@ module Makoto
     def root_cert_file
       return config['/websocket/root_cert_file']
     rescue
-      return ENV['SSL_CERT_FILE']
+      return ENV.fetch('SSL_CERT_FILE', nil)
     end
 
     def keepalive
