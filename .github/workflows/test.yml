@@ -4,11 +4,11 @@ on:
 env:
   CI: "true"
 jobs:
-  test-ruby31:
+  test:
     runs-on: ubuntu-latest
     services:
       postgres:
-        image: postgres:12
+        image: postgres:14
         env:
           POSTGRES_USER: postgres
           POSTGRES_PASSWORD: password
