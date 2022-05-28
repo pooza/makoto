@@ -8,9 +8,9 @@ GIT
 
 GIT
   remote: https://github.com/pooza/ginseng-core.git
-  revision: 8a61854153f8250b6620eefe3ad5905f9fe4ee3d
+  revision: 11414273cbc19349212f46d6dc48e15445ab29f4
   specs:
-    ginseng-core (1.13.4)
+    ginseng-core (1.13.6)
       activesupport (>= 6.1.3.2)
       addressable (>= 2.8.0)
       bundler (~> 2.0)
@@ -28,7 +28,7 @@ GIT
       multi_json
       net-protocol
       net-smtp
-      nokogiri (>= 1.13.5)
+      nokogiri (>= 1.13.6)
       optparse
       rake
       rest-client
@@ -36,7 +36,7 @@ GIT
       securerandom
       set
       time
-      yajl-ruby (>= 1.4.2)
+      yajl-ruby (>= 1.4.3)
       zeitwerk (>= 2.4.0)
       zlib
 
@@ -56,11 +56,12 @@ GIT
 
 GIT
   remote: https://github.com/pooza/ginseng-web.git
-  revision: 785be4ab5b088a3f6e4f976cdc8c87b577aa82a8
+  revision: 9defca35256baea2ec908df0470c7b9ec8e026b8
   specs:
-    ginseng-web (1.3.26)
+    ginseng-web (1.3.27)
       erb
       puma (>= 5.6.4)
+      rack (>= 2.2.3.1)
       rss
       sassc
       sinatra
@@ -121,7 +122,7 @@ GEM
       raabro (~> 1.4)
     gli (2.21.0)
     http-accept (1.7.0)
-    http-cookie (1.0.4)
+    http-cookie (1.0.5)
       domain_name (~> 0.5)
     httparty (0.20.0)
       mime-types (~> 3.0)
@@ -142,7 +143,7 @@ GEM
     mini_mime (1.1.2)
     mini_portile2 (2.8.0)
     minitest (5.15.0)
-    msgpack (1.5.1)
+    msgpack (1.5.2)
     multi_json (1.15.0)
     multi_xml (0.6.0)
     mustermann (1.1.1)
@@ -173,7 +174,7 @@ GEM
       nio4r (~> 2.0)
     raabro (1.4.0)
     racc (1.6.0)
-    rack (2.2.3)
+    rack (2.2.3.1)
     rack-protection (2.2.0)
       rack
     rack-test (1.1.0)
@@ -191,7 +192,7 @@ GEM
     rainbow (3.1.1)
     rake (13.0.6)
     redis (4.5.1)
-    regexp_parser (2.4.0)
+    regexp_parser (2.5.0)
     rest-client (2.1.0)
       http-accept (>= 1.7.0, < 2.0)
       http-cookie (>= 1.0.2, < 2.0)
@@ -201,20 +202,20 @@ GEM
     ricecream (0.2.1)
     rss (0.2.9)
       rexml
-    rubocop (1.29.1)
+    rubocop (1.30.0)
       parallel (~> 1.10)
       parser (>= 3.1.0.0)
       rainbow (>= 2.2.2, < 4.0)
       regexp_parser (>= 1.8, < 3.0)
       rexml (>= 3.2.5, < 4.0)
-      rubocop-ast (>= 1.17.0, < 2.0)
+      rubocop-ast (>= 1.18.0, < 2.0)
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 3.0)
     rubocop-ast (1.18.0)
       parser (>= 3.1.1.0)
     rubocop-minitest (0.19.1)
       rubocop (>= 0.90, < 2.0)
-    rubocop-performance (1.13.3)
+    rubocop-performance (1.14.0)
       rubocop (>= 1.7.0, < 2.0)
       rubocop-ast (>= 0.4.0)
     rubocop-rake (0.6.0)
@@ -261,18 +262,18 @@ GEM
     time (0.2.0)
       date
     timecop (0.9.5)
-    timeout (0.2.0)
+    timeout (0.3.0)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
     unf (0.1.4)
       unf_ext
-    unf_ext (0.0.8.1)
+    unf_ext (0.0.8.2)
     unicode-display_width (2.1.0)
     webrick (1.7.0)
     websocket-driver (0.7.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
-    yajl-ruby (1.4.2)
+    yajl-ruby (1.4.3)
     zeitwerk (2.5.4)
     zlib (2.1.1)
 
