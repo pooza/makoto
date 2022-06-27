@@ -47,7 +47,7 @@ module Makoto
       cmd.exec
       raise cmd.stderr unless cmd.status.zero?
     ensure
-      File.unlink(temp_csv_path) if File.exist?(temp_csv_path)
+      FileUtils.rm_rf(temp_csv_path)
     end
 
     def temp_csv_path
