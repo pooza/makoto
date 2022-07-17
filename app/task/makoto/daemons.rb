@@ -14,7 +14,7 @@ module Makoto
         end
 
         desc "restart #{ns}"
-        task restart: [:stop, :start]
+        task restart: ['migration:run', :stop, :start]
       end
     end
   end
