@@ -11,11 +11,13 @@ module Makoto
 
     def test_create_source
       source = ' @pooza https://precure.ml 納豆餃子飴 #MAKOTO '
+
       assert_equal('precure.ml - キュアスタ！::::@pooza  納豆餃子飴', Analyzer.create_source(source))
     end
 
     def test_analyze
       @analyzer.source = '@pooza @info @makoto 納豆餃子飴'
+
       assert_equal(['pooza', 'info', '納豆餃子飴'], @analyzer.result.map {|v| v[:surface]})
     end
   end

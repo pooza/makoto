@@ -26,6 +26,7 @@ module Makoto
 
     def test_exec
       @responder.exec
+
       assert_predicate(@responder.paragraphs, :present?)
     end
   end

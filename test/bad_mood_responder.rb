@@ -6,9 +6,11 @@ module Makoto
 
     def test_executable?
       @responder.params = {'content' => 'ネギトロ丼', 'account' => test_account}
+
       assert_false(@responder.executable?)
 
       @responder.params = {'content' => 'おちんちん', 'account' => test_account}
+
       assert_predicate(@responder, :executable?)
       assert_predicate(@responder.exec, :present?)
     end
@@ -19,6 +21,7 @@ module Makoto
 
     def test_exec
       @responder.exec
+
       assert_predicate(@responder.paragraphs, :present?)
     end
   end
