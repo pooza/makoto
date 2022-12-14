@@ -100,7 +100,7 @@ GEM
     concurrent-ruby (1.1.10)
     connection_pool (2.3.0)
     crass (1.0.6)
-    csv (3.2.5)
+    csv (3.2.6)
     daemon-spawn (0.4.2)
     date (3.3.1)
     domain_name (0.5.20190701)
