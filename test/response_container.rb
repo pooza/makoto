@@ -16,9 +16,11 @@ module Makoto
       @container.greetings.push('こんにちは。')
       @container.paragraphs.push('天ぷらそば')
       @container.paragraphs.push('ネギトロ丼')
+
       assert_false(@container.greetings.empty?)
       assert_false(@container.paragraphs.empty?)
       @container.clear
+
       assert_empty(@container.greetings)
       assert_empty(@container.paragraphs)
     end
@@ -28,6 +30,7 @@ module Makoto
       @container.greetings.push('こんにちは。')
       @container.paragraphs.push('天ぷらそば')
       @container.paragraphs.push('ネギトロ丼')
+
       assert(@container.to_s.match?(/^こんにちは。\n(天ぷらそば|ネギトロ丼)+$/))
     end
   end

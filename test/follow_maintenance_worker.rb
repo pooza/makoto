@@ -6,6 +6,7 @@ module Makoto
 
     def test_perform
       @worker.perform
+
       assert_kind_of(Array, @worker.follower_ids)
       assert_kind_of(Array, @worker.followee_ids)
     end

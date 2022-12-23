@@ -6,12 +6,15 @@ module Makoto
 
     def test_executable?
       @responder.params = {'content' => '博多ラーメン！', 'account' => test_account}
+
       assert_false(@responder.executable?)
 
       @responder.params = {'content' => '「ぷーざ」って呼んで！', 'account' => test_account}
+
       assert_predicate(@responder, :executable?)
 
       @responder.params = {'content' => '「ぷーざ」って呼んで。', 'account' => test_account}
+
       assert_predicate(@responder, :executable?)
     end
 

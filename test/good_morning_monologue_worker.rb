@@ -6,8 +6,10 @@ module Makoto
 
     def test_holiday_messages
       Timecop.travel(Time.parse('2000/5/17'))
+
       assert_empty(@worker.holiday_messages)
       Timecop.travel(Time.parse('2000/1/1'))
+
       assert_predicate(@worker.holiday_messages, :present?)
     end
 

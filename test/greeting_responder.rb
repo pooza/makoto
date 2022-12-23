@@ -6,32 +6,42 @@ module Makoto
 
     def test_executable?
       @responder.params = {'content' => '博多ラーメン！', 'account' => test_account}
+
       assert_false(@responder.executable?)
 
       @responder.params = {'content' => 'おはよう', 'account' => test_account}
       Timecop.travel(Time.parse('8:00'))
+
       assert_predicate(@responder, :executable?)
       assert_predicate(@responder, :on_time?)
       assert_predicate(@responder.exec, :present?)
       @responder.params = {'content' => 'おはよう～', 'account' => test_account}
+
       assert_predicate(@responder, :executable?)
       @responder.params = {'content' => 'おはよう〜', 'account' => test_account}
+
       assert_predicate(@responder, :executable?)
       Timecop.travel(Time.parse('17:00'))
+
       assert_predicate(@responder, :executable?)
       assert_false(@responder.on_time?)
       assert_predicate(@responder.exec, :present?)
 
       Timecop.travel(Time.parse('8:00'))
       @responder.params = {'content' => 'おはようモフ', 'account' => test_account}
+
       assert_predicate(@responder, :executable?)
       @responder.params = {'content' => 'おはようでプルンス', 'account' => test_account}
+
       assert_predicate(@responder, :executable?)
       @responder.params = {'content' => 'おはようルン！', 'account' => test_account}
+
       assert_predicate(@responder, :executable?)
       @responder.params = {'content' => 'おはよ', 'account' => test_account}
+
       assert_predicate(@responder, :executable?)
       @responder.params = {'content' => 'おはよ〜', 'account' => test_account}
+
       assert_predicate(@responder, :executable?)
 
       assert_raise MatchingError do
@@ -43,23 +53,30 @@ module Makoto
         @responder.executable?
       end
       @responder.params = {'content' => 'おはようさん', 'account' => test_account, 'mention' => true}
+
       assert_false(@responder.executable?)
       @responder.params = {'content' => 'おはようのプルンス', 'account' => test_account, 'mention' => true}
+
       assert_false(@responder.executable?)
 
       @responder.params = {'content' => 'ヒーリングッボイ', 'account' => test_account, 'mention' => true}
+
       assert_false(@responder.executable?)
       @responder.params = {'content' => 'ヒーリングッバイ', 'account' => test_account, 'mention' => true}
+
       assert_predicate(@responder, :executable?)
       @responder.params = {'content' => 'ヒーリングッバ〜イ', 'account' => test_account, 'mention' => true}
+
       assert_predicate(@responder, :executable?)
 
       @responder.params = {'content' => 'あけおめ！', 'account' => test_account}
       Timecop.travel(Time.parse('2000/1/1'))
+
       assert_predicate(@responder, :executable?)
       assert_predicate(@responder, :on_time?)
       assert_predicate(@responder.exec, :present?)
       Timecop.travel(Time.parse('2000/1/8'))
+
       assert_predicate(@responder, :executable?)
       assert_false(@responder.on_time?)
       assert_predicate(@responder.exec, :present?)
@@ -67,9 +84,11 @@ module Makoto
 
     def test_continue?
       @responder.params = {'content' => 'ヒーリングッバ〜イ', 'account' => test_account, 'mention' => true}
+
       assert_false(@responder.continue?)
 
       @responder.params = {'content' => 'おはよう', 'account' => test_account, 'mention' => true}
+
       assert_predicate(@responder, :continue?)
     end
 
