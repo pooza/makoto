@@ -11,7 +11,6 @@ module Makoto
     def motd
       return [
         "#{self.class} #{Package.version}",
-        "Streaming API URL: #{service.streaming_uri}",
       ].join("\n")
     end
 
