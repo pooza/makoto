@@ -288,6 +288,8 @@ respond:
   suffix: さん
 rubicure:
   url: https://rubicure.precure.ml/
+ruby:
+  jit: false
 sidekiq:
   auth:
     password: ''
