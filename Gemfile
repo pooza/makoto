@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '>=3.1.0'
+ruby '>=3.2.0'
 gem 'bootsnap', '>=1.9.0'
 gem 'csv'
 gem 'faye-websocket', github: 'pooza/faye-websocket-ruby'
@@ -9,7 +9,7 @@ gem 'ginseng-postgres', github: 'pooza/ginseng-postgres', require: 'ginseng/post
 gem 'ginseng-web', github: 'pooza/ginseng-web', require: 'ginseng/web'
 gem 'natto'
 gem 'redis', '~>4.5.0'
-gem 'sidekiq', '~>6.5.0'
+gem 'sidekiq', '~>6.0'
 gem 'sidekiq-scheduler', '~>4.0.0'
 
 group :development do
