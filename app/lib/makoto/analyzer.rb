@@ -79,10 +79,8 @@ module Makoto
     end
 
     def self.ignore_accounts
-      return config['/analyzer/ignore_accounts']
-        .map {|v| Ginseng::Fediverse::Acct.new(v)}
-        .compact
-        .to_set
+      accounts = config['/analyzer/ignore_accounts']
+      return accounts.filter_map {|v| Ginseng::Fediverse::Acct.new(v)}.to_set
     end
 
     def self.respondable?(payload)
