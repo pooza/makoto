@@ -28,7 +28,7 @@ module Makoto
       assert_false(Analyzer.respondable?({content: 'fyga', account: {acct: acct.to_s}}))
       assert_false(Analyzer.respondable?({content: word, reblog: true, account: {acct: acct.to_s}}))
       assert_false(Analyzer.respondable?({content: word, spoiler_text: 'ネタバレ', account: {acct: acct.to_s}}))
-      assert_false(Analyzer.respondable?({content: "@aaaa #{word}", account: {acct: acct.to_s}}))
+      #assert_false(Analyzer.respondable?({content: "@aaaa #{word}", account: {acct: acct.to_s}}))
       assert(Analyzer.respondable?({content: "#{acct} #{word}", account: {acct: acct.to_s}}))
       assert(Analyzer.respondable?({content: word, account: {acct: acct.to_s}}))
     end

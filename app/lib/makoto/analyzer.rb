@@ -80,19 +80,16 @@ module Makoto
 
     def self.ignore_accounts
       accounts = config['/analyzer/ignore_accounts']
-      return accounts.filter_map {|v| Ginseng::Fediverse::Acct.new(v)}.to_set
+      return accounts.filter_map {|v| Ginseng::Fediverse::Acct.new(v)}
     end
 
     def self.respondable?(payload)
-      payload.deep_symbolize_keys!
-      return false if payload[:reblog]
-      return false if payload[:spoiler_text].present?
-      return false if ignore_accounts.to_a.map(&:username).member?(payload[:account][:acct])
-      text = create_source(payload[:content])
+      payload.deep_stringify_keys!
+      return false if payload['reblog']
+      return false if payload['spoiler_text'].present?
+      return false if ignore_accounts.map(&:to_s).member?(payload.dig('account', 'acct'))
+      text = create_source(payload['content'])
       return false if text.match?("@#{config['/mastodon/account/name']}([[:blank:]]|$)")
-      new(text).parser.accts.each do |acct|
-        return false unless acct.username == payload[:account][:acct].sub(/^@/, '')
-      end
       Keyword.dataset.where(type: 'topic').all do |topic|
         return true if text.include?(topic.word)
       end
