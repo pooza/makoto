@@ -6,17 +6,6 @@ module Makoto
     return File.expand_path('../..', __dir__)
   end
 
-  def self.setup_bootsnap
-    Bootsnap.setup(
-      cache_dir: File.join(dir, 'tmp/cache'),
-      development_mode: Environment.development?,
-      load_path_cache: true,
-      compile_cache_iseq: true,
-      compile_cache_yaml: true,
-      compile_cache_json: true,
-    )
-  end
-
   def self.loader
     config = YAML.load_file(File.join(dir, 'config/autoload.yaml'))
     loader = Zeitwerk::Loader.new
@@ -27,13 +16,11 @@ module Makoto
   end
 
   def self.setup_sidekiq
-    Redis.exists_returns_integer = true
-    Sidekiq.configure_client do |config|
-      config.redis = {url: Config.instance['/sidekiq/redis/dsn']}
-    end
-    Sidekiq.configure_server do |config|
-      config.redis = {url: Config.instance['/sidekiq/redis/dsn']}
-      config.log_formatter = Sidekiq::Logger::Formatters::JSON.new
+    daemon = SidekiqDaemon.new
+    daemon.save_config
+    config = YAML.load_file(daemon.config_cache_path).deep_symbolize_keys
+    Sidekiq.configure_client do |sidekiq|
+      sidekiq.redis = {url: config.dig(:redis, :dsn)}
     end
   end
 
@@ -78,9 +65,8 @@ module Makoto
   ENV['BUNDLE_GEMFILE'] = File.join(dir, 'Gemfile')
   Bundler.require
   loader.setup
-  setup_bootsnap
-  setup_debug
   setup_sidekiq
+  setup_debug
   ENV['RACK_ENV'] ||= Environment.type
   Postgres.connect
 end
