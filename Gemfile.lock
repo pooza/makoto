@@ -199,6 +199,8 @@ GEM
     rainbow (3.1.1)
     rake (13.0.6)
     redis (4.5.1)
+    redis-client (0.12.1)
+      connection_pool
     regexp_parser (2.6.2)
     rest-client (2.1.0)
       http-accept (>= 1.7.0, < 2.0)
@@ -242,14 +244,14 @@ GEM
     securerandom (0.2.2)
     sequel (5.65.0)
     set (1.0.3)
-    sidekiq (6.5.8)
-      connection_pool (>= 2.2.5, < 3)
-      rack (~> 2.0)
-      redis (>= 4.5.0, < 5)
-    sidekiq-scheduler (4.0.3)
-      redis (>= 4.2.0)
+    sidekiq (7.0.3)
+      concurrent-ruby (< 2)
+      connection_pool (>= 2.3.0)
+      rack (>= 2.2.4)
+      redis-client (>= 0.11.0)
+    sidekiq-scheduler (5.0.1)
       rufus-scheduler (~> 3.2)
-      sidekiq (>= 4, < 7)
+      sidekiq (>= 4, < 8)
       tilt (>= 1.4.0)
     sinatra (3.0.5)
       mustermann (~> 3.0)
@@ -303,8 +305,8 @@ DEPENDENCIES
   rubocop-performance
   rubocop-rake
   rubocop-sequel
-  sidekiq (~> 6.0)
-  sidekiq-scheduler (~> 4.0.0)
+  sidekiq (~> 7.0)
+  sidekiq-scheduler (~> 5.0.0)
   test-unit
   timecop
 
