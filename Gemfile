@@ -7,7 +7,6 @@ gem 'ginseng-fediverse', github: 'pooza/ginseng-fediverse', require: 'ginseng/fe
 gem 'ginseng-postgres', github: 'pooza/ginseng-postgres', require: 'ginseng/postgres'
 gem 'ginseng-web', github: 'pooza/ginseng-web', require: 'ginseng/web'
 gem 'natto'
-gem 'redis', '~>4.5.0'
 gem 'sidekiq', '~>7.0'
 gem 'sidekiq-scheduler', '~>5.0.0'
 

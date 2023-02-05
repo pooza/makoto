@@ -7,7 +7,6 @@ module Makoto
     def command
       return Ginseng::CommandLine.new([
         'sidekiq',
-        '--config', config_cache_path,
         '--require', initializer_path
       ])
     end
