@@ -8,7 +8,8 @@ module Makoto
       return Ginseng::CommandLine.new([
         'sidekiq',
         '--require', initializer_path
-      ])
+        ('Ruby YJIT: Ready' if jit_ready?),
+      ].compact.join("\n")
     end
 
     def motd

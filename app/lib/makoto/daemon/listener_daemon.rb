@@ -11,7 +11,8 @@ module Makoto
     def motd
       return [
         "#{self.class} #{Package.version}",
-      ].join("\n")
+        ('Ruby YJIT: Ready' if jit_ready?),
+      ].compact.join("\n")
     end
 
     def service
