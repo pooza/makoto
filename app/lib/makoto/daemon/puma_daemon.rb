@@ -13,7 +13,8 @@ module Makoto
       return [
         `puma -V`.chomp,
         "Root URL: #{root_uri}",
-      ].join("\n")
+        ('Ruby YJIT: Ready' if jit_ready?),
+      ].compact.join("\n")
     end
 
     def root_uri
