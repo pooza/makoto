@@ -31,7 +31,7 @@ module Makoto
       @container.paragraphs.push('天ぷらそば')
       @container.paragraphs.push('ネギトロ丼')
 
-      assert(@container.to_s.match?(/^こんにちは。\n(天ぷらそば|ネギトロ丼)+$/))
+      assert_match(/^こんにちは。\n(天ぷらそば|ネギトロ丼)+$/, @container.to_s)
     end
   end
 end

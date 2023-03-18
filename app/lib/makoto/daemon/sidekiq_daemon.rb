@@ -8,15 +8,15 @@ module Makoto
       return Ginseng::CommandLine.new([
         'sidekiq',
         '--require', initializer_path
-        ('Ruby YJIT: Ready' if jit_ready?),
-      ].compact.join("\n")
+      ])
     end
 
     def motd
       return [
         `sidekiq -V`.chomp,
         "Redis DSN: #{config['/sidekiq/redis/dsn']}",
-      ].join("\n")
+        ('Ruby YJIT: Ready' if jit_ready?),
+      ].compact.join("\n")
     end
 
     def self.username
@@ -54,8 +54,6 @@ module Makoto
     rescue => e
       return {error: e.message, status: 'NG'}
     end
-
-    private
 
     def initializer_path
       return File.join(Environment.dir, 'app/initializer/sidekiq.rb')
