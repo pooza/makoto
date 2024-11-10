@@ -4,9 +4,9 @@ module Makoto
       data = JSON.parse(message.data)
       payload = JSON.parse(data['payload'])
       if data['event'] == 'notification'
-        send("handle_#{payload['type']}_notification".to_sym, payload)
+        send(:"handle_#{payload['type']}_notification", payload)
       else
-        send("handle_#{data['event']}".to_sym, payload)
+        send(:"handle_#{data['event']}", payload)
       end
     rescue NoMethodError
       logger.error(error: 'method undefined', payload:)

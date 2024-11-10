@@ -22,8 +22,8 @@ module Makoto
     end
 
     def test_respondable?
-      return unless word = Keyword.dataset.where(type: 'topic').all.first[:word]
-      return unless acct = Ginseng::Fediverse::Acct.new("@#{config['/test/account/acct']}")
+      skip unless word = Keyword.dataset.where(type: 'topic').all.first[:word]
+      skip unless acct = Ginseng::Fediverse::Acct.new("@#{config['/test/account/acct']}")
 
       assert_false(Analyzer.respondable?({content: 'fyga', account: {acct: acct.to_s}}))
       assert_false(Analyzer.respondable?({content: word, reblog: true, account: {acct: acct.to_s}}))
