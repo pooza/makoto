@@ -298,7 +298,7 @@ sidekiq:
   dashboard:
     session:
       max_age: 86400
-      password: makoto
+      password: u8GRmQOWAGlGYKXF2m3rLTuyWhGmDkyj4uJ9UV2K/e4Gp0sX8diCZx0A6u4FUe39
   redis:
     dsn: redis://localhost:6379/3
   schedule:

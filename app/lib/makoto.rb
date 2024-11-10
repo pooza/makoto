@@ -38,6 +38,7 @@ module Makoto
   def self.rack
     require 'sidekiq/web'
     require 'sidekiq-scheduler/web'
+    require 'rack/session'
     if SidekiqDaemon.basic_auth?
       Sidekiq::Web.use(Rack::Auth::Basic) do |username, password|
         SidekiqDaemon.auth(username, password)
