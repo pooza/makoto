@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '>=3.2.0'
+ruby '>=3.3.0'
 gem 'csv'
 gem 'faye-websocket', github: 'pooza/faye-websocket-ruby'
 gem 'ginseng-core', github: 'pooza/ginseng-core', 'require': 'ginseng'
