@@ -84,7 +84,7 @@ package:
     - tkoishi@b-shock.co.jp
   license: MIT
   url: https://github.com/pooza/makoto
-  version: 3.1.6
+  version: 3.1.7
 postgres:
   dsn: postgres://postgres:password@localhost:5432/makoto
 puma:
@@ -308,9 +308,6 @@ sidekiq:
     fairy_lib:
       class: Makoto::FairyRefreshWorker
       cron: 2 2 * * *
-    follow_maintenance:
-      class: Makoto::FollowMaintenanceWorker
-      cron: 0-59/5 * * * *
     good_morning:
       class: Makoto::GoodMorningMonologueWorker
       cron: 0 7 * * *
