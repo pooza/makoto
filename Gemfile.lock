@@ -306,7 +306,7 @@ GEM
       tilt (>= 2.1.0)
     syslog (0.1.2)
     temple (0.10.3)
-    test-unit (3.6.2)
+    test-unit (3.6.4)
       power_assert
     tilt (2.1.0)
     time (0.4.1)
